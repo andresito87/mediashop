@@ -52,7 +52,7 @@ export class AuthService implements OnDestroy {
   login(email: string, password: string): Observable<any> {
     this.isLoadingSubject.next(true);
     return this.http
-      .post(URL_SERVICIOS + '/auth/login', { email, password })
+      .post(URL_SERVICIOS + '/auth/admin_login', { email, password })
       .pipe(
         map((auth: any) => {
           const result = this.setAuthFromLocalStorage(auth);
@@ -69,7 +69,7 @@ export class AuthService implements OnDestroy {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    this.router.navigate(['/auth/login'], {
+    this.router.navigate(['/auth/admin_login'], {
       queryParams: {},
     });
   }

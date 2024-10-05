@@ -42,14 +42,33 @@ class JWTAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         try {
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (! $token = JWTAuth::attempt($credentials) && auth()->user()->type_user == 2) {
                 return response()->json(['error' => 'Invalid credentials'], 401);
             }
 
             // Get the authenticated user.
             $user = auth()->user();
 
-            return $this->respondWithToken($token);
+            return $this->respondWithToken(JWTAuth::attempt($credentials));
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Could not create token'], 500);
+        }
+    }
+
+    // Admin login
+    public function admin_login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        try {
+            if (! $token = JWTAuth::attempt($credentials) && auth()->user()->type_user == 1) {
+                return response()->json(['error' => 'Invalid credentials'], 401);
+            }
+
+            // Get the authenticated user.
+            $user = auth()->user();
+
+            return $this->respondWithToken(JWTAuth::attempt($credentials));
         } catch (JWTException $e) {
             return response()->json(['error' => 'Could not create token'], 500);
         }

@@ -7,17 +7,35 @@ export class AuthGuard {
   constructor(private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (!this.authService.user || !this.authService.token) {
+    const token = this.authService.token;
+
+    if (!this.authService.user || !token) {
       this.authService.logout();
       return false;
     }
 
-    const token = this.authService.token;
-    const expirationDate = JSON.parse(atob(token.split('.')[1])).exp;
-    if (Math.floor(Date.now() / 1000) >= expirationDate) {
+    // Verificar que el token esté en el formato correcto
+    const tokenParts = token.split('.');
+    if (tokenParts.length !== 3) {
+      console.error('Token inválido o malformado.');
       this.authService.logout();
       return false;
     }
+
+    try {
+      const tokenPayload = JSON.parse(atob(tokenParts[1]));
+      const expirationDate = tokenPayload.exp;
+
+      if (Math.floor(Date.now() / 1000) >= expirationDate) {
+        this.authService.logout();
+        return false;
+      }
+    } catch (error) {
+      console.error('Error al decodificar el token JWT:', error);
+      this.authService.logout();
+      return false;
+    }
+
     return true;
   }
 }
