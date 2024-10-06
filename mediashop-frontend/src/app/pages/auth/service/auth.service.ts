@@ -68,6 +68,42 @@ export class AuthService {
     );
   }
 
+  verifiedEmail(data: any) {
+    const URL = URL_SERVICIOS + '/auth/verified_email';
+    return this.http.post(URL, data).pipe(
+      map((res: any) => {
+        return this.saveLocalStorage(res);
+      }),
+      catchError((error: any) => {
+        return of(error);
+      })
+    );
+  }
+
+  verifiedCode(data: any) {
+    const URL = URL_SERVICIOS + '/auth/verified_code';
+    return this.http.post(URL, data).pipe(
+      map((res: any) => {
+        return this.saveLocalStorage(res);
+      }),
+      catchError((error: any) => {
+        return of(error);
+      })
+    );
+  }
+
+  verifiedNewPassword(data: any) {
+    const URL = URL_SERVICIOS + '/auth/verified_password';
+    return this.http.post(URL, data).pipe(
+      map((res: any) => {
+        return this.saveLocalStorage(res);
+      }),
+      catchError((error: any) => {
+        return of(error);
+      })
+    );
+  }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');

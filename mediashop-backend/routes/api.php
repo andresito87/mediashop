@@ -10,6 +10,10 @@ Route::prefix('auth')->group(function () {
     Route::post('admin_login', [JWTAuthController::class, 'admin_login']);
     Route::post('logout', [JWTAuthController::class, 'logout']);
     Route::post('verified_auth', [JWTAuthController::class, 'verified_auth']);
+    // Process to change password
+    Route::post('verified_email', [JWTAuthController::class, 'verified_email']);
+    Route::post('verified_code', [JWTAuthController::class, 'verified_code']);
+    Route::post('new_password', [JWTAuthController::class, 'new_password']);
 });
 
 Route::middleware([JwtMiddleware::class])->group(function () {

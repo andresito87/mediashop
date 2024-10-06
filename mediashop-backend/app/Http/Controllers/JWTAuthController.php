@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ForgotPasswordMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -57,6 +58,51 @@ class JWTAuthController extends Controller
 
         return response()->json(compact('user', 'token'), 201);
     }
+
+    /* Process to change password*/
+    public function verified_email(Request $request)
+    {
+        $user = User::where('email', $request->get('email'))->first();
+
+        if ($user == null) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        try {
+            $user->update(['code_verified' => uniqid()]);
+            Mail::to($request->get('email'))->send(new ForgotPasswordMail($user));
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error al enviar el correo: ' . $e->getMessage()
+            ], 500);
+        }
+
+        return response()->json(['message' => 'Email sent'], 200);
+    }
+
+    public function verified_code(Request $request)
+    {
+        $user = User::where('code_verified', $request->get('code'))->first();
+
+        if ($user == null) {
+            return response()->json(['error' => 'Code not found'], 404);
+        }
+
+        return response()->json(['message' => 'Code verified'], 200);
+    }
+
+    public function new_password(Request $request)
+    {
+        $user = User::where('code_verified', $request->get('code'))->first();
+
+        $user->password = Hash::make($request->get('new_password'));
+        $user->code_verified = null;
+        $user->save();
+
+        return response()->json(['message' => 'Password changed'], 200);
+    }
+    /* End Process to change password*/
 
     // User login
     public function login(Request $request)

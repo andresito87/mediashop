@@ -265,9 +265,12 @@
                                                                     <table width="100%" border="0" cellspacing="0"
                                                                         cellpadding="0">
                                                                         <tr>
-                                                                            <h1
-                                                                                style="font-size: 50px; color: #f3189e;">
-                                                                                MediaShop</h1>
+                                                                            <td class="img-center p-30 px-15"
+                                                                                style="font-size:0pt; line-height:0pt; text-align:center; padding: 30px; padding-left: 15px; padding-right: 15px;">
+                                                                                <h1
+                                                                                    style="font-size: 50px; color: #f3189e;">
+                                                                                    MediaShop</h1>
+                                                                            </td>
                                                                         </tr>
                                                                     </table>
                                                                     <!-- Logo -->
@@ -291,8 +294,8 @@
                                                                                                 <tr>
                                                                                                     <td class="fluid-img img-center pb-50"
                                                                                                         style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 50px;">
-                                                                                                        <img src="https://cdn-icons-png.flaticon.com/512/5013/5013710.png"
-                                                                                                            width="253"
+                                                                                                        <img src="https://cdn-icons-png.flaticon.com/512/10150/10150366.png"
+                                                                                                            width="264"
                                                                                                             height="300"
                                                                                                             editable="true"
                                                                                                             border="0"
@@ -303,10 +306,9 @@
                                                                                                     <td class="title-36 a-center pb-15"
                                                                                                         style="font-size:36px; line-height:40px; color:#282828; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; text-align:center; padding-bottom: 15px;">
                                                                                                         <multiline>
-                                                                                                            <strong>Verify
-                                                                                                                Your
-                                                                                                                Email
-                                                                                                                Account</strong>
+                                                                                                            <strong>Activate
+                                                                                                                with
+                                                                                                                Code</strong>
                                                                                                         </multiline>
                                                                                                     </td>
                                                                                                 </tr>
@@ -314,19 +316,44 @@
                                                                                                     <td class="text-16 lh-26 a-center pb-25"
                                                                                                         style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
                                                                                                         <multiline>
-                                                                                                            Lorem ipsum
-                                                                                                            dolor sit
-                                                                                                            amet,
-                                                                                                            consectetur
-                                                                                                            adipisicing
-                                                                                                            elit, sed do
-                                                                                                            eiusmod
-                                                                                                            tempor
-                                                                                                            incididunt
-                                                                                                            ut labore et
-                                                                                                            dolore magna
-                                                                                                            aliqua.
+                                                                                                            Click on the
+                                                                                                            button below
+                                                                                                            to activate
+                                                                                                            code, this
+                                                                                                            is your
+                                                                                                            requested
+                                                                                                            account key
+                                                                                                            code to log
+                                                                                                            in with your
+                                                                                                            email
+                                                                                                            address
+                                                                                                            (name@mail.com)
                                                                                                         </multiline>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td class="pb-30"
+                                                                                                        style="padding-bottom: 30px;">
+                                                                                                        <table
+                                                                                                            width="100%"
+                                                                                                            border="0"
+                                                                                                            cellspacing="0"
+                                                                                                            cellpadding="0">
+                                                                                                            <tr>
+                                                                                                                <td class="title-22 a-center py-20 px-50 mpx-15"
+                                                                                                                    style="border-radius: 10px; border: 1px dashed #b4b4d4; font-size:22px; line-height:26px; color:#282828; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; text-align:center; padding-top: 20px; padding-bottom: 20px; padding-left: 50px; padding-right: 50px;"
+                                                                                                                    bgcolor="#f4ecfa">
+                                                                                                                    <multiline>
+                                                                                                                        <strong>USE
+                                                                                                                            CODE
+                                                                                                                            :
+                                                                                                                            <span
+                                                                                                                                class="c-purple"
+                                                                                                                                style="color:#9128df;">{{$user->code_verified }}</span></strong>
+                                                                                                                    </multiline>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </table>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -342,14 +369,14 @@
                                                                                                                     bgcolor="#f3189e"
                                                                                                                     style="font-size:16px; line-height:20px; mso-padding-alt:15px 35px; font-family:'PT Sans', Arial, sans-serif; text-align:center; font-weight:bold; text-transform:uppercase; border-radius:25px; min-width:auto !important; color:#ffffff;">
                                                                                                                     <multiline>
-                                                                                                                        <a href="{{ env("URL_TIENDA") . "login?code=" . $user->unique_id }}"
+                                                                                                                        <a href="#"
                                                                                                                             target="_blank"
                                                                                                                             class="link c-white"
                                                                                                                             style="display: block; padding: 15px 35px; text-decoration:none; color:#ffffff;">
                                                                                                                             <span
                                                                                                                                 class="link c-white"
-                                                                                                                                style="text-decoration:none; color:#ffffff;">Verify
-                                                                                                                                Now</span>
+                                                                                                                                style="text-decoration:none; color:#ffffff;">ACTIVATE
+                                                                                                                                CODE</span>
                                                                                                                         </a>
                                                                                                                     </multiline>
                                                                                                                 </td>
