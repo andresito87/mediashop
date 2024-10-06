@@ -22,6 +22,7 @@
 19. Line Animation Js
 20. Video Play Js
 21. Password Toggle Js
+22. Retype Password Js
 ****************************************************/
 
 function HOMEINIT($) {
@@ -2215,6 +2216,29 @@ function HOMEINIT($) {
       var inputType = document.getElementById("tp_password");
       var openEye = document.getElementById("open-eye");
       var closeEye = document.getElementById("close-eye");
+
+      if (inputType.type === "password") {
+        inputType.type = "text";
+        openEye.style.display = "block";
+        closeEye.style.display = "none";
+      } else {
+        inputType.type = "password";
+        openEye.style.display = "none";
+        closeEye.style.display = "block";
+      }
+    });
+  }
+
+  ////////////////////////////////////////////////////
+  // 22. Retype Password Toggle Js
+  if ($("#retype-password-show-toggle").length > 0) {
+    var btn = document.getElementById("retype-password-show-toggle");
+    document.getElementById("open-eye-retype").style.display = "none";
+
+    btn.addEventListener("click", function (e) {
+      var inputType = document.getElementById("tp_password_confirmation");
+      var openEye = document.getElementById("open-eye-retype");
+      var closeEye = document.getElementById("close-eye-retype");
 
       if (inputType.type === "password") {
         inputType.type = "text";

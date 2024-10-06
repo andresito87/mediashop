@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../service/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -14,19 +16,44 @@ import { FormsModule, NgModel } from '@angular/forms';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  code_user: string = '';
   constructor(
     private toastr: ToastrService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    // this.showSuccess();
     if (this.authService.token && this.authService.user) {
       setTimeout(() => {
         this.router.navigate(['/']);
       }, 500);
       return;
+    }
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      if (params.code) {
+        this.code_user = params.code;
+      }
+    });
+
+    if (this.code_user) {
+      const data: any = {
+        code: this.code_user,
+      };
+      this.authService.verifiedAuth(data).subscribe((res: any) => {
+        if (res.message == 'User not found') {
+          this.toastr.error('Error', 'Error de conexión, intente más tarde');
+          return;
+        }
+        this.toastr.success(
+          'Exito',
+          '!!! Correo verificado, ingrese a la tienda !!!'
+        );
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 500);
+      });
     }
   }
 
@@ -35,27 +62,28 @@ export class LoginComponent implements OnInit {
       this.toastr.error('Validacion', 'Necesitas ingresar todos los campos');
       return;
     }
-    this.authService.login(this.email, this.password).subscribe(
-      (res: any) => {
-        console.log(res);
-        if (res.error && res.error.error == 'Invalid credentials') {
-          this.toastr.error('Error', 'Usuario o contraseña incorrectos');
-          return;
-        } else {
-          this.toastr.success('Exito', '!!! Bienvenid@ a la tienda !!!');
-          setTimeout(() => {
-            this.router.navigate(['/']);
-          }, 500);
-          return;
-        }
-      },
-      (error) => {
-        this.toastr.error('Error', 'Error de conexión, intente más tarde');
-      }
-    );
-  }
 
-  showSuccess() {
-    this.toastr.success('!!! Éxito !!!', 'Operación completada');
+    this.authService
+      .login(this.email, this.password)
+      .pipe(
+        tap((res: any) => {
+          console.log(res);
+          if (res.error && res.error.error == 'Invalid credentials') {
+            this.toastr.error('Error', 'Usuario o contraseña incorrectos');
+            return;
+          } else {
+            this.toastr.success('Exito', '!!! Bienvenid@ a la tienda !!!');
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 500);
+          }
+        }),
+        catchError((error) => {
+          this.toastr.error('Error', 'Error de conexión, intente más tarde');
+          // Return empty observable to complete the flow of observable
+          return of(null);
+        })
+      )
+      .subscribe();
   }
 }

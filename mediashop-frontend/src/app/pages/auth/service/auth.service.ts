@@ -56,6 +56,18 @@ export class AuthService {
     );
   }
 
+  verifiedAuth(data: any) {
+    const URL = URL_SERVICIOS + '/auth/verified_auth';
+    return this.http.post(URL, data).pipe(
+      map((res: any) => {
+        return this.saveLocalStorage(res);
+      }),
+      catchError((error: any) => {
+        return of(error);
+      })
+    );
+  }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');

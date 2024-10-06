@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
+        'guard' => env('AUTH_GUARD', 'api'),  // Change the default guard to 'api'
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
@@ -31,7 +31,7 @@ return [
     | users are actually retrieved out of your database or other storage
     | system used by the application. Typically, Eloquent is utilized.
     |
-    | Supported: "session"
+    | Supported: "session", "token", "jwt"
     |
     */
 
@@ -39,6 +39,12 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'api' => [
+            'driver' => 'jwt',   // Change the driver to 'jwt' to use JWT authentication
+            'provider' => 'users',
+            'hash' => false,
         ],
     ],
 
@@ -62,13 +68,8 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,  // Choose the User model
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
