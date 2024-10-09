@@ -92,7 +92,7 @@ class JWTAuthController extends Controller
         return response()->json(['message' => 'Code verified'], 200);
     }
 
-    public function new_password(Request $request)
+    public function verified_password(Request $request)
     {
         $user = User::where('code_verified', $request->get('code'))->first();
 

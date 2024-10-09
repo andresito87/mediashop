@@ -17,6 +17,7 @@ export class CodeForgotPasswordComponent {
   isLoadingCode: any = false;
 
   @Output() LoadingCodeStatus: EventEmitter<any> = new EventEmitter();
+  @Output() CodeValue: EventEmitter<any> = new EventEmitter();
   constructor(public authService: AuthService, public toastr: ToastrService) {}
 
   verifiedCode() {
@@ -45,6 +46,7 @@ export class CodeForgotPasswordComponent {
       );
       this.isLoadingCode = 1;
       this.LoadingCodeStatus.emit(true);
+      this.CodeValue.emit(this.code);
     });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../service/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -85,5 +85,14 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  sendToRegister(event: MouseEvent) {
+    event.preventDefault();
+    this.router.navigate(['/register']);
+    // Reload JQuery code
+    setTimeout(() => {
+      document.location.reload();
+    }, 100);
   }
 }

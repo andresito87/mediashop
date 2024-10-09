@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -103,5 +103,14 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  public sendToLogin(event: MouseEvent) {
+    event.preventDefault();
+    this.router.navigate(['/login']);
+    // Reload JQuery code
+    setTimeout(() => {
+      document.location.reload();
+    }, 100);
   }
 }

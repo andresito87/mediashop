@@ -13,7 +13,7 @@ Route::prefix('auth')->group(function () {
     // Process to change password
     Route::post('verified_email', [JWTAuthController::class, 'verified_email']);
     Route::post('verified_code', [JWTAuthController::class, 'verified_code']);
-    Route::post('new_password', [JWTAuthController::class, 'new_password']);
+    Route::post('verified_password', [JWTAuthController::class, 'verified_password']);
 });
 
 Route::middleware([JwtMiddleware::class])->group(function () {

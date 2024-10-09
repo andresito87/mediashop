@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../service/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     NewPasswordComponent,
     CommonModule,
     FormsModule,
+    RouterModule,
   ],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.css',
@@ -26,7 +28,11 @@ export class ForgotPasswordComponent {
   code: string = '';
   new_password: string = '';
 
-  constructor(public authService: AuthService, public toastr: ToastrService) {}
+  constructor(
+    public authService: AuthService,
+    public toastr: ToastrService,
+    private router: Router
+  ) {}
 
   verifiedMail() {
     if (!this.email) {
@@ -48,7 +54,20 @@ export class ForgotPasswordComponent {
     });
   }
 
-  LoadingCode(event: any) {
-    this.isLoadingCode = event;
+  LoadingCode($event: any) {
+    this.isLoadingCode = $event;
+  }
+
+  CodeValue($event: any) {
+    this.code = $event;
+  }
+
+  reloadPage(event: MouseEvent) {
+    event.preventDefault();
+    this.router.navigate(['/login']);
+    // Reload JQuery code
+    setTimeout(() => {
+      document.location.reload();
+    }, 100);
   }
 }
