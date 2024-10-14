@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { afterNextRender, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -15,11 +15,13 @@ declare function HOMEINIT([]): any;
 export class AppComponent {
   title = 'mediashop-frontend';
   constructor() {
-    setTimeout(() => {
-      HOMEINIT($);
-    }, 50);
-    $(window).on('load', function () {
-      $('#loading').fadeOut(500);
+    afterNextRender(() => {
+      setTimeout(() => {
+        HOMEINIT($);
+      }, 50);
+      $(window).on('load', function () {
+        $('#loading').fadeOut(500);
+      });
     });
   }
 }
