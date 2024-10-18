@@ -17,18 +17,19 @@ class Categorie extends Model
         "image",
         "categorie_second_id",
         "categorie_third_id",
-        "position"
+        "position",
+        "type_categorie"
     ];
 
     public function setCreatedAtAttribute($value)
     {
-        date_default_timezone_set("Europe/Spain");
+        date_default_timezone_set("Europe/Madrid");
         $this->attributes["created_at"] = Carbon::now();
     }
 
     public function setUpdatedAtAttribute($value)
     {
-        date_default_timezone_set("Europe/Spain");
+        date_default_timezone_set("Europe/Madrid");
         $this->attributes["updated_at"] = Carbon::now();
     }
 

@@ -24,5 +24,6 @@ Route::middleware([JwtMiddleware::class])->group(function () {
 Route::middleware("auth:api")->prefix("admin")->group(function () {
     Route::get('categories/config', [CategorieController::class, 'config']);
     Route::resource('categories', CategorieController::class);
+    Route::post('categories/{id}', [CategorieController::class, "update"]);
 });
 
