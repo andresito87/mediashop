@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Product\CategorieController;
 use App\Http\Controllers\JWTAuthController;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,9 @@ Route::prefix('auth')->group(function () {
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('user', [JWTAuthController::class, 'getUser']);
 });
+
+Route::middleware("auth:api")->prefix("admin")->group(function () {
+    Route::get('categories/config', [CategorieController::class, 'config']);
+    Route::resource('categories', CategorieController::class);
+});
+
