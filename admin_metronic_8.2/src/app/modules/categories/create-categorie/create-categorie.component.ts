@@ -106,7 +106,7 @@ export class CreateCategorieComponent {
     formData.append('position', this.position + '');
     formData.append('type_categorie', this.type_categorie + '');
     if (this.file_image) {
-      formData.append('image', this.file_image);
+      formData.append('imagen', this.file_image);
     }
 
     if (this.categorie_second_id) {

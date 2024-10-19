@@ -51,9 +51,9 @@ class CategorieController extends Controller
             return response()->json(["message" => 403]);
         }
 
-        if ($request->hasfile("image")) {
-            $path = Storage::putFile("categories", $request->file("image"));
-            $request->request->add(["image" => $path]);
+        if ($request->hasfile("imagen")) {
+            $path = Storage::putFile("categories", $request->file("imagen"), );
+            $request->merge(['image' => $path]);
         }
 
         $categorie = Categorie::create($request->all());
