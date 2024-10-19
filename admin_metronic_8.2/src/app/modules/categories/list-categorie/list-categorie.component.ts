@@ -37,4 +37,18 @@ export class ListCategorieComponent {
         this.currentPage = page;
       });
   }
+
+  searchTo() {
+    this.listCategories();
+  }
+
+  loadPage($event: any) {
+    this.listCategories($event);
+  }
+
+  getDomParser(categorie: any) {
+    let miDiv: any = document.getElementById('svg-categorie-' + categorie.id);
+    miDiv.innerHTML = categorie.icon;
+    return '';
+  }
 }

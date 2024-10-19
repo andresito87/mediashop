@@ -14,6 +14,8 @@
         ></i>
         <input
           type="text"
+          (keyup.enter)="searchTo()"
+          [(ngModel)]="search"
           data-kt-user-table-filter="search"
           class="form-control form-control-solid w-250px ps-13"
           placeholder="Buscar Categoría"
@@ -310,7 +312,11 @@
                   </div>
                 </td>
                 <td>
-                  <span [innerHTML]="categorie.icon"></span>
+                  <ng-container *ngIf="categorie.icon">
+                    <div [id]="'svg-categorie-' + categorie.id">
+                      {{ getDomParser(categorie) }}
+                    </div>
+                  </ng-container>
                 </td>
                 <td>
                   <span
@@ -336,7 +342,7 @@
                 </td>
                 <td class="text-end">
                   <a
-                    href="#"
+                    [routerLink]="'/categories/list/edit/' + categorie.id"
                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                   >
                     <i class="ki-duotone ki-pencil fs-2"
@@ -359,6 +365,14 @@
           </tbody>
           <tfoot></tfoot>
         </table>
+        <ngb-pagination
+          [collectionSize]="totalPages"
+          [(page)]="currentPage"
+          [pageSize]="25"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="loadPage($event)"
+        ></ngb-pagination>
       </div>
     </div>
   </div>
