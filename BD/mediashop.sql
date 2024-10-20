@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 20-10-2024 a las 06:15:17
+-- Tiempo de generación: 20-10-2024 a las 07:56:21
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `mediashop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `attributes`
+--
+
+CREATE TABLE `attributes` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `type_attribute` tinyint UNSIGNED NOT NULL DEFAULT '1',
+  `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -187,6 +203,22 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `properties`
+--
+
+CREATE TABLE `properties` (
+  `id` bigint UNSIGNED NOT NULL,
+  `attribute_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `code` varchar(250) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `sessions`
 --
 
@@ -240,6 +272,12 @@ INSERT INTO `users` (`id`, `name`, `surname`, `phone`, `unique_id`, `avatar`, `e
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `attributes`
+--
+ALTER TABLE `attributes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `cache`
@@ -300,6 +338,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indices de la tabla `properties`
+--
+ALTER TABLE `properties`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `sessions`
 --
 ALTER TABLE `sessions`
@@ -317,6 +361,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `attributes`
+--
+ALTER TABLE `attributes`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -346,6 +396,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `properties`
+--
+ALTER TABLE `properties`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
