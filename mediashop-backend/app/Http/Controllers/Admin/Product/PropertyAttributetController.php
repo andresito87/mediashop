@@ -21,7 +21,8 @@ class PropertyAttributetController extends Controller
      */
     public function store(Request $request)
     {
-        $exist = Property::where("name", $request->name)->first();
+        $exist = Property::where("name", $request->name)
+            ->where("attribute_id", $request->attribute_id)->first();
         if ($exist) {
             return response()->json([
                 "message" => 403
