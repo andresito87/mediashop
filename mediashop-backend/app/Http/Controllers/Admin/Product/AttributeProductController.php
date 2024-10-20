@@ -26,13 +26,13 @@ class AttributeProductController extends Controller
                     "type_attribute" => $attribute->type_attribute,
                     "state" => $attribute->state,
                     "created_at" => $attribute->created_at->format("Y-m-d h:i:s"),
-                    "propierties" => $attribute->propierties->map(function ($property) {
+                    "properties" => optional($attribute->properties)->map(function ($property) {
                         return [
                             "id" => $property->id,
                             "name" => $property->name,
                             "code" => $property->code,
                         ];
-                    })
+                    }) ?? []
                 ];
             }),
         ]);
@@ -58,13 +58,13 @@ class AttributeProductController extends Controller
                 "type_attribute" => $attribute->type_attribute,
                 "state" => $attribute->state,
                 "created_at" => $attribute->created_at->format("Y-m-d h:i:s"),
-                "propierties" => $attribute->propierties->map(function ($property) {
+                "properties" => optional($attribute->properties)->map(function ($property) {
                     return [
                         "id" => $property->id,
                         "name" => $property->name,
                         "code" => $property->code,
                     ];
-                })
+                }) ?? []
             ]
         ]);
     }
@@ -98,13 +98,13 @@ class AttributeProductController extends Controller
                 "type_attribute" => $attribute->type_attribute,
                 "state" => $attribute->state,
                 "created_at" => $attribute->created_at->format("Y-m-d h:i:s"),
-                "propierties" => $attribute->propierties->map(function ($property) {
+                "properties" => optional($attribute->properties)->map(function ($property) {
                     return [
                         "id" => $property->id,
                         "name" => $property->name,
                         "code" => $property->code,
                     ];
-                })
+                }) ?? []
             ]
         ]);
     }

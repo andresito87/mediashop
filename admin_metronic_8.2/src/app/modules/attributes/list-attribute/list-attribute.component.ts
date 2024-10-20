@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteAttributeComponent } from '../delete-attribute/delete-attribute.component';
 import { AttributesService } from '../service/attributes.service';
 import { CreateAttributeComponent } from '../create-attribute/create-attribute.component';
+import { EditAttributeComponent } from '../edit-attribute/edit-attribute.component';
 
 @Component({
   selector: 'app-list-attribute',
@@ -25,7 +26,7 @@ export class ListAttributeComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    //this.listAttributes();
+    this.listAttributes();
     this.isLoading$ = this.attributesService.isLoading$;
   }
 
@@ -33,14 +34,15 @@ export class ListAttributeComponent {
     this.attributesService
       .listAttributes(page, this.search)
       .subscribe((res: any) => {
-        this.attributes = res.attributes.data;
+        this.attributes = res.attributes;
         this.totalPages = res.total;
         this.currentPage = page;
       });
   }
 
-  getNameAttribute(type_attribute: number) {
+  getNameAttribute(type_attribute: any) {
     let name_attribute = '';
+    type_attribute = parseInt(type_attribute);
     switch (type_attribute) {
       case 1:
         name_attribute = 'Texto';
@@ -74,24 +76,46 @@ export class ListAttributeComponent {
       centered: true,
       size: 'md',
     });
+
+    modalRef.componentInstance.AttributeC.subscribe((attribute: any) => {
+      this.attributes.unshift(attribute);
+    });
   }
 
-  openModalEditAttribute(attribute: any) {}
+  openModalEditAttribute(attribute: any) {
+    const modalRef = this.modalService.open(EditAttributeComponent, {
+      centered: true,
+      size: 'md',
+    });
+    modalRef.componentInstance.attribute = attribute;
+
+    modalRef.componentInstance.AttributeEdit.subscribe((attribute: any) => {
+      //this.attributes.unshift(attribute);
+
+      // get position of attribute which we are going to modify
+      let INDEX = this.attributes.findIndex(
+        (item: any) => item.id == attribute.id
+      );
+      if (INDEX != -1) {
+        this.attributes[INDEX] = attribute;
+      }
+    });
+  }
 
   deleteAttribute(attribute: any) {
     const modalRef = this.modalService.open(DeleteAttributeComponent, {
       centered: true,
       size: 'md',
     });
-    modalRef.componentInstance.categorie = attribute;
+    modalRef.componentInstance.attribute = attribute;
 
-    // modalRef.componentInstance.CategorieD.subscribe((res: any) => {
-    //   let INDEX = this.attributes.findIndex(
-    //     (item: any) => item.id === categorie.id
-    //   );
-    //   if (INDEX != -1) {
-    //     this.attributes.splice(INDEX, 1);
-    //   }
-    // });
+    modalRef.componentInstance.AttributeDelete.subscribe((res: any) => {
+      let INDEX = this.attributes.findIndex(
+        (item: any) => item.id == attribute.id
+      );
+      if (INDEX != -1) {
+        this.attributes.splice(INDEX, 1);
+      }
+    });
   }
 }

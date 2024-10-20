@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AttributesService } from '../service/attributes.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create-attribute.component.scss'],
 })
 export class CreateAttributeComponent {
+  @Output() AttributeCreate: EventEmitter<any> = new EventEmitter();
+
   name: string = '';
   type_attribute: number = 1;
   isLoading$: any;
@@ -30,5 +32,29 @@ export class CreateAttributeComponent {
       this.toastr.error('Error', 'Todos los campos son necesarios');
       return;
     }
+
+    let data = {
+      name: this.name,
+      type_attribute: this.type_attribute,
+      state: 1,
+    };
+    this.attributeService.createAttributes(data).subscribe((res: any) => {
+      console.log(res);
+
+      if (res.message == 403) {
+        this.toastr.error(
+          'Validación',
+          'El nombre del atributo ya existe en la base de datos'
+        );
+        return;
+      } else {
+        this.AttributeCreate.emit(res.attribute);
+        this.toastr.success(
+          'Éxito',
+          'El atributo se ha guardado correctamente'
+        );
+        this.modal.close();
+      }
+    });
   }
 }
