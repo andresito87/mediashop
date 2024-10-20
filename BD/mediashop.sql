@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 20-10-2024 a las 07:56:21
+-- Tiempo de generación: 20-10-2024 a las 15:31:55
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -36,6 +36,18 @@ CREATE TABLE `attributes` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `attributes`
+--
+
+INSERT INTO `attributes` (`id`, `name`, `type_attribute`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(6, 'COLORES CLAROS', 3, 1, '2024-10-20 12:19:34', '2024-10-20 12:19:34', NULL),
+(7, 'POTENCIA', 2, 1, '2024-10-20 12:26:45', '2024-10-20 12:26:45', NULL),
+(8, 'TALLAS GRANDES', 4, 1, '2024-10-20 12:30:16', '2024-10-20 12:30:16', NULL),
+(9, 'TAMAÑO', 1, 1, '2024-10-20 12:30:47', '2024-10-20 13:00:21', NULL),
+(10, 'Poder', 2, 1, '2024-10-20 13:37:46', '2024-10-20 11:55:00', '2024-10-20 11:55:00'),
+(11, 'Prueba', 2, 1, '2024-10-20 13:38:18', '2024-10-20 11:54:37', '2024-10-20 11:54:37');
 
 -- --------------------------------------------------------
 
@@ -216,6 +228,17 @@ CREATE TABLE `properties` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Volcado de datos para la tabla `properties`
+--
+
+INSERT INTO `properties` (`id`, `attribute_id`, `name`, `code`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 6, 'Rosado', '#f9b4b4', '2024-10-20 16:00:30', '2024-10-20 16:00:30', NULL),
+(2, 6, 'Verde', '#96f89d', '2024-10-20 16:00:57', '2024-10-20 16:00:57', NULL),
+(3, 6, 'Blanco', '#fdfcfc', '2024-10-20 16:10:11', '2024-10-20 14:22:39', '2024-10-20 14:22:39'),
+(4, 8, 'XL', NULL, '2024-10-20 16:23:29', '2024-10-20 16:23:29', NULL),
+(5, 8, 'L', NULL, '2024-10-20 16:23:35', '2024-10-20 16:23:35', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -237,6 +260,25 @@ CREATE TABLE `sessions` (
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 ('URpunptKL6bnoHix71UnTZgKvZfA13vWwFJZRvgs', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUldIRVBOVmdvOE9VWXlFUEsyMzFQQnpxVzhENkN4eTIzT2VQMlRuUiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1728479588);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sliders`
+--
+
+CREATE TABLE `sliders` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `label` varchar(250) DEFAULT NULL,
+  `subtitle` varchar(250) DEFAULT NULL,
+  `image` varchar(250) NOT NULL,
+  `link` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -352,6 +394,12 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indices de la tabla `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -366,7 +414,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `attributes`
 --
 ALTER TABLE `attributes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -402,6 +450,12 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `properties`
 --
 ALTER TABLE `properties`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `sliders`
+--
+ALTER TABLE `sliders`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
