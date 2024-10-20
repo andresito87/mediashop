@@ -160,7 +160,6 @@ export class EditCategorieComponent {
     this.categorieService
       .updateCategories(this.CATEGORIE_ID, formData)
       .subscribe((res: any) => {
-        console.log(res);
 
         if (res.message == 403) {
           this.toastr.error('Validacion', 'La categoria ya existe');

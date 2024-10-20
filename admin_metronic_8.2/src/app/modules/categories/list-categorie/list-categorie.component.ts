@@ -32,7 +32,6 @@ export class ListCategorieComponent {
     this.categoriesService
       .listCategories(page, this.search)
       .subscribe((res: any) => {
-        console.log(res);
         this.categories = res.categories.data;
         this.totalPages = res.total;
         this.currentPage = page;

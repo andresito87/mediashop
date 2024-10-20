@@ -130,8 +130,6 @@ export class CreateCategorieComponent {
     }
 
     this.categorieService.createCategories(formData).subscribe((res: any) => {
-      console.log(res);
-
       if (res.message == 403) {
         this.toastr.error('Validacion', 'La categoria ya existe');
         return;
