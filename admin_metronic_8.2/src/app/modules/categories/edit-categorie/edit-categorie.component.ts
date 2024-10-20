@@ -26,6 +26,7 @@ export class EditCategorieComponent {
 
   categories_first: any = [];
   categories_second: any = [];
+  categories_second_filtered: any = [];
 
   CATEGORIE_ID: string = '';
   CATEGORIE: any = null;
@@ -89,6 +90,14 @@ export class EditCategorieComponent {
 
   changeTypeCategorie(categorie: number) {
     this.type_categorie = categorie;
+    this.categorie_second_id = '';
+    this.categorie_third_id = '';
+  }
+
+  changeDepartment() {
+    this.categories_second_filtered = this.categories_second.filter(
+      (item: any) => item.categorie_second_id == this.categorie_third_id
+    );
   }
 
   save() {

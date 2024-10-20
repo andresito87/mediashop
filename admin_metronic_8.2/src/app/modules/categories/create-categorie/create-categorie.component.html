@@ -165,6 +165,7 @@
           name="departament"
           placeholder="Selec. Departamento"
           [(ngModel)]="categorie_third_id"
+          (change)="changeDepartment()"
         >
           <option value="">Selec.</option>
           <ng-container *ngFor="let item of categories_first"
@@ -184,7 +185,7 @@
           [(ngModel)]="categorie_second_id"
         >
           <option value="">Selec.</option>
-          <ng-container *ngFor="let item of categories_second"
+          <ng-container *ngFor="let item of categories_second_filtered"
             ><option [value]="item.id">{{ item.name }}</option></ng-container
           >
         </select>

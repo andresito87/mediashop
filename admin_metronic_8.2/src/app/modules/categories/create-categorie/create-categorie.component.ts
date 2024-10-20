@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { CategoriesService } from '../service/categories.service';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +25,7 @@ export class CreateCategorieComponent {
 
   categories_first: any = [];
   categories_second: any = [];
+  categories_second_filtered: any = [];
 
   constructor(
     public categorieService: CategoriesService,
@@ -66,6 +68,14 @@ export class CreateCategorieComponent {
 
   changeTypeCategorie(categorie: number) {
     this.type_categorie = categorie;
+    this.categorie_second_id = '';
+    this.categorie_third_id = '';
+  }
+
+  changeDepartment() {
+    this.categories_second_filtered = this.categories_second.filter(
+      (item: any) => item.categorie_second_id == this.categorie_third_id
+    );
   }
 
   save() {
