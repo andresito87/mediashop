@@ -1,1 +1,85 @@
-<p>create-sliders works!</p>
+<div class="card">
+  <span
+    class="spinner-border spinner-border-sm align-middle ms-2"
+    *ngIf="isLoading$ | async"
+  ></span>
+  <div class="card-body border-top p-9">
+    <div class="row mb-6">
+      <div class="col-lg-8 fv-row fv-plugins-icon-container">
+        <label class="fw-semibold fs-6 py-2">Título: (*)</label>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="title"
+          class="form-control form-control-lg form-control-solid"
+          placeholder="Por Ejemplo: Las mejores tablets en 2024"
+        />
+      </div>
+      <div class="col-lg-6 fv-row fv-plugins-icon-container">
+        <label class="fw-semibold fs-6 py-2">Label: (Opcional)</label>
+        <input
+          type="text"
+          name="label"
+          [(ngModel)]="label"
+          class="form-control form-control-lg form-control-solid"
+          placeholder="Por Ejemplo: Desde 999 €"
+        />
+      </div>
+      <div class="col-lg-6 fv-row fv-plugins-icon-container">
+        <label class="fw-semibold fs-6 py-2">Subtitulo: (*)</label>
+        <input
+          type="text"
+          name="subtitle"
+          [(ngModel)]="subtitle"
+          class="form-control form-control-lg form-control-solid"
+          placeholder="Por Ejemplo: Oferta Exclusiva"
+        />
+      </div>
+    </div>
+    <div class="row mb-6">
+      <div class="col-lg-4 col-md-6 col-sm-12 my-2">
+        <label class="form-label">Sube tu imagen: (*)</label>
+        <div class="custom-file">
+          <input
+            type="file"
+            class="custom-file-input"
+            id="customFile"
+            accept=".jpeg, .bmp, .jpg, .png, .gif, .webp"
+            (change)="processFile($event)"
+          />
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        <div class="">
+          <img class="img py-4" [src]="image_preview" width="200" alt="" />
+        </div>
+      </div>
+      <div class="col-lg-4 fv-row fv-plugins-icon-container">
+        <label class="fw-semibold fs-6 py-2">Link: (Opcional)</label>
+        <input
+          type="text"
+          name="link"
+          [(ngModel)]="link"
+          class="form-control form-control-lg form-control-solid"
+          placeholder="Por Ejemplo: http://example.com"
+        />
+      </div>
+      <div class="col-lg-4 fv-row fv-plugins-icon-container">
+        <label for="etiqueta_especial" class="fw-bold fs-6 mb-2 py-1"
+          >Color:
+        </label>
+        <input
+          class="form-control form-control-lg"
+          type="color"
+          id="color"
+          name="color"
+          [(ngModel)]="color"
+        />
+      </div>
+    </div>
+    <div class="row mb-6">
+      <div class="col-3">
+        <button class="btn btn-primary" (click)="save()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

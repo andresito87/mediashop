@@ -28,6 +28,7 @@ class SliderController extends Controller
                     "label" => $slider->label,
                     "link" => $slider->link,
                     "state" => $slider->state,
+                    "color" => $slider->color,
                     "image" => env("APP_URL") . "storage/" . $slider->image,
                 ];
             }),
@@ -64,6 +65,7 @@ class SliderController extends Controller
                 "label" => $slider->label,
                 "link" => $slider->link,
                 "state" => $slider->state,
+                "color" => $slider->color,
                 "image" => env("APP_URL") . "storage/" . $slider->image,
             ]
         ]);
@@ -75,11 +77,11 @@ class SliderController extends Controller
     public function update(Request $request, string $id)
     {
         $slider = slider::findOrFail($id);
-        if ($request->hasfile("image")) {
+        if ($request->hasfile("imagen")) {
             if ($slider->image) {
                 Storage::delete($slider->image);
             }
-            $path = Storage::putFile("sliders", $request->file("image"));
+            $path = Storage::putFile("sliders", $request->file("imagen"));
             $request->request->add(["image" => $path]);
         }
 
