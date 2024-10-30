@@ -37,10 +37,14 @@ export class CreateProductComponent {
   categories_third_filtered: any = [];
 
   dropdownList: any = [];
-  selectedItems: any = [];
+  tags: any = [];
   dropdownSettings: IDropdownSettings = {};
+  word: string = '';
 
   isShowMultiselect: Boolean = false;
+
+  // index signature property, allows dinamicly properties access
+  [key: string]: any;
 
   constructor(
     public productService: ProductService,
@@ -52,17 +56,17 @@ export class CreateProductComponent {
     //Add 'implements OnInit' to the class.
     this.isLoading$ = this.productService.isLoading$;
 
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' },
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-    ];
+    // this.dropdownList = [
+    //   { item_id: 1, item_text: 'Mumbai' },
+    //   { item_id: 2, item_text: 'Bangaluru' },
+    //   { item_id: 3, item_text: 'Pune' },
+    //   { item_id: 4, item_text: 'Navsari' },
+    //   { item_id: 5, item_text: 'New Delhi' },
+    // ];
+    // this.tags = [
+    //   { item_id: 3, item_text: 'Pune' },
+    //   { item_id: 4, item_text: 'Navsari' },
+    // ];
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -72,6 +76,7 @@ export class CreateProductComponent {
       // itemsShowLimit: 3,
       allowSearchFilter: true,
     };
+    this.configAll();
   }
 
   processFile($event: any) {
@@ -106,20 +111,33 @@ export class CreateProductComponent {
     );
   }
 
-  // TODO: it needs refactoring
+  configAll() {
+    this.productService.configAll().subscribe((res: any) => {
+      this.brands = res.brands;
+      this.categories_first = res.categories_first;
+      this.categories_second = res.categories_second;
+      this.categories_third = res.categories_third;
+    });
+  }
+
   addItems() {
     this.isShowMultiselect = true;
-    this.dropdownList.push({
-      item_id: 6,
-      item_text: 'Nueva Marca',
-    });
-    this.selectedItems.push({
-      item_id: 6,
-      item_text: 'Nueva Marca',
-    });
+    let dateTime = new Date().getTime();
+    if (this.word != '') {
+      this.dropdownList.push({
+        item_id: dateTime,
+        item_text: this.word,
+      });
+      this.tags.push({
+        item_id: dateTime,
+        item_text: this.word,
+      });
+    }
     setTimeout(() => {
       this.isShowMultiselect = false;
       this.isLoadingView();
+      // clear the input
+      this.word = '';
     }, 100);
   }
 
@@ -130,22 +148,69 @@ export class CreateProductComponent {
     console.log(items);
   }
 
+  clearIfZero(field: any) {
+    if (this[field] === 0) {
+      this[field] = '';
+    }
+  }
+
   save() {
-    if (!this.title || !this.file_image) {
+    if (
+      !this.title ||
+      !this.sku ||
+      !this.price_eur ||
+      !this.price_usd ||
+      !this.brand_id ||
+      !this.file_image ||
+      !this.categorie_first_id ||
+      !this.description ||
+      !this.resume ||
+      this.tags == 0
+    ) {
       this.toastr.error('Validacion', 'Los campos con el * son obligatorios');
       return;
     }
     let formData = new FormData();
     formData.append('title', this.title);
+    formData.append('sku', this.sku);
+    formData.append('price_eur', this.price_eur + '');
+    formData.append('price_usd', this.price_usd + '');
+    formData.append('brand_id', this.brand_id);
     formData.append('cover_image', this.file_image);
+    formData.append('categorie_first_id', this.categorie_first_id);
+    if (this.categorie_second_id) {
+      formData.append('categorie_second_id', this.categorie_second_id);
+    }
+    if (this.categorie_third_id) {
+      formData.append('categorie_third_id', this.categorie_third_id);
+    }
+
+    formData.append('description', this.description);
+    formData.append('resume', this.resume);
+    formData.append('multiselect', JSON.stringify(this.tags));
 
     this.productService.createProducts(formData).subscribe((res: any) => {
-      // clean form
-      this.title = '';
-      this.file_image = null;
-      this.image_preview =
-        'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
-      this.toastr.success('Exito', 'El producto se registró correctamente');
+      if (res.message == 403) {
+        this.toastr.error('Validación', res.message_text);
+      } else {
+        // clean form
+        this.title = '';
+        this.file_image = null;
+        this.sku = '';
+        this.price_eur = 0;
+        this.price_usd = 0;
+        this.brand_id = '';
+        this.categorie_first_id = '';
+        this.categorie_second_id = '';
+        this.categorie_third_id = '';
+        this.description = '';
+        this.resume = '';
+        this.dropdownList = [];
+        this.tags = [];
+        this.image_preview =
+          'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
+        this.toastr.success('Exito', 'El producto se registró correctamente');
+      }
     });
   }
 }

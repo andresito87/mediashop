@@ -11,7 +11,6 @@
           type="text"
           name="title"
           [(ngModel)]="title"
-          (keyup.enter)="addItems()"
           class="form-control form-control-lg form-control-solid"
           placeholder="Por Ejemplo: Las mejores tablets en 2024"
         />
@@ -34,6 +33,7 @@
           type="number"
           name="price_eur"
           [(ngModel)]="price_eur"
+          (focus)="clearIfZero('price_eur')"
           class="form-control form-control-lg form-control-solid"
           placeholder="Por Ejemplo: 30 €"
         />
@@ -44,6 +44,7 @@
           type="number"
           name="price_usd"
           [(ngModel)]="price_usd"
+          (focus)="clearIfZero('price_usd')"
           class="form-control form-control-lg form-control-solid"
           placeholder="Por Ejemplo: 30 $ "
         />
@@ -82,7 +83,9 @@
         </select>
       </div>
       <div class="col-4">
-        <label class="fw-semibold fs-6 py-2">Categoria:(Segundo Nivel *)</label>
+        <label class="fw-semibold fs-6 py-2"
+          >Categoria:(Segundo Nivel (Opcional))</label
+        >
         <select
           class="form-control form-select-solid fw-bolder"
           name="categorie"
@@ -98,7 +101,7 @@
       </div>
       <div class="col-4">
         <label class="fw-semibold fs-6 py-2"
-          >SubCategoria:(Tercer Nivel *)</label
+          >SubCategoria:(Tercer Nivel (Opcional))</label
         >
         <select
           class="form-control form-select-solid fw-bolder"
@@ -114,13 +117,27 @@
       </div>
     </div>
     <div class="row mb-6">
+      <div class="col-lg-4 col-md-4 col-sm-12 my-2">
+        <label class="fw-semibold fs-6 py-2"
+          >Nuevo Tag (ENTER para agregar): (*)</label
+        >
+        <input
+          id="word"
+          type="text"
+          name="word"
+          [(ngModel)]="word"
+          (keyup.enter)="addItems()"
+          class="form-control form-control-lg form-control-solid"
+          placeholder="Por Ejemplo: XXXX "
+        />
+      </div>
       <div class="col-lg-6 col-md-6 col-sm-12 my-2" *ngIf="!isShowMultiselect">
         <label class="fw-semibold fs-6 py-2">Tags: </label>
         <ng-multiselect-dropdown
           [placeholder]="'custom placeholder'"
           [settings]="dropdownSettings"
           [data]="dropdownList"
-          [(ngModel)]="selectedItems"
+          [(ngModel)]="tags"
           (onSelect)="onItemSelect($event)"
           (onSelectAll)="onSelectAll($event)"
         >
@@ -156,7 +173,7 @@
           class="form-control form-control-solid"
           rows="3"
           name="resume"
-          [ngModel]="resume"
+          [(ngModel)]="resume"
           placeholder="*******"
         ></textarea>
       </div>
