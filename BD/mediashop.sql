@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 20-10-2024 a las 15:31:55
+-- Tiempo de generación: 30-10-2024 a las 09:45:15
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -48,6 +48,31 @@ INSERT INTO `attributes` (`id`, `name`, `type_attribute`, `state`, `created_at`,
 (9, 'TAMAÑO', 1, 1, '2024-10-20 12:30:47', '2024-10-20 13:00:21', NULL),
 (10, 'Poder', 2, 1, '2024-10-20 13:37:46', '2024-10-20 11:55:00', '2024-10-20 11:55:00'),
 (11, 'Prueba', 2, 1, '2024-10-20 13:38:18', '2024-10-20 11:54:37', '2024-10-20 11:54:37');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `brands`
+--
+
+CREATE TABLE `brands` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `brands`
+--
+
+INSERT INTO `brands` (`id`, `name`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'LG', 1, NULL, NULL, NULL),
+(2, 'SAMSUNG', 1, NULL, NULL, NULL),
+(3, 'SONY', 1, NULL, NULL, NULL),
+(4, 'NIKE', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -215,6 +240,49 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `products`
+--
+
+CREATE TABLE `products` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `slug` text NOT NULL,
+  `sku` varchar(50) NOT NULL,
+  `price_eur` double NOT NULL,
+  `price_usd` double NOT NULL,
+  `description` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `resume` longtext NOT NULL,
+  `image` varchar(250) NOT NULL,
+  `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es pendiente y 2 es publico',
+  `tags` json DEFAULT NULL,
+  `brand_id` bigint UNSIGNED NOT NULL,
+  `categorie_first_id` bigint UNSIGNED NOT NULL,
+  `categorie_second_id` bigint UNSIGNED DEFAULT NULL,
+  `categorie_third_id` bigint UNSIGNED DEFAULT NULL,
+  `stock` double NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `product_images`
+--
+
+CREATE TABLE `product_images` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `image` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `properties`
 --
 
@@ -274,11 +342,20 @@ CREATE TABLE `sliders` (
   `subtitle` varchar(250) DEFAULT NULL,
   `image` varchar(250) NOT NULL,
   `link` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `color` varchar(50) DEFAULT NULL,
   `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `sliders`
+--
+
+INSERT INTO `sliders` (`id`, `title`, `label`, `subtitle`, `image`, `link`, `color`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(8, 'Las mejores tablets de 2025', NULL, 'Ofertas del 20% sólo esta semana', 'slider/1NoK4aEqTr9bdE5COQr0xC2svD0QkS27pYb0viO6.jpg', 'https://preview.keenthemes.com/', '#a6e92b', 1, '2024-10-20 20:48:26', '2024-10-20 21:35:57', NULL),
+(9, 'asdasda2', 'asdasd', 'asdasd', 'slider/GrBxhbaWw9cHmVQcJLMsC7uvkmxlF1JrkNwghPjg.jpg', 'asdad', '#880202', 1, '2024-10-20 21:48:45', '2024-10-20 19:49:27', '2024-10-20 19:49:27');
 
 -- --------------------------------------------------------
 
@@ -319,6 +396,12 @@ INSERT INTO `users` (`id`, `name`, `surname`, `phone`, `unique_id`, `avatar`, `e
 -- Indices de la tabla `attributes`
 --
 ALTER TABLE `attributes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `brands`
+--
+ALTER TABLE `brands`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -380,6 +463,18 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indices de la tabla `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `product_images`
+--
+ALTER TABLE `product_images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `properties`
 --
 ALTER TABLE `properties`
@@ -417,6 +512,12 @@ ALTER TABLE `attributes`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT de la tabla `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
@@ -447,6 +548,18 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `product_images`
+--
+ALTER TABLE `product_images`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `properties`
 --
 ALTER TABLE `properties`
@@ -456,7 +569,7 @@ ALTER TABLE `properties`
 -- AUTO_INCREMENT de la tabla `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

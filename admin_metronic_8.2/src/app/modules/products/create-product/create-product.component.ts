@@ -40,6 +40,8 @@ export class CreateProductComponent {
   selectedItems: any = [];
   dropdownSettings: IDropdownSettings = {};
 
+  isShowMultiselect: Boolean = false;
+
   constructor(
     public productService: ProductService,
     public toastr: ToastrService
@@ -102,6 +104,23 @@ export class CreateProductComponent {
     this.categories_third_filtered = this.categories_third.filter(
       (item: any) => item.categorie_second_id == this.categorie_second_id
     );
+  }
+
+  // TODO: it needs refactoring
+  addItems() {
+    this.isShowMultiselect = true;
+    this.dropdownList.push({
+      item_id: 6,
+      item_text: 'Nueva Marca',
+    });
+    this.selectedItems.push({
+      item_id: 6,
+      item_text: 'Nueva Marca',
+    });
+    setTimeout(() => {
+      this.isShowMultiselect = false;
+      this.isLoadingView();
+    }, 100);
   }
 
   onItemSelect(item: any) {

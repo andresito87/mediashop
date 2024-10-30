@@ -11,6 +11,7 @@
           type="text"
           name="title"
           [(ngModel)]="title"
+          (keyup.enter)="addItems()"
           class="form-control form-control-lg form-control-solid"
           placeholder="Por Ejemplo: Las mejores tablets en 2024"
         />
@@ -113,7 +114,7 @@
       </div>
     </div>
     <div class="row mb-6">
-      <div class="col-lg-6 col-md-6 col-sm-12 my-2">
+      <div class="col-lg-6 col-md-6 col-sm-12 my-2" *ngIf="!isShowMultiselect">
         <label class="fw-semibold fs-6 py-2">Tags: </label>
         <ng-multiselect-dropdown
           [placeholder]="'custom placeholder'"
