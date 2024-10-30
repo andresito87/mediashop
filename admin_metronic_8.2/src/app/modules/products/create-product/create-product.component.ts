@@ -189,28 +189,37 @@ export class CreateProductComponent {
     formData.append('resume', this.resume);
     formData.append('multiselect', JSON.stringify(this.tags));
 
-    this.productService.createProducts(formData).subscribe((res: any) => {
-      if (res.message == 403) {
-        this.toastr.error('Validación', res.message_text);
-      } else {
-        // clean form
-        this.title = '';
-        this.file_image = null;
-        this.sku = '';
-        this.price_eur = 0;
-        this.price_usd = 0;
-        this.brand_id = '';
-        this.categorie_first_id = '';
-        this.categorie_second_id = '';
-        this.categorie_third_id = '';
-        this.description = '';
-        this.resume = '';
-        this.dropdownList = [];
-        this.tags = [];
-        this.image_preview =
-          'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
-        this.toastr.success('Exito', 'El producto se registró correctamente');
-      }
+    this.productService.createProducts(formData).subscribe({
+      next: (res: any) => {
+        if (res.message === 403) {
+          this.toastr.error('Validación', res.message_text);
+        } else {
+          // clean form
+          this.title = '';
+          this.file_image = null;
+          this.sku = '';
+          this.price_eur = 0;
+          this.price_usd = 0;
+          this.brand_id = '';
+          this.categorie_first_id = '';
+          this.categorie_second_id = '';
+          this.categorie_third_id = '';
+          this.description = '';
+          this.resume = '';
+          this.dropdownList = [];
+          this.tags = [];
+          this.image_preview =
+            'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
+          this.toastr.success('Éxito', 'El producto se registró correctamente');
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error(
+          'API RESPONSE - COMUNIQUESE CON EL DESARROLLADOR',
+          err.error.message || 'Ha ocurrido un error'
+        );
+      },
     });
   }
 }

@@ -29,7 +29,7 @@ class ProductController extends Controller
             ->orderBy("id")->paginate(25);
 
         return response()->json([
-            "total" => $products->total,
+            "total" => $products->total(),
             "products" => ProductCollection::make($products)
         ]);
 
