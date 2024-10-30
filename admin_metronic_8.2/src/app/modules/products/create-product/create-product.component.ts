@@ -137,7 +137,7 @@ export class CreateProductComponent {
     }
     let formData = new FormData();
     formData.append('title', this.title);
-    formData.append('imagen', this.file_image);
+    formData.append('cover_image', this.file_image);
 
     this.productService.createProducts(formData).subscribe((res: any) => {
       // clean form

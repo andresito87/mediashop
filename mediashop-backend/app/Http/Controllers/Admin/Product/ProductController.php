@@ -2,17 +2,58 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product\Brand;
+use App\Models\Product\Categorie;
 use Illuminate\Http\Request;
+use App\Models\Product\Product;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Product\ProductCollection;
+use App\Http\Resources\Product\ProductResource;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->input("search");
+        $categorie_first_id = $request->input("categorie_first_id");
+        $categorie_second_id = $request->input("categorie_second_id");
+        $categorie_third_id = $request->input("categorie_third_id");
+        $brand_id = $request->input("brand_id");
+
+        $products = Product::filterAdvanceProduct($search, $categorie_first_id, $categorie_second_id, $categorie_third_id)
+            ->orderBy("id")->paginate(25);
+
+        return response()->json([
+            "total" => $products->total,
+            "products" => ProductCollection::make($products)
+        ]);
+
+    }
+
+    public function config()
+    {
+
+        // get all departments
+        $categories_first_level = Categorie::where("state", 1)->where("categorie_second_id", NULL)->where("categorie_third_id", NULL)->get();
+        // get all categories
+        $categories_second_level = Categorie::where("state", 1)->where("categorie_second_id", "<>", NULL)->where("categorie_third_id", NULL)->get();
+        // get all subcategories
+        $categories_third_level = Categorie::where("state", 1)->where("categorie_second_id", "<>", NULL)->where("categorie_third_id", "<>", NULL)->get();
+
+        $brands = Brand::where("state", 1)->get();
+
+        return response()->json([
+            "categories_first" => $categories_first_level,
+            "categories_second" => $categories_second_level,
+            "categories_third" => $categories_third_level,
+            "brands" => $brands
+        ]);
+
     }
 
     /**
@@ -20,7 +61,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist = Product::where("title", $request->title)->first();
+        if ($exist) {
+            return response()->json(["message" => 403, "message_text" => "El nombre del producto ya existe"]);
+        }
+
+        if ($request->hasFile("cover_image")) {
+            $path = Storage::putFile("products", $request->file("cover_image"));
+            $request->request->add(["image" => $path]);
+        }
+
+        $request->request->add(["slug" => Str::slug($request->title)]);
+
+        $request->request->add(["tags" => $request->multiselect]);
+
+        $product = Product::create($request->all());
+        return response()->json(["message" => 200]);
     }
 
     /**
@@ -28,7 +84,9 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return response()->json(["product" => ProductResource::make($product)]);
     }
 
     /**
@@ -36,7 +94,28 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // to avoid update a product with the same title that another product exists in our database
+        $exist = Product::where("id", "<>", $id)->where("title", $request->title)->first();
+        if ($exist) {
+            return response()->json(["message" => 403, "message_text" => "El nombre del producto ya existe"]);
+        }
+
+        // process to update product image
+        $product = Product::findOrFail($id);
+        if ($request->hasFile("cover_image")) {
+            if ($product->image) {
+                Storage::delete($product->image);
+            }
+            $path = Storage::putFile("products", $request->file("cover_image"));
+            $request->request->add(["image" => $path]);
+        }
+
+        $request->request->add(["slug" => Str::slug($request->title)]);
+
+        $request->request->add(["tags" => $request->multiselect]);
+
+        $product->update($request->all());
+        return response()->json(["message" => 200]);
     }
 
     /**
@@ -44,6 +123,9 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return response()->json(["message" => 200]);
     }
 }

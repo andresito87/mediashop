@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Product\AttributeProductController;
 use App\Http\Controllers\Admin\Product\CategorieController;
+use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Product\PropertyAttributetController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\JWTAuthController;
@@ -45,6 +46,12 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     Route::resource('sliders', SliderController::class);
     /*It's necesary a method-post endpoint to send images, method-put doesn't allow it*/
     Route::post('sliders/{id}', [SliderController::class, "update"]);
+    // ====================================================================== //
+
+    // ============================= PRODUCTS ============================= //
+    Route::get('products/config', [ProductController::class, 'config']);
+    Route::resource('products', ProductController::class);
+    Route::post('products/{id}', [ProductController::class, "update"]);
     // ====================================================================== //
 
 });
