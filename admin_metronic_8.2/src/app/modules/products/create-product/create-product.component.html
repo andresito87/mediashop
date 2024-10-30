@@ -165,7 +165,11 @@
     <div class="row mb-6">
       <div class="col-lg-8 fv-row fv-plugins-icon-container">
         <label class="fs-6 fw-semibold mb-2">Descripción :</label>
-        <ckeditor [data]="description" [config]="editorConfig"></ckeditor>
+        <ckeditor
+          [data]="description"
+          (change)="onChange($event)"
+          [config]="editorConfig"
+        ></ckeditor>
       </div>
       <div class="col-lg-4 fv-row fv-plugins-icon-container mt-6">
         <label class="fs-6 fw-semibold mb-2">Resumen :</label>

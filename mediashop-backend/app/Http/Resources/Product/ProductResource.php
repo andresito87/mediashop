@@ -25,7 +25,7 @@ class ProductResource extends JsonResource
             "image" => env("APP_URL") . "storage/" . $this->resource->image,
             "state" => $this->resource->state,
             "description" => $this->resource->description,
-            "tags" => $this->resource->tags,
+            "tags" => $this->resource->tags ? json_decode($this->resource->tags) : [],
             "brand_id" => $this->resource->brand_id,
             "brand" => $this->resource->brand ? [
                 "id" => $this->resource->brand->id,

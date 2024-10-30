@@ -48,7 +48,7 @@ export class CreateProductComponent {
 
   constructor(
     public productService: ProductService,
-    public toastr: ToastrService
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -139,6 +139,10 @@ export class CreateProductComponent {
       // clear the input
       this.word = '';
     }, 100);
+  }
+
+  onChange(event: any) {
+    this.description = event.editor.getData();
   }
 
   onItemSelect(item: any) {

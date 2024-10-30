@@ -29,6 +29,7 @@
             "style": "kebab-case"
           }
         ],
+        "@angular-eslint/use-lifecycle-interface": ["off"],
         "no-empty-function": "off",
         "@typescript-eslint/no-empty-function": "off",
         "@angular-eslint/no-empty-lifecycle-method": "off",
