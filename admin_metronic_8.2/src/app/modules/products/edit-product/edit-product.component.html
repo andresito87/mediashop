@@ -155,10 +155,79 @@
             accept=".jpeg, .bmp, .jpg, .png, .gif, .webp"
             (change)="processFile($event)"
           />
-          <label class="custom-file-label" for="customFile">Choose file</label>
+          <label class="custom-file-label" for="customFile"
+            >Selecciona archivo:</label
+          >
         </div>
         <div class="">
           <img class="img py-4" [src]="image_preview" width="200" alt="" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 my-2">
+        <div class="row">
+          <div class="col-8">
+            <label class="form-label">Sube tus imagenes: (*)</label>
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input"
+                id="customFileImages"
+                accept=".jpeg, .bmp, .jpg, .png, .gif, .webp"
+                (change)="processFileImages($event)"
+              />
+              <label class="custom-file-label" for="customFileImages"
+                >Selecciona archivos:</label
+              >
+            </div>
+            <div class="">
+              <img
+                class="img py-4"
+                [src]="image_add_preview"
+                width="100"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-4 mt-8">
+            <button class="btn btn-primary btn-sm" (click)="addImage()">
+              +
+            </button>
+          </div>
+          <div class="col-12">
+            <div
+              id="kt_table_users_wrapper"
+              class="dataTables_wrapper dt-bootstrap4 no-footer"
+            >
+              <div class="table-responsive w-100">
+                <table
+                  class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer"
+                  id="kt_advance_table_widget_1"
+                >
+                  <thead>
+                    <tr class="text-left">
+                      <th>IMAGEN</th>
+                      <th>ACCIÓN</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let imagen_ of images_files; let i = index">
+                      <td>
+                        <img [src]="imagen_.image" width="50" alt="" />
+                      </td>
+                      <td>
+                        <button
+                          class="ml-5 btn btn-sm btn-danger"
+                          (click)="removeImages(imagen_.id)"
+                        >
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

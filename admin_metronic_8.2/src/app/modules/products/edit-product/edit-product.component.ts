@@ -3,6 +3,8 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../service/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteImageAddComponent } from './delete-image-add/delete-image-add.component';
 
 @Component({
   selector: 'app-edit-product',
@@ -50,10 +52,16 @@ export class EditProductComponent {
   PRODUCT_ID: string = '';
   PRODUCT_SELECTED: any;
 
+  image_add: any;
+  image_add_preview: any =
+    'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
+  images_files: any = [];
+
   constructor(
     public productService: ProductService,
     private toastr: ToastrService,
-    private activedRoute: ActivatedRoute
+    private activedRoute: ActivatedRoute,
+    public modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -101,6 +109,19 @@ export class EditProductComponent {
     this.isLoadingView();
   }
 
+  processFileImages($event: any) {
+    if ($event.target.files[0].type.indexOf('image') < 0) {
+      this.toastr.error('Validacion', 'El archivo no es una imagen');
+      return;
+    }
+
+    this.image_add = $event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(this.image_add);
+    reader.onloadend = () => (this.image_add_preview = reader.result);
+    this.isLoadingView();
+  }
+
   isLoadingView() {
     this.productService.isLoadingSubject.next(true);
     setTimeout(() => {
@@ -144,6 +165,7 @@ export class EditProductComponent {
       this.categorie_first_id = res.product.categorie_first_id;
       this.categorie_second_id = res.product.categorie_second_id;
       this.categorie_third_id = res.product.categorie_third_id;
+      this.images_files = res.product.images;
 
       this.changeDepartment();
       this.changeCategorie();
@@ -171,6 +193,53 @@ export class EditProductComponent {
       // clear the input
       this.word = '';
     }, 100);
+  }
+
+  removeImages(id: number) {
+    const modalRef = this.modalService.open(DeleteImageAddComponent, {
+      centered: true,
+      size: 'md',
+    });
+    modalRef.componentInstance.id = id;
+
+    modalRef.componentInstance.ImageDelete.subscribe(() => {
+      const index = this.images_files.findIndex((item: any) => item.id === id);
+      if (index !== -1) {
+        this.images_files.splice(index, 1);
+        this.toastr.success('Éxito', 'Imagen eliminada correctamente');
+      } else {
+        this.toastr.error('Error', 'No se pudo encontrar la imagen');
+      }
+    });
+  }
+
+  addImage() {
+    if (!this.image_add) {
+      this.toastr.error('Validacion', 'Es requerido subir una imagen');
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append('image_add', this.image_add);
+    formData.append('product_id', this.PRODUCT_ID);
+    this.productService.imageAdd(formData).subscribe({
+      next: (res: any) => {
+        this.images_files.unshift(res.image);
+        this.image_add = null;
+        this.image_add_preview =
+          'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
+
+        this.toastr.success('Exito', 'Imagenes guardadas correctamente');
+      },
+      error: (error) => {
+        console.error('Error al subir la imagen:', error);
+        this.errorMessage = 'No se pudo subir la imagen. Inténtalo de nuevo.';
+        this.toastr.error(
+          'Error',
+          'No se pudo subir la imagen. Inténtalo de nuevo.'
+        );
+      },
+    });
   }
 
   onChange(event: any) {

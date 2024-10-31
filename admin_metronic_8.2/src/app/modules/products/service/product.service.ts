@@ -94,4 +94,30 @@ export class ProductService {
       .delete(URL, { headers: headers })
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
+
+  imageAdd(data: any) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/products/images';
+
+    return this.http
+      .post(URL, data, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  deleteImageProduct(image_id: string) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/products/images/' + image_id;
+
+    return this.http
+      .delete(URL, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
 }

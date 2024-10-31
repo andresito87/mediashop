@@ -48,6 +48,12 @@ class ProductResource extends JsonResource
             ] : NULL,
             "stock" => $this->resource->stock,
             "created_at" => $this->resource->created_at->format("Y-m-d h:i:s"),
+            "images" => $this->resource->images->map(function ($image) {
+                return [
+                    "id" => $image->id,
+                    "image" => env("APP_URL") . "storage/" . $image->image
+                ];
+            })
         ];
     }
 }

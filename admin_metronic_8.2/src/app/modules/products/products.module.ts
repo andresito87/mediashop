@@ -17,6 +17,7 @@ import {
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { DeleteImageAddComponent } from './edit-product/delete-image-add/delete-image-add.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     EditProductComponent,
     ListProductsComponent,
     DeleteProductComponent,
+    DeleteImageAddComponent,
   ],
   imports: [
     CommonModule,

@@ -50,6 +50,8 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
 
     // ============================= PRODUCTS ============================= //
     Route::get('products/config', [ProductController::class, 'config']);
+    Route::post('products/images', [ProductController::class, "images"]);
+    Route::delete('products/images/{id}', [ProductController::class, "delete_image"]);
     Route::resource('products', ProductController::class);
     Route::post('products/{id}', [ProductController::class, "update"]);
     // ====================================================================== //

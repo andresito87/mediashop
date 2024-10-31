@@ -9,6 +9,7 @@ use App\Models\Product\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
+use App\Models\Product\ProductImage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -37,7 +38,6 @@ class ProductController extends Controller
 
     public function config()
     {
-
         // get all departments
         $categories_first_level = Categorie::where("state", 1)->where("categorie_second_id", NULL)->where("categorie_third_id", NULL)->get();
         // get all categories
@@ -77,6 +77,27 @@ class ProductController extends Controller
 
         $product = Product::create($request->all());
         return response()->json(["message" => 200]);
+    }
+
+    public function images(Request $request)
+    {
+        $product_id = $request->product_id;
+
+        if ($request->hasFile("image_add")) {
+            $path = Storage::putFile("products", $request->file("image_add"));
+        }
+
+        $product_image = ProductImage::create([
+            "image" => $path,
+            "product_id" => $product_id
+        ]);
+
+        return response()->json([
+            "image" => [
+                "id" => $product_image->id,
+                "image" => env('APP_URL') . "storage/" . $product_image->image
+            ]
+        ]);
     }
 
     /**
@@ -128,4 +149,17 @@ class ProductController extends Controller
 
         return response()->json(["message" => 200]);
     }
+
+    public function delete_image(string $id)
+    {
+        $product = ProductImage::findOrFail($id);
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
+
+        $product->delete();
+
+        return response()->json(["message" => 200]);
+    }
+
 }

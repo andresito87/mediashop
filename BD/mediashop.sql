@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 30-10-2024 a las 09:45:15
+-- Tiempo de generación: 30-10-2024 a las 20:34:18
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -58,6 +58,7 @@ INSERT INTO `attributes` (`id`, `name`, `type_attribute`, `state`, `created_at`,
 CREATE TABLE `brands` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(250) NOT NULL,
+  `image` varchar(250) DEFAULT NULL,
   `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -68,11 +69,11 @@ CREATE TABLE `brands` (
 -- Volcado de datos para la tabla `brands`
 --
 
-INSERT INTO `brands` (`id`, `name`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'LG', 1, NULL, NULL, NULL),
-(2, 'SAMSUNG', 1, NULL, NULL, NULL),
-(3, 'SONY', 1, NULL, NULL, NULL),
-(4, 'NIKE', 1, NULL, NULL, NULL);
+INSERT INTO `brands` (`id`, `name`, `image`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'LG', NULL, 1, NULL, NULL, NULL),
+(2, 'SAMSUNG', NULL, 1, NULL, NULL, NULL),
+(3, 'SONY', NULL, 1, NULL, NULL, NULL),
+(4, 'NIKE', NULL, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -265,6 +266,14 @@ CREATE TABLE `products` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Volcado de datos para la tabla `products`
+--
+
+INSERT INTO `products` (`id`, `title`, `slug`, `sku`, `price_eur`, `price_usd`, `description`, `resume`, `image`, `state`, `tags`, `brand_id`, `categorie_first_id`, `categorie_second_id`, `categorie_third_id`, `stock`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 'LAPTOP GAMING 2024', 'laptop-gaming-2024', 'LAPTOP-2024', 1000, 1200, '<p>Hello World!43534eerwre</p>', 'Mejor laptop 2024', 'products/bogfEypUNmilZnHHj8A1cRaBsQaXUBGHm0Pe9k12.jpg', 1, '[{\"item_id\": 1730302956413, \"item_text\": \"LAPTOP\"}, {\"item_id\": 1730302961326, \"item_text\": \"GAMING\"}]', 1, 34, 35, 3, 0, '2024-10-30 16:43:18', '2024-10-30 20:44:20', NULL),
+(3, 'SMARTWATCH PLUS ARCHOR', 'smartwatch-plus-archor', 'SMARTWATCH-2024', 123, 150, '<p>Hello World! cambiando</p>', 'Reloj inteligente 2024', 'products/CTfQhMsrmVsJHnEB36eTY0XwN6Dw9lsRhIDnp5xb.jpg', 1, '[{\"item_id\": 1730303909339, \"item_text\": \"SMARTWATCH\"}, {\"item_id\": 1730303962085, \"item_text\": \"2024\"}]', 2, 4, NULL, NULL, 0, '2024-10-30 17:00:03', '2024-10-30 20:52:46', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -386,7 +395,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `surname`, `phone`, `unique_id`, `avatar`, `email`, `type_user`, `code_verified`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(52, 'asadad', 'asdasd', '233234234', '6702a93eb70a6', NULL, 'andrespodadera87@gmail.com', 1, NULL, '2024-10-06 15:30:10', '$2y$12$DEF01W6Ab5q/ZAX0RxOQ2.G4eLKjrsdUzzmALWkDbzAHxrgpBnReq', NULL, '2024-10-06 15:14:06', '2024-10-09 14:53:22', NULL);
+(52, 'asadad', 'asdasd', '233234234', '6702a93eb70a6', NULL, 'andrespodadera87@gmail.com', 1, NULL, '2024-10-06 15:30:10', '$2y$12$DEF01W6Ab5q/ZAX0RxOQ2.G4eLKjrsdUzzmALWkDbzAHxrgpBnReq', NULL, '2024-10-06 15:14:06', '2024-10-09 14:53:22', NULL),
+(53, 'andres', 'podadera', '2234234', '67227b97b72c9', NULL, 'andrespoda@gmail.com', 2, NULL, '2024-10-30 18:33:17', '$2y$12$Cz8swfIyuveMBQOrlNhcUuljVOaVnMkZNbAoMOigA7NboKUz1dA/2', NULL, '2024-10-30 18:31:51', '2024-10-30 18:33:17', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -551,7 +561,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `product_images`
@@ -575,7 +585,7 @@ ALTER TABLE `sliders`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
