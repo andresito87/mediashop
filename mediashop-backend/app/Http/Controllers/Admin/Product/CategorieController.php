@@ -100,7 +100,7 @@ class CategorieController extends Controller
     {
         $categorie = Categorie::findOrFail($id);
         $categorie->delete();
-        // validar que la categoria no esta en ningun producto
+        // Validate that the category is not included in any product
         return response()->json(["message" => 200]);
     }
 }

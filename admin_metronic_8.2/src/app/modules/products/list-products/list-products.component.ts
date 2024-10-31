@@ -17,6 +17,17 @@ export class ListProductsComponent {
 
   isLoading$: any;
 
+  brands: any = [];
+  brand_id: any = '';
+  categorie_first_id: string = '';
+  categorie_second_id: string = '';
+  categorie_third_id: string = '';
+  categories_first: any = [];
+  categories_second: any = [];
+  categories_second_filtered: any = [];
+  categories_third: any = [];
+  categories_third_filtered: any = [];
+
   constructor(
     public productService: ProductService,
     public modalService: NgbModal,
@@ -28,10 +39,27 @@ export class ListProductsComponent {
     //Add 'implements OnInit' to the class.
     this.listProducts();
     this.isLoading$ = this.productService.isLoading$;
+    this.configAll();
+  }
+
+  configAll() {
+    this.productService.configAll().subscribe((res: any) => {
+      this.brands = res.brands;
+      this.categories_first = res.categories_first;
+      this.categories_second = res.categories_second;
+      this.categories_third = res.categories_third;
+    });
   }
 
   listProducts(page: number = 1) {
-    this.productService.listProducts(page, this.search).subscribe({
+    let data = {
+      search: this.search,
+      brand_id: this.brand_id,
+      categorie_first_id: this.categorie_first_id,
+      categorie_second_id: this.categorie_second_id,
+      categorie_third_id: this.categorie_third_id,
+    };
+    this.productService.listProducts(page, data).subscribe({
       next: (res: any) => {
         this.products = res.products.data;
         this.totalPages = res.total;
@@ -45,6 +73,18 @@ export class ListProductsComponent {
         );
       },
     });
+  }
+
+  changeDepartment() {
+    this.categories_second_filtered = this.categories_second.filter(
+      (item: any) => item.categorie_second_id == this.categorie_first_id
+    );
+  }
+
+  changeCategorie() {
+    this.categories_third_filtered = this.categories_third.filter(
+      (item: any) => item.categorie_second_id == this.categorie_second_id
+    );
   }
 
   searchTo() {

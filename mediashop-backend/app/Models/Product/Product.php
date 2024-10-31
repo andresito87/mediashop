@@ -66,7 +66,7 @@ class Product extends Model
     }
 
     // function to filter parameters of searching products
-    public function scopeFilterAdvanceProduct($query, $search, $categorie_first_id, $categorie_second_id, $categorie_third_id)
+    public function scopeFilterAdvanceProduct($query, $search, $categorie_first_id, $categorie_second_id, $categorie_third_id, $brand_id)
     {
 
         if ($search) {
@@ -83,6 +83,10 @@ class Product extends Model
 
         if ($categorie_third_id) {
             $query->where("categorie_third_id", $categorie_third_id);
+        }
+
+        if ($brand_id) {
+            $query->where("brand_id", $brand_id);
         }
 
         return $query;
