@@ -7,7 +7,14 @@ import { CreateBrandComponent } from './create-brand/create-brand.component';
 import { EditBrandComponent } from './edit-brand/edit-brand.component';
 import { ListBrandComponent } from './list-brand/list-brand.component';
 import { DeleteBrandComponent } from './delete-brand/delete-brand.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  NgbModule,
+  NgbModalModule,
+  NgbPaginationModule,
+} from '@ng-bootstrap/ng-bootstrap';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 @NgModule({
   declarations: [
@@ -15,11 +22,18 @@ import { DeleteBrandComponent } from './delete-brand/delete-brand.component';
     CreateBrandComponent,
     EditBrandComponent,
     ListBrandComponent,
-    DeleteBrandComponent
+    DeleteBrandComponent,
   ],
   imports: [
     CommonModule,
-    BrandsRoutingModule
-  ]
+    BrandsRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbModule,
+    ReactiveFormsModule,
+    InlineSVGModule,
+    NgbModalModule,
+    NgbPaginationModule,
+  ],
 })
-export class BrandsModule { }
+export class BrandsModule {}
