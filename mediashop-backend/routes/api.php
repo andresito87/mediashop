@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Product\AttributeProductController;
+use App\Http\Controllers\Admin\Product\BrandController;
 use App\Http\Controllers\Admin\Product\CategorieController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Product\PropertyAttributetController;
@@ -27,35 +28,39 @@ Route::middleware([JwtMiddleware::class])->group(function () {
 
 Route::middleware("auth:api")->prefix("admin")->group(function () {
 
-    // ============================= CATEGORIES ============================= //
+    // ================================ CATEGORIES ================================ //
     Route::get('categories/config', [CategorieController::class, 'config']);
     Route::resource('categories', CategorieController::class);
     Route::post('categories/{id}', [CategorieController::class, "update"]);
-    // ====================================================================== //
+    // ============================================================================ //
 
-    // ============================= ATTRIBUTES ============================= //
+    // ================================ ATTRIBUTES ================================ //
     Route::resource('attributes', AttributeProductController::class);
-    // ====================================================================== //
+    // ============================================================================ //
 
-    // ============================= PROPERTIES ============================= //
+    // ================================ PROPERTIES ================================ //
     Route::post('properties', [PropertyAttributetController::class, "store"]);
     Route::delete('properties/{id}', [PropertyAttributetController::class, "destroy"]);
-    // ====================================================================== //
+    // ========================================================================= //
 
-    // ============================== SLIDERS ============================== //
+    // ================================= SLIDERS ================================= //
     Route::resource('sliders', SliderController::class);
     /*It's necesary a method-post endpoint to send images, method-put doesn't allow it*/
     Route::post('sliders/{id}', [SliderController::class, "update"]);
-    // ====================================================================== //
+    // ============================================================================ //
 
-    // ============================= PRODUCTS ============================= //
+    // ================================ BRANDS ================================ //
+    Route::resource('brands', BrandController::class);
+    // ========================================================================= //
+
+    // ================================ PRODUCTS ================================ //
     Route::get('products/config', [ProductController::class, 'config']);
     Route::post('products/images', [ProductController::class, "images"]);
     Route::delete('products/images/{id}', [ProductController::class, "delete_image"]);
     Route::post('products/index', [ProductController::class, "index"]);
     Route::resource('products', ProductController::class);
     Route::post('products/{id}', [ProductController::class, "update"]);
-    // ====================================================================== //
+    // ============================================================================ //
 
 });
 

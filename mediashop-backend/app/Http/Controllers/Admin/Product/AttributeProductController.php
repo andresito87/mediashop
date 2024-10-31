@@ -82,7 +82,8 @@ class AttributeProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $exist = Attribute::where("id", "<>", $id)->where("name", $request->name)->first();
+        $exist = Attribute::where("id", "<>", $id)
+            ->where("name", $request->name)->first();
         if ($exist) {
             return response()->json([
                 "message" => 403

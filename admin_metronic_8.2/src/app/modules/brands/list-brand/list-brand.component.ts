@@ -52,38 +52,38 @@ export class ListBrandComponent {
       size: 'md',
     });
 
-    modalRef.componentInstance.AttributeC.subscribe((attribute: any) => {
+    modalRef.componentInstance.BrandCreate.subscribe((attribute: any) => {
       this.brands.unshift(attribute);
     });
   }
 
-  openModalEditBrand(attribute: any) {
+  openModalEditBrand(brand: any) {
     const modalRef = this.modalService.open(EditBrandComponent, {
       centered: true,
       size: 'md',
     });
-    modalRef.componentInstance.attribute = attribute;
+    modalRef.componentInstance.brand = brand;
 
-    modalRef.componentInstance.AttributeEdit.subscribe((attribute: any) => {
-      //this.brands.unshift(attribute);
+    modalRef.componentInstance.BrandEdit.subscribe((brand: any) => {
+      //this.brands.unshift(brand);
 
-      // get position of attribute which we are going to modify
-      let INDEX = this.brands.findIndex((item: any) => item.id == attribute.id);
+      // get position of brand which we are going to modify
+      let INDEX = this.brands.findIndex((item: any) => item.id == brand.id);
       if (INDEX != -1) {
-        this.brands[INDEX] = attribute;
+        this.brands[INDEX] = brand;
       }
     });
   }
 
-  deleteBrand(attribute: any) {
+  deleteBrand(brand: any) {
     const modalRef = this.modalService.open(DeleteBrandComponent, {
       centered: true,
       size: 'md',
     });
-    modalRef.componentInstance.attribute = attribute;
+    modalRef.componentInstance.brand = brand;
 
-    modalRef.componentInstance.AttributeDelete.subscribe((res: any) => {
-      let INDEX = this.brands.findIndex((item: any) => item.id == attribute.id);
+    modalRef.componentInstance.BrandDelete.subscribe((res: any) => {
+      let INDEX = this.brands.findIndex((item: any) => item.id == brand.id);
       if (INDEX != -1) {
         this.brands.splice(INDEX, 1);
       }

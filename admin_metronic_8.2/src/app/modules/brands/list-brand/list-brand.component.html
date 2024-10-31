@@ -208,20 +208,19 @@
       id="kt_table_users_wrapper"
       class="dt-container dt-bootstrap5 dt-empty-footer"
     >
-      <div id="" class="table-responsive">
+      <div class="table-responsive w-100">
         <table
-          class="table align-middle table-row-dashed fs-6 gy-5 dataTable"
+          class="table align-middle table-row-dashed fs-6 gy-5 dataTable w-100"
           id="kt_table_users"
-          style="width: 100%"
         >
           <colgroup>
             <col data-dt-column="0" style="width: 36.4px" />
-            <col data-dt-column="1" style="width: 202.812px" />
-            <col data-dt-column="2" style="width: 161.413px" />
-            <col data-dt-column="3" style="width: 161.413px" />
-            <col data-dt-column="4" style="width: 161.413px" />
-            <col data-dt-column="5" style="width: 215.062px" />
-            <col data-dt-column="6" style="width: 135.788px" />
+            <col data-dt-column="1" style="width: auto" />
+            <col data-dt-column="2" style="width: auto" />
+            <col data-dt-column="3" style="width: auto" />
+            <col data-dt-column="4" style="width: auto" />
+            <col data-dt-column="5" style="width: auto" />
+            <col data-dt-column="6" style="width: auto" />
           </colgroup>
           <thead>
             <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
@@ -280,12 +279,12 @@
                 <td>
                   <span
                     class="badge badge-light-primary fs-7 fw-bold"
-                    *ngIf="brand.state === 1"
+                    *ngIf="brand.state == 1"
                     >Activo</span
                   >
                   <span
                     class="badge badge-light-danger fs-7 fw-bold"
-                    *ngIf="brand.state === 2"
+                    *ngIf="brand.state == 2"
                     >Inactivo</span
                   >
                 </td>

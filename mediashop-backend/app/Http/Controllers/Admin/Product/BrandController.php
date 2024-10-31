@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -10,9 +11,24 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->search;
+
+        $brands = Brand::where("name", "like", "%" . $search . "%")
+            ->orderBy("id", "desc")->paginate(25);
+
+        return response()->json([
+            "total" => $brands->total(),
+            "brands" => $brands->map(function ($brand) {
+                return [
+                    "id" => $brand->id,
+                    "name" => $brand->name,
+                    "state" => $brand->state,
+                    "created_at" => $brand->created_at->format("Y-m-d h:i:s"),
+                ];
+            }),
+        ]);
     }
 
     /**
@@ -20,7 +36,22 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist = Brand::where("name", $request->name)->first();
+        if ($exist) {
+            return response()->json([
+                "message" => 403
+            ]);
+        }
+        $brand = Brand::create($request->all());
+        return response()->json([
+            "message" => 200,
+            "brand" => [
+                "id" => $brand->id,
+                "name" => $brand->name,
+                "state" => $brand->state,
+                "created_at" => $brand->created_at->format("Y-m-d h:i:s"),
+            ]
+        ]);
     }
 
     /**
@@ -36,7 +67,23 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $exist = Brand::where("id", "<>", $id)->where("name", $request->name)->first();
+        if ($exist) {
+            return response()->json([
+                "message" => 403
+            ]);
+        }
+        $brand = Brand::findOrFail($id);
+        $brand->update($request->all());
+        return response()->json([
+            "message" => 200,
+            "brand" => [
+                "id" => $brand->id,
+                "name" => $brand->name,
+                "state" => $brand->state,
+                "created_at" => $brand->created_at->format("Y-m-d h:i:s"),
+            ]
+        ]);
     }
 
     /**
@@ -44,6 +91,10 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        $brand->delete(); // TODO: Necesary Validation when we delete attribute which is used in others products
+        return response()->json([
+            "message" => 200
+        ]);
     }
 }
