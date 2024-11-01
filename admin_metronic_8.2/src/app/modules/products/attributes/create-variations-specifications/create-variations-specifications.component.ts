@@ -42,6 +42,12 @@ export class CreateVariationsSpecificationsComponent {
   precio_add: number = 0;
   stock_add: number = 0;
 
+  attributes_specifications: any = [];
+  properties: any = [];
+  property_id: any = null;
+  value_add: any = null;
+  specifications: any = [];
+
   constructor(
     public attributeService: AttributesService,
     private toastr: ToastrService,
@@ -67,8 +73,8 @@ export class CreateVariationsSpecificationsComponent {
     // ];
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       // itemsShowLimit: 3,
@@ -79,6 +85,23 @@ export class CreateVariationsSpecificationsComponent {
     });
 
     this.showProduct();
+    this.configAll();
+    this.listSpecifications();
+  }
+
+  configAll() {
+    this.attributeService.configAll().subscribe((res: any) => {
+      this.attributes_specifications = res.attributes_specifications;
+    });
+  }
+
+  listSpecifications() {
+    this.attributeService
+      .listSpecifications(this.PRODUCT_ID)
+      .subscribe((res: any) => {
+        this.specifications = res.specifications;
+        console.log(res);
+      });
   }
 
   onItemSelect(item: any) {
@@ -103,6 +126,33 @@ export class CreateVariationsSpecificationsComponent {
     });
   }
 
+  changeSpecifications() {
+    this.value_add = null;
+    this.property_id = null;
+    this.selectedItemsSpecifications = [];
+    const ATTRIBUTE = this.attributes_specifications.find(
+      (item: any) => item.id == this.specification_attribute_id
+    );
+    console.log(ATTRIBUTE);
+    if (ATTRIBUTE) {
+      this.type_attribute_specification = ATTRIBUTE.type_specification;
+      if (
+        this.type_attribute_specification == 3 ||
+        this.type_attribute_specification == 4
+      ) {
+        this.properties = ATTRIBUTE.properties;
+        this.dropdownList = ATTRIBUTE.properties;
+      } else {
+        this.properties = [];
+        this.dropdownList = [];
+      }
+    } else {
+      this.type_attribute_specification = 0;
+      this.properties = [];
+      this.dropdownList = [];
+    }
+  }
+
   addItems() {
     this.isShowMultiselect = true;
     let dateTime = new Date().getTime();
@@ -124,5 +174,70 @@ export class CreateVariationsSpecificationsComponent {
     }, 100);
   }
 
-  save() {}
+  save() {
+    if (
+      this.type_attribute_specification == 4 &&
+      this.selectedItemsSpecifications.length == 0
+    ) {
+      this.toastr.error('Validacion', 'Necesitas seleccionar algunos items');
+      return;
+    }
+
+    if (this.selectedItemsSpecifications.length > 0) {
+      this.value_add = JSON.stringify(this.selectedItemsSpecifications);
+    }
+
+    if (
+      !this.specification_attribute_id ||
+      (!this.property_id && !this.value_add)
+    ) {
+      this.toastr.error('Validacion', 'Ingrese los campos requeridos');
+      return;
+    }
+
+    let data = {
+      product_id: this.PRODUCT_ID,
+      attribute_id: this.specification_attribute_id,
+      property_id: this.property_id,
+      value_add: this.value_add,
+    };
+
+    this.attributeService.createSpecification(data).subscribe({
+      next: (res: any) => {
+        this.specifications.unshift(res.specification);
+        this.value_add = null;
+        this.property_id = null;
+        this.specification_attribute_id = '';
+        this.toastr.success('Éxito', 'Especificación guardada correctamente');
+      },
+      error: (err) => {
+        this.toastr.error('Error', err.error.message_text);
+      },
+    });
+  }
+
+  getValueAttribute(attribute_special: any) {
+    if (attribute_special.property_id) {
+      return attribute_special.property.name;
+    }
+    if (attribute_special.value_add) {
+      try {
+        // Attempt to parse the value in case it is JSON
+        const parsedValue = JSON.parse(attribute_special.value_add);
+
+        // If `parsedValue` is an array, extract the names and join them into a string
+        if (Array.isArray(parsedValue)) {
+          return parsedValue.map((item: any) => item.name).join(', ');
+        }
+
+        // If it is not an array, return the original value
+        return attribute_special.value_add;
+      } catch (error) {
+        // If it is not valid JSON, return the value directly
+        return attribute_special.value_add;
+      }
+    }
+
+    return '-----';
+  }
 }

@@ -58,7 +58,7 @@ class ProductSpecificationsController extends Controller
 
         }
         if ($is_valid_specification) {
-            return response()->json(["message" => 403, "message_text" => "La especificación ya existe."]);
+            return response()->json(["message_text" => "La especificación ya existe."], 403);
         }
 
         $product_specification = ProductSpecification::create($request->all());
@@ -66,7 +66,7 @@ class ProductSpecificationsController extends Controller
         return response()->json([
             "message" => 200,
             "message_text" => "Especificación creada correctamente.",
-            "variation" => [
+            "specification" => [
                 "product_id" => $product_specification->product_id,
                 "attribute_id" => $product_specification->attribute_id,
                 "attribute" => $product_specification->attribute ? [
@@ -113,7 +113,7 @@ class ProductSpecificationsController extends Controller
 
         }
         if ($is_valid_specification) {
-            return response()->json(["message" => 403, "message_text" => "La especificación ya existe."]);
+            return response()->json(["message_text" => "La especificación ya existe."], 403);
         }
 
         $product_specification = ProductSpecification::findOrFail($id);
@@ -122,7 +122,7 @@ class ProductSpecificationsController extends Controller
         return response()->json([
             "message" => 200,
             "message_text" => "Especificación creada correctamente.",
-            "variation" => [
+            "specification" => [
                 "product_id" => $product_specification->product_id,
                 "attribute_id" => $product_specification->attribute_id,
                 "attribute" => $product_specification->attribute ? [
