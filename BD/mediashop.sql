@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 31-10-2024 a las 21:26:22
+-- Tiempo de generación: 01-11-2024 a las 21:16:30
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `attributes` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(250) NOT NULL,
-  `type_attribute` tinyint UNSIGNED NOT NULL DEFAULT '1',
+  `type_attribute` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es texto, 2 es numerico, 3 es seleccionable y 4 es multiseleccionable',
   `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -44,10 +44,11 @@ CREATE TABLE `attributes` (
 INSERT INTO `attributes` (`id`, `name`, `type_attribute`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (6, 'COLORES CLAROS', 3, 1, '2024-10-20 12:19:34', '2024-10-20 12:19:34', NULL),
 (7, 'POTENCIA', 2, 1, '2024-10-20 12:26:45', '2024-10-20 12:26:45', NULL),
-(8, 'TALLAS GRANDES', 4, 1, '2024-10-20 12:30:16', '2024-10-20 12:30:16', NULL),
+(8, 'TALLAS GRANDES', 3, 1, '2024-10-20 12:30:16', '2024-10-20 12:30:16', NULL),
 (9, 'TAMAÑO', 1, 1, '2024-10-20 12:30:47', '2024-10-20 13:00:21', NULL),
 (10, 'Poder', 2, 1, '2024-10-20 13:37:46', '2024-10-20 11:55:00', '2024-10-20 11:55:00'),
-(11, 'Prueba', 2, 1, '2024-10-20 13:38:18', '2024-10-20 11:54:37', '2024-10-20 11:54:37');
+(11, 'Prueba', 2, 1, '2024-10-20 13:38:18', '2024-10-20 11:54:37', '2024-10-20 11:54:37'),
+(12, 'MEMORIA', 4, 1, '2024-11-01 17:11:08', '2024-11-01 17:11:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -308,6 +309,55 @@ INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `product_specifications`
+--
+
+CREATE TABLE `product_specifications` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `attribute_id` bigint UNSIGNED NOT NULL,
+  `property_id` bigint UNSIGNED DEFAULT NULL,
+  `value_add` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `product_specifications`
+--
+
+INSERT INTO `product_specifications` (`id`, `product_id`, `attribute_id`, `property_id`, `value_add`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(4, 2, 6, 1, NULL, 1, '2024-11-01 20:36:19', '2024-11-01 20:36:18', NULL),
+(9, 2, 9, NULL, '56', 1, '2024-11-01 21:00:40', '2024-11-01 21:00:40', NULL),
+(12, 2, 8, 4, NULL, 1, '2024-11-01 21:43:32', '2024-11-01 21:43:32', NULL),
+(14, 2, 7, NULL, '200', 1, '2024-11-01 21:51:03', '2024-11-01 21:51:03', NULL),
+(15, 2, 12, NULL, '[{\"id\":6,\"name\":\"16GB\"},{\"id\":7,\"name\":\"32GB\"}]', 1, '2024-11-01 22:04:08', '2024-11-01 22:04:08', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `product_variations`
+--
+
+CREATE TABLE `product_variations` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `attribute_id` bigint UNSIGNED NOT NULL,
+  `property_id` bigint UNSIGNED DEFAULT NULL,
+  `value_add` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `add_price` double NOT NULL DEFAULT '0',
+  `stock` double NOT NULL DEFAULT '0',
+  `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `properties`
 --
 
@@ -330,7 +380,10 @@ INSERT INTO `properties` (`id`, `attribute_id`, `name`, `code`, `created_at`, `u
 (2, 6, 'Verde', '#96f89d', '2024-10-20 16:00:57', '2024-10-20 16:00:57', NULL),
 (3, 6, 'Blanco', '#fdfcfc', '2024-10-20 16:10:11', '2024-10-20 14:22:39', '2024-10-20 14:22:39'),
 (4, 8, 'XL', NULL, '2024-10-20 16:23:29', '2024-10-20 16:23:29', NULL),
-(5, 8, 'L', NULL, '2024-10-20 16:23:35', '2024-10-20 16:23:35', NULL);
+(5, 8, 'L', NULL, '2024-10-20 16:23:35', '2024-10-20 16:23:35', NULL),
+(6, 12, '16GB', NULL, '2024-11-01 17:12:00', '2024-11-01 17:12:00', NULL),
+(7, 12, '32GB', NULL, '2024-11-01 17:12:32', '2024-11-01 17:12:32', NULL),
+(8, 12, '64GB', NULL, '2024-11-01 17:12:36', '2024-11-01 17:12:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -501,6 +554,18 @@ ALTER TABLE `product_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `product_specifications`
+--
+ALTER TABLE `product_specifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `product_variations`
+--
+ALTER TABLE `product_variations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `properties`
 --
 ALTER TABLE `properties`
@@ -535,7 +600,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `attributes`
 --
 ALTER TABLE `attributes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `brands`
@@ -586,10 +651,22 @@ ALTER TABLE `product_images`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de la tabla `product_specifications`
+--
+ALTER TABLE `product_specifications`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `product_variations`
+--
+ALTER TABLE `product_variations`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `sliders`
