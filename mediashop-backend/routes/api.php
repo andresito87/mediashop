@@ -65,6 +65,7 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     // ============================================================================ //
 
     // =========================== PRODUCTS-VARIATIONS =========================== //
+    Route::get('variations/config', [ProductVariationsController::class, 'config']);
     Route::resource('variations', ProductVariationsController::class);
     // =========================================================================== //
 
