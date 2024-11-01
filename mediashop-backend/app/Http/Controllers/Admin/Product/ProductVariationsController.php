@@ -1,0 +1,167 @@
+<?php
+
+namespace App\Http\Controllers\Admin\Product;
+
+use App\Http\Controllers\Controller;
+use App\Models\Product\ProductVariation;
+use Illuminate\Http\Request;
+
+class ProductVariationsController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+        $product_id = $request->product_id;
+
+        $product_variations = ProductVariation::where("product_id", $product_id)
+            ->orderBy("id", "desc")->get();
+
+        return response()->json([
+            "variations" => $product_variations->map(function ($variation) {
+                return [
+                    "product_id" => $variation->product_id,
+                    "attribute_id" => $variation->attribute_id,
+                    "attribute" => $variation->attribute ? [
+                        "name" => $variation->attribute->name,
+                        "type_attribute" => $variation->attribute->type_attribute
+                    ] : NULL,
+                    "property_id" => $variation->property_id,
+                    "property" => $variation->property ? [
+                        "name" => $variation->property->name,
+                        "code" => $variation->property->code
+                    ] : NULL,
+                    "value_add" => $variation->value_add,
+                    "add_price" => $variation->add_price,
+                    "stock" => $variation->stock
+                ];
+            })
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $is_valid_variation = null;
+        if ($request->property_id) {
+            $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
+                ->where("attribute_id", $request->attribute_id)
+                ->where("property_id", $request->property_id)
+                ->first();
+
+        } else {
+            $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
+                ->where("attribute_id", $request->attribute_id)
+                ->where("value_add", $request->value_add)
+                ->first();
+
+        }
+        if ($is_valid_variation) {
+            return response()->json(["message" => 403, "message_text" => "La variación ya existe."]);
+        }
+
+        $product_variation = ProductVariation::create($request->all());
+
+        return response()->json([
+            "message" => 200,
+            "message_text" => "Variación creada correctamente.",
+            "variation" => [
+                "product_id" => $product_variation->product_id,
+                "attribute_id" => $product_variation->attribute_id,
+                "attribute" => $product_variation->attribute ? [
+                    "name" => $product_variation->attribute->name,
+                    "type_attribute" => $product_variation->attribute->type_attribute
+                ] : NULL,
+                "property_id" => $product_variation->property_id,
+                "property" => $product_variation->property ? [
+                    "name" => $product_variation->property->name,
+                    "code" => $product_variation->property->code
+                ] : NULL,
+                "value_add" => $product_variation->value_add,
+                "add_price" => $product_variation->add_price,
+                "stock" => $product_variation->stock
+            ]
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $is_valid_variation = null;
+        if ($request->property_id) {
+            $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
+                ->where("id", "<>", $id)
+                ->where("attribute_id", $request->attribute_id)
+                ->where("property_id", $request->property_id)
+                ->first();
+
+        } else {
+            $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
+                ->where("id", "<>", $id)
+                ->where("attribute_id", $request->attribute_id)
+                ->where("value_add", $request->value_add)
+                ->first();
+
+        }
+        if ($is_valid_variation) {
+            return response()->json(["message" => 403, "message_text" => "La variación ya existe."]);
+        }
+
+        $product_variation = ProductVariation::findOrFail($id);
+        $product_variation->update($request->all());
+
+        return response()->json([
+            "message" => 200,
+            "message_text" => "Variación creada correctamente.",
+            "variation" => [
+                "product_id" => $product_variation->product_id,
+                "attribute_id" => $product_variation->attribute_id,
+                "attribute" => $product_variation->attribute ? [
+                    "name" => $product_variation->attribute->name,
+                    "type_attribute" => $product_variation->attribute->type_attribute
+                ] : NULL,
+                "property_id" => $product_variation->property_id,
+                "property" => $product_variation->property ? [
+                    "name" => $product_variation->property->name,
+                    "code" => $product_variation->property->code
+                ] : NULL,
+                "value_add" => $product_variation->value_add,
+                "add_price" => $product_variation->add_price,
+                "stock" => $product_variation->stock
+            ]
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $product_variation = ProductVariation::findOrFail($id);
+        $product_variation->delete();
+
+        // TODO: Validation needed to avoid delete a variation in use
+
+        // TODO: improve api responses
+        // if ($product_variation->delete()) {
+        //     return response()->json(["status" => 200, "message_text" => "Variación eliminada correctamente."]);
+        // } else {
+        //     return response()->json(["status" => 500, "message_text" => "Error al eliminar la variación."], 500);
+        // }
+
+        return response()->json(["message" => 200, "message_text" => "Variación eliminada correctamente."]);
+    }
+}

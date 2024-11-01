@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\Product\AttributeProductController;
 use App\Http\Controllers\Admin\Product\BrandController;
 use App\Http\Controllers\Admin\Product\CategorieController;
 use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Product\ProductSpecificationsController;
+use App\Http\Controllers\Admin\Product\ProductVariationsController;
 use App\Http\Controllers\Admin\Product\PropertyAttributetController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\JWTAuthController;
@@ -61,6 +63,14 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     Route::resource('products', ProductController::class);
     Route::post('products/{id}', [ProductController::class, "update"]);
     // ============================================================================ //
+
+    // =========================== PRODUCTS-VARIATIONS =========================== //
+    Route::resource('variations', ProductVariationsController::class);
+    // =========================================================================== //
+
+    // ========================= PRODUCTS-SPECIFICATIONS ========================= //
+    Route::resource('specifications', ProductSpecificationsController::class);
+    // =========================================================================== //
 
 });
 
