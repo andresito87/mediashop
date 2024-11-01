@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 30-10-2024 a las 20:34:18
+-- Tiempo de generación: 31-10-2024 a las 21:26:22
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -70,10 +70,11 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `image`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'LG', NULL, 1, NULL, NULL, NULL),
-(2, 'SAMSUNG', NULL, 1, NULL, NULL, NULL),
-(3, 'SONY', NULL, 1, NULL, NULL, NULL),
-(4, 'NIKE', NULL, 1, NULL, NULL, NULL);
+(1, 'LG', NULL, 1, '2024-10-01 21:00:29', '2024-10-31 21:11:23', NULL),
+(2, 'SAMSUNG', NULL, 1, '2024-10-01 21:00:42', NULL, NULL),
+(3, 'SONY', NULL, 1, '2024-10-01 21:00:45', NULL, NULL),
+(4, 'NIKE', NULL, 1, '2024-10-01 21:00:47', NULL, NULL),
+(5, 'XIAOMI', NULL, 1, '2024-10-31 21:40:27', '2024-10-31 22:04:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -272,7 +273,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `title`, `slug`, `sku`, `price_eur`, `price_usd`, `description`, `resume`, `image`, `state`, `tags`, `brand_id`, `categorie_first_id`, `categorie_second_id`, `categorie_third_id`, `stock`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 'LAPTOP GAMING 2024', 'laptop-gaming-2024', 'LAPTOP-2024', 1000, 1200, '<p>Hello World!43534eerwre</p>', 'Mejor laptop 2024', 'products/bogfEypUNmilZnHHj8A1cRaBsQaXUBGHm0Pe9k12.jpg', 1, '[{\"item_id\": 1730302956413, \"item_text\": \"LAPTOP\"}, {\"item_id\": 1730302961326, \"item_text\": \"GAMING\"}]', 1, 34, 35, 3, 0, '2024-10-30 16:43:18', '2024-10-30 20:44:20', NULL),
-(3, 'SMARTWATCH PLUS ARCHOR', 'smartwatch-plus-archor', 'SMARTWATCH-2024', 123, 150, '<p>Hello World! cambiando</p>', 'Reloj inteligente 2024', 'products/CTfQhMsrmVsJHnEB36eTY0XwN6Dw9lsRhIDnp5xb.jpg', 1, '[{\"item_id\": 1730303909339, \"item_text\": \"SMARTWATCH\"}, {\"item_id\": 1730303962085, \"item_text\": \"2024\"}]', 2, 4, NULL, NULL, 0, '2024-10-30 17:00:03', '2024-10-30 20:52:46', NULL);
+(3, 'SMARTWATCH PLUS ARCHOR', 'smartwatch-plus-archor', 'SMARTWATCH-2024', 123, 150, '<p>Hello World! cambiando</p>', 'Reloj inteligente 2024', 'products/CTfQhMsrmVsJHnEB36eTY0XwN6Dw9lsRhIDnp5xb.jpg', 1, '[{\"item_id\": 1730303909339, \"item_text\": \"SMARTWATCH\"}, {\"item_id\": 1730303962085, \"item_text\": \"2024\"}]', 2, 4, NULL, NULL, 0, '2024-10-30 17:00:03', '2024-10-31 14:52:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -288,6 +289,21 @@ CREATE TABLE `product_images` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `product_images`
+--
+
+INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, 'products/jI54OMOGNltS89xukAt1lunm50aeFwoS1u3V98fk.jpg', '2024-10-31 14:48:13', '2024-10-31 14:33:50', '2024-10-31 14:33:50'),
+(2, 2, 'products/StDlrVvwDfcJ1deivrDgWqOzmNCpipYn4RQkhWoE.jpg', '2024-10-31 14:52:43', '2024-10-31 14:30:01', '2024-10-31 14:30:01'),
+(3, 2, 'products/XLQpApflVZuYHK3I11guSdjhxG43FkAvX4hO5tYO.jpg', '2024-10-31 14:53:42', '2024-10-31 14:29:55', '2024-10-31 14:29:55'),
+(4, 2, 'products/cnFK4WefifA1iqJbD1QM25x3Mxk6hE6E4pel1COP.jpg', '2024-10-31 14:55:26', '2024-10-31 14:55:26', NULL),
+(5, 2, 'products/JYE4QiKdJhC2CzIx3iZqZNoe3CXd63BnE0R2Tng7.jpg', '2024-10-31 15:09:16', '2024-10-31 14:30:50', '2024-10-31 14:30:50'),
+(6, 2, 'products/a4kiFecLbjXEcUT8oy2vzdiTAcYOIms4Vwopzr3v.jpg', '2024-10-31 15:35:05', '2024-10-31 14:35:14', '2024-10-31 14:35:14'),
+(7, 2, 'products/xxSzRAp7Mj73sUmTEMHCq4NWAEKKWzhLN7LA72M2.jpg', '2024-10-31 15:38:46', '2024-10-31 14:38:52', '2024-10-31 14:38:52'),
+(8, 2, 'products/fut3VL6V26C3wZMxEE4jmJPaWsew3H8oPwl7NiQf.jpg', '2024-10-31 15:39:25', '2024-10-31 14:39:37', '2024-10-31 14:39:37'),
+(9, 2, 'products/tsu0gLoutZ0xR0HRaQ6CN5NXwhsAle6JFMFE4mwj.jpg', '2024-10-31 15:39:33', '2024-10-31 15:39:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -364,7 +380,7 @@ CREATE TABLE `sliders` (
 
 INSERT INTO `sliders` (`id`, `title`, `label`, `subtitle`, `image`, `link`, `color`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (8, 'Las mejores tablets de 2025', NULL, 'Ofertas del 20% sólo esta semana', 'slider/1NoK4aEqTr9bdE5COQr0xC2svD0QkS27pYb0viO6.jpg', 'https://preview.keenthemes.com/', '#a6e92b', 1, '2024-10-20 20:48:26', '2024-10-20 21:35:57', NULL),
-(9, 'asdasda2', 'asdasd', 'asdasd', 'slider/GrBxhbaWw9cHmVQcJLMsC7uvkmxlF1JrkNwghPjg.jpg', 'asdad', '#880202', 1, '2024-10-20 21:48:45', '2024-10-20 19:49:27', '2024-10-20 19:49:27');
+(9, 'asdasda2', 'asdasd', 'asdasd', 'slider/GrBxhbaWw9cHmVQcJLMsC7uvkmxlF1JrkNwghPjg.jpg', 'asdad', '#880202', 1, '2024-10-20 21:48:45', '2024-10-20 19:49:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -525,7 +541,7 @@ ALTER TABLE `attributes`
 -- AUTO_INCREMENT de la tabla `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -567,7 +583,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `properties`

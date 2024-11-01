@@ -18,6 +18,12 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DeleteImageAddComponent } from './edit-product/delete-image-add/delete-image-add.component';
+import { CreateVariationsSpecificationsComponent } from './attributes/create-variations-specifications/create-variations-specifications.component';
+import { EditVariationsSpecificationsComponent } from './attributes/edit-variations-specifications/edit-variations-specifications.component';
+import { DeleteVariationsSpecificationsComponent } from './attributes/delete-variations-specifications/delete-variations-specifications.component';
+import { CreateNestedVariationsComponent } from './attributes/create-nested-variations/create-nested-variations.component';
+import { EditNestedVariationsComponent } from './attributes/edit-nested-variations/edit-nested-variations.component';
+import { DeleteNestedVariationsComponent } from './attributes/delete-nested-variations/delete-nested-variations.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +33,12 @@ import { DeleteImageAddComponent } from './edit-product/delete-image-add/delete-
     ListProductsComponent,
     DeleteProductComponent,
     DeleteImageAddComponent,
+    CreateVariationsSpecificationsComponent,
+    EditVariationsSpecificationsComponent,
+    DeleteVariationsSpecificationsComponent,
+    CreateNestedVariationsComponent,
+    EditNestedVariationsComponent,
+    DeleteNestedVariationsComponent,
   ],
   imports: [
     CommonModule,
