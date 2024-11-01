@@ -1,1 +1,385 @@
-<p>create-variations-specifications works!</p>
+<div class="card">
+  <span
+    class="spinner-border spinner-border-sm align-middle ms-2"
+    *ngIf="isLoading$ | async"
+  ></span>
+  <div class="card-body border-top p-9">
+    <div class="row mb-6">
+      <div class="col-lg-8 fv-row fv-plugins-icon-container">
+        <label class="fw-semibold fs-6 py-2">Título: (*)</label>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="title"
+          class="form-control form-control-lg form-control-solid"
+          placeholder="Por Ejemplo: Las mejores tablets en 2024"
+          disabled
+        />
+      </div>
+      <div class="col-lg-4 fv-row fv-plugins-icon-container">
+        <label class="fw-semibold fs-6 py-2">Sku: (*)</label>
+        <input
+          type="text"
+          name="sku"
+          [(ngModel)]="sku"
+          class="form-control form-control-lg form-control-solid"
+          placeholder="Por Ejemplo: ZDR234 "
+          disabled
+        />
+      </div>
+    </div>
+    <div class="row mb-6">
+      <div class="col-6">
+        <label class="fw-semibold fs-6 py-2">Especificaciones: (*)</label>
+        <div class="row">
+          <div class="col-12">
+            <!-- Forms -->
+            <div class="row">
+              <div class="col-4">
+                <label class="fw-semibold fs-6 py-2">Atributos:(*)</label>
+                <select
+                  class="form-control form-select-solid fw-bolder"
+                  name="departament"
+                  placeholder="Selec. Atributo"
+                  [(ngModel)]="specification_attribute_id"
+                >
+                  <option value="">Selec.</option>
+                  <ng-container *ngFor="let item of attributes"
+                    ><option [value]="item.id">
+                      {{ item.name }}
+                    </option></ng-container
+                  >
+                </select>
+              </div>
+              <div class="col-4">
+                <label class="fw-semibold fs-6 py-2">Campo: (*)</label>
+                <ng-container *ngIf="type_attribute_specification == 1">
+                  <!-- TEXT -->
+                  <input
+                    type="text"
+                    name="input_1"
+                    [(ngModel)]="input_1"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Por Ejemplo: Las mejores tablets"
+                  />
+                </ng-container>
+                <ng-container *ngIf="type_attribute_specification == 2">
+                  <!-- NUMBER -->
+                  <input
+                    type="number"
+                    name="input_2"
+                    [(ngModel)]="input_2"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Por Ejemplo: 1234"
+                  />
+                </ng-container>
+                <ng-container *ngIf="type_attribute_specification == 3">
+                  <!-- SELECTABLE -->
+                  <select
+                    class="form-control form-select-solid fw-bolder"
+                    name="departament"
+                    [(ngModel)]="input_3"
+                  >
+                    <option value="">Selec.</option>
+                    <!-- <ng-container *ngFor="let item of attributes"
+                      ><option [value]="item.id">
+                        {{ item.name }}
+                      </option></ng-container
+                    > -->
+                  </select>
+                </ng-container>
+                <ng-container *ngIf="type_attribute_specification == 4">
+                  <!-- MULTISELECTABLE -->
+                  <ng-multiselect-dropdown
+                    [placeholder]="'custom placeholder'"
+                    [settings]="dropdownSettings"
+                    [data]="dropdownList"
+                    [(ngModel)]="selectedItemsSpecifications"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                  >
+                  </ng-multiselect-dropdown>
+                </ng-container>
+              </div>
+              <div class="col-4 mt-12">
+                <button class="btn btn-success btn-sm">+ Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-8">
+            <label class="fw-semibold fs-6 py-2">Variaciones: (*)</label>
+          </div>
+          <div class="col-4 mt-5">
+            <button class="btn btn-success btn-sm">+ Agregar</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <!-- Forms -->
+            <div class="row">
+              <div class="col-4">
+                <div class="row">
+                  <div class="col-12">
+                    <label class="fw-semibold fs-6 py-2">Atributos:(*)</label>
+                    <select
+                      class="form-control form-select-solid fw-bolder"
+                      name="departament"
+                      placeholder="Selec. Atributo"
+                      [(ngModel)]="variation_attribute_id"
+                    >
+                      <option value="">Selec.</option>
+                      <ng-container *ngFor="let item of attributes"
+                        ><option [value]="item.id">
+                          {{ item.name }}
+                        </option></ng-container
+                      >
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="fw-semibold fs-6 py-2">Campo: (*)</label>
+                    <ng-container *ngIf="type_attribute_variation == 1">
+                      <!-- SELECTABLE -->
+                      <select
+                        class="form-control form-select-solid fw-bolder"
+                        name="departament"
+                        [(ngModel)]="input_1_variation"
+                      >
+                        <option value="">Selec.</option>
+                        <!-- <ng-container *ngFor="let item of attributes"
+                      ><option [value]="item.id">
+                        {{ item.name }}
+                      </option></ng-container
+                    > -->
+                      </select>
+                    </ng-container>
+                    <ng-container *ngIf="type_attribute_variation == 2">
+                      <!-- MULTISELECTABLE -->
+                      <ng-multiselect-dropdown
+                        [placeholder]="'custom placeholder'"
+                        [settings]="dropdownSettings"
+                        [data]="dropdownListVariations"
+                        [(ngModel)]="selectedItemsVariations"
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                      >
+                      </ng-multiselect-dropdown>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="row">
+                  <div class="col-12">
+                    <label class="fw-semibold fs-6 py-2"
+                      >Agregar precio:(Opcional)</label
+                    >
+                    <input
+                      type="number"
+                      name="precio_add"
+                      [(ngModel)]="precio_add"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder="Por Ejemplo: 20"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <label class="fw-semibold fs-6 py-2"
+                      >Agregar stock:(*)</label
+                    >
+                    <input
+                      type="number"
+                      name="stock_add"
+                      [(ngModel)]="stock_add"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder="Por Ejemplo: 20"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mt-5">
+        <div class="row">
+          <div class="col-12">
+            <!-- Specifications Table -->
+            <div class="table-responsive">
+              <table class="table align-middle gs-0 gy-4">
+                <thead>
+                  <tr class="fw-bold text-muted bg-light">
+                    <th class="ps-4 min-w-325px rounded-start">Product</th>
+                    <th class="min-w-125px">Price</th>
+                    <th class="min-w-200px text-end rounded-end"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="symbol symbol-50px me-5">
+                          <img
+                            src="/metronic8/demo1/assets/media/stock/600x400/img-26.jpg"
+                            class=""
+                            alt=""
+                          />
+                        </div>
+
+                        <div class="d-flex justify-content-start flex-column">
+                          <a
+                            href="#"
+                            class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6"
+                            >Sant Extreanet Solution</a
+                          >
+                          <span
+                            class="text-muted fw-semibold text-muted d-block fs-7"
+                            >HTML, JS, ReactJS</span
+                          >
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6"
+                        >$2,790</a
+                      >
+                      <span
+                        class="text-muted fw-semibold text-muted d-block fs-7"
+                        >Paid</span
+                      >
+                    </td>
+                    <td class="text-end">
+                      <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                      >
+                        <i class="ki-duotone ki-switch fs-2"
+                          ><span class="path1"></span><span class="path2"></span
+                        ></i>
+                      </a>
+
+                      <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                      >
+                        <i class="ki-duotone ki-pencil fs-2"
+                          ><span class="path1"></span><span class="path2"></span
+                        ></i>
+                      </a>
+
+                      <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                      >
+                        <i class="ki-duotone ki-trash fs-2"
+                          ><span class="path1"></span><span class="path2"></span
+                          ><span class="path3"></span><span class="path4"></span
+                          ><span class="path5"></span
+                        ></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mt-5">
+        <div class="row">
+          <div class="col-12">
+            <!-- Variations Table -->
+            <div class="table-responsive">
+              <table class="table align-middle gs-0 gy-4">
+                <thead>
+                  <tr class="fw-bold text-muted bg-light">
+                    <th class="ps-4 min-w-325px rounded-start">Product</th>
+                    <th class="min-w-125px">Price</th>
+                    <th class="min-w-200px text-end rounded-end"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="symbol symbol-50px me-5">
+                          <img
+                            src="/metronic8/demo1/assets/media/stock/600x400/img-26.jpg"
+                            class=""
+                            alt=""
+                          />
+                        </div>
+
+                        <div class="d-flex justify-content-start flex-column">
+                          <a
+                            href="#"
+                            class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6"
+                            >Sant Extreanet Solution</a
+                          >
+                          <span
+                            class="text-muted fw-semibold text-muted d-block fs-7"
+                            >HTML, JS, ReactJS</span
+                          >
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6"
+                        >$2,790</a
+                      >
+                      <span
+                        class="text-muted fw-semibold text-muted d-block fs-7"
+                        >Paid</span
+                      >
+                    </td>
+                    <td class="text-end">
+                      <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                      >
+                        <i class="ki-duotone ki-switch fs-2"
+                          ><span class="path1"></span><span class="path2"></span
+                        ></i>
+                      </a>
+
+                      <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                      >
+                        <i class="ki-duotone ki-pencil fs-2"
+                          ><span class="path1"></span><span class="path2"></span
+                        ></i>
+                      </a>
+
+                      <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                      >
+                        <i class="ki-duotone ki-trash fs-2"
+                          ><span class="path1"></span><span class="path2"></span
+                          ><span class="path3"></span><span class="path4"></span
+                          ><span class="path5"></span
+                        ></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-6">
+      <div class="col-3">
+        <button class="btn btn-primary" (click)="save()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
