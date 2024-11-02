@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { EditVariationsSpecificationsComponent } from '../edit-variations-specifications/edit-variations-specifications.component';
+import { DeleteVariationsSpecificationsComponent } from '../delete-variations-specifications/delete-variations-specifications.component';
 
 @Component({
   selector: 'app-create-variations-specifications',
@@ -213,6 +215,45 @@ export class CreateVariationsSpecificationsComponent {
       error: (err) => {
         this.toastr.error('Error', err.error.message_text);
       },
+    });
+  }
+
+  editSpecification(specification: any) {
+    const modal = this.modalService.open(
+      EditVariationsSpecificationsComponent,
+      { centered: true, size: 'md' }
+    );
+    modal.componentInstance.specification = specification;
+
+    modal.componentInstance.attributes_specifications =
+      this.attributes_specifications;
+
+    modal.componentInstance.SpecificacionEdit.subscribe((edit: any) => {
+      console.log(edit);
+      let INDEX = this.specifications.findIndex(
+        (item: any) => item.id == edit.specification.id
+      );
+      if (INDEX != -1) {
+        this.specifications[INDEX] = edit.specification;
+      }
+    });
+  }
+
+  deleteSpecification(specification: any) {
+    const modal = this.modalService.open(
+      DeleteVariationsSpecificationsComponent,
+      { centered: true, size: 'md' }
+    );
+    modal.componentInstance.specification = specification;
+
+    modal.componentInstance.SpecificationDelete.subscribe((edit: any) => {
+      console.log(edit);
+      let INDEX = this.specifications.findIndex(
+        (item: any) => item.id == specification.id
+      );
+      if (INDEX != -1) {
+        this.specifications.splice(INDEX, 1);
+      }
     });
   }
 

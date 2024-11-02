@@ -67,4 +67,30 @@ export class AttributesService {
       .post(URL, data, { headers: headers })
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
+
+  updateSpecification(spedification_id: string, data: any) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/specifications/' + spedification_id;
+
+    return this.http
+      .put(URL, data, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  deleteSpecification(specification_id: string) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/specifications/' + specification_id;
+
+    return this.http
+      .delete(URL, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
 }

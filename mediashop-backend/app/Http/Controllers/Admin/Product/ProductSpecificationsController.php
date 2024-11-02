@@ -19,20 +19,21 @@ class ProductSpecificationsController extends Controller
             ->orderBy("id", "desc")->get();
 
         return response()->json([
-            "specifications" => $product_specifications->map(function ($specification) {
+            "specifications" => $product_specifications->map(function ($product_specification) {
                 return [
-                    "product_id" => $specification->product_id,
-                    "attribute_id" => $specification->attribute_id,
-                    "attribute" => $specification->attribute ? [
-                        "name" => $specification->attribute->name,
-                        "type_attribute" => $specification->attribute->type_attribute
+                    "id" => $product_specification->id,
+                    "product_id" => $product_specification->product_id,
+                    "attribute_id" => $product_specification->attribute_id,
+                    "attribute" => $product_specification->attribute ? [
+                        "name" => $product_specification->attribute->name,
+                        "type_attribute" => $product_specification->attribute->type_attribute
                     ] : NULL,
-                    "property_id" => $specification->property_id,
-                    "property" => $specification->property ? [
-                        "name" => $specification->property->name,
-                        "code" => $specification->property->code
+                    "property_id" => $product_specification->property_id,
+                    "property" => $product_specification->property ? [
+                        "name" => $product_specification->property->name,
+                        "code" => $product_specification->property->code
                     ] : NULL,
-                    "value_add" => $specification->value_add
+                    "value_add" => $product_specification->value_add
                 ];
             })
         ]);
@@ -67,6 +68,7 @@ class ProductSpecificationsController extends Controller
             "message" => 200,
             "message_text" => "Especificación creada correctamente.",
             "specification" => [
+                "id" => $product_specification->id,
                 "product_id" => $product_specification->product_id,
                 "attribute_id" => $product_specification->attribute_id,
                 "attribute" => $product_specification->attribute ? [
@@ -123,6 +125,7 @@ class ProductSpecificationsController extends Controller
             "message" => 200,
             "message_text" => "Especificación creada correctamente.",
             "specification" => [
+                "id" => $product_specification->id,
                 "product_id" => $product_specification->product_id,
                 "attribute_id" => $product_specification->attribute_id,
                 "attribute" => $product_specification->attribute ? [

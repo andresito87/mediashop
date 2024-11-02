@@ -78,7 +78,7 @@
                   <!-- SELECTABLE -->
                   <select
                     class="form-control form-select-solid fw-bolder"
-                    name="departament"
+                    name="property_id"
                     [(ngModel)]="property_id"
                   >
                     <option value="">Selec.</option>
@@ -266,6 +266,8 @@
                       <td class="text-end">
                         <a
                           href="#"
+                          onclick="return false;"
+                          (click)="editSpecification(specification)"
                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                         >
                           <i class="ki-duotone ki-pencil fs-2"
@@ -275,6 +277,8 @@
                         </a>
                         <a
                           href="#"
+                          onclick="return false;"
+                          (click)="deleteSpecification(specification)"
                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                         >
                           <i class="ki-duotone ki-trash fs-2"
