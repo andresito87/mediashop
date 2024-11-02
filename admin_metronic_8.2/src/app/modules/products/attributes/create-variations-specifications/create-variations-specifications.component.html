@@ -338,9 +338,9 @@
                       Atributo Variación
                     </th>
                     <th class="min-w-80px">Valor</th>
-                    <th class="min-w-80px">Precio adicional</th>
-                    <th class="min-w-80px">Stock</th>
-                    <th class="min-w-100px text-center rounded-end">
+                    <th class="min-w-20px">Precio adicional</th>
+                    <th class="min-w-20px">Stock</th>
+                    <th class="min-w-150px text-center rounded-end">
                       Acciones
                     </th>
                   </tr>
@@ -411,7 +411,7 @@
                       <td
                         style="
                           padding: 2px 4px;
-                          max-width: 50px;
+                          max-width: 20px;
                           overflow: hidden;
                           text-overflow: ellipsis;
                           white-space: nowrap;
@@ -433,7 +433,7 @@
                       <td
                         style="
                           padding: 2px 4px;
-                          max-width: 50px;
+                          max-width: 30px;
                           overflow: hidden;
                           text-overflow: ellipsis;
                           white-space: nowrap;
@@ -454,15 +454,28 @@
                       </td>
                       <td
                         class="text-end"
-                        style="padding: 2px 4px; max-width: 30px"
+                        style="padding: 2px 4px; max-width: 200px"
                       >
+                        <a
+                          href="#"
+                          onclick="return false;"
+                          (click)="openNested(variation)"
+                          class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                        >
+                          <i
+                            class="ki-duotone ki-questionnaire-tablet text-gray-900 fs-2tx"
+                          >
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                          </i>
+                        </a>
                         <a
                           href="#"
                           onclick="return false;"
                           (click)="editVariation(variation)"
                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                         >
-                          <i class="ki-duotone ki-pencil fs-2">
+                          <i class="ki-duotone ki-pencil text-gray-900 fs-2tx">
                             <span class="path1"></span>
                             <span class="path2"></span>
                           </i>
@@ -473,7 +486,7 @@
                           (click)="deleteVariation(variation)"
                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                         >
-                          <i class="ki-duotone ki-trash fs-2">
+                          <i class="ki-duotone ki-trash text-gray-900 fs-2tx">
                             <span class="path1"></span>
                             <span class="path2"></span>
                             <span class="path3"></span>

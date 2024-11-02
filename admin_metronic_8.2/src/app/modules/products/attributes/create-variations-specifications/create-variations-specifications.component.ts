@@ -6,6 +6,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { EditVariationsSpecificationsComponent } from '../edit-variations-specifications/edit-variations-specifications.component';
 import { DeleteVariationsSpecificationsComponent } from '../delete-variations-specifications/delete-variations-specifications.component';
+import { CreateNestedVariationsComponent } from '../create-nested-variations/create-nested-variations.component';
 
 @Component({
   selector: 'app-create-variations-specifications',
@@ -400,5 +401,14 @@ export class CreateVariationsSpecificationsComponent {
         this.variations.splice(INDEX, 1);
       }
     });
+  }
+
+  openNested(variation: any) {
+    const modal = this.modalService.open(CreateNestedVariationsComponent, {
+      centered: true,
+      size: 'lg',
+    });
+    modal.componentInstance.variation = variation;
+    modal.componentInstance.attributes_variations = this.attributes_variations;
   }
 }
