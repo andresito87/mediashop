@@ -41,14 +41,16 @@ export class CreateVariationsSpecificationsComponent {
   input_1_variation: any; // selectable
   dropdownListVariations: any = [];
   selectedItemsVariations: any = []; // input_2 multiselectable
-  precio_add: number = 0;
-  stock_add: number = 0;
+  add_price: number = 0;
+  stock: number = 0;
 
   attributes_specifications: any = [];
+  attributes_variations: any = [];
   properties: any = [];
   property_id: any = null;
   value_add: any = null;
   specifications: any = [];
+  variations: any = [];
 
   constructor(
     public attributeService: AttributesService,
@@ -89,11 +91,13 @@ export class CreateVariationsSpecificationsComponent {
     this.showProduct();
     this.configAll();
     this.listSpecifications();
+    this.listVariations();
   }
 
   configAll() {
     this.attributeService.configAll().subscribe((res: any) => {
       this.attributes_specifications = res.attributes_specifications;
+      this.attributes_variations = res.attributes_variations;
     });
   }
 
@@ -102,7 +106,14 @@ export class CreateVariationsSpecificationsComponent {
       .listSpecifications(this.PRODUCT_ID)
       .subscribe((res: any) => {
         this.specifications = res.specifications;
-        console.log(res);
+      });
+  }
+
+  listVariations() {
+    this.attributeService
+      .listVariations(this.PRODUCT_ID)
+      .subscribe((res: any) => {
+        this.variations = res.variations;
       });
   }
 
@@ -135,7 +146,6 @@ export class CreateVariationsSpecificationsComponent {
     const ATTRIBUTE = this.attributes_specifications.find(
       (item: any) => item.id == this.specification_attribute_id
     );
-    console.log(ATTRIBUTE);
     if (ATTRIBUTE) {
       this.type_attribute_specification = ATTRIBUTE.type_specification;
       if (
@@ -152,6 +162,28 @@ export class CreateVariationsSpecificationsComponent {
       this.type_attribute_specification = 0;
       this.properties = [];
       this.dropdownList = [];
+    }
+  }
+
+  changeVariations() {
+    this.value_add = null;
+    this.property_id = null;
+    const ATTRIBUTE = this.attributes_variations.find(
+      (item: any) => item.id == this.variation_attribute_id
+    );
+    if (ATTRIBUTE) {
+      this.type_attribute_variation = ATTRIBUTE.type_variation;
+      if (
+        this.type_attribute_variation == 3 ||
+        this.type_attribute_variation == 4
+      ) {
+        this.properties = ATTRIBUTE.properties;
+      } else {
+        this.properties = [];
+      }
+    } else {
+      this.type_attribute_variation = 0;
+      this.properties = [];
     }
   }
 
@@ -176,7 +208,7 @@ export class CreateVariationsSpecificationsComponent {
     }, 100);
   }
 
-  save() {
+  saveSpecification() {
     if (
       this.type_attribute_specification == 4 &&
       this.selectedItemsSpecifications.length == 0
@@ -229,7 +261,6 @@ export class CreateVariationsSpecificationsComponent {
       this.attributes_specifications;
 
     modal.componentInstance.SpecificacionEdit.subscribe((edit: any) => {
-      console.log(edit);
       let INDEX = this.specifications.findIndex(
         (item: any) => item.id == edit.specification.id
       );
@@ -247,7 +278,6 @@ export class CreateVariationsSpecificationsComponent {
     modal.componentInstance.specification = specification;
 
     modal.componentInstance.SpecificationDelete.subscribe((edit: any) => {
-      console.log(edit);
       let INDEX = this.specifications.findIndex(
         (item: any) => item.id == specification.id
       );
@@ -280,5 +310,95 @@ export class CreateVariationsSpecificationsComponent {
     }
 
     return '-----';
+  }
+
+  saveVariation() {
+    if (
+      !this.variation_attribute_id ||
+      (!this.property_id && !this.value_add)
+    ) {
+      this.toastr.error('Validacion', 'Ingrese los campos requeridos');
+      return;
+    }
+    if (this.add_price < 0) {
+      this.toastr.error(
+        'Validacion',
+        'El valor del precio no puede ser negativo'
+      );
+      return;
+    }
+    if (this.stock <= 0) {
+      this.toastr.error('Validacion', 'El stock debe ser mayor a 0');
+      return;
+    }
+
+    let data = {
+      product_id: this.PRODUCT_ID,
+      attribute_id: this.variation_attribute_id,
+      property_id: this.property_id,
+      value_add: this.value_add,
+      add_price: this.add_price,
+      stock: this.stock,
+    };
+
+    this.attributeService.createVariation(data).subscribe({
+      next: (res: any) => {
+        this.variations.unshift(res.variation);
+        this.value_add = null;
+        this.property_id = null;
+        this.variation_attribute_id = '';
+        this.add_price = 0;
+        this.stock = 0;
+        this.toastr.success('Éxito', 'Variación guardada correctamente');
+        console.log(res);
+      },
+      error: (err) => {
+        this.toastr.error('Error', err.error.message_text);
+      },
+    });
+  }
+
+  editVariation(variation: any) {
+    const modal = this.modalService.open(
+      EditVariationsSpecificationsComponent,
+      { centered: true, size: 'md' }
+    );
+    // in the parent component, specification will hold specification or variation as Input()
+    modal.componentInstance.specification = variation;
+
+    modal.componentInstance.attributes_specifications =
+      this.attributes_specifications;
+    modal.componentInstance.attributes_variations = this.attributes_variations;
+    modal.componentInstance.is_variation = true;
+
+    modal.componentInstance.SpecificacionEdit.subscribe((edit: any) => {
+      let INDEX = this.variations.findIndex(
+        (item: any) => item.id == edit.variation.id
+      );
+      if (INDEX != -1) {
+        this.variations[INDEX] = edit.variation;
+      }
+    });
+  }
+
+  deleteVariation(variation: any) {
+    const modal = this.modalService.open(
+      DeleteVariationsSpecificationsComponent,
+      {
+        centered: true,
+        size: 'md',
+      }
+    );
+    modal.componentInstance.specification = variation;
+    modal.componentInstance.is_variation = true;
+
+    modal.componentInstance.SpecificationDelete.subscribe((edit: any) => {
+      let INDEX = this.variations.findIndex(
+        (item: any) => item.id == variation.id
+      );
+      if (INDEX != -1) {
+        this.variations.splice(INDEX, 1);
+      }
+    });
   }
 }

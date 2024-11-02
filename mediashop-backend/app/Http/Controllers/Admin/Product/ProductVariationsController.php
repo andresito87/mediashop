@@ -22,6 +22,7 @@ class ProductVariationsController extends Controller
         return response()->json([
             "variations" => $product_variations->map(function ($variation) {
                 return [
+                    "id" => $variation->id,
                     "product_id" => $variation->product_id,
                     "attribute_id" => $variation->attribute_id,
                     "attribute" => $variation->attribute ? [
@@ -91,6 +92,19 @@ class ProductVariationsController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate that a attribute variation only exist a time for a product
+        // And if exist doen't allow add it again, only to edit it is allowed(for example: to edit its stock)
+        $variations_exist = ProductVariation::where("product_id", $request->product_id)
+            ->count();
+        if ($variations_exist > 0) {
+            $variations_attributes_exist = ProductVariation::where("product_id", $request->product_id)
+                ->where("attribute_id", $request->attribute_id)
+                ->count();
+            if ($variations_attributes_exist == 0) {
+                return response()->json(["message_text" => "No se puede agregar una variación de un atributo que no tiene este producto."], 403);
+            }
+        }
+
         $is_valid_variation = null;
         if ($request->property_id) {
             $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
@@ -106,7 +120,7 @@ class ProductVariationsController extends Controller
 
         }
         if ($is_valid_variation) {
-            return response()->json(["message" => 403, "message_text" => "La variación ya existe."]);
+            return response()->json(["message_text" => "La variación ya existe."], 403);
         }
 
         $product_variation = ProductVariation::create($request->all());
@@ -115,6 +129,7 @@ class ProductVariationsController extends Controller
             "message" => 200,
             "message_text" => "Variación creada correctamente.",
             "variation" => [
+                "id" => $product_variation->id,
                 "product_id" => $product_variation->product_id,
                 "attribute_id" => $product_variation->attribute_id,
                 "attribute" => $product_variation->attribute ? [
@@ -146,6 +161,19 @@ class ProductVariationsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // Validate that a attribute variation only exist a time for a product
+        // And if exist doen't allow add it again, only to edit it is allowed(for example: to edit its stock)
+        $variations_exist = ProductVariation::where("product_id", $request->product_id)
+            ->count();
+        if ($variations_exist > 0) {
+            $variations_attributes_exist = ProductVariation::where("product_id", $request->product_id)
+                ->where("attribute_id", $request->attribute_id)
+                ->count();
+            if ($variations_attributes_exist == 0) {
+                return response()->json(["message_text" => "No se puede agregar una variación de un atributo que no tiene este producto."], 403);
+            }
+        }
+
         $is_valid_variation = null;
         if ($request->property_id) {
             $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
@@ -163,7 +191,7 @@ class ProductVariationsController extends Controller
 
         }
         if ($is_valid_variation) {
-            return response()->json(["message" => 403, "message_text" => "La variación ya existe."]);
+            return response()->json(["message_text" => "La variación ya existe."], 403);
         }
 
         $product_variation = ProductVariation::findOrFail($id);
@@ -171,8 +199,9 @@ class ProductVariationsController extends Controller
 
         return response()->json([
             "message" => 200,
-            "message_text" => "Variación creada correctamente.",
+            "message_text" => "Variación actualizada correctamente.",
             "variation" => [
+                "id" => $product_variation->id,
                 "product_id" => $product_variation->product_id,
                 "attribute_id" => $product_variation->attribute_id,
                 "attribute" => $product_variation->attribute ? [

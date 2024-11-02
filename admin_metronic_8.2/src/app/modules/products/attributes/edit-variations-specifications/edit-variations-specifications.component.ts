@@ -13,6 +13,8 @@ export class EditVariationsSpecificationsComponent {
   @Output() SpecificacionEdit: EventEmitter<any> = new EventEmitter();
 
   @Input() specification: any;
+  @Input() attributes_variations: any = [];
+  @Input() is_variation: boolean; //False to edit specifications, True to edit variations
 
   isLoading$: any;
 
@@ -31,6 +33,9 @@ export class EditVariationsSpecificationsComponent {
   property_id: any = null;
   value_add: any = null;
   specifications: any = [];
+
+  add_price: any = 0;
+  stock: any = 0;
 
   constructor(
     public attributeService: AttributesService,
@@ -53,14 +58,22 @@ export class EditVariationsSpecificationsComponent {
       allowSearchFilter: true,
     };
 
+    // choose if we are editing a specification or a variation
+    if (!this.is_variation) {
+      this.specification_attribute_id = this.specification.attribute_id;
+      this.changeSpecifications();
+    } else {
+      this.variation_attribute_id = this.specification.attribute_id;
+      this.changeVariations();
+    }
     // Use setTimeouts to load data in specification edit form
-    this.specification_attribute_id = this.specification.attribute_id;
-    this.changeSpecifications();
     setTimeout(() => {
       let oldTypeAttribute = this.type_attribute_specification;
-      this.property_id = this.specification_attribute_id
-        ? this.specification.property_id
-        : null;
+      this.property_id =
+        this.specification_attribute_id || this.variation_attribute_id
+          ? this.specification.property_id
+          : null;
+
       if (this.specification.attribute.type_attribute == 4) {
         this.type_attribute_specification = 0;
         this.selectedItemsSpecifications = this.specification.value_add
@@ -75,13 +88,22 @@ export class EditVariationsSpecificationsComponent {
           ? this.specification.value_add
           : null;
       }
-      this.value_add = this.specification.value_add
-        ? JSON.parse(this.specification.value_add)
-        : null;
-    });
+    }, 25);
+    if (this.is_variation) {
+      this.add_price = this.specification.add_price;
+      this.stock = this.specification.stock;
+    }
   }
 
   store() {
+    if (!this.is_variation) {
+      this.storeSpecification();
+    } else {
+      this.storeVariation();
+    }
+  }
+
+  storeSpecification() {
     if (
       this.type_attribute_specification == 4 &&
       this.selectedItemsSpecifications.length == 0
@@ -103,6 +125,7 @@ export class EditVariationsSpecificationsComponent {
     }
 
     let data = {
+      product_id: this.specification.product_id,
       attribute_id: this.specification_attribute_id,
       property_id: this.property_id,
       value_add: this.value_add,
@@ -115,6 +138,37 @@ export class EditVariationsSpecificationsComponent {
             'Éxito',
             'Especificación actualizada correctamente'
           );
+          this.SpecificacionEdit.emit(res);
+          this.modal.close();
+        },
+        error: (err) => {
+          this.toastr.error('Error', err.error.message_text);
+        },
+      });
+  }
+
+  storeVariation() {
+    if (
+      !this.variation_attribute_id ||
+      (!this.property_id && !this.value_add)
+    ) {
+      this.toastr.error('Validacion', 'Ingrese los campos requeridos');
+      return;
+    }
+
+    let data = {
+      product_id: this.specification.product_id,
+      attribute_id: this.variation_attribute_id,
+      property_id: this.property_id,
+      value_add: this.value_add,
+      add_price: this.add_price,
+      stock: this.stock,
+    };
+    this.attributeService
+      .updateVariation(this.specification.id, data)
+      .subscribe({
+        next: (res: any) => {
+          this.toastr.success('Éxito', 'Variación actualizada correctamente');
           this.SpecificacionEdit.emit(res);
           this.modal.close();
         },
@@ -145,7 +199,6 @@ export class EditVariationsSpecificationsComponent {
     const ATTRIBUTE = this.attributes_specifications.find(
       (item: any) => item.id == this.specification_attribute_id
     );
-    console.log(ATTRIBUTE);
     if (ATTRIBUTE) {
       this.type_attribute_specification = ATTRIBUTE.type_specification;
       if (
@@ -162,6 +215,28 @@ export class EditVariationsSpecificationsComponent {
       this.type_attribute_specification = 0;
       this.properties = [];
       this.dropdownList = [];
+    }
+  }
+
+  changeVariations() {
+    this.value_add = null;
+    this.property_id = null;
+    const ATTRIBUTE = this.attributes_variations.find(
+      (item: any) => item.id == this.variation_attribute_id
+    );
+    if (ATTRIBUTE) {
+      this.type_attribute_specification = ATTRIBUTE.type_variation;
+      if (
+        this.type_attribute_specification == 3 ||
+        this.type_attribute_specification == 4
+      ) {
+        this.properties = ATTRIBUTE.properties;
+      } else {
+        this.properties = [];
+      }
+    } else {
+      this.type_attribute_specification = 0;
+      this.properties = [];
     }
   }
 }

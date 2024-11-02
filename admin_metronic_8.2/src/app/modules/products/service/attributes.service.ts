@@ -42,6 +42,7 @@ export class AttributesService {
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 
+  /************************** SPECIFICATIONS **************************/
   listSpecifications(product_id: string) {
     //isLoadingSubject when is true => init request, false => finalize request
     this.isLoadingSubject.next(true);
@@ -88,6 +89,59 @@ export class AttributesService {
       Authorization: 'Bearer ' + this.authservice.token,
     });
     let URL = URL_SERVICIOS + '/admin/specifications/' + specification_id;
+
+    return this.http
+      .delete(URL, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  /************************** VARIATIONS **************************/
+  listVariations(product_id: string) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/variations?product_id=' + product_id;
+
+    return this.http
+      .get(URL, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  createVariation(data: any) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/variations';
+
+    return this.http
+      .post(URL, data, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  updateVariation(variation_id: string, data: any) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/variations/' + variation_id;
+
+    return this.http
+      .put(URL, data, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  deleteVariation(variation_id: string) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/variations/' + variation_id;
 
     return this.http
       .delete(URL, { headers: headers })

@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DeleteVariationsSpecificationsComponent {
   @Input() specification: any;
+  @Input() is_variation: boolean;
 
   @Output() SpecificationDelete: EventEmitter<any> = new EventEmitter();
 
@@ -28,8 +29,25 @@ export class DeleteVariationsSpecificationsComponent {
   }
 
   delete() {
+    if (this.is_variation) {
+      this.deleteVariation();
+    } else {
+      this.deleteSpecification();
+    }
+  }
+
+  deleteSpecification() {
     this.attributeService
       .deleteSpecification(this.specification.id)
+      .subscribe((res: any) => {
+        this.SpecificationDelete.emit({ message: 200 });
+        this.modal.close();
+      });
+  }
+
+  deleteVariation() {
+    this.attributeService
+      .deleteVariation(this.specification.id)
       .subscribe((res: any) => {
         this.SpecificationDelete.emit({ message: 200 });
         this.modal.close();

@@ -4,7 +4,9 @@
   <div class="modal-header" id="kt_modal_add_user_header">
     <!--begin::Modal title-->
     <h2 class="fw-bolder">
-      Eliminar especificación: "{{ specification.attribute.name }}"
+      Eliminar {{ is_variation ? "variación" : "especificación" }}: "{{
+        specification.attribute.name
+      }}"
     </h2>
 
     <!--end::Modal title-->
@@ -53,7 +55,10 @@
   <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
     <!--begin::Form-->
     <form id="kt_modal_add_user_form" class="form" action="#">
-      <p>¿ESTAS SEGURO DE ELIMINAR ESTA ESPECIFICACIÓN?</p>
+      <p>
+        ¿ESTAS SEGURO DE ELIMINAR ESTA
+        {{ is_variation ? "VARIACIÓN" : "ESPECIFICACIÓN" }}?
+      </p>
       <div class="text-center pt-15">
         <button
           type="reset"
