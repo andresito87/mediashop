@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 01-11-2024 a las 21:16:30
+-- Tiempo de generación: 03-11-2024 a las 19:28:02
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -46,8 +46,6 @@ INSERT INTO `attributes` (`id`, `name`, `type_attribute`, `state`, `created_at`,
 (7, 'POTENCIA', 2, 1, '2024-10-20 12:26:45', '2024-10-20 12:26:45', NULL),
 (8, 'TALLAS GRANDES', 3, 1, '2024-10-20 12:30:16', '2024-10-20 12:30:16', NULL),
 (9, 'TAMAÑO', 1, 1, '2024-10-20 12:30:47', '2024-10-20 13:00:21', NULL),
-(10, 'Poder', 2, 1, '2024-10-20 13:37:46', '2024-10-20 11:55:00', '2024-10-20 11:55:00'),
-(11, 'Prueba', 2, 1, '2024-10-20 13:38:18', '2024-10-20 11:54:37', '2024-10-20 11:54:37'),
 (12, 'MEMORIA', 4, 1, '2024-11-01 17:11:08', '2024-11-01 17:11:08', NULL);
 
 -- --------------------------------------------------------
@@ -74,7 +72,7 @@ INSERT INTO `brands` (`id`, `name`, `image`, `state`, `created_at`, `updated_at`
 (1, 'LG', NULL, 1, '2024-10-01 21:00:29', '2024-10-31 21:11:23', NULL),
 (2, 'SAMSUNG', NULL, 1, '2024-10-01 21:00:42', NULL, NULL),
 (3, 'SONY', NULL, 1, '2024-10-01 21:00:45', NULL, NULL),
-(4, 'NIKE', NULL, 1, '2024-10-01 21:00:47', NULL, NULL),
+(4, 'NIKE', NULL, 1, '2024-10-01 21:00:47', '2024-11-03 11:39:02', NULL),
 (5, 'XIAOMI', NULL, 1, '2024-10-31 21:40:27', '2024-10-31 22:04:31', NULL);
 
 -- --------------------------------------------------------
@@ -129,12 +127,77 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `name`, `icon`, `state`, `image`, `categorie_second_id`, `categorie_third_id`, `position`, `type_categorie`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (3, 'Gaming', NULL, 1, NULL, 35, 34, 1, 3, '2024-10-18 21:17:20', '2024-10-19 20:01:28', NULL),
 (4, 'Hardware', '<svg _ngcontent-ng-c3473377212=\"\" width=\"18\" height=\"16\" viewBox=\"0 0 18 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path _ngcontent-ng-c3473377212=\"\" d=\"M15.7462 7.16473V13.167C15.7462 13.6457 15.556 14.1049 15.2175 14.4434C14.8789 14.782 14.4197 14.9722 13.941 14.9722H4.3058C3.82703 14.9722 3.3679 14.782 3.02936 14.4434C2.69083 14.1049 2.50061 13.6457 2.50061 13.167V9.36255\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M3.46186 1.00001C3.18176 0.999863 2.90854 1.08659 2.6798 1.24825C2.45106 1.4099 2.27807 1.63852 2.18471 1.9026L1.11062 5.01655C0.713475 6.15382 1.41752 7.16021 2.71274 7.16021C3.18296 7.14863 3.64325 7.02257 4.05374 6.79294C4.46424 6.56331 4.81255 6.23705 5.0685 5.84243C5.20151 6.24071 5.46067 6.58479 5.80676 6.82258C6.15285 7.06036 6.56702 7.17889 6.98651 7.16021C7.18566 6.7642 7.4909 6.43132 7.86823 6.19871C8.24556 5.96611 8.68013 5.84294 9.1234 5.84294C9.56666 5.84294 10.0012 5.96611 10.3785 6.19871C10.7558 6.43132 11.0611 6.7642 11.2603 7.16021V7.16021C11.679 7.17789 12.0922 7.0589 12.4373 6.82119C12.7825 6.58348 13.041 6.23994 13.1738 5.84243C13.431 6.23686 13.7802 6.56288 14.1914 6.79243C14.6026 7.02199 15.0633 7.1482 15.5341 7.16021C16.8293 7.16021 17.5288 6.15382 17.1362 5.01655L16.0621 1.9026C15.9685 1.6378 15.7948 1.40866 15.5652 1.24694C15.3355 1.08522 15.0613 0.998927 14.7804 1.00001H3.46186Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M11.0707 14.9722H7.19861V11.4701C7.19861 10.983 7.3921 10.5158 7.73656 10.1713C8.08102 9.82685 8.54822 9.63333 9.03536 9.63333H9.22041C9.70755 9.63333 10.1747 9.82685 10.5192 10.1713C10.8637 10.5158 11.0572 10.983 11.0572 11.4701L11.0707 14.9722Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>', 1, 'categories/b15wRF8zJcNkDIItCB1Rsr8L9CJVS9CI4JV2r5da.jpg', NULL, NULL, 1, 1, '2024-10-18 21:26:50', '2024-10-18 21:26:50', NULL),
-(32, 'Moviles', '<svg _ngcontent-ng-c3473377212=\"\" width=\"15\" height=\"18\" viewBox=\"0 0 15 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path _ngcontent-ng-c3473377212=\"\" d=\"M12.375 1H2.625C1.72754 1 1 1.72754 1 2.625V15.625C1 16.5225 1.72754 17.25 2.625 17.25H12.375C13.2725 17.25 14 16.5225 14 15.625V2.625C14 1.72754 13.2725 1 12.375 1Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M7.5 14H7.50875\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>', 1, 'categories/YyoBRxQFEpEp3Y5GX6agqgyH8hsdTVUsd7bxMffn.jpg', NULL, NULL, 1, 1, '2024-10-19 16:12:29', '2024-10-19 16:12:29', NULL),
+(32, 'Moviles', '<svg _ngcontent-ng-c3473377212=\"\" width=\"15\" height=\"18\" viewBox=\"0 0 15 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path _ngcontent-ng-c3473377212=\"\" d=\"M12.375 1H2.625C1.72754 1 1 1.72754 1 2.625V15.625C1 16.5225 1.72754 17.25 2.625 17.25H12.375C13.2725 17.25 14 16.5225 14 15.625V2.625C14 1.72754 13.2725 1 12.375 1Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M7.5 14H7.50875\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>', 1, 'categories/YyoBRxQFEpEp3Y5GX6agqgyH8hsdTVUsd7bxMffn.jpg', NULL, NULL, 1, 1, '2024-10-19 16:12:29', '2024-11-03 11:13:25', NULL),
 (33, 'Piezas', '<svg _ngcontent-ng-c3473377212=\"\" width=\"18\" height=\"16\" viewBox=\"0 0 18 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path _ngcontent-ng-c3473377212=\"\" d=\"M15.7462 7.16473V13.167C15.7462 13.6457 15.556 14.1049 15.2175 14.4434C14.8789 14.782 14.4197 14.9722 13.941 14.9722H4.3058C3.82703 14.9722 3.3679 14.782 3.02936 14.4434C2.69083 14.1049 2.50061 13.6457 2.50061 13.167V9.36255\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M3.46186 1.00001C3.18176 0.999863 2.90854 1.08659 2.6798 1.24825C2.45106 1.4099 2.27807 1.63852 2.18471 1.9026L1.11062 5.01655C0.713475 6.15382 1.41752 7.16021 2.71274 7.16021C3.18296 7.14863 3.64325 7.02257 4.05374 6.79294C4.46424 6.56331 4.81255 6.23705 5.0685 5.84243C5.20151 6.24071 5.46067 6.58479 5.80676 6.82258C6.15285 7.06036 6.56702 7.17889 6.98651 7.16021C7.18566 6.7642 7.4909 6.43132 7.86823 6.19871C8.24556 5.96611 8.68013 5.84294 9.1234 5.84294C9.56666 5.84294 10.0012 5.96611 10.3785 6.19871C10.7558 6.43132 11.0611 6.7642 11.2603 7.16021V7.16021C11.679 7.17789 12.0922 7.0589 12.4373 6.82119C12.7825 6.58348 13.041 6.23994 13.1738 5.84243C13.431 6.23686 13.7802 6.56288 14.1914 6.79243C14.6026 7.02199 15.0633 7.1482 15.5341 7.16021C16.8293 7.16021 17.5288 6.15382 17.1362 5.01655L16.0621 1.9026C15.9685 1.6378 15.7948 1.40866 15.5652 1.24694C15.3355 1.08522 15.0613 0.998927 14.7804 1.00001H3.46186Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M11.0707 14.9722H7.19861V11.4701C7.19861 10.983 7.3921 10.5158 7.73656 10.1713C8.08102 9.82685 8.54822 9.63333 9.03536 9.63333H9.22041C9.70755 9.63333 10.1747 9.82685 10.5192 10.1713C10.8637 10.5158 11.0572 10.983 11.0572 11.4701L11.0707 14.9722Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>', 1, 'categories/b15wRF8zJcNkDIItCB1Rsr8L9CJVS9CI4JV2r5da.jpg', 4, NULL, 1, 2, '2024-10-19 16:13:12', '2024-10-20 04:35:24', NULL),
 (34, 'Ordenadores', '<svg _ngcontent-ng-c3473377212=\"\" width=\"17\" height=\"16\" viewBox=\"0 0 17 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path _ngcontent-ng-c3473377212=\"\" d=\"M14.5 1H2.5C1.67157 1 1 1.67157 1 2.5V10C1 10.8284 1.67157 11.5 2.5 11.5H14.5C15.3284 11.5 16 10.8284 16 10V2.5C16 1.67157 15.3284 1 14.5 1Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M5.5 14.5H11.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M8.5 11.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>', 1, 'categories/49r7BoCdJWe9d5fUNF7Wxnp3rZlKJ15FjL5f7YXD.jpg', NULL, NULL, 1, 1, '2024-10-19 16:25:28', '2024-10-19 19:45:39', NULL),
 (35, 'Desktop', '<svg _ngcontent-ng-c3473377212=\"\" width=\"17\" height=\"16\" viewBox=\"0 0 17 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path _ngcontent-ng-c3473377212=\"\" d=\"M14.5 1H2.5C1.67157 1 1 1.67157 1 2.5V10C1 10.8284 1.67157 11.5 2.5 11.5H14.5C15.3284 11.5 16 10.8284 16 10V2.5C16 1.67157 15.3284 1 14.5 1Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M5.5 14.5H11.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M8.5 11.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>', 1, 'categories/jGTHUwP560FAtlRnPZtK8AnfeZT3jPFXKPa229ZT.jpg', 34, NULL, 1, 2, '2024-10-19 16:26:42', '2024-10-19 16:26:42', NULL),
 (36, 'Componentes', '<svg _ngcontent-ng-c3473377212=\"\" width=\"17\" height=\"16\" viewBox=\"0 0 17 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path _ngcontent-ng-c3473377212=\"\" d=\"M14.5 1H2.5C1.67157 1 1 1.67157 1 2.5V10C1 10.8284 1.67157 11.5 2.5 11.5H14.5C15.3284 11.5 16 10.8284 16 10V2.5C16 1.67157 15.3284 1 14.5 1Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M5.5 14.5H11.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M8.5 11.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>', 1, 'categories/ZDy96qlBxskVpzbVcO5P0fgVxgqdMKUdZu3HxYKj.jpg', 4, NULL, 1, 2, '2024-10-20 07:24:23', '2024-10-20 07:24:23', NULL),
 (37, 'Memorias Ram', '<svg _ngcontent-ng-c3473377212=\"\" width=\"17\" height=\"16\" viewBox=\"0 0 17 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path _ngcontent-ng-c3473377212=\"\" d=\"M14.5 1H2.5C1.67157 1 1 1.67157 1 2.5V10C1 10.8284 1.67157 11.5 2.5 11.5H14.5C15.3284 11.5 16 10.8284 16 10V2.5C16 1.67157 15.3284 1 14.5 1Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M5.5 14.5H11.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path _ngcontent-ng-c3473377212=\"\" d=\"M8.5 11.5V14.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>', 1, 'categories/g6GBKSqur122gcbD6XFQGYqChSVNOyJVUdtMerBI.jpg', 36, 4, 1, 3, '2024-10-20 07:38:22', '2024-10-20 07:38:22', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `id` bigint UNSIGNED NOT NULL,
+  `code` varchar(250) NOT NULL,
+  `type_discount` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es porcentaje, 2 es cantidad fija',
+  `discount` double NOT NULL,
+  `type_count` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es limitado, 2 es ilimitado',
+  `num_uses` double NOT NULL DEFAULT '0',
+  `type_coupon` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es producto, 2 es categoria y 3 es marca',
+  `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `coupon_brands`
+--
+
+CREATE TABLE `coupon_brands` (
+  `id` bigint UNSIGNED NOT NULL,
+  `brand_id` bigint UNSIGNED NOT NULL,
+  `coupon_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `coupon_categories`
+--
+
+CREATE TABLE `coupon_categories` (
+  `id` bigint UNSIGNED NOT NULL,
+  `categorie_id` bigint UNSIGNED NOT NULL,
+  `coupon_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `coupon_products`
+--
+
+CREATE TABLE `coupon_products` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `coupon_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -273,7 +336,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `title`, `slug`, `sku`, `price_eur`, `price_usd`, `description`, `resume`, `image`, `state`, `tags`, `brand_id`, `categorie_first_id`, `categorie_second_id`, `categorie_third_id`, `stock`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, 'LAPTOP GAMING 2024', 'laptop-gaming-2024', 'LAPTOP-2024', 1000, 1200, '<p>Hello World!43534eerwre</p>', 'Mejor laptop 2024', 'products/bogfEypUNmilZnHHj8A1cRaBsQaXUBGHm0Pe9k12.jpg', 1, '[{\"item_id\": 1730302956413, \"item_text\": \"LAPTOP\"}, {\"item_id\": 1730302961326, \"item_text\": \"GAMING\"}]', 1, 34, 35, 3, 0, '2024-10-30 16:43:18', '2024-10-30 20:44:20', NULL),
+(2, 'LAPTOP GAMING 2024', 'laptop-gaming-2024', 'LAPTOP-2024', 1000, 1200, '<p>Hello World!43534eerwre</p>', 'Mejor laptop 2024', 'products/bogfEypUNmilZnHHj8A1cRaBsQaXUBGHm0Pe9k12.jpg', 2, '[{\"item_id\": 1730302956413, \"item_text\": \"LAPTOP\"}, {\"item_id\": 1730302961326, \"item_text\": \"GAMING\"}]', 1, 34, 35, 3, 0, '2024-10-30 16:43:18', '2024-10-30 20:44:20', NULL),
 (3, 'SMARTWATCH PLUS ARCHOR', 'smartwatch-plus-archor', 'SMARTWATCH-2024', 123, 150, '<p>Hello World! cambiando</p>', 'Reloj inteligente 2024', 'products/CTfQhMsrmVsJHnEB36eTY0XwN6Dw9lsRhIDnp5xb.jpg', 1, '[{\"item_id\": 1730303909339, \"item_text\": \"SMARTWATCH\"}, {\"item_id\": 1730303962085, \"item_text\": \"2024\"}]', 2, 4, NULL, NULL, 0, '2024-10-30 17:00:03', '2024-10-31 14:52:56', NULL);
 
 -- --------------------------------------------------------
@@ -329,11 +392,12 @@ CREATE TABLE `product_specifications` (
 --
 
 INSERT INTO `product_specifications` (`id`, `product_id`, `attribute_id`, `property_id`, `value_add`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(4, 2, 6, 1, NULL, 1, '2024-11-01 20:36:19', '2024-11-01 20:36:18', NULL),
+(4, 2, 6, 1, NULL, 1, '2024-11-01 20:36:19', '2024-11-02 14:12:59', '2024-11-02 14:12:59'),
 (9, 2, 9, NULL, '56', 1, '2024-11-01 21:00:40', '2024-11-01 21:00:40', NULL),
-(12, 2, 8, 4, NULL, 1, '2024-11-01 21:43:32', '2024-11-01 21:43:32', NULL),
-(14, 2, 7, NULL, '200', 1, '2024-11-01 21:51:03', '2024-11-01 21:51:03', NULL),
-(15, 2, 12, NULL, '[{\"id\":6,\"name\":\"16GB\"},{\"id\":7,\"name\":\"32GB\"}]', 1, '2024-11-01 22:04:08', '2024-11-01 22:04:08', NULL);
+(12, 2, 8, 4, NULL, 1, '2024-11-01 21:43:32', '2024-11-02 15:11:42', NULL),
+(14, 2, 7, NULL, '200', 1, '2024-11-01 21:51:03', '2024-11-02 07:57:53', NULL),
+(15, 2, 12, NULL, '[{\"id\":6,\"name\":\"16GB\"},{\"id\":7,\"name\":\"32GB\"},{\"id\":8,\"name\":\"64GB\"}]', 1, '2024-11-01 22:04:08', '2024-11-02 16:01:25', NULL),
+(16, 2, 6, 1, NULL, 1, '2024-11-02 13:17:31', '2024-11-02 16:01:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -350,10 +414,32 @@ CREATE TABLE `product_variations` (
   `add_price` double NOT NULL DEFAULT '0',
   `stock` double NOT NULL DEFAULT '0',
   `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
+  `product_variation_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `product_variations`
+--
+
+INSERT INTO `product_variations` (`id`, `product_id`, `attribute_id`, `property_id`, `value_add`, `add_price`, `stock`, `state`, `product_variation_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, 6, 1, NULL, 35, 20, 1, NULL, '2024-11-02 10:04:51', '2024-11-02 16:18:13', NULL),
+(2, 2, 6, 2, NULL, 8, 2, 1, NULL, '2024-11-02 11:19:52', '2024-11-02 15:59:32', NULL),
+(5, 2, 6, 9, NULL, 50, 14, 1, NULL, '2024-11-02 14:08:19', '2024-11-03 10:04:59', NULL),
+(6, 2, 8, 4, NULL, 0, 5, 1, 5, '2024-11-03 07:06:18', '2024-11-03 08:04:20', '2024-11-03 08:04:20'),
+(7, 2, 8, 5, NULL, 0, 80, 1, 5, '2024-11-03 07:39:35', '2024-11-03 07:27:28', '2024-11-03 07:27:28'),
+(8, 2, 8, 5, NULL, 0, 10, 1, 5, '2024-11-03 08:51:53', '2024-11-03 08:21:49', '2024-11-03 08:21:49'),
+(9, 2, 8, 4, NULL, 0, 1, 1, 5, '2024-11-03 09:04:31', '2024-11-03 08:05:36', '2024-11-03 08:05:36'),
+(10, 2, 8, 4, NULL, 0, 3, 1, 5, '2024-11-03 09:08:21', '2024-11-03 08:10:40', '2024-11-03 08:10:40'),
+(11, 2, 8, 4, NULL, 0, 4, 1, 5, '2024-11-03 09:10:57', '2024-11-03 08:28:07', '2024-11-03 08:28:07'),
+(12, 2, 8, 5, NULL, 0, 5, 1, 5, '2024-11-03 09:22:03', '2024-11-03 10:25:06', NULL),
+(13, 2, 8, 4, NULL, 0, 2, 1, 5, '2024-11-03 09:28:17', '2024-11-03 08:34:43', '2024-11-03 08:34:43'),
+(14, 2, 8, 4, NULL, 0, 2, 1, 5, '2024-11-03 09:34:53', '2024-11-03 08:35:03', '2024-11-03 08:35:03'),
+(15, 2, 8, 4, NULL, 0, 4, 1, 5, '2024-11-03 09:35:11', '2024-11-03 08:41:45', '2024-11-03 08:41:45'),
+(16, 2, 8, 4, NULL, 0, 2, 1, 5, '2024-11-03 09:41:55', '2024-11-03 09:20:17', '2024-11-03 09:20:17'),
+(17, 2, 8, 4, NULL, 0, 9, 1, 5, '2024-11-03 10:25:20', '2024-11-03 10:25:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -383,7 +469,8 @@ INSERT INTO `properties` (`id`, `attribute_id`, `name`, `code`, `created_at`, `u
 (5, 8, 'L', NULL, '2024-10-20 16:23:35', '2024-10-20 16:23:35', NULL),
 (6, 12, '16GB', NULL, '2024-11-01 17:12:00', '2024-11-01 17:12:00', NULL),
 (7, 12, '32GB', NULL, '2024-11-01 17:12:32', '2024-11-01 17:12:32', NULL),
-(8, 12, '64GB', NULL, '2024-11-01 17:12:36', '2024-11-01 17:12:36', NULL);
+(8, 12, '64GB', NULL, '2024-11-01 17:12:36', '2024-11-03 11:32:44', '2024-11-03 11:32:44'),
+(9, 6, 'Marrón', '#4b4111', '2024-11-02 14:07:55', '2024-11-02 14:07:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -502,6 +589,30 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `coupons`
+--
+ALTER TABLE `coupons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `coupon_brands`
+--
+ALTER TABLE `coupon_brands`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `coupon_categories`
+--
+ALTER TABLE `coupon_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `coupon_products`
+--
+ALTER TABLE `coupon_products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -600,7 +711,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `attributes`
 --
 ALTER TABLE `attributes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `brands`
@@ -613,6 +724,30 @@ ALTER TABLE `brands`
 --
 ALTER TABLE `categories`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT de la tabla `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `coupon_brands`
+--
+ALTER TABLE `coupon_brands`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `coupon_categories`
+--
+ALTER TABLE `coupon_categories`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `coupon_products`
+--
+ALTER TABLE `coupon_products`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -654,19 +789,19 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT de la tabla `product_specifications`
 --
 ALTER TABLE `product_specifications`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `product_variations`
 --
 ALTER TABLE `product_variations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `sliders`

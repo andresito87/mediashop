@@ -9,6 +9,9 @@ use App\Models\Coupon\Coupon;
 use App\Models\Coupon\CouponBrand;
 use App\Models\Coupon\CouponCategorie;
 use App\Models\Coupon\CouponProduct;
+use App\Models\Product\Brand;
+use App\Models\Product\Categorie;
+use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -25,6 +28,46 @@ class CouponController extends Controller
             "total" => $coupons->total(),
             "coupons" => CouponCollection::make($coupons)
         ], 200);
+    }
+
+    public function config()
+    {
+        // get all active/public products
+        $products = Product::where("state", 2)
+            ->orderBy("id", "desc")->get();
+
+        // get all active/public departments(first level)
+        $categories = Categorie::where("state", 1)
+            ->where("categorie_second_id", NULL)
+            ->where("categorie_third_id", NULL)
+            ->orderBy("id", "desc")->get();
+
+        // get all active/public brands
+        $brands = Brand::where("state", 1)
+            ->orderBy("id", "desc")->get();
+
+        return response()->json([
+            "products" => $products->map(function ($product) {
+                return [
+                    "id" => $product->id,
+                    "title" => $product->title,
+                    "image" => env("APP_URL") . "storage/" . $product->image
+                ];
+            }),
+            "categories" => $categories->map(function ($categorie) {
+                return [
+                    "id" => $categorie->id,
+                    "name" => $categorie->name,
+                    "image" => env("APP_URL") . "storage/" . $categorie->image
+                ];
+            }),
+            "brands" => $brands->map(function ($brand) {
+                return [
+                    "id" => $brand->id,
+                    "name" => $brand->name
+                ];
+            })
+        ]);
     }
 
     /**

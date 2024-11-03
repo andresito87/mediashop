@@ -82,6 +82,7 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     // =========================================================================== //
 
     // ================================= COUPONS ================================= //
+    Route::get('coupons/config', [CouponController::class, 'config']);
     Route::resource('coupons', CouponController::class);
     // ============================================================================ //
 
