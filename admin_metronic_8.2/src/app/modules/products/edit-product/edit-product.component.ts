@@ -27,6 +27,8 @@ export class EditProductComponent {
   file_image: any = null;
   brand_id: any = '';
   brands: any = [];
+  state: number = 1;
+  stock: number = 0;
 
   isLoading$: any;
 
@@ -157,6 +159,8 @@ export class EditProductComponent {
       this.title = res.product.title;
       this.sku = res.product.sku;
       this.resume = res.product.resume;
+      this.state = res.product.state;
+      this.stock = res.product.stock;
       this.price_eur = res.product.price_eur;
       this.price_usd = res.product.price_usd;
       this.description = res.product.description;
@@ -280,6 +284,7 @@ export class EditProductComponent {
     formData.append('price_eur', this.price_eur + '');
     formData.append('price_usd', this.price_usd + '');
     formData.append('brand_id', this.brand_id);
+    formData.append('stock', this.stock + '');
     if (this.file_image) {
       formData.append('cover_image', this.file_image);
     }
@@ -295,6 +300,7 @@ export class EditProductComponent {
     formData.append('description', this.description);
     formData.append('resume', this.resume);
     formData.append('multiselect', JSON.stringify(this.tags));
+    formData.append('state', this.state + '');
 
     this.productService.updateProducts(this.PRODUCT_ID, formData).subscribe({
       next: (res: any) => {

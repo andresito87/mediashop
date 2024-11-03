@@ -131,7 +131,7 @@
           placeholder="Por Ejemplo: XXXX "
         />
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 my-2" *ngIf="!isShowMultiselect">
+      <div class="col-lg-5 col-md-6 col-sm-12 my-2" *ngIf="!isShowMultiselect">
         <label class="fw-semibold fs-6 py-2">Tags: </label>
         <ng-multiselect-dropdown
           [placeholder]="'custom placeholder'"
@@ -142,6 +142,18 @@
           (onSelectAll)="onSelectAll($event)"
         >
         </ng-multiselect-dropdown>
+      </div>
+      <div class="col-3">
+        <label class="requires fw-bold fs-6 mb-2">Selec. un estado</label>
+        <select
+          class="form-control form-select-solid fw-bolder"
+          name="state"
+          placeholder="Selec. estado"
+          [(ngModel)]="state"
+        >
+          <option value="1">Pendiente</option>
+          <option value="2">Público</option>
+        </select>
       </div>
     </div>
     <div class="row mb-6">
@@ -241,14 +253,28 @@
         ></ckeditor>
       </div>
       <div class="col-lg-4 fv-row fv-plugins-icon-container mt-6">
-        <label class="fs-6 fw-semibold mb-2">Resumen :</label>
-        <textarea
-          class="form-control form-control-solid"
-          rows="3"
-          name="resume"
-          [(ngModel)]="resume"
-          placeholder="*******"
-        ></textarea>
+        <div class="row">
+          <div class="col-12">
+            <label class="fs-6 fw-semibold mb-2">Resumen :</label>
+            <textarea
+              class="form-control form-control-solid"
+              rows="3"
+              name="resume"
+              [(ngModel)]="resume"
+              placeholder="*******"
+            ></textarea>
+          </div>
+          <div class="col-12">
+            <label class="fw-semibold fs-6 mb-2">Stock: </label>
+            <input
+              type="number"
+              name="stock"
+              [(ngModel)]="stock"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Por Ejemplo: 20 EUR "
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div class="row mb-6">
