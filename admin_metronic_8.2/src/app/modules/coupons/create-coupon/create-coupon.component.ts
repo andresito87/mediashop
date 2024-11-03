@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class CreateCouponComponent {
   code: any;
-  type_discount: number = 1; // 1 unlimited discounts, 2 limited discounts
+  type_discount: number = 1; // 1 is %, 2 is fixed amount
   discount: number = 0;
-  type_count: number = 1;
+  type_count: number = 1; // 1 unlimited discounts, 2 limited discounts
   num_uses: number = 0;
   type_coupon: number = 1;
   product_id: any;
