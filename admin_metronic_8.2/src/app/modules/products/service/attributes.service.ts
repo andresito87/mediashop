@@ -147,4 +147,62 @@ export class AttributesService {
       .delete(URL, { headers: headers })
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
+
+  /********************** NESTED VARIATIONS **********************/
+  listNestedVariations(product_id: string, product_variation_id: string) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL =
+      URL_SERVICIOS +
+      '/admin/nested_variations?product_id=' +
+      product_id +
+      '&product_variation_id=' +
+      product_variation_id;
+
+    return this.http
+      .get(URL, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  createNestedVariation(data: any) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/nested_variations';
+
+    return this.http
+      .post(URL, data, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  updateNestedVariation(variation_id: string, data: any) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/nested_variations/' + variation_id;
+
+    return this.http
+      .put(URL, data, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  deleteNestedVariation(variation_id: string) {
+    //isLoadingSubject when is true => init request, false => finalize request
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
+    let URL = URL_SERVICIOS + '/admin/nested_variations/' + variation_id;
+
+    return this.http
+      .delete(URL, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
 }

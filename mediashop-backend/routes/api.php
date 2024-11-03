@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Product\AttributeProductController;
 use App\Http\Controllers\Admin\Product\BrandController;
 use App\Http\Controllers\Admin\Product\CategorieController;
 use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Product\ProductNestedVariationsController;
 use App\Http\Controllers\Admin\Product\ProductSpecificationsController;
 use App\Http\Controllers\Admin\Product\ProductVariationsController;
 use App\Http\Controllers\Admin\Product\PropertyAttributetController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\JWTAuthController;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
 
+// ================================== REGISTER AND LOGIN ================================== //
 Route::prefix('auth')->group(function () {
     Route::post('register', [JWTAuthController::class, 'register']);
     Route::post('login', [JWTAuthController::class, 'login']);
@@ -23,11 +25,15 @@ Route::prefix('auth')->group(function () {
     Route::post('verified_code', [JWTAuthController::class, 'verified_code']);
     Route::post('verified_password', [JWTAuthController::class, 'verified_password']);
 });
+// =========================================================================================== //
 
+// ====================================== USERS ====================================== //
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('user', [JWTAuthController::class, 'getUser']);
 });
+// ==================================================================================== //
 
+// ========================================== ADMIN ========================================== //
 Route::middleware("auth:api")->prefix("admin")->group(function () {
 
     // ================================ CATEGORIES ================================ //
@@ -67,6 +73,7 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     // =========================== PRODUCTS-VARIATIONS =========================== //
     Route::get('variations/config', [ProductVariationsController::class, 'config']);
     Route::resource('variations', ProductVariationsController::class);
+    Route::resource('nested_variations', ProductNestedVariationsController::class);
     // =========================================================================== //
 
     // ========================= PRODUCTS-SPECIFICATIONS ========================= //
@@ -74,4 +81,4 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     // =========================================================================== //
 
 });
-
+// =============================================================================================== //
