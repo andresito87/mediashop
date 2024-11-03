@@ -33,4 +33,14 @@ class Attribute extends Model
     {
         return $this->hasMany(Property::class);
     }
+
+    public function specifications()
+    {
+        return $this->hasMany(ProductSpecification::class);
+    }
+
+    public function variations()
+    {
+        return $this->hasMany(ProductVariation::class);
+    }
 }

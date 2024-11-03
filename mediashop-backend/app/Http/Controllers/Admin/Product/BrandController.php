@@ -92,7 +92,15 @@ class BrandController extends Controller
     public function destroy(string $id)
     {
         $brand = Brand::findOrFail($id);
-        $brand->delete(); // TODO: Necesary Validation when we delete attribute which is used in others products
+
+        // Validate when we delete brands which is used in others products
+        if (
+            $brand->products()->count() > 0
+        ) {
+            return response()->json(["message" => 403, "message_text" => "La marca ya está en uso."]);
+        }
+
+        $brand->delete();
         return response()->json([
             "message" => 200
         ]);

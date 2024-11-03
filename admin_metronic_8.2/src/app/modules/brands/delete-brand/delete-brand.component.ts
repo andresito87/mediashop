@@ -29,8 +29,12 @@ export class DeleteBrandComponent {
 
   delete() {
     this.brandService.deleteBrands(this.brand.id).subscribe((res: any) => {
-      this.BrandDelete.emit({ message: 200 });
-      this.modal.close();
+      if (res.message == 403) {
+        this.toastr.error('Validación', res.message_text);
+      } else {
+        this.BrandDelete.emit({ message: 200 });
+        this.modal.close();
+      }
     });
   }
 }

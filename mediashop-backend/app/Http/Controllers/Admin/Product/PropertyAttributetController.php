@@ -62,6 +62,15 @@ class PropertyAttributetController extends Controller
     public function destroy(string $id)
     {
         $property = Property::findOrFail($id);
+
+        // Validate when we delete property which is used in others products
+        if (
+            $property->specifications()->count() > 0
+            || $property->variations()->count() > 0
+        ) {
+            return response()->json(["message" => 403, "message_text" => "La propiedad ya está en uso."]);
+        }
+
         $property->delete();
         return response()->json([
             "message" => 200

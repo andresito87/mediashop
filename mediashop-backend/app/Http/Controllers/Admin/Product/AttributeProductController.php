@@ -116,7 +116,17 @@ class AttributeProductController extends Controller
     public function destroy(string $id)
     {
         $attribute = Attribute::findOrFail($id);
-        $attribute->delete(); // TODO: Necesary Validation when we delete attribute which is used in others products
+
+        // Validate when we delete attribute which is used in others products
+        if (
+            $attribute->specifications()->count() > 0
+            || $attribute->variations()->count() > 0
+        ) {
+            return response()->json(["message" => 403, "message_text" => "El atributo ya está en uso."]);
+        }
+
+        $attribute->delete();
+
         return response()->json([
             "message" => 200
         ]);

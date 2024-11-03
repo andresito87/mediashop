@@ -99,8 +99,18 @@ class CategorieController extends Controller
     public function destroy(string $id)
     {
         $categorie = Categorie::findOrFail($id);
-        $categorie->delete();
+
         // Validate that the category is not included in any product
+        if (
+            $categorie->product_categorie_firsts()->count() > 0
+            || $categorie->product_categorie_seconds()->count() > 0
+            || $categorie->product_categorie_thirds()->count() > 0
+        ) {
+            return response()->json(["message" => 403, "message_text" => "La categoría ya está en uso."]);
+        }
+
+        $categorie->delete();
+
         return response()->json(["message" => 200]);
     }
 }

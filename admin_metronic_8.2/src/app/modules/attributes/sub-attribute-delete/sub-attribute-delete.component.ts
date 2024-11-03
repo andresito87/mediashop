@@ -31,8 +31,12 @@ export class SubAttributeDeleteComponent {
     this.attributeService
       .deleteProperty(this.property.id)
       .subscribe((res: any) => {
-        this.PropertyDelete.emit({ message: 200 });
-        this.modal.close();
+        if (res.message == 403) {
+          this.toastr.error('Validación', res.message_text);
+        } else {
+          this.PropertyDelete.emit({ message: 200 });
+          this.modal.close();
+        }
       });
   }
 }
