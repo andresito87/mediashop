@@ -39,7 +39,7 @@
                 <label class="fw-semibold fs-6 py-2">Atributos:(*)</label>
                 <select
                   class="form-control form-select-solid fw-bolder"
-                  name="departament"
+                  name="specification_attribute_id"
                   placeholder="Selec. Atributo"
                   [(ngModel)]="specification_attribute_id"
                   (change)="changeSpecifications()"
@@ -135,7 +135,7 @@
                     <label class="fw-semibold fs-6 py-2">Atributos:(*)</label>
                     <select
                       class="form-control form-select-solid fw-bolder"
-                      name="departament"
+                      name="variation_attribute_id"
                       placeholder="Selec. Atributo"
                       [(ngModel)]="variation_attribute_id"
                       (change)="changeVariations()"
@@ -154,7 +154,7 @@
                       <!-- SELECTABLE -->
                       <select
                         class="form-control form-select-solid fw-bolder"
-                        name="departament"
+                        name="property_id"
                         [(ngModel)]="property_id"
                       >
                         <option value="">Selec.</option>

@@ -17,10 +17,13 @@ class ProductVariationsController extends Controller
         $product_id = $request->product_id;
 
         $product_variations = ProductVariation::where("product_id", $product_id)
+            ->where("product_variation_id", NULL)
             ->orderBy("id", "desc")->get();
 
         return response()->json([
             "variations" => $product_variations->map(function ($variation) {
+                // Get the total stock of the variation by summing the stock of nested variations
+                $nestedVariationsStock = $variation->variation_children()->sum("stock");
                 return [
                     "id" => $variation->id,
                     "product_id" => $variation->product_id,
@@ -36,7 +39,7 @@ class ProductVariationsController extends Controller
                     ] : NULL,
                     "value_add" => $variation->value_add,
                     "add_price" => $variation->add_price,
-                    "stock" => $variation->stock
+                    "stock" => $nestedVariationsStock
                 ];
             })
         ]);
@@ -95,9 +98,11 @@ class ProductVariationsController extends Controller
         // Validate that a attribute variation only exist a time for a product
         // And if exist doen't allow add it again, only to edit it is allowed(for example: to edit its stock)
         $variations_exist = ProductVariation::where("product_id", $request->product_id)
+            ->where("product_variation_id", NULL)
             ->count();
         if ($variations_exist > 0) {
             $variations_attributes_exist = ProductVariation::where("product_id", $request->product_id)
+                ->where("product_variation_id", NULL)
                 ->where("attribute_id", $request->attribute_id)
                 ->count();
             if ($variations_attributes_exist == 0) {
@@ -108,12 +113,14 @@ class ProductVariationsController extends Controller
         $is_valid_variation = null;
         if ($request->property_id) {
             $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
+                ->where("product_variation_id", NULL)
                 ->where("attribute_id", $request->attribute_id)
                 ->where("property_id", $request->property_id)
                 ->first();
 
         } else {
             $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
+                ->where("product_variation_id", NULL)
                 ->where("attribute_id", $request->attribute_id)
                 ->where("value_add", $request->value_add)
                 ->first();
@@ -124,6 +131,9 @@ class ProductVariationsController extends Controller
         }
 
         $product_variation = ProductVariation::create($request->all());
+
+        // Get the total stock of the variation by summing the stock of nested variations
+        $nestedVariationsStock = $product_variation->variation_children()->sum("stock");
 
         return response()->json([
             "message" => 200,
@@ -143,7 +153,7 @@ class ProductVariationsController extends Controller
                 ] : NULL,
                 "value_add" => $product_variation->value_add,
                 "add_price" => $product_variation->add_price,
-                "stock" => $product_variation->stock
+                "stock" => $nestedVariationsStock
             ]
         ]);
     }
@@ -164,9 +174,11 @@ class ProductVariationsController extends Controller
         // Validate that a attribute variation only exist a time for a product
         // And if exist doen't allow add it again, only to edit it is allowed(for example: to edit its stock)
         $variations_exist = ProductVariation::where("product_id", $request->product_id)
+            ->where("product_variation_id", NULL)
             ->count();
         if ($variations_exist > 0) {
             $variations_attributes_exist = ProductVariation::where("product_id", $request->product_id)
+                ->where("product_variation_id", NULL)
                 ->where("attribute_id", $request->attribute_id)
                 ->count();
             if ($variations_attributes_exist == 0) {
@@ -177,6 +189,7 @@ class ProductVariationsController extends Controller
         $is_valid_variation = null;
         if ($request->property_id) {
             $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
+                ->where("product_variation_id", NULL)
                 ->where("id", "<>", $id)
                 ->where("attribute_id", $request->attribute_id)
                 ->where("property_id", $request->property_id)
@@ -184,6 +197,7 @@ class ProductVariationsController extends Controller
 
         } else {
             $is_valid_variation = ProductVariation::where("product_id", $request->product_id)
+                ->where("product_variation_id", NULL)
                 ->where("id", "<>", $id)
                 ->where("attribute_id", $request->attribute_id)
                 ->where("value_add", $request->value_add)
@@ -196,6 +210,9 @@ class ProductVariationsController extends Controller
 
         $product_variation = ProductVariation::findOrFail($id);
         $product_variation->update($request->all());
+
+        // Get the total stock of the variation by summing the stock of nested variations
+        $nestedVariationsStock = $product_variation->variation_children()->sum("stock");
 
         return response()->json([
             "message" => 200,
@@ -215,7 +232,7 @@ class ProductVariationsController extends Controller
                 ] : NULL,
                 "value_add" => $product_variation->value_add,
                 "add_price" => $product_variation->add_price,
-                "stock" => $product_variation->stock
+                "stock" => $nestedVariationsStock
             ]
         ]);
     }

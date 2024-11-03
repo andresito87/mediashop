@@ -78,7 +78,7 @@
                       <label class="fw-semibold fs-6 py-2">Atributos:(*)</label>
                       <select
                         class="form-control form-select-solid fw-bolder"
-                        name="departament"
+                        name="variation_attribute_id"
                         placeholder="Selec. Atributo"
                         [(ngModel)]="variation_attribute_id"
                         (change)="changeVariations()"
@@ -153,7 +153,7 @@
               <div class="col-12 text-end mt-4">
                 <button
                   class="btn btn-success btn-sm"
-                  (click)="saveVariation()"
+                  (click)="saveNestedVariation()"
                 >
                   + Agregar
                 </button>
@@ -292,7 +292,7 @@
                       <a
                         href="#"
                         onclick="return false;"
-                        (click)="editVariation(variation)"
+                        (click)="editNestedVariation(variation)"
                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                       >
                         <i class="ki-duotone ki-pencil text-gray-900 fs-2tx">
@@ -303,7 +303,7 @@
                       <a
                         href="#"
                         onclick="return false;"
-                        (click)="deleteVariation(variation)"
+                        (click)="deleteNestedVariation(variation)"
                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                       >
                         <i class="ki-duotone ki-trash text-gray-900 fs-2tx">
@@ -327,21 +327,6 @@
 
       <!--begin::Actions-->
       <div class="text-center pt-15">
-        <button
-          type="button"
-          (click)="store()"
-          class="btn btn-primary me-3"
-          data-kt-users-modal-action="submit"
-        >
-          <span class="indicator-label">Actualizar</span>
-
-          <span
-            class="spinner-border spinner-border-sm align-middle ms-2"
-            *ngIf="isLoading$ | async"
-          ></span>
-          <!-- <span class="indicator-progress">Please wait...
-                  <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
-        </button>
         <button type="reset" class="btn btn-light" (click)="modal.dismiss()">
           Cerrar
         </button>

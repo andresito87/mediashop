@@ -86,6 +86,18 @@ class ProductNestedVariationsController extends Controller
             return response()->json(["message_text" => "La variación ya existe."], 403);
         }
 
+        // Validate that the amount of the nested variation product cannot exceed the total amount of the variation product
+        $product_variation = ProductVariation::find($product_variation_id);
+        $TOTAL_STOCK_PARENT_VARIATION = $product_variation ? $product_variation->stock : 0;
+        $TOTAL_STOCK_NESTED_VARIATION = ProductVariation::where("product_id", $request->product_id)
+            ->where("product_variation_id", $product_variation_id)
+            ->sum("stock");
+        $NEW_TOTAL_STOCK_NESTED_VARIATION = $TOTAL_STOCK_NESTED_VARIATION + $request->stock;
+
+        if ($NEW_TOTAL_STOCK_NESTED_VARIATION > $TOTAL_STOCK_PARENT_VARIATION) {
+            return response()->json(["message_text" => "El stock de la variacion anidada supera el stock de su variación principal."], 403);
+        }
+
         $product_variation = ProductVariation::create($request->all());
 
         return response()->json([
@@ -161,6 +173,19 @@ class ProductNestedVariationsController extends Controller
         }
         if ($is_valid_variation) {
             return response()->json(["message_text" => "La variación ya existe."], 403);
+        }
+
+        // Validate that the amount of the nested variation product cannot exceed the total amount of the variation product
+        $product_variation = ProductVariation::find($product_variation_id);
+        $TOTAL_STOCK_PARENT_VARIATION = $product_variation ? $product_variation->stock : 0;
+        $TOTAL_STOCK_NESTED_VARIATION = ProductVariation::where("product_id", $request->product_id)
+            ->where("id", "<>", $id) // to exclude the stock of the nested variation which it's updating
+            ->where("product_variation_id", $product_variation_id)
+            ->sum("stock");
+        $NEW_TOTAL_STOCK_NESTED_VARIATION = $TOTAL_STOCK_NESTED_VARIATION + $request->stock;
+
+        if ($NEW_TOTAL_STOCK_NESTED_VARIATION > $TOTAL_STOCK_PARENT_VARIATION) {
+            return response()->json(["message_text" => "El stock de la variacion anidada supera el stock de su variación principal."], 403);
         }
 
         $product_variation = ProductVariation::findOrFail($id);
