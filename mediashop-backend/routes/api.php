@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Coupon\CouponController;
+use App\Http\Controllers\Admin\Discount\DiscountController;
 use App\Http\Controllers\Admin\Product\AttributeProductController;
 use App\Http\Controllers\Admin\Product\BrandController;
 use App\Http\Controllers\Admin\Product\CategorieController;
@@ -86,5 +87,8 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     Route::resource('coupons', CouponController::class);
     // ============================================================================ //
 
+    // ================================ DISCOUNTS ================================ //
+    Route::resource('discounts', DiscountController::class);
+    // =========================================================================== //
 });
 // =============================================================================================== //
