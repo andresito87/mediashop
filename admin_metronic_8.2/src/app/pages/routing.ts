@@ -1,4 +1,3 @@
-import { BrandsModule } from './../modules/brands/brands.module';
 import { Routes } from '@angular/router';
 
 const Routing: Routes = [
@@ -93,6 +92,13 @@ const Routing: Routes = [
     path: 'coupons',
     loadChildren: () =>
       import('../modules/coupons/coupons.module').then((m) => m.CouponsModule),
+  },
+  {
+    path: 'discounts',
+    loadChildren: () =>
+      import('../modules/discounts/discounts.module').then(
+        (m) => m.DiscountsModule
+      ),
   },
   {
     path: '',
