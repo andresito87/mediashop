@@ -48,7 +48,7 @@
                 />
               </span>
               <span class="ms-5">
-                <span class="fs-6 fw-bolder mb-1 d-block">Campaña Normal</span>
+                <span class="fs-6 fw-bolder mb-1 d-block">Campaña Flash</span>
               </span>
             </label>
           </div>
@@ -168,7 +168,7 @@
           <div class="col-12 my-2">
             <label
               class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
-              [ngClass]="{ active: type_coupon === 1 }"
+              [ngClass]="{ active: target_discount === 1 }"
               data-kt-button="true"
             >
               <span
@@ -177,7 +177,7 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="type_coupon"
+                  name="target_discount"
                   value="1"
                   checked="checked"
                   (click)="changeTypeCoupon(1)"
@@ -191,7 +191,7 @@
           <div class="col-12 my-2">
             <label
               class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
-              [ngClass]="{ active: type_coupon === 2 }"
+              [ngClass]="{ active: target_discount === 2 }"
               data-kt-button="true"
             >
               <span
@@ -200,7 +200,7 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="type_coupon"
+                  name="target_discount"
                   value="2"
                   (click)="changeTypeCoupon(2)"
                 />
@@ -213,7 +213,7 @@
           <div class="col-12 my-2">
             <label
               class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
-              [ngClass]="{ active: type_coupon === 3 }"
+              [ngClass]="{ active: target_discount === 3 }"
               data-kt-button="true"
             >
               <span
@@ -222,7 +222,7 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="type_coupon"
+                  name="target_discount"
                   value="3"
                   (click)="changeTypeCoupon(3)"
                 />
@@ -236,7 +236,7 @@
       </div>
       <div class="col-4">
         <div class="row">
-          <div class="col-12" *ngIf="type_coupon === 1">
+          <div class="col-12" *ngIf="target_discount === 1">
             <div class="row">
               <div class="col-10">
                 <label class="fw-semibold fs-6 py-2">Productos:(*)</label>
@@ -264,7 +264,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12" *ngIf="type_coupon === 2">
+          <div class="col-12" *ngIf="target_discount === 2">
             <div class="row">
               <div class="col-10">
                 <label class="fw-semibold fs-6 py-2"
@@ -294,7 +294,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12" *ngIf="type_coupon === 3">
+          <div class="col-12" *ngIf="target_discount === 3">
             <div class="row">
               <div class="col-10">
                 <label class="fw-semibold fs-6 py-2">Marcas:(*)</label>
@@ -326,7 +326,7 @@
       </div>
       <div class="col-4">
         <div class="row">
-          <div class="col-12" *ngIf="type_coupon === 1">
+          <div class="col-12" *ngIf="target_discount === 1">
             <div
               id="kt_table_users_wrapper"
               class="dataTables_wrapper dt-bootstrap4 no-footer"
@@ -363,7 +363,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12" *ngIf="type_coupon === 2">
+          <div class="col-12" *ngIf="target_discount === 2">
             <div
               id="kt_table_users_wrapper"
               class="dataTables_wrapper dt-bootstrap4 no-footer"
@@ -400,7 +400,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12" *ngIf="type_coupon === 3">
+          <div class="col-12" *ngIf="target_discount === 3">
             <div
               id="kt_table_users_wrapper"
               class="dataTables_wrapper dt-bootstrap4 no-footer"

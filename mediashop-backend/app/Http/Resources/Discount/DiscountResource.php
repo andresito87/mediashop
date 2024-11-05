@@ -22,7 +22,7 @@ class DiscountResource extends JsonResource
             "discount" => $this->resource->discount,
             "start_date" => Carbon::parse($this->resource->start_date)->format("Y-m-d"),
             "end_date" => Carbon::parse($this->resource->end_date)->format("Y-m-d"),
-            "target_discount" => $this->resource->type_coupon,
+            "target_discount" => $this->resource->target_discount,
             "created_at" => $this->resource->created_at->format("Y-m-d h:i A"), // 6 AM 6 PM
             "type_campaign" => $this->resource->type_campaign,
             "state" => $this->resource->state,

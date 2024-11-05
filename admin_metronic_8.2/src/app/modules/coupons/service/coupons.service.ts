@@ -91,7 +91,7 @@ export class CouponsService {
     let URL = URL_SERVICIOS + '/admin/coupons/' + coupon_id;
 
     return this.http
-      .delete(URL, { headers: headers })
+      .delete(URL, { headers: headers, observe: 'response' })
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 }

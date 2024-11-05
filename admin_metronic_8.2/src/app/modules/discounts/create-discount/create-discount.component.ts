@@ -11,7 +11,7 @@ export class CreateDiscountComponent {
   type_discount: number = 1; // 1 is %, 2 is fixed amount
   discount: number = 0;
   type_campaign: number = 1; // 1 normal, 2 flash, 3 link
-  type_coupon: number = 1;
+  target_discount: number = 1;
   product_id: any;
   categorie_id: any;
   brand_id: any;
@@ -54,7 +54,7 @@ export class CreateDiscountComponent {
   }
 
   changeTypeCoupon(value: number) {
-    this.type_coupon = value;
+    this.target_discount = value;
     this.products_add = [];
     this.categories_add = [];
     this.brands_add = [];
@@ -64,26 +64,26 @@ export class CreateDiscountComponent {
   }
 
   save() {
-    if (!this.discount) {
+    if (!this.discount || !this.start_date || !this.end_date) {
       this.toastr.error('Validación', 'Ingrese todos los campos');
       return;
     }
 
-    if (this.type_coupon == 1 && this.products_add.length == 0) {
+    if (this.target_discount == 1 && this.products_add.length == 0) {
       this.toastr.error(
         'Validacion',
         'Es necesario seleccionar al menos un producto'
       );
     }
 
-    if (this.type_coupon == 2 && this.categories_add.length == 0) {
+    if (this.target_discount == 2 && this.categories_add.length == 0) {
       this.toastr.error(
         'Validacion',
         'Es necesario seleccionar al menos una categoría'
       );
     }
 
-    if (this.type_coupon == 3 && this.brands_add.length == 0) {
+    if (this.target_discount == 3 && this.brands_add.length == 0) {
       this.toastr.error(
         'Validacion',
         'Es necesario seleccionar al menos una marca'
@@ -93,25 +93,30 @@ export class CreateDiscountComponent {
     let data = {
       type_discount: this.type_discount,
       discount: this.discount,
-      type_coupon: this.type_coupon,
+      target_discount: this.target_discount,
       product_selected: this.products_add,
       categorie_selected: this.categories_add,
       brand_selected: this.brands_add,
+      start_date: this.start_date,
+      end_date: this.end_date,
+      type_campaign: this.type_campaign,
     };
 
     this.discountsService.createDiscounts(data).subscribe({
       next: (res: any) => {
-        this.toastr.success('Éxito', 'Cupón guardado correctamente');
+        this.toastr.success('Éxito', 'Descuento guardado correctamente');
         // clean form
         this.type_discount = 1;
         this.discount = 0;
-        this.type_coupon = 1;
+        this.target_discount = 1;
         this.products_add = [];
         this.categories_add = [];
         this.brands_add = [];
         this.product_id = null;
         this.categorie_id = null;
         this.brand_id = null;
+        this.start_date = null;
+        this.end_date = null;
       },
       error: (err) => {
         this.toastr.error('Error', err.error.message);

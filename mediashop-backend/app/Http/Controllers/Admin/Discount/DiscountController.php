@@ -46,13 +46,13 @@ class DiscountController extends Controller
                 // validate if date range campaign which trying create, is included in other campaign for products
                 $EXIST_DISCOUNT_START_DATE = Discount::where("type_campaign", $request->type_campaign)
                     ->where("target_discount", $request->target_discount)
-                    ->whereHas("prroducts", function ($query) use ($product_selec) {
+                    ->whereHas("products", function ($query) use ($product_selec) {
                         $query->where("product_id", $product_selec["id"]);
                     })->whereBetween("start_date", [$request->start_date, $request->end_date])
                     ->first();
                 $EXIST_DISCOUNT_END_DATE = Discount::where("type_campaign", $request->type_campaign)
                     ->where("target_discount", $request->target_discount)
-                    ->whereHas("prroducts", function ($query) use ($product_selec) {
+                    ->whereHas("products", function ($query) use ($product_selec) {
                         $query->where("product_id", $product_selec["id"]);
                     })->whereBetween("end_date", [$request->start_date, $request->end_date])
                     ->first();
@@ -187,14 +187,14 @@ class DiscountController extends Controller
                 $EXIST_DISCOUNT_START_DATE = Discount::where("type_campaign", $request->type_campaign)
                     ->where("id", "<>", $id)
                     ->where("target_discount", $request->target_discount)
-                    ->whereHas("prroducts", function ($query) use ($product_selec) {
+                    ->whereHas("products", function ($query) use ($product_selec) {
                         $query->where("product_id", $product_selec["id"]);
                     })->whereBetween("start_date", [$request->start_date, $request->end_date])
                     ->first();
                 $EXIST_DISCOUNT_END_DATE = Discount::where("type_campaign", $request->type_campaign)
                     ->where("id", "<>", $id)
                     ->where("target_discount", $request->target_discount)
-                    ->whereHas("prroducts", function ($query) use ($product_selec) {
+                    ->whereHas("products", function ($query) use ($product_selec) {
                         $query->where("product_id", $product_selec["id"]);
                     })->whereBetween("end_date", [$request->start_date, $request->end_date])
                     ->first();
@@ -315,11 +315,16 @@ class DiscountController extends Controller
      */
     public function destroy(string $id)
     {
-        $discount = Discount::findOrFail($id);
+        $discount = Discount::find($id);
+
+        // validate if discount exists
+        if (!$discount) {
+            return response()->json(['message' => 'Descuento no encontrado'], 404);
+        }
 
         // validate if the discount is in use, dont allow delete it
         $discount->delete();
 
-        return response()->json([], 200);
+        return response()->json(['message' => 'Descuento eliminado con éxito'], 200);
     }
 }

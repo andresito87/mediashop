@@ -18,6 +18,7 @@ export class EditCouponComponent {
   product_id: any;
   categorie_id: any;
   brand_id: any;
+  state: number = 1;
 
   isLoading$: any;
 
@@ -61,6 +62,7 @@ export class EditCouponComponent {
       this.type_count = res.coupon.type_count;
       this.num_uses = res.coupon.num_uses;
       this.type_coupon = res.coupon.type_coupon;
+      this.state = res.coupon.state;
 
       this.products_add = res.coupon.products;
       this.categories_add = res.coupon.categories;
@@ -130,6 +132,7 @@ export class EditCouponComponent {
       product_selected: this.products_add,
       categorie_selected: this.categories_add,
       brand_selected: this.brands_add,
+      state: this.state,
     };
 
     this.couponsService.updateCoupons(this.COUPON_ID, data).subscribe({
