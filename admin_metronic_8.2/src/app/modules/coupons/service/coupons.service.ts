@@ -78,7 +78,7 @@ export class CouponsService {
     let URL = URL_SERVICIOS + '/admin/coupons/' + coupon_id;
 
     return this.http
-      .post(URL, data, { headers: headers })
+      .put(URL, data, { headers: headers })
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 

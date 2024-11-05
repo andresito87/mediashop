@@ -62,7 +62,74 @@ export class CreateCouponComponent {
     this.brand_id = null;
   }
 
-  save() {}
+  save() {
+    if (!this.code || !this.discount) {
+      this.toastr.error('Validación', 'Ingrese todos los campos');
+      return;
+    }
+
+    if (this.type_count == 2 && this.num_uses == 0) {
+      this.toastr.error(
+        'Validacion',
+        'Es obligatorio ingresar el número de usos'
+      );
+    }
+
+    if (this.type_coupon == 1 && this.products_add.length == 0) {
+      this.toastr.error(
+        'Validacion',
+        'Es necesario seleccionar al menos un producto'
+      );
+    }
+
+    if (this.type_coupon == 2 && this.categories_add.length == 0) {
+      this.toastr.error(
+        'Validacion',
+        'Es necesario seleccionar al menos una categoría'
+      );
+    }
+
+    if (this.type_coupon == 3 && this.brands_add.length == 0) {
+      this.toastr.error(
+        'Validacion',
+        'Es necesario seleccionar al menos una marca'
+      );
+    }
+
+    let data = {
+      code: this.code,
+      type_discount: this.type_discount,
+      discount: this.discount,
+      type_count: this.type_count,
+      num_uses: this.num_uses,
+      type_coupon: this.type_coupon,
+      product_selected: this.products_add,
+      categorie_selected: this.categories_add,
+      brand_selected: this.brands_add,
+    };
+
+    this.couponsService.createCoupons(data).subscribe({
+      next: (res: any) => {
+        this.toastr.success('Éxito', 'Cupón guardado correctamente');
+        // clean form
+        this.code = null;
+        this.type_discount = 1;
+        this.discount = 0;
+        this.type_count = 1;
+        this.num_uses = 0;
+        this.type_coupon = 1;
+        this.products_add = [];
+        this.categories_add = [];
+        this.brands_add = [];
+        this.product_id = null;
+        this.categorie_id = null;
+        this.brand_id = null;
+      },
+      error: (err) => {
+        this.toastr.error('Error', err.error.message);
+      },
+    });
+  }
 
   addProduct() {
     if (!this.product_id) {

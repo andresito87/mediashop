@@ -26,25 +26,25 @@ class CouponResource extends JsonResource
             "state" => $this->resource->state,
             "products" => $this->resource->products->map(function ($product_aux) {
                 return [
-                    "id" => $product_aux->id,
+                    "id" => $product_aux->product->id,
                     "title" => $product_aux->product->title,
                     "image" => env("APP_URL") . "storage/" . $product_aux->product->image,
-                    "product_id" => $product_aux->product_id
+                    "product_aux_id" => $product_aux->id
                 ];
             }),
             "categories" => $this->resource->categories->map(function ($categorie_aux) {
                 return [
-                    "id" => $categorie_aux->id,
+                    "id" => $categorie_aux->categorie->id,
                     "name" => $categorie_aux->categorie->name,
                     "image" => env("APP_URL") . "storage/" . $categorie_aux->categorie->image,
-                    "categorie_id" => $categorie_aux->categorie_id
+                    "categorie_aux_id" => $categorie_aux->id
                 ];
             }),
             "brands" => $this->resource->brands->map(function ($brand_aux) {
                 return [
-                    "id" => $brand_aux->id,
+                    "id" => $brand_aux->brand->id,
                     "name" => $brand_aux->brand->name,
-                    "brand_id" => $brand_aux->product_id
+                    "brand_aux_id" => $brand_aux->id
                 ];
             }),
         ];

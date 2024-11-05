@@ -82,7 +82,7 @@ class CouponController extends Controller
             return response()->json(["message" => "El cupón ya existe"], 409);
         }
 
-        $coupon = Coupon::create([$request->all()]);
+        $coupon = Coupon::create($request->all());
 
         foreach ($request->product_selected as $key => $product_selec) {
             CouponProduct::create([
