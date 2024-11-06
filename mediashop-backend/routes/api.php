@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Product\ProductSpecificationsController;
 use App\Http\Controllers\Admin\Product\ProductVariationsController;
 use App\Http\Controllers\Admin\Product\PropertyAttributetController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Ecommerce\HomeController;
 use App\Http\Controllers\JWTAuthController;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -91,4 +92,16 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     Route::resource('discounts', DiscountController::class);
     // =========================================================================== //
 });
+// =============================================================================================== //
+
+// ========================================== ECOMMERCE ========================================== //
+
+Route::prefix("ecommerce")
+    ->group(function () {
+
+        // ================================ HOME ================================ //
+        Route::get("home", [HomeController::class, "home"]);
+        // =========================================================================== //
+    });
+
 // =============================================================================================== //
