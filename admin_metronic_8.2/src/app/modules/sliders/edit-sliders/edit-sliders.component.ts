@@ -18,6 +18,10 @@ export class EditSlidersComponent {
   image_preview: any =
     'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
   file_image: any = null;
+  type_slider: any = 1;
+  price_original: any = null; // product price before campaign starts
+  price_campaign: any = null; // product price during the campaign
+
   isLoading$: any;
   slider_id: string = '';
 
@@ -42,6 +46,9 @@ export class EditSlidersComponent {
       this.color = res.slider.color;
       this.state = res.slider.state;
       this.image_preview = res.slider.image;
+      this.type_slider = res.slider.type_slider;
+      this.price_original = res.slider.price_original;
+      this.price_campaign = res.slider.price_campaign;
     });
   }
 
@@ -71,17 +78,33 @@ export class EditSlidersComponent {
       return;
     }
     let formData = new FormData();
+
     formData.append('title', this.title);
+
     if (this.label) {
       formData.append('label', this.label);
     }
+
     formData.append('subtitle', this.subtitle);
+
     if (this.file_image) {
       formData.append('imagen', this.file_image);
     }
+
+    formData.append('type_slider', this.type_slider);
+
+    if (this.price_original) {
+      formData.append('price_original', this.price_original);
+    }
+
+    if (this.price_campaign) {
+      formData.append('price_campaign', this.price_campaign);
+    }
+
     if (this.link) {
       formData.append('link', this.link);
     }
+
     if (this.color) {
       formData.append('color', this.color);
     }

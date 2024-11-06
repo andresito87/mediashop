@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class slider extends Model
+class Slider extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -18,7 +18,10 @@ class slider extends Model
         "image",
         "link",
         "state",
-        "color"
+        "color",
+        "type_slider",
+        "price_original",
+        "price_campaign"
     ];
 
     public function setCreatedAtAttribute($value)

@@ -17,6 +17,9 @@ export class CreateSlidersComponent {
   image_preview: any =
     'https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg';
   file_image: any = null;
+  type_slider: any = 1;
+  price_original: any = null; // product price before campaign starts
+  price_campaign: any = null; // product price during the campaign
 
   isLoading$: any;
 
@@ -63,6 +66,17 @@ export class CreateSlidersComponent {
     }
     formData.append('subtitle', this.subtitle);
     formData.append('imagen', this.file_image);
+
+    formData.append('type_slider', this.type_slider);
+
+    if (this.price_original) {
+      formData.append('price_original', this.price_original);
+    }
+
+    if (this.price_campaign) {
+      formData.append('price_campaign', this.price_campaign);
+    }
+
     if (this.link) {
       formData.append('link', this.link);
     }

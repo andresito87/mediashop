@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\slider;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +16,7 @@ class SliderController extends Controller
     {
         $search = $request->search;
 
-        $sliders = slider::where("title", "like", "%" . $search . "%")->orderBy("id", "desc")->paginate(25);
+        $sliders = Slider::where("title", "like", "%" . $search . "%")->orderBy("id", "desc")->paginate(25);
 
         return response()->json([
             "total" => $sliders->total(),
@@ -28,6 +28,9 @@ class SliderController extends Controller
                     "label" => $slider->label,
                     "link" => $slider->link,
                     "state" => $slider->state,
+                    "type_slider" => $slider->type_slider,
+                    "price_original" => $slider->price_original,
+                    "price_campaign" => $slider->price_campaign,
                     "color" => $slider->color,
                     "image" => env("APP_URL") . "storage/" . $slider->image,
                 ];
@@ -46,7 +49,7 @@ class SliderController extends Controller
             $request->merge(['image' => $path]);
         }
 
-        $slider = slider::create($request->all());
+        $slider = Slider::create($request->all());
         return response()->json(["message" => 200]);
     }
 
@@ -55,7 +58,7 @@ class SliderController extends Controller
      */
     public function show(string $id)
     {
-        $slider = slider::findOrFail($id);
+        $slider = Slider::findOrFail($id);
 
         return response()->json([
             "slider" => [
@@ -65,6 +68,9 @@ class SliderController extends Controller
                 "label" => $slider->label,
                 "link" => $slider->link,
                 "state" => $slider->state,
+                "type_slider" => $slider->type_slider,
+                "price_original" => $slider->price_original,
+                "price_campaign" => $slider->price_campaign,
                 "color" => $slider->color,
                 "image" => env("APP_URL") . "storage/" . $slider->image,
             ]
@@ -76,7 +82,7 @@ class SliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $slider = slider::findOrFail($id);
+        $slider = Slider::findOrFail($id);
         if ($request->hasfile("imagen")) {
             if ($slider->image) {
                 Storage::delete($slider->image);
@@ -94,7 +100,7 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        $slider = slider::findOrFail($id);
+        $slider = Slider::findOrFail($id);
         $slider->delete();
         return response()->json(["message" => 200]);
     }
