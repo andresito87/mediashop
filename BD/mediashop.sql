@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 03-11-2024 a las 19:28:02
+-- Tiempo de generación: 05-11-2024 a las 21:35:14
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -154,6 +154,17 @@ CREATE TABLE `coupons` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Volcado de datos para la tabla `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `code`, `type_discount`, `discount`, `type_count`, `num_uses`, `type_coupon`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 'PRIMAVERA2025', 1, 25, 1, 0, 2, 1, '2024-11-05 07:07:29', '2024-11-05 07:07:29', NULL),
+(3, 'FREEMARCH', 1, 50, 1, 0, 3, 1, '2024-11-05 07:07:55', '2024-11-05 07:07:55', NULL),
+(4, 'REBAJAS2026', 1, 40, 1, 0, 1, 1, '2024-11-05 07:13:05', '2024-11-05 09:25:02', NULL),
+(5, 'WINTERSALES', 2, 20, 2, 2, 3, 2, '2024-11-05 08:10:02', '2024-11-05 22:09:21', NULL),
+(6, 'SUMMER2024', 1, 10, 1, 0, 1, 1, '2024-11-05 09:08:02', '2024-11-05 21:31:07', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -168,6 +179,21 @@ CREATE TABLE `coupon_brands` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `coupon_brands`
+--
+
+INSERT INTO `coupon_brands` (`id`, `brand_id`, `coupon_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 5, 3, '2024-11-05 07:07:55', '2024-11-05 07:07:55', NULL),
+(2, 2, 3, '2024-11-05 07:07:55', '2024-11-05 07:07:55', NULL),
+(3, 1, 3, '2024-11-05 07:07:55', '2024-11-05 07:07:55', NULL),
+(4, 5, 5, '2024-11-05 08:10:02', '2024-11-05 21:05:44', '2024-11-05 21:05:44'),
+(5, 1, 5, '2024-11-05 08:10:02', '2024-11-05 22:05:44', '2024-11-05 22:05:44'),
+(6, 5, 5, '2024-11-05 22:05:44', '2024-11-05 22:09:21', '2024-11-05 22:09:21'),
+(7, 1, 5, '2024-11-05 22:05:44', '2024-11-05 22:09:21', '2024-11-05 22:09:21'),
+(8, 5, 5, '2024-11-05 22:09:21', '2024-11-05 22:09:21', NULL),
+(9, 1, 5, '2024-11-05 22:09:21', '2024-11-05 22:09:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,6 +210,14 @@ CREATE TABLE `coupon_categories` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Volcado de datos para la tabla `coupon_categories`
+--
+
+INSERT INTO `coupon_categories` (`id`, `categorie_id`, `coupon_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 34, 2, '2024-11-05 07:07:29', '2024-11-05 07:07:29', NULL),
+(3, 4, 2, '2024-11-05 07:07:29', '2024-11-05 07:07:29', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -198,6 +232,114 @@ CREATE TABLE `coupon_products` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `coupon_products`
+--
+
+INSERT INTO `coupon_products` (`id`, `product_id`, `coupon_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, 4, '2024-11-05 07:13:05', '2024-11-05 09:25:02', '2024-11-05 09:25:02'),
+(3, 3, 6, '2024-11-05 09:08:02', '2024-11-05 09:08:14', '2024-11-05 09:08:14'),
+(4, 3, 6, '2024-11-05 09:08:14', '2024-11-05 09:08:14', NULL),
+(5, 2, 4, '2024-11-05 09:25:02', '2024-11-05 09:25:02', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `discounts`
+--
+
+CREATE TABLE `discounts` (
+  `id` bigint UNSIGNED NOT NULL,
+  `code` varchar(250) NOT NULL,
+  `type_campaign` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es normal, 2 es flash y 3 es link',
+  `type_discount` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es porcentaje, 2 es cantidad fija',
+  `discount` double NOT NULL,
+  `target_discount` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es producto, 2 es categoria y 3 es marca',
+  `state` tinyint UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 es activo y 2 es inactivo',
+  `start_date` timestamp NULL DEFAULT NULL,
+  `end_date` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `discounts`
+--
+
+INSERT INTO `discounts` (`id`, `code`, `type_campaign`, `type_discount`, `discount`, `target_discount`, `state`, `start_date`, `end_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '672a76265e5fa', 3, 1, 25, 1, 1, '2024-10-27 00:00:00', '2024-11-04 00:00:00', '2024-11-05 20:46:46', '2024-11-05 21:31:14', NULL),
+(2, '672a773dbc041', 1, 1, 25, 1, 1, '2024-11-06 00:00:00', '2024-11-08 00:00:00', '2024-11-05 20:51:25', '2024-11-05 21:29:59', NULL),
+(3, '672a77518f4cb', 2, 2, 20, 2, 2, '2024-11-06 00:00:00', '2024-11-08 00:00:00', '2024-11-05 20:51:45', '2024-11-05 21:27:27', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `discount_brands`
+--
+
+CREATE TABLE `discount_brands` (
+  `id` bigint UNSIGNED NOT NULL,
+  `brand_id` bigint UNSIGNED NOT NULL,
+  `discount_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `discount_categories`
+--
+
+CREATE TABLE `discount_categories` (
+  `id` bigint UNSIGNED NOT NULL,
+  `categorie_id` bigint UNSIGNED NOT NULL,
+  `discount_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `discount_categories`
+--
+
+INSERT INTO `discount_categories` (`id`, `categorie_id`, `discount_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 34, 3, '2024-11-05 21:53:31', '2024-11-05 21:53:54', '2024-11-05 21:53:54'),
+(2, 4, 3, '2024-11-05 21:53:31', '2024-11-05 21:53:54', '2024-11-05 21:53:54'),
+(3, 34, 3, '2024-11-05 21:53:54', '2024-11-05 22:09:43', '2024-11-05 22:09:43'),
+(4, 4, 3, '2024-11-05 21:53:54', '2024-11-05 22:09:43', '2024-11-05 22:09:43'),
+(5, 34, 3, '2024-11-05 22:09:43', '2024-11-05 22:09:43', NULL),
+(6, 4, 3, '2024-11-05 22:09:43', '2024-11-05 22:09:43', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `discount_products`
+--
+
+CREATE TABLE `discount_products` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `discount_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `discount_products`
+--
+
+INSERT INTO `discount_products` (`id`, `product_id`, `discount_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, 1, '2024-11-05 20:46:46', '2024-11-05 21:54:11', '2024-11-05 21:54:11'),
+(2, 2, 2, '2024-11-05 20:51:25', '2024-11-05 20:51:25', NULL),
+(3, 2, 3, '2024-11-05 20:51:45', '2024-11-05 21:52:07', '2024-11-05 21:52:07'),
+(4, 2, 3, '2024-11-05 21:52:07', '2024-11-05 21:53:31', '2024-11-05 21:53:31'),
+(5, 2, 1, '2024-11-05 21:54:11', '2024-11-05 21:54:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -337,7 +479,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `title`, `slug`, `sku`, `price_eur`, `price_usd`, `description`, `resume`, `image`, `state`, `tags`, `brand_id`, `categorie_first_id`, `categorie_second_id`, `categorie_third_id`, `stock`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 'LAPTOP GAMING 2024', 'laptop-gaming-2024', 'LAPTOP-2024', 1000, 1200, '<p>Hello World!43534eerwre</p>', 'Mejor laptop 2024', 'products/bogfEypUNmilZnHHj8A1cRaBsQaXUBGHm0Pe9k12.jpg', 2, '[{\"item_id\": 1730302956413, \"item_text\": \"LAPTOP\"}, {\"item_id\": 1730302961326, \"item_text\": \"GAMING\"}]', 1, 34, 35, 3, 0, '2024-10-30 16:43:18', '2024-10-30 20:44:20', NULL),
-(3, 'SMARTWATCH PLUS ARCHOR', 'smartwatch-plus-archor', 'SMARTWATCH-2024', 123, 150, '<p>Hello World! cambiando</p>', 'Reloj inteligente 2024', 'products/CTfQhMsrmVsJHnEB36eTY0XwN6Dw9lsRhIDnp5xb.jpg', 1, '[{\"item_id\": 1730303909339, \"item_text\": \"SMARTWATCH\"}, {\"item_id\": 1730303962085, \"item_text\": \"2024\"}]', 2, 4, NULL, NULL, 0, '2024-10-30 17:00:03', '2024-10-31 14:52:56', NULL);
+(3, 'SMARTWATCH PLUS ARCHOR', 'smartwatch-plus-archor', 'SMARTWATCH-2024', 123, 150, '<p>Hello World! cambiando</p>', 'Reloj inteligente 2024', 'products/CTfQhMsrmVsJHnEB36eTY0XwN6Dw9lsRhIDnp5xb.jpg', 2, '[{\"item_id\": 1730303909339, \"item_text\": \"SMARTWATCH\"}, {\"item_id\": 1730303962085, \"item_text\": \"2024\"}]', 2, 4, NULL, NULL, 0, '2024-10-30 17:00:03', '2024-10-31 14:52:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -613,6 +755,30 @@ ALTER TABLE `coupon_products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `discounts`
+--
+ALTER TABLE `discounts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `discount_brands`
+--
+ALTER TABLE `discount_brands`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `discount_categories`
+--
+ALTER TABLE `discount_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `discount_products`
+--
+ALTER TABLE `discount_products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -729,25 +895,49 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de la tabla `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `coupon_brands`
 --
 ALTER TABLE `coupon_brands`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `coupon_categories`
 --
 ALTER TABLE `coupon_categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `coupon_products`
 --
 ALTER TABLE `coupon_products`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `discounts`
+--
+ALTER TABLE `discounts`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `discount_brands`
+--
+ALTER TABLE `discount_brands`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `discount_categories`
+--
+ALTER TABLE `discount_categories`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `discount_products`
+--
+ALTER TABLE `discount_products`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`

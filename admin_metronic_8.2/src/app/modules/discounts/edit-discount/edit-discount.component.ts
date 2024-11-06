@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DiscountsService } from '../service/discounts.service';
 import { ActivatedRoute } from '@angular/router';
+import { URL_TIENDA } from 'src/app/config/config';
 
 @Component({
   selector: 'app-edit-discount',
@@ -235,5 +236,22 @@ export class EditDiscountComponent {
     if (index != -1) {
       this.brands_add.splice(index, 1);
     }
+  }
+
+  copyLink(product: any) {
+    navigator.clipboard
+      .writeText(
+        URL_TIENDA +
+          '/product/' +
+          product.slug +
+          '?discount=' +
+          this.DISCOUNT_SELECTED.code
+      )
+      .then(() => {
+        this.toastr.info('Info', 'Link copiado al portapapeles');
+      })
+      .catch((err) => {
+        this.toastr.error('Error', 'Error al copiar el link al portapapeles');
+      });
   }
 }

@@ -30,6 +30,7 @@ class DiscountResource extends JsonResource
                 return [
                     "id" => $product_aux->product->id,
                     "title" => $product_aux->product->title,
+                    "slug" => $product_aux->product->slug,
                     "image" => env("APP_URL") . "storage/" . $product_aux->product->image,
                     "product_aux_id" => $product_aux->id
                 ];

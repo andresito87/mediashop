@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { DiscountsService } from '../service/discounts.service';
 import { DeleteDiscountComponent } from '../delete-discount/delete-discount.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { URL_TIENDA } from 'src/app/config/config';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-discount',
@@ -18,7 +20,8 @@ export class ListDiscountComponent {
 
   constructor(
     public discountService: DiscountsService,
-    public modalService: NgbModal
+    public modalService: NgbModal,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -97,5 +100,16 @@ export class ListDiscountComponent {
         this.discounts.splice(INDEX, 1);
       }
     });
+  }
+
+  copyLink(discount: any) {
+    navigator.clipboard
+      .writeText(URL_TIENDA + '/discount/' + discount.code)
+      .then(() => {
+        this.toastr.info('Info', 'Link copiado al portapapeles');
+      })
+      .catch((err) => {
+        this.toastr.error('Error', 'Error al copiar el link al portapapeles');
+      });
   }
 }

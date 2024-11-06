@@ -51,6 +51,7 @@ class CouponController extends Controller
                 return [
                     "id" => $product->id,
                     "title" => $product->title,
+                    "slug" => $product->slug,
                     "image" => env("APP_URL") . "storage/" . $product->image
                 ];
             }),
