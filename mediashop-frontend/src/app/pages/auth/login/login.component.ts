@@ -67,7 +67,6 @@ export class LoginComponent implements OnInit {
       .login(this.email, this.password)
       .pipe(
         tap((res: any) => {
-          console.log(res);
           if (res.error && res.error.error == 'Invalid credentials') {
             this.toastr.error('Error', 'Usuario o contraseña incorrectos');
             return;

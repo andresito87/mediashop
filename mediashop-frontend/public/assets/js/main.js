@@ -2270,3 +2270,35 @@ function HOMEINIT($) {
   }
 }
 jQuery;
+
+function SLIDER_PRINCIPAL($) {
+  var tp_rtl = localStorage.getItem("tp_dir");
+  let rtl_setting = tp_rtl == "rtl" ? "right" : "left";
+  var mainSlider = new Swiper(".tp-slider-active", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    rtl: rtl_setting,
+    effect: "fade",
+    // Navigation arrows
+    navigation: {
+      nextEl: ".tp-slider-button-next",
+      prevEl: ".tp-slider-button-prev",
+    },
+    pagination: {
+      el: ".tp-slider-dot",
+      clickable: true,
+      renderBullet: function (index, className) {
+        return (
+          '<span class="' +
+          className +
+          '">' +
+          "<button>" +
+          (index + 1) +
+          "</button>" +
+          "</span>"
+        );
+      },
+    },
+  });
+}
