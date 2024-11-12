@@ -1053,49 +1053,49 @@ function HOMEINIT($) {
     },
   });
 
-  var slider = new Swiper(".tp-product-arrival-active", {
-    slidesPerView: 4,
-    spaceBetween: 30,
-    loop: true,
-    rtl: rtl_setting,
-    pagination: {
-      el: ".tp-arrival-slider-dot",
-      clickable: true,
-      renderBullet: function (index, className) {
-        return (
-          '<span class="' +
-          className +
-          '">' +
-          "<button>" +
-          (index + 1) +
-          "</button>" +
-          "</span>"
-        );
-      },
-    },
-    // Navigation arrows
-    navigation: {
-      nextEl: ".tp-arrival-slider-button-next",
-      prevEl: ".tp-arrival-slider-button-prev",
-    },
-    breakpoints: {
-      1200: {
-        slidesPerView: 4,
-      },
-      992: {
-        slidesPerView: 3,
-      },
-      768: {
-        slidesPerView: 2,
-      },
-      576: {
-        slidesPerView: 2,
-      },
-      0: {
-        slidesPerView: 1,
-      },
-    },
-  });
+  // var slider = new Swiper(".tp-product-arrival-active", {
+  //   slidesPerView: 4,
+  //   spaceBetween: 30,
+  //   loop: true,
+  //   rtl: rtl_setting,
+  //   pagination: {
+  //     el: ".tp-arrival-slider-dot",
+  //     clickable: true,
+  //     renderBullet: function (index, className) {
+  //       return (
+  //         '<span class="' +
+  //         className +
+  //         '">' +
+  //         "<button>" +
+  //         (index + 1) +
+  //         "</button>" +
+  //         "</span>"
+  //       );
+  //     },
+  //   },
+  //   // Navigation arrows
+  //   navigation: {
+  //     nextEl: ".tp-arrival-slider-button-next",
+  //     prevEl: ".tp-arrival-slider-button-prev",
+  //   },
+  //   breakpoints: {
+  //     1200: {
+  //       slidesPerView: 4,
+  //     },
+  //     992: {
+  //       slidesPerView: 3,
+  //     },
+  //     768: {
+  //       slidesPerView: 2,
+  //     },
+  //     576: {
+  //       slidesPerView: 2,
+  //     },
+  //     0: {
+  //       slidesPerView: 1,
+  //     },
+  //   },
+  // });
 
   var slider = new Swiper(".tp-product-banner-slider-active", {
     slidesPerView: 1,
@@ -2309,5 +2309,53 @@ function DATA_VALUES($) {
       "background-image",
       "url( " + $(this).attr("data-background") + "  )"
     );
+  });
+}
+
+function PRODUCTS_SLIDER_HOME($) {
+  var tp_rtl = localStorage.getItem("tp_dir");
+  let rtl_setting = tp_rtl == "rtl" ? "right" : "left";
+  var slider = new Swiper(".tp-product-arrival-active", {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    loop: true,
+    rtl: rtl_setting,
+    pagination: {
+      el: ".tp-arrival-slider-dot",
+      clickable: true,
+      renderBullet: function (index, className) {
+        return (
+          '<span class="' +
+          className +
+          '">' +
+          "<button>" +
+          (index + 1) +
+          "</button>" +
+          "</span>"
+        );
+      },
+    },
+    // Navigation arrows
+    navigation: {
+      nextEl: ".tp-arrival-slider-button-next",
+      prevEl: ".tp-arrival-slider-button-prev",
+    },
+    breakpoints: {
+      1200: {
+        slidesPerView: 4,
+      },
+      992: {
+        slidesPerView: 3,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      576: {
+        slidesPerView: 2,
+      },
+      0: {
+        slidesPerView: 1,
+      },
+    },
   });
 }

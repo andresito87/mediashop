@@ -33,6 +33,14 @@ class HomeController extends Controller
             ->where("type_slider", 2)
             ->orderBy("id", "asc")->get();
 
+        $products_electronics_gadgets = Product::where("state", 2)
+            ->where("categorie_first_id", 1)
+            ->inRandomOrder()->limit(6)->get();
+
+        $products_slider = Product::where("state", 2)
+            ->whereIn("categorie_first_id", $categories_randoms->pluck("id"))
+            ->inRandomOrder()->get();
+
         return response()->json([
             "sliders_principal" => $sliders_principal->map(function ($slider) {
                 return [
@@ -75,6 +83,8 @@ class HomeController extends Controller
                     "price_campaign" => $slider->price_campaign
                 ];
             }),
+            "products_electronics_gadgets" => ProductEcommerceCollection::make($products_electronics_gadgets),
+            "products_slider" => ProductEcommerceCollection::make($products_slider),
         ]);
     }
 

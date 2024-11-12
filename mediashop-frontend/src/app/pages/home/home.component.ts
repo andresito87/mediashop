@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 declare function SLIDER_PRINCIPAL([]: any): any;
 declare var $: any;
 declare function DATA_VALUES([]): any;
+declare function PRODUCTS_SLIDER_HOME([]): any;
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -21,6 +22,8 @@ export class HomeComponent implements OnInit {
   TRENDING_PRODUCTS_NEW: any = [];
   TRENDING_PRODUCTS_FEATURED: any = [];
   TRENDING_PRODUCTS_TOP_SELLER: any = [];
+  PRODUCTS_ELECTRONICS_GADGETS: any = [];
+  PRODUCTS_SLIDER: any = [];
 
   BANNERS_SECONDARIES: any = [];
 
@@ -35,9 +38,14 @@ export class HomeComponent implements OnInit {
         this.BANNERS_SECONDARIES = res.sliders_secondaries;
         this.TRENDING_PRODUCTS_TOP_SELLER =
           res.products_trending_top_sellers.data;
+        this.PRODUCTS_ELECTRONICS_GADGETS =
+          res.products_electronics_gadgets.data;
+        this.PRODUCTS_SLIDER = res.products_slider.data;
+        // it's necessary ejecute these functions to sincronize html template  and angular app
         setTimeout(() => {
           SLIDER_PRINCIPAL($);
           DATA_VALUES($);
+          PRODUCTS_SLIDER_HOME($);
         }, 50);
       });
     });
