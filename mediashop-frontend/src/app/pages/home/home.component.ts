@@ -17,12 +17,20 @@ export class HomeComponent implements OnInit {
   SLIDERS: any = [];
   CATEGORIES_RANDOMS: any = [];
 
+  TRENDING_PRODUCTS_NEW: any = [];
+  TRENDING_PRODUCTS_FEATURED: any = [];
+  TRENDING_PRODUCTS_TOP_SELLER: any = [];
+
   constructor(public homeService: HomeService) {
     afterNextRender(() => {
       this.homeService.home().subscribe((res: any) => {
         console.log(res);
         this.SLIDERS = res.sliders_principal;
         this.CATEGORIES_RANDOMS = res.categories_random;
+        this.TRENDING_PRODUCTS_NEW = res.products_trending_new.data;
+        this.TRENDING_PRODUCTS_FEATURED = res.products_trending_featured.data;
+        this.TRENDING_PRODUCTS_TOP_SELLER =
+          res.products_trending_top_sellers.data;
         setTimeout(() => {
           SLIDER_PRINCIPAL($);
         }, 50);
