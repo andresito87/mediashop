@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 declare function SLIDER_PRINCIPAL([]: any): any;
 declare var $: any;
+declare function DATA_VALUES([]): any;
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -21,6 +22,8 @@ export class HomeComponent implements OnInit {
   TRENDING_PRODUCTS_FEATURED: any = [];
   TRENDING_PRODUCTS_TOP_SELLER: any = [];
 
+  BANNERS_SECONDARIES: any = [];
+
   constructor(public homeService: HomeService) {
     afterNextRender(() => {
       this.homeService.home().subscribe((res: any) => {
@@ -29,10 +32,12 @@ export class HomeComponent implements OnInit {
         this.CATEGORIES_RANDOMS = res.categories_random;
         this.TRENDING_PRODUCTS_NEW = res.products_trending_new.data;
         this.TRENDING_PRODUCTS_FEATURED = res.products_trending_featured.data;
+        this.BANNERS_SECONDARIES = res.sliders_secondaries;
         this.TRENDING_PRODUCTS_TOP_SELLER =
           res.products_trending_top_sellers.data;
         setTimeout(() => {
           SLIDER_PRINCIPAL($);
+          DATA_VALUES($);
         }, 50);
       });
     });
@@ -49,6 +54,12 @@ export class HomeComponent implements OnInit {
   getSubtitleSlider(slider: any) {
     let miDiv: any = document.getElementById('subtitle-' + slider.id);
     miDiv.innerHTML = slider.subtitle;
+    return '';
+  }
+
+  getTitleBannerSecondary(banner: any, idBanner: string) {
+    let miDiv: any = document.getElementById(idBanner);
+    miDiv.innerHTML = banner.title;
     return '';
   }
 }

@@ -1365,25 +1365,36 @@
   <section class="tp-banner-area pb-70">
     <div class="container">
       <div class="row">
+        @for (banner of BANNERS_SECONDARIES; track banner.id; let index=$index){
+        @if(index==0){
         <div class="col-xl-8 col-lg-7">
           <div
             class="tp-banner-item tp-banner-height p-relative mb-30 z-index-1 fix"
           >
             <div
               class="tp-banner-thumb include-bg transition-3"
-              data-background="assets/img/product/banner/product-banner-1.jpg"
+              [attr.data-background]="banner.image"
             ></div>
             <div class="tp-banner-content">
-              <span>Sale 20% off all store</span>
+              <span>{{ banner.subtitle }}</span>
               <h3 class="tp-banner-title">
-                <a href="product-details.html"
-                  >Smartphone <br />
+                <a
+                  href="#"
+                  onclick="return false;"
+                  [id]="'title-banner-secondary' + banner.id"
+                  >{{
+                    getTitleBannerSecondary(
+                      banner,
+                      "title-banner-secondary" + banner.id
+                    )
+                  }}<br />
                   BLU G91 Pro 2022</a
                 >
               </h3>
+              @if(banner.link){
               <div class="tp-banner-btn">
-                <a href="product-details.html" class="tp-link-btn"
-                  >Shop Now
+                <a [href]="banner.link" class="tp-link-btn"
+                  >Comprar Ahora
                   <svg
                     width="15"
                     height="13"
@@ -1408,28 +1419,38 @@
                   </svg>
                 </a>
               </div>
+              }
             </div>
           </div>
         </div>
+        }@else{
         <div class="col-xl-4 col-lg-5">
           <div
             class="tp-banner-item tp-banner-item-sm tp-banner-height p-relative mb-30 z-index-1 fix"
           >
             <div
               class="tp-banner-thumb include-bg transition-3"
-              data-background="assets/img/product/banner/product-banner-2.jpg"
+              [attr.data-background]="banner.image"
             ></div>
             <div class="tp-banner-content">
               <h3 class="tp-banner-title">
-                <a href="product-details.html"
-                  >HyperX Cloud II <br />
-                  Wireless</a
+                <a
+                  href="#"
+                  onclick="return false;"
+                  [id]="'title-banner-secondary-small' + banner.id"
+                  >{{
+                    getTitleBannerSecondary(
+                      banner,
+                      "title-banner-secondary-small" + banner.id
+                    )
+                  }}</a
                 >
               </h3>
-              <p>Sale 35% off</p>
+              <p>{{ banner.subtitle }}</p>
+              @if(banner.link){
               <div class="tp-banner-btn">
                 <a href="product-details.html" class="tp-link-btn"
-                  >Shop Now
+                  >Comprar Ahora
                   <svg
                     width="15"
                     height="13"
@@ -1454,9 +1475,11 @@
                   </svg>
                 </a>
               </div>
+              }
             </div>
           </div>
         </div>
+        } }
       </div>
     </div>
   </section>

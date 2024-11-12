@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function home(Request $request)
     {
-        $sliders_principal = Slider::where("state", 1)
+        $sliders_principal = $sliders_principal = Slider::where("state", 1)
             ->where("type_slider", 1)
             ->orderBy("id", "desc")->get();
 
@@ -28,6 +28,10 @@ class HomeController extends Controller
         $products_trending_new = Product::where("state", 2)->inRandomOrder()->limit(8)->get();
         $products_trending_featured = Product::where("state", 2)->inRandomOrder()->limit(8)->get();
         $products_trending_top_sellers = Product::where("state", 2)->inRandomOrder()->limit(8)->get();
+
+        $sliders_secondaries = Slider::where("state", 1)
+            ->where("type_slider", 2)
+            ->orderBy("id", "asc")->get();
 
         return response()->json([
             "sliders_principal" => $sliders_principal->map(function ($slider) {
@@ -56,6 +60,21 @@ class HomeController extends Controller
             "products_trending_new" => ProductEcommerceCollection::make($products_trending_new),
             "products_trending_featured" => ProductEcommerceCollection::make($products_trending_featured),
             "products_trending_top_sellers" => ProductEcommerceCollection::make($products_trending_top_sellers),
+            "sliders_secondaries" => $sliders_secondaries->map(function ($slider) {
+                return [
+                    "id" => $slider->id,
+                    "title" => $slider->title,
+                    "subtitle" => $slider->subtitle,
+                    "label" => $slider->label,
+                    "image" => $slider->image ? env("APP_URL") . "storage/" . $slider->image : NULL,
+                    "link" => $slider->link,
+                    "state" => $slider->state,
+                    "color" => $slider->color,
+                    "type_slider" => $slider->type_slider,
+                    "price_original" => $slider->price_original,
+                    "price_campaign" => $slider->price_campaign
+                ];
+            }),
         ]);
     }
 
