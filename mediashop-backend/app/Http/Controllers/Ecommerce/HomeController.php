@@ -38,8 +38,20 @@ class HomeController extends Controller
             ->inRandomOrder()->limit(6)->get();
 
         $products_slider = Product::where("state", 2)
-            ->whereIn("categorie_first_id", $categories_randoms->pluck("id"))
+            ->whereIn("categorie_first_id", $categories_randoms
+                ->pluck("id"))
             ->inRandomOrder()->get();
+
+        $sliders_tertiaries = Slider::where("state", 1)
+            ->where("type_slider", 3)
+            ->orderBy("id", "asc")->get();
+
+        $discount_products_column = Product::where("state", 2)
+            ->inRandomOrder()->limit(3)->get();
+        $featured_products_column = Product::where("state", 2)
+            ->inRandomOrder()->limit(3)->get();
+        $selling_products_column = Product::where("state", 2)
+            ->inRandomOrder()->limit(3)->get();
 
         return response()->json([
             "sliders_principal" => $sliders_principal->map(function ($slider) {
@@ -85,6 +97,24 @@ class HomeController extends Controller
             }),
             "products_electronics_gadgets" => ProductEcommerceCollection::make($products_electronics_gadgets),
             "products_slider" => ProductEcommerceCollection::make($products_slider),
+            "sliders_tertiaries" => $sliders_tertiaries->map(function ($slider) {
+                return [
+                    "id" => $slider->id,
+                    "title" => $slider->title,
+                    "subtitle" => $slider->subtitle,
+                    "label" => $slider->label,
+                    "image" => $slider->image ? env("APP_URL") . "storage/" . $slider->image : NULL,
+                    "link" => $slider->link,
+                    "state" => $slider->state,
+                    "color" => $slider->color,
+                    "type_slider" => $slider->type_slider,
+                    "price_original" => $slider->price_original,
+                    "price_campaign" => $slider->price_campaign
+                ];
+            }),
+            "discount_products_column" => ProductEcommerceCollection::make($discount_products_column),
+            "featured_products_column" => ProductEcommerceCollection::make($featured_products_column),
+            "selling_products_column" => ProductEcommerceCollection::make($selling_products_column),
         ]);
     }
 

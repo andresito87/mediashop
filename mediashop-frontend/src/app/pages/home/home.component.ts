@@ -26,6 +26,11 @@ export class HomeComponent implements OnInit {
   PRODUCTS_SLIDER: any = [];
 
   BANNERS_SECONDARIES: any = [];
+  BANNERS_TERTIARIES: any = [];
+
+  DISCOUNT_PRODUCTS_COLUMN: any = [];
+  FEATURED_PRODUCTS_COLUMN: any = [];
+  SELLING_PRODUCTS_COLUMN: any = [];
 
   constructor(public homeService: HomeService) {
     afterNextRender(() => {
@@ -41,6 +46,11 @@ export class HomeComponent implements OnInit {
         this.PRODUCTS_ELECTRONICS_GADGETS =
           res.products_electronics_gadgets.data;
         this.PRODUCTS_SLIDER = res.products_slider.data;
+        this.BANNERS_TERTIARIES = res.sliders_tertiaries;
+        this.DISCOUNT_PRODUCTS_COLUMN = res.discount_products_column.data;
+        this.FEATURED_PRODUCTS_COLUMN = res.featured_products_column.data;
+        this.SELLING_PRODUCTS_COLUMN = res.selling_products_column.data;
+
         // it's necessary ejecute these functions to sincronize html template  and angular app
         setTimeout(() => {
           SLIDER_PRINCIPAL($);
