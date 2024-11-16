@@ -8,6 +8,7 @@ declare function SLIDER_PRINCIPAL([]: any): any;
 declare var $: any;
 declare function DATA_VALUES([]): any;
 declare function PRODUCTS_SLIDER_HOME([]): any;
+declare function MODAL_PRODUCT_DETAIL([]): any;
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -34,6 +35,8 @@ export class HomeComponent implements OnInit {
 
   DISCOUNTS_FLASH: any;
   DISCOUNTS_FLASH_PRODUCTS: any = [];
+
+  product_selected: any = null;
 
   constructor(public homeService: HomeService) {
     afterNextRender(() => {
@@ -108,5 +111,13 @@ export class HomeComponent implements OnInit {
       return this.getNewPrice(product, product.greater_discount);
     }
     return product.price_eur;
+  }
+
+  openDetailProduct(product: any) {
+    this.product_selected = product;
+
+    setTimeout(() => {
+      MODAL_PRODUCT_DETAIL($);
+    }, 50);
   }
 }

@@ -870,6 +870,7 @@
                             </button>
                             <button
                               type="button"
+                              (click)="openDetailProduct(product)"
                               class="tp-product-action-btn tp-product-quick-view-btn"
                               data-bs-toggle="modal"
                               data-bs-target="#producQuickViewModal"
@@ -1077,6 +1078,7 @@
                             </button>
                             <button
                               type="button"
+                              (click)="openDetailProduct(product)"
                               class="tp-product-action-btn tp-product-quick-view-btn"
                               data-bs-toggle="modal"
                               data-bs-target="#producQuickViewModal"
@@ -1284,6 +1286,7 @@
                             </button>
                             <button
                               type="button"
+                              (click)="openDetailProduct(product)"
                               class="tp-product-action-btn tp-product-quick-view-btn"
                               data-bs-toggle="modal"
                               data-bs-target="#producQuickViewModal"
@@ -1649,6 +1652,7 @@
                         </button>
                         <button
                           type="button"
+                          (click)="openDetailProduct(product)"
                           class="tp-product-action-btn tp-product-quick-view-btn"
                           data-bs-toggle="modal"
                           data-bs-target="#producQuickViewModal"
@@ -2014,6 +2018,7 @@
                         </button>
                         <button
                           type="button"
+                          (click)="openDetailProduct(product)"
                           class="tp-product-action-btn tp-product-quick-view-btn"
                           data-bs-toggle="modal"
                           data-bs-target="#producQuickViewModal"
@@ -2350,6 +2355,7 @@
                         </button>
                         <button
                           type="button"
+                          (click)="openDetailProduct(product)"
                           class="tp-product-action-btn tp-product-quick-view-btn"
                           data-bs-toggle="modal"
                           data-bs-target="#producQuickViewModal"
@@ -3100,6 +3106,7 @@
   >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
+        @if(product_selected){
         <div class="tp-product-modal-content d-lg-flex align-items-start">
           <button
             type="button"
@@ -3126,56 +3133,22 @@
                   aria-controls="nav-1"
                   aria-selected="true"
                 >
-                  <img
-                    src="assets/img/product/details/nav/product-details-nav-1.jpg"
-                    alt=""
-                  />
+                  <img [src]="product_selected.image" alt="" />
                 </button>
+                @for (image of product_selected.images; track image.id) {
                 <button
                   class="nav-link"
-                  id="nav-2-tab"
+                  id="'nav-'+image.id+'-tab'"
                   data-bs-toggle="tab"
-                  data-bs-target="#nav-2"
+                  [attr.data-bs-target]="'#nav-' + image.id"
                   type="button"
                   role="tab"
                   aria-controls="nav-2"
                   aria-selected="false"
                 >
-                  <img
-                    src="assets/img/product/details/nav/product-details-nav-2.jpg"
-                    alt=""
-                  />
+                  <img [src]="image.image" alt="" />
                 </button>
-                <button
-                  class="nav-link"
-                  id="nav-3-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#nav-3"
-                  type="button"
-                  role="tab"
-                  aria-controls="nav-3"
-                  aria-selected="false"
-                >
-                  <img
-                    src="assets/img/product/details/nav/product-details-nav-3.jpg"
-                    alt=""
-                  />
-                </button>
-                <button
-                  class="nav-link"
-                  id="nav-4-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#nav-4"
-                  type="button"
-                  role="tab"
-                  aria-controls="nav-4"
-                  aria-selected="false"
-                >
-                  <img
-                    src="assets/img/product/details/nav/product-details-nav-4.jpg"
-                    alt=""
-                  />
-                </button>
+                }
               </div>
             </nav>
             <div class="tab-content m-img" id="productDetailsNavContent">
@@ -3188,60 +3161,48 @@
               >
                 <div class="tp-product-details-nav-main-thumb">
                   <img
-                    src="assets/img/product/details/main/product-details-main-1.jpg"
+                    [src]="product_selected.image"
                     alt=""
+                    style="
+                      width: 416px;
+                      height: 480px;
+                      max-width: none;
+                      object-fit: contain;
+                    "
                   />
                 </div>
               </div>
+              @for (image of product_selected.images; track image.id) {
               <div
                 class="tab-pane fade"
-                id="nav-2"
+                [id]="'nav-' + image.id"
                 role="tabpanel"
-                aria-labelledby="nav-2-tab"
+                [attr.aria-labelledby]="'nav-' + image.id + '-tab'"
                 tabindex="0"
               >
                 <div class="tp-product-details-nav-main-thumb">
                   <img
-                    src="assets/img/product/details/main/product-details-main-2.jpg"
+                    [src]="image.image"
                     alt=""
+                    style="
+                      width: 416px;
+                      height: 480px;
+                      max-width: none;
+                      object-fit: contain;
+                    "
                   />
                 </div>
               </div>
-              <div
-                class="tab-pane fade"
-                id="nav-3"
-                role="tabpanel"
-                aria-labelledby="nav-3-tab"
-                tabindex="0"
-              >
-                <div class="tp-product-details-nav-main-thumb">
-                  <img
-                    src="assets/img/product/details/main/product-details-main-3.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="nav-4"
-                role="tabpanel"
-                aria-labelledby="nav-4-tab"
-                tabindex="0"
-              >
-                <div class="tp-product-details-nav-main-thumb">
-                  <img
-                    src="assets/img/product/details/main/product-details-main-4.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
+              }
             </div>
           </div>
           <div class="tp-product-details-wrapper">
             <div class="tp-product-details-category">
-              <span>Computers & Tablets</span>
+              <span>{{ product_selected.brand.name }}</span>
             </div>
-            <h3 class="tp-product-details-title">Samsung galaxy A8 tablet</h3>
+            <h3 class="tp-product-details-title">
+              {{ product_selected.title }}
+            </h3>
 
             <!-- inventory details -->
             <div
@@ -3266,14 +3227,19 @@
               </div>
             </div>
             <p>
-              A Screen Everyone Will Love: Whether your family is streaming or
-              video chatting with friends tablet A8... <span>See more</span>
+              {{ product_selected.resume }}
             </p>
 
             <!-- price -->
             <div class="tp-product-details-price-wrapper mb-20">
-              <span class="tp-product-details-price old-price">$320.00</span>
-              <span class="tp-product-details-price new-price">$236.00</span>
+              @if (product_selected.greater_discount) {
+              <span class="tp-product-details-price old-price mx-1"
+                >{{ product_selected.price_eur }} €</span
+              >
+              }
+              <span class="tp-product-details-price new-price"
+                >{{ getTotalPrice(product_selected) }} €</span
+              >
             </div>
 
             <!-- variations -->
@@ -3463,6 +3429,7 @@
             </div>
           </div>
         </div>
+        }
       </div>
     </div>
   </div>
