@@ -794,9 +794,19 @@
                         </a>
 
                         <!-- product badge -->
-                        <!-- <div class="tp-product-badge">
-                          <span class="product-hot">Hot</span>
-                        </div> -->
+                        @if (product.greater_discount) {
+                        <div class="tp-product-badge">
+                          @if (product.greater_discount.type_discount==1) {
+                          <span class="product-hot">
+                            - {{ product.greater_discount.discount }} %
+                          </span>
+                          }@else {
+                          <span class="product-hot">
+                            - {{ product.greater_discount.discount }} EUR
+                          </span>
+                          }
+                        </div>
+                        }
 
                         <!-- product action -->
                         <div class="tp-product-action">
@@ -950,11 +960,13 @@
                           </div>
                         </div>
                         <div class="tp-product-price-wrapper">
-                          <!-- <span class="tp-product-price old-price"
-                            >$320.00</span
-                          > -->
+                          @if (product.greater_discount) {
+                          <span class="tp-product-price old-price mx-1"
+                            >{{ product.price_eur }} €</span
+                          >
+                          }
                           <span class="tp-product-price new-price"
-                            >€{{ product.price_eur }}</span
+                            >{{ getTotalPrice(product) }} €</span
                           >
                         </div>
                       </div>
@@ -989,9 +1001,19 @@
                         </a>
 
                         <!-- product badge -->
-                        <!-- <div class="tp-product-badge">
-                        <span class="product-hot">Hot</span>
-                      </div> -->
+                        @if (product.greater_discount) {
+                        <div class="tp-product-badge">
+                          @if (product.greater_discount.type_discount==1) {
+                          <span class="product-hot">
+                            - {{ product.greater_discount.discount }} %
+                          </span>
+                          }@else {
+                          <span class="product-hot">
+                            - {{ product.greater_discount.discount }} EUR
+                          </span>
+                          }
+                        </div>
+                        }
 
                         <!-- product action -->
                         <div class="tp-product-action">
@@ -1145,11 +1167,13 @@
                           </div>
                         </div>
                         <div class="tp-product-price-wrapper">
-                          <!-- <span class="tp-product-price old-price"
-                          >$320.00</span
-                        > -->
+                          @if (product.greater_discount) {
+                          <span class="tp-product-price old-price mx-1"
+                            >{{ product.price_eur }} €</span
+                          >
+                          }
                           <span class="tp-product-price new-price"
-                            >${{ product.price_eur }}</span
+                            >{{ getTotalPrice(product) }} €</span
                           >
                         </div>
                       </div>
@@ -1184,9 +1208,19 @@
                         </a>
 
                         <!-- product badge -->
-                        <!-- <div class="tp-product-badge">
-                      <span class="product-hot">Hot</span>
-                    </div> -->
+                        @if (product.greater_discount) {
+                        <div class="tp-product-badge">
+                          @if (product.greater_discount.type_discount==1) {
+                          <span class="product-hot">
+                            - {{ product.greater_discount.discount }} %
+                          </span>
+                          }@else {
+                          <span class="product-hot">
+                            - {{ product.greater_discount.discount }} EUR
+                          </span>
+                          }
+                        </div>
+                        }
 
                         <!-- product action -->
                         <div class="tp-product-action">
@@ -1340,11 +1374,13 @@
                           </div>
                         </div>
                         <div class="tp-product-price-wrapper">
-                          <!-- <span class="tp-product-price old-price"
-                        >$320.00</span
-                      > -->
+                          @if (product.greater_discount) {
+                          <span class="tp-product-price old-price mx-1"
+                            >{{ product.price_eur }} €</span
+                          >
+                          }
                           <span class="tp-product-price new-price"
-                            >${{ product.price_eur }}</span
+                            >{{ getTotalPrice(product) }} €</span
                           >
                         </div>
                       </div>
@@ -1906,9 +1942,19 @@
                     </a>
 
                     <!-- product badge -->
-                    <!-- <div class="tp-product-badge">
-                      <span class="product-offer">-25%</span>
-                    </div> -->
+                    @if (product.greater_discount) {
+                    <div class="tp-product-badge">
+                      @if (product.greater_discount.type_discount==1) {
+                      <span class="product-hot">
+                        - {{ product.greater_discount.discount }} %
+                      </span>
+                      }@else {
+                      <span class="product-hot">
+                        - {{ product.greater_discount.discount }} EUR
+                      </span>
+                      }
+                    </div>
+                    }
 
                     <!-- product action -->
                     <div class="tp-product-action">
@@ -2056,8 +2102,13 @@
                       </div>
                     </div>
                     <div class="tp-product-price-wrapper">
-                      <span class="tp-product-price"
-                        >€{{ product.price_eur }}</span
+                      @if (product.greater_discount) {
+                      <span class="tp-product-price old-price mx-1"
+                        >{{ product.price_eur }} €</span
+                      >
+                      }
+                      <span class="tp-product-price new-price"
+                        >{{ getTotalPrice(product) }} €</span
                       >
                     </div>
                   </div>
@@ -2227,9 +2278,19 @@
                     </a>
 
                     <!-- product badge -->
-                    <!-- <div class="tp-product-badge">
-                      <span class="product-trending">Trending</span>
-                    </div> -->
+                    @if (product.greater_discount) {
+                    <div class="tp-product-badge">
+                      @if (product.greater_discount.type_discount==1) {
+                      <span class="product-hot">
+                        - {{ product.greater_discount.discount }} %
+                      </span>
+                      }@else {
+                      <span class="product-hot">
+                        - {{ product.greater_discount.discount }} EUR
+                      </span>
+                      }
+                    </div>
+                    }
 
                     <!-- product action -->
                     <div class="tp-product-action">
@@ -2377,9 +2438,13 @@
                       </div>
                     </div>
                     <div class="tp-product-price-wrapper">
-                      <!-- <span class="tp-product-price old-price">$475.00</span> -->
+                      @if (product.greater_discount) {
+                      <span class="tp-product-price old-price mx-1"
+                        >{{ product.price_eur }} €</span
+                      >
+                      }
                       <span class="tp-product-price new-price"
-                        >€{{ product.price_eur }}</span
+                        >{{ getTotalPrice(product) }} €</span
                       >
                     </div>
                   </div>
@@ -2457,8 +2522,13 @@
                     </div>
                   </div>
                   <div class="tp-product-price-wrapper">
-                    <span class="tp-product-price"
-                      >€{{ product.price_eur }}</span
+                    @if (product.greater_discount) {
+                    <span class="tp-product-price old-price mx-1"
+                      >{{ product.price_eur }} €</span
+                    >
+                    }
+                    <span class="tp-product-price new-price"
+                      >{{ getTotalPrice(product) }} €</span
                     >
                   </div>
                 </div>
@@ -2526,8 +2596,13 @@
                     </div>
                   </div>
                   <div class="tp-product-price-wrapper">
-                    <span class="tp-product-price"
-                      >€{{ product.price_eur }}</span
+                    @if (product.greater_discount) {
+                    <span class="tp-product-price old-price mx-1"
+                      >{{ product.price_eur }} €</span
+                    >
+                    }
+                    <span class="tp-product-price new-price"
+                      >{{ getTotalPrice(product) }} €</span
                     >
                   </div>
                 </div>
@@ -2595,8 +2670,13 @@
                     </div>
                   </div>
                   <div class="tp-product-price-wrapper">
-                    <span class="tp-product-price"
-                      >€{{ product.price_eur }}</span
+                    @if (product.greater_discount) {
+                    <span class="tp-product-price old-price mx-1"
+                      >{{ product.price_eur }} €</span
+                    >
+                    }
+                    <span class="tp-product-price new-price"
+                      >{{ getTotalPrice(product) }} €</span
                     >
                   </div>
                 </div>

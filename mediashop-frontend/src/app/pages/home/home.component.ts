@@ -94,10 +94,19 @@ export class HomeComponent implements OnInit {
       return (
         product.price_eur -
         product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
-      );
+      ).toFixed(2);
     } else {
       // EUR/PEN fix amount
-      return product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount;
+      return (product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
+        2
+      );
     }
+  }
+
+  getTotalPrice(product: any) {
+    if (product.greater_discount) {
+      return this.getNewPrice(product, product.greater_discount);
+    }
+    return product.price_eur;
   }
 }
