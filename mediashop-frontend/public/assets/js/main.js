@@ -1014,44 +1014,44 @@ function HOMEINIT($) {
     },
   });
 
-  var slider = new Swiper(".tp-product-offer-slider-active", {
-    slidesPerView: 4,
-    spaceBetween: 30,
-    loop: true,
-    rtl: rtl_setting,
-    pagination: {
-      el: ".tp-deals-slider-dot",
-      clickable: true,
-      renderBullet: function (index, className) {
-        return (
-          '<span class="' +
-          className +
-          '">' +
-          "<button>" +
-          (index + 1) +
-          "</button>" +
-          "</span>"
-        );
-      },
-    },
-    breakpoints: {
-      1200: {
-        slidesPerView: 3,
-      },
-      992: {
-        slidesPerView: 2,
-      },
-      768: {
-        slidesPerView: 2,
-      },
-      576: {
-        slidesPerView: 1,
-      },
-      0: {
-        slidesPerView: 1,
-      },
-    },
-  });
+  // var slider = new Swiper(".tp-product-offer-slider-active", {
+  //   slidesPerView: 4,
+  //   spaceBetween: 30,
+  //   loop: true,
+  //   rtl: rtl_setting,
+  //   pagination: {
+  //     el: ".tp-deals-slider-dot",
+  //     clickable: true,
+  //     renderBullet: function (index, className) {
+  //       return (
+  //         '<span class="' +
+  //         className +
+  //         '">' +
+  //         "<button>" +
+  //         (index + 1) +
+  //         "</button>" +
+  //         "</span>"
+  //       );
+  //     },
+  //   },
+  //   breakpoints: {
+  //     1200: {
+  //       slidesPerView: 3,
+  //     },
+  //     992: {
+  //       slidesPerView: 2,
+  //     },
+  //     768: {
+  //       slidesPerView: 2,
+  //     },
+  //     576: {
+  //       slidesPerView: 1,
+  //     },
+  //     0: {
+  //       slidesPerView: 1,
+  //     },
+  //   },
+  // });
 
   // var slider = new Swiper(".tp-product-arrival-active", {
   //   slidesPerView: 4,
@@ -2380,4 +2380,47 @@ function PRODUCTS_SLIDER_HOME($) {
       },
     },
   });
+
+  var slider = new Swiper(".tp-product-offer-slider-active", {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    loop: true,
+    rtl: rtl_setting,
+    pagination: {
+      el: ".tp-deals-slider-dot",
+      clickable: true,
+      renderBullet: function (index, className) {
+        return (
+          '<span class="' +
+          className +
+          '">' +
+          "<button>" +
+          (index + 1) +
+          "</button>" +
+          "</span>"
+        );
+      },
+    },
+    breakpoints: {
+      1200: {
+        slidesPerView: 3,
+      },
+      992: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      576: {
+        slidesPerView: 1,
+      },
+      0: {
+        slidesPerView: 1,
+      },
+    },
+  });
+
+  setTimeout(() => {
+    $("[data-countdown]").countdown();
+  }, 50);
 }

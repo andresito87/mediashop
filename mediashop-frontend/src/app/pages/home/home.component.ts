@@ -32,6 +32,9 @@ export class HomeComponent implements OnInit {
   FEATURED_PRODUCTS_COLUMN: any = [];
   SELLING_PRODUCTS_COLUMN: any = [];
 
+  DISCOUNTS_FLASH: any;
+  DISCOUNTS_FLASH_PRODUCTS: any = [];
+
   constructor(public homeService: HomeService) {
     afterNextRender(() => {
       this.homeService.home().subscribe((res: any) => {
@@ -47,9 +50,13 @@ export class HomeComponent implements OnInit {
           res.products_electronics_gadgets.data;
         this.PRODUCTS_SLIDER = res.products_slider.data;
         this.BANNERS_TERTIARIES = res.sliders_tertiaries;
+
         this.DISCOUNT_PRODUCTS_COLUMN = res.discount_products_column.data;
         this.FEATURED_PRODUCTS_COLUMN = res.featured_products_column.data;
         this.SELLING_PRODUCTS_COLUMN = res.selling_products_column.data;
+
+        this.DISCOUNTS_FLASH = res.discounts_flash;
+        this.DISCOUNTS_FLASH_PRODUCTS = res.discounts_flash_products;
 
         // it's necessary ejecute these functions to sincronize html template  and angular app
         setTimeout(() => {
@@ -79,5 +86,18 @@ export class HomeComponent implements OnInit {
     let miDiv: any = document.getElementById(idBanner);
     miDiv.innerHTML = banner.title;
     return '';
+  }
+
+  getNewPrice(product: any, DISCOUNTS_FLASH_PARAMETER: any) {
+    if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
+      // type % dsicount
+      return (
+        product.price_eur -
+        product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+      );
+    } else {
+      // EUR/PEN fix amount
+      return product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount;
+    }
   }
 }

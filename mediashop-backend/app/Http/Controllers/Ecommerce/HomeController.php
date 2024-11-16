@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Ecommerce\Product\ProductEcommerceCollection;
+use App\Http\Resources\Ecommerce\Product\ProductEcommerceResource;
+use App\Models\Discount\Discount;
 use App\Models\Product\Categorie;
 use App\Models\Product\Product;
 use App\Models\Slider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -52,6 +55,43 @@ class HomeController extends Controller
             ->inRandomOrder()->limit(3)->get();
         $selling_products_column = Product::where("state", 2)
             ->inRandomOrder()->limit(3)->get();
+
+        date_default_timezone_set("Europe/Madrid");
+        $discounts_flash = Discount::where("type_campaign", 2)
+            ->where("state", 1)
+            ->where("start_date", "<=", today())
+            ->where("end_date", ">=", today())
+            ->first();
+
+        $discounts_flash_products = collect([]);
+
+        if ($discounts_flash) {
+            foreach ($discounts_flash->products as $key => $product_aux) {
+                $discounts_flash_products->push(ProductEcommerceResource::make($product_aux->product));
+            }
+
+            foreach ($discounts_flash->categories as $key => $categorie_aux) {
+                $products_of_categories = Product::where("state", 2)
+                    ::where("categorie_first_id", $categorie_aux->categorie_id)->get();
+
+                foreach ($products_of_categories as $key => $product) {
+                    $discounts_flash_products->push(ProductEcommerceResource::make($product));
+                }
+
+            }
+
+            foreach ($discounts_flash->brands as $key => $brand_aux) {
+                $products_of_brands = Product::where("state", 2)
+                    ::where("brand_id", $brand_aux->brand_id)->get();
+
+                foreach ($products_of_brands as $key => $product) {
+                    $discounts_flash_products->push(ProductEcommerceResource::make($product));
+                }
+            }
+            // format Sep 30 2014 20:20:23
+            $discounts_flash->end_date_format = Carbon::parse($discounts_flash->end_date)->format("Y-m-d\TH:i:s");
+        }
+
 
         return response()->json([
             "sliders_principal" => $sliders_principal->map(function ($slider) {
@@ -115,6 +155,9 @@ class HomeController extends Controller
             "discount_products_column" => ProductEcommerceCollection::make($discount_products_column),
             "featured_products_column" => ProductEcommerceCollection::make($featured_products_column),
             "selling_products_column" => ProductEcommerceCollection::make($selling_products_column),
+            "discounts_flash" => $discounts_flash,
+            "discounts_flash_products" => $discounts_flash_products
+
         ]);
     }
 
