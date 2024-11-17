@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   DISCOUNTS_FLASH_PRODUCTS: any = [];
 
   product_selected: any = null;
+  variation_selected: any = null;
 
   constructor(public homeService: HomeService) {
     afterNextRender(() => {
@@ -114,9 +115,20 @@ export class HomeComponent implements OnInit {
   }
 
   openDetailProduct(product: any) {
-    this.product_selected = product;
+    this.product_selected = null;
+    this.variation_selected = null;
 
     setTimeout(() => {
+      this.product_selected = product;
+      MODAL_PRODUCT_DETAIL($);
+    }, 50);
+  }
+
+  selectedVariation(variation: any) {
+    this.variation_selected = null;
+
+    setTimeout(() => {
+      this.variation_selected = variation;
       MODAL_PRODUCT_DETAIL($);
     }, 50);
   }

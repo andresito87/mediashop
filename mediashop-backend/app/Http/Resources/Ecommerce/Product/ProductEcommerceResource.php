@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Ecommerce\Product;
 
+use App\Models\Product\ProductVariation;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -40,6 +41,65 @@ class ProductEcommerceResource extends JsonResource
         // save the greater discount
         if ($discount_collect->count() > 0) {
             $greater_discount = $discount_collect->sortByDesc("discount")->first();
+        }
+
+        // save variations and nested variations
+        $variation_collect = collect([]);
+        foreach ($this->resource->variations->groupBy("attribute_id") as $key => $variation_aux) {
+            $variation_collect->push([
+                "attribute_id" => $variation_aux[0]->attribute_id,
+                "attribute" => $variation_aux[0]->attribute ? [
+                    "name" => $variation_aux[0]->attribute->name,
+                    "type_attribute" => $variation_aux[0]->attribute->type_attribute
+                ] : NULL,
+                "variations" => $variation_aux->map(function ($variation) {
+                    // Get the total stock of the variation by summing the stock of nested variations
+                    $nestedVariationsStock = $variation->variation_children()->sum("stock");
+                    return [
+                        "id" => $variation->id,
+                        "product_id" => $variation->product_id,
+                        "attribute_id" => $variation->attribute_id,
+                        "attribute" => $variation->attribute ? [
+                            "name" => $variation->attribute->name,
+                            "type_attribute" => $variation->attribute->type_attribute
+                        ] : NULL,
+                        "property_id" => $variation->property_id,
+                        "property" => $variation->property ? [
+                            "name" => $variation->property->name,
+                            "code" => $variation->property->code
+                        ] : NULL,
+                        "value_add" => $variation->value_add,
+                        "add_price" => $variation->add_price,
+                        "stock" => $nestedVariationsStock,
+                        "subvariation" => $variation->variation_children->count() > 0 ? [
+                            "attribute_id" => $variation->variation_children->first()->attribute_id,
+                            "attribute" => $variation->variation_children->first()->attribute ? [
+                                "name" => $variation->variation_children->first()->attribute->name,
+                                "type_attribute" => $variation->variation_children->first()->attribute->type_attribute
+                            ] : NULL,
+                        ] : NULL,
+                        "subvariations" => $variation->variation_children->map(function ($subvariation) {
+                            return [
+                                "id" => $subvariation->id,
+                                "product_id" => $subvariation->product_id,
+                                "attribute_id" => $subvariation->attribute_id,
+                                "attribute" => $subvariation->attribute ? [
+                                    "name" => $subvariation->attribute->name,
+                                    "type_attribute" => $subvariation->attribute->type_attribute
+                                ] : NULL,
+                                "property_id" => $subvariation->property_id,
+                                "property" => $subvariation->property ? [
+                                    "name" => $subvariation->property->name,
+                                    "code" => $subvariation->property->code
+                                ] : NULL,
+                                "value_add" => $subvariation->value_add,
+                                "add_price" => $subvariation->add_price,
+                                "stock" => $subvariation->stock,
+                            ];
+                        }),
+                    ];
+                })
+            ]);
         }
 
         return [
@@ -82,8 +142,8 @@ class ProductEcommerceResource extends JsonResource
                     "image" => env("APP_URL") . "storage/" . $image->image
                 ];
             }),
-            "discount_collect" => $discount_collect,
             "greater_discount" => $greater_discount,
+            "variations" => $variation_collect
         ];
     }
 }

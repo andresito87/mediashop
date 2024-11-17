@@ -3246,8 +3246,48 @@
             <div class="tp-product-details-variation">
               <!-- single item -->
               <div class="tp-product-details-variation-item">
-                <h4 class="tp-product-details-variation-title">Color :</h4>
+                @for(principal_variation of product_selected.variations; track
+                principal_variation.attribute_id){
+                <h4 class="tp-product-details-variation-title">
+                  {{ principal_variation.attribute.name }} :
+                </h4>
                 <div class="tp-product-details-variation-list">
+                  @for(variation of principal_variation.variations; track
+                  variation.id){ @if (variation.property &&
+                  variation.property.code) {
+                  <button
+                    type="button"
+                    class="color tp-color-variation-btn mx-1"
+                    (click)="selectedVariation(variation)"
+                  >
+                    <span [attr.data-bg-color]="variation.property.code"></span>
+                    <span class="tp-color-variation-tootltip">
+                      {{ variation.property.name }}
+                    </span>
+                  </button>
+                  } @if (variation.property && !variation.property.code){
+                  <button
+                    type="button"
+                    class="tp-size-variation-btn mx-1"
+                    (click)="selectedVariation(variation)"
+                    style="width: 80px"
+                  >
+                    <span>{{ variation.property.name }}</span>
+                  </button>
+                  } @if(!variation.property){
+                  <button
+                    type="button"
+                    class="tp-size-variation-btn mx-1"
+                    (click)="selectedVariation(variation)"
+                    style="width: 80px"
+                  >
+                    <span>{{ variation.value_add }}</span>
+                  </button>
+                  } }
+                </div>
+                }
+
+                <!-- <div class="tp-product-details-variation-list">
                   <button type="button" class="color tp-color-variation-btn">
                     <span data-bg-color="#F8B655"></span>
                     <span class="tp-color-variation-tootltip">Yellow</span>
@@ -3267,8 +3307,49 @@
                     <span data-bg-color="#B4505A"></span>
                     <span class="tp-color-variation-tootltip">Brown</span>
                   </button>
+                </div> -->
+              </div>
+
+              @if(variation_selected){
+              <div class="tp-product-details-variation-item">
+                <h4 class="tp-product-details-variation-title">
+                  {{ variation_selected.subvariation.attribute.name }} :
+                </h4>
+                <div class="tp-product-details-variation-list">
+                  @for(subvariation of variation_selected.subvariations; track
+                  subvariation.id){ @if (subvariation.property &&
+                  subvariation.property.code) {
+                  <button
+                    type="button"
+                    class="color tp-color-variation-btn mx-1"
+                  >
+                    <span
+                      [attr.data-bg-color]="subvariation.property.code"
+                    ></span>
+                    <span class="tp-color-variation-tootltip">
+                      {{ subvariation.property.name }}
+                    </span>
+                  </button>
+                  } @if (subvariation.property && !subvariation.property.code){
+                  <button
+                    type="button"
+                    class="tp-size-variation-btn mx-1"
+                    style="width: 80px"
+                  >
+                    <span>{{ subvariation.property.name }}</span>
+                  </button>
+                  } @if(!subvariation.property){
+                  <button
+                    type="button"
+                    class="tp-size-variation-btn mx-1"
+                    style="width: 80px"
+                  >
+                    <span>{{ subvariation.value_add }}</span>
+                  </button>
+                  } }
                 </div>
               </div>
+              }
             </div>
 
             <!-- actions -->

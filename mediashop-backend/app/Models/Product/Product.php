@@ -71,6 +71,12 @@ class Product extends Model
         return $this->hasMany(DiscountProduct::class, "product_id");
     }
 
+    public function variations()
+    {
+        return $this->hasMany(ProductVariation::class, "product_id")
+            ->where("product_variation_id", NULL);
+    }
+
     // function to check if the product has a product discount
     public function getDiscountProductAttribute()
     {
