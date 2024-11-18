@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
   constructor(public homeService: HomeService) {
     afterNextRender(() => {
       this.homeService.home().subscribe((res: any) => {
-        console.log(res);
         this.SLIDERS = res.sliders_principal;
         this.CATEGORIES_RANDOMS = res.categories_random;
         this.TRENDING_PRODUCTS_NEW = res.products_trending_new.data;
@@ -92,6 +91,7 @@ export class HomeComponent implements OnInit {
     return '';
   }
 
+  // Flash discounts
   getNewPrice(product: any, DISCOUNTS_FLASH_PARAMETER: any) {
     if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
       // type % dsicount
@@ -107,6 +107,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Calculate final price
   getTotalPrice(product: any) {
     if (product.greater_discount) {
       return this.getNewPrice(product, product.greater_discount);
