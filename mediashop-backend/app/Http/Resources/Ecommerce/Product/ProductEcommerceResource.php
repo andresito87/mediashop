@@ -149,7 +149,24 @@ class ProductEcommerceResource extends JsonResource
                 ];
             }),
             "greater_discount" => $greater_discount,
-            "variations" => $variation_collect
+            "variations" => $variation_collect,
+            "specifications" => $this->resource->specifications->map(function ($specification) {
+                return [
+                    "id" => $specification->id,
+                    "product_id" => $specification->product_id,
+                    "attribute_id" => $specification->attribute_id,
+                    "attribute" => $specification->attribute ? [
+                        "name" => $specification->attribute->name,
+                        "type_attribute" => $specification->attribute->type_attribute
+                    ] : NULL,
+                    "property_id" => $specification->property_id,
+                    "property" => $specification->property ? [
+                        "name" => $specification->property->name,
+                        "code" => $specification->property->code
+                    ] : NULL,
+                    "value_add" => $specification->value_add,
+                ];
+            }),
         ];
     }
 }

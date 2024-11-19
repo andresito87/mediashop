@@ -77,6 +77,11 @@ class Product extends Model
             ->where("product_variation_id", NULL);
     }
 
+    public function specifications()
+    {
+        return $this->hasMany(ProductSpecification::class, "product_id");
+    }
+
     // function to check if the product has a product discount
     public function getDiscountProductAttribute()
     {
