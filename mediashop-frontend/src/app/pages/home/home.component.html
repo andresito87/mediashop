@@ -804,7 +804,8 @@
                           </span>
                           }@else {
                           <span class="product-hot">
-                            - {{ product.greater_discount.discount }} EUR
+                            - {{ product.greater_discount.discount }}
+                            {{ currency }}
                           </span>
                           }
                         </div>
@@ -965,11 +966,12 @@
                         <div class="tp-product-price-wrapper">
                           @if (product.greater_discount) {
                           <span class="tp-product-price old-price mx-1"
-                            >{{ product.price_eur }} €</span
+                            >{{ getTotalCurrency(product) }}
+                            {{ currency }}</span
                           >
                           }
                           <span class="tp-product-price new-price"
-                            >{{ getTotalPrice(product) }} €</span
+                            >{{ getTotalPrice(product) }} {{ currency }}</span
                           >
                         </div>
                       </div>
@@ -1012,7 +1014,8 @@
                           </span>
                           }@else {
                           <span class="product-hot">
-                            - {{ product.greater_discount.discount }} EUR
+                            - {{ product.greater_discount.discount }}
+                            {{ currency }}
                           </span>
                           }
                         </div>
@@ -1173,11 +1176,12 @@
                         <div class="tp-product-price-wrapper">
                           @if (product.greater_discount) {
                           <span class="tp-product-price old-price mx-1"
-                            >{{ product.price_eur }} €</span
+                            >{{ getTotalCurrency(product) }}
+                            {{ currency }}</span
                           >
                           }
                           <span class="tp-product-price new-price"
-                            >{{ getTotalPrice(product) }} €</span
+                            >{{ getTotalPrice(product) }} {{ currency }}</span
                           >
                         </div>
                       </div>
@@ -1220,7 +1224,8 @@
                           </span>
                           }@else {
                           <span class="product-hot">
-                            - {{ product.greater_discount.discount }} EUR
+                            - {{ product.greater_discount.discount }}
+                            {{ currency }}
                           </span>
                           }
                         </div>
@@ -1381,11 +1386,12 @@
                         <div class="tp-product-price-wrapper">
                           @if (product.greater_discount) {
                           <span class="tp-product-price old-price mx-1"
-                            >{{ product.price_eur }} €</span
+                            >{{ getTotalCurrency(product) }}
+                            {{ currency }}</span
                           >
                           }
                           <span class="tp-product-price new-price"
-                            >{{ getTotalPrice(product) }} €</span
+                            >{{ getTotalPrice(product) }} {{ currency }}</span
                           >
                         </div>
                       </div>
@@ -1422,7 +1428,7 @@
                 <a
                   href="#"
                   onclick="return false;"
-                  [id]="'title-banner-secondary' + banner.id"
+                  [id]="'title-banner-secondary-' + banner.id"
                 >
                   <!-- {{
                     getTitleBannerSecondary(
@@ -1480,7 +1486,7 @@
                 <a
                   href="#"
                   onclick="return false;"
-                  [id]="'title-banner-secondary-small' + banner.id"
+                  [id]="'title-banner-secondary-small-' + banner.id"
                 >
                   <!-- {{
                     getTitleBannerSecondary(
@@ -1819,10 +1825,11 @@
                     </div>
                     <div class="tp-product-price-wrapper">
                       <span class="tp-product-price old-price"
-                        >€{{ product.price_eur }}</span
+                        >{{ getTotalCurrency(product) }} {{ currency }}</span
                       >
                       <span class="tp-product-price new-price">
                         {{ getNewPrice(product, DISCOUNTS_FLASH) }}
+                        {{ currency }}
                       </span>
                     </div>
 
@@ -1983,7 +1990,7 @@
                       </span>
                       }@else {
                       <span class="product-hot">
-                        - {{ product.greater_discount.discount }} EUR
+                        - {{ product.greater_discount.discount }} {{ currency }}
                       </span>
                       }
                     </div>
@@ -2138,11 +2145,11 @@
                     <div class="tp-product-price-wrapper">
                       @if (product.greater_discount) {
                       <span class="tp-product-price old-price mx-1"
-                        >{{ product.price_eur }} €</span
+                        >{{ getTotalCurrency(product) }} {{ currency }}</span
                       >
                       }
                       <span class="tp-product-price new-price"
-                        >{{ getTotalPrice(product) }} €</span
+                        >{{ getTotalPrice(product) }} {{ currency }}</span
                       >
                     </div>
                   </div>
@@ -2178,9 +2185,11 @@
                     </h3>
                     <div class="tp-product-banner-price mb-40">
                       <span class="old-price"
-                        >€{{ banner.price_original }}</span
+                        >{{ banner.price_original }} {{ currency }}</span
                       >
-                      <p class="new-price">€{{ banner.price_campaign }}</p>
+                      <p class="new-price">
+                        {{ banner.price_campaign }} {{ currency }}
+                      </p>
                     </div>
                     @if(banner.link){
                     <div class="tp-product-banner-btn">
@@ -2320,7 +2329,7 @@
                       </span>
                       }@else {
                       <span class="product-hot">
-                        - {{ product.greater_discount.discount }} EUR
+                        - {{ product.greater_discount.discount }} {{ currency }}
                       </span>
                       }
                     </div>
@@ -2475,11 +2484,11 @@
                     <div class="tp-product-price-wrapper">
                       @if (product.greater_discount) {
                       <span class="tp-product-price old-price mx-1"
-                        >{{ product.price_eur }} €</span
+                        >{{ getTotalCurrency(product) }} {{ currency }}</span
                       >
                       }
                       <span class="tp-product-price new-price"
-                        >{{ getTotalPrice(product) }} €</span
+                        >{{ getTotalPrice(product) }} {{ currency }}</span
                       >
                     </div>
                   </div>
@@ -2571,11 +2580,11 @@
                   <div class="tp-product-price-wrapper">
                     @if (product.greater_discount) {
                     <span class="tp-product-price old-price mx-1"
-                      >{{ product.price_eur }} €</span
+                      >{{ getTotalCurrency(product) }} {{ currency }}</span
                     >
                     }
                     <span class="tp-product-price new-price"
-                      >{{ getTotalPrice(product) }} €</span
+                      >{{ getTotalPrice(product) }} {{ currency }}</span
                     >
                   </div>
                 </div>
@@ -2645,11 +2654,11 @@
                   <div class="tp-product-price-wrapper">
                     @if (product.greater_discount) {
                     <span class="tp-product-price old-price mx-1"
-                      >{{ product.price_eur }} €</span
+                      >{{ getTotalCurrency(product) }} {{ currency }}</span
                     >
                     }
                     <span class="tp-product-price new-price"
-                      >{{ getTotalPrice(product) }} €</span
+                      >{{ getTotalPrice(product) }} {{ currency }}</span
                     >
                   </div>
                 </div>
@@ -2719,11 +2728,11 @@
                   <div class="tp-product-price-wrapper">
                     @if (product.greater_discount) {
                     <span class="tp-product-price old-price mx-1"
-                      >{{ product.price_eur }} €</span
+                      >{{ getTotalCurrency(product) }} {{ currency }}</span
                     >
                     }
                     <span class="tp-product-price new-price"
-                      >{{ getTotalPrice(product) }} €</span
+                      >{{ getTotalPrice(product) }} {{ currency }}</span
                     >
                   </div>
                 </div>

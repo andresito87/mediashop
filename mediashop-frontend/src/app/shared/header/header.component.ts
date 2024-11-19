@@ -1,8 +1,10 @@
-import { afterNextRender, Component } from '@angular/core';
+import { afterNextRender, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { HomeService } from '../../pages/home/service/home.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,13 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
   categories_menu: any = [];
-  constructor(public homeService: HomeService) {
+  currency: string = 'EUR';
+  constructor(
+    public homeService: HomeService,
+    public cookieService: CookieService,
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     afterNextRender(() => {
       this.homeService.menus().subscribe((res: any) => {
         this.categories_menu = res.categories_menu;
@@ -21,9 +29,29 @@ export class HeaderComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.homeService.menus().subscribe((res: any) => {
+      this.categories_menu = res.categories_menu;
+    });
+    this.currency = this.cookieService.get('currency')
+      ? this.cookieService.get('currency')
+      : 'EUR';
+  }
+
   getIconMenu(menu: any) {
-    let miDiv: any = document.getElementById('icon-' + menu.id);
-    miDiv.innerHTML = menu.icon;
+    if (isPlatformBrowser(this.platformId)) {
+      const miDiv = document.getElementById('icon-' + menu.id);
+      if (miDiv) {
+        this.renderer.setProperty(miDiv, 'innerHTML', menu.icon);
+      }
+    }
     return '';
+  }
+
+  changeCurrency(value: string) {
+    this.cookieService.set('currency', value);
+    setTimeout(() => {
+      window.location.reload();
+    }, 50);
   }
 }

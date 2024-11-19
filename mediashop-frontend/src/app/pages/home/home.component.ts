@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ModalProductComponent } from '../guest-view/component/modal-product/modal-product.component';
+import { CookieService } from 'ngx-cookie-service';
 
 declare function SLIDER_PRINCIPAL([]: any): any;
 declare var $: any;
@@ -39,8 +40,12 @@ export class HomeComponent implements OnInit {
 
   product_selected: any = null;
   variation_selected: any = null;
+  currency: string = 'EUR';
 
-  constructor(public homeService: HomeService) {
+  constructor(
+    public homeService: HomeService,
+    private cookieService: CookieService
+  ) {
     this.homeService.home().subscribe((res: any) => {
       this.SLIDERS = res.sliders_principal;
       this.CATEGORIES_RANDOMS = res.categories_random;
@@ -67,28 +72,35 @@ export class HomeComponent implements OnInit {
         SLIDER_PRINCIPAL($);
         DATA_VALUES($);
         PRODUCTS_SLIDER_HOME($);
-        this.SLIDERS.forEach((slider: any) => {
-          this.getLabelSlider(slider);
-          this.getSubtitleSlider(slider);
-        });
-        this.BANNERS_SECONDARIES.forEach((banner: any, index: number) => {
-          if (index == 0) {
-            this.getTitleBannerSecondary(
-              banner,
-              'title-banner-small-' + banner.id
-            );
-          } else {
-            this.getTitleBannerSecondary(
-              banner,
-              'title-banner-sa-' + banner.id
-            );
-          }
-        });
+        setTimeout(() => {
+          this.BANNERS_SECONDARIES.forEach((banner: any, index: number) => {
+            if (index == 0) {
+              this.getTitleBannerSecondary(
+                banner,
+                'title-banner-secondary-' + banner.id
+              );
+            } else {
+              this.getTitleBannerSecondary(
+                banner,
+                'title-banner-secondary-small-' + banner.id
+              );
+            }
+          });
+
+          this.SLIDERS.forEach((slider: any) => {
+            this.getLabelSlider(slider);
+            this.getSubtitleSlider(slider);
+          });
+        }, 100);
       }, 50);
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currency = this.cookieService.get('currency')
+      ? this.cookieService.get('currency')
+      : 'EUR';
+  }
 
   getLabelSlider(slider: any) {
     let miDiv: any = document.getElementById('label-' + slider.id);
@@ -110,17 +122,32 @@ export class HomeComponent implements OnInit {
 
   // Flash discounts
   getNewPrice(product: any, DISCOUNTS_FLASH_PARAMETER: any) {
-    if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
-      // type % dsicount
-      return (
-        product.price_eur -
-        product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
-      ).toFixed(2);
+    if (this.currency == 'EUR') {
+      if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
+        // type % dsicount
+        return (
+          product.price_eur -
+          product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+        ).toFixed(2);
+      } else {
+        // EUR fix amount
+        return (product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
+          2
+        );
+      }
     } else {
-      // EUR/PEN fix amount
-      return (product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
-        2
-      );
+      if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
+        // type % dsicount
+        return (
+          product.price_usd -
+          product.price_usd * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+        ).toFixed(2);
+      } else {
+        // USD fix amount
+        return (product.price_usd - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
+          2
+        );
+      }
     }
   }
 
@@ -129,7 +156,19 @@ export class HomeComponent implements OnInit {
     if (product.greater_discount) {
       return this.getNewPrice(product, product.greater_discount);
     }
-    return product.price_eur;
+    if (this.currency == 'EUR') {
+      return product.price_eur;
+    } else {
+      return product.price_usd;
+    }
+  }
+
+  getTotalCurrency(product: any) {
+    if (this.currency == 'EUR') {
+      return product.price_eur;
+    } else {
+      return product.price_usd;
+    }
   }
 
   openDetailProduct(product: any) {

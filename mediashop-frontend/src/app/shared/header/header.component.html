@@ -334,20 +334,15 @@
                   <span
                     class="tp-header-currency-toggle"
                     id="tp-header-currency-toggle"
-                    >USD</span
                   >
+                    {{ currency }}
+                  </span>
                   <ul>
-                    <li>
-                      <a href="#">EUR</a>
+                    <li *ngIf="currency == 'EUR'">
+                      <a href="#" (click)="changeCurrency('USD')">USD</a>
                     </li>
-                    <li>
-                      <a href="#">CHF</a>
-                    </li>
-                    <li>
-                      <a href="#">GBP</a>
-                    </li>
-                    <li>
-                      <a href="#">KWD</a>
+                    <li *ngIf="currency == 'USD'">
+                      <a href="#" (click)="changeCurrency('EUR')">EUR</a>
                     </li>
                   </ul>
                 </div>

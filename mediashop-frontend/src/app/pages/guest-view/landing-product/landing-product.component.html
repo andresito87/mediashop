@@ -179,10 +179,10 @@
                   class="tp-product-details-price old-price"
                   *ngIf="PRODUCT_SELECTED.greater_discount"
                 >
-                  € {{ PRODUCT_SELECTED.price_eur }}
+                  {{ getTotalCurrency(PRODUCT_SELECTED) }} {{ currency }}
                 </span>
                 <span class="tp-product-details-price new-price">
-                  € {{ getTotalPrice(PRODUCT_SELECTED) }}
+                  {{ getTotalPrice(PRODUCT_SELECTED) }} {{ currency }}
                 </span>
               </div>
 
@@ -975,7 +975,7 @@
                       </span>
                       }@else {
                       <span class="product-hot">
-                        - {{ product.greater_discount.discount }} EUR
+                        - {{ product.greater_discount.discount }} {{ currency }}
                       </span>
                       }
                     </div>
@@ -1119,11 +1119,11 @@
                     <div class="tp-product-price-wrapper-3">
                       @if (product.greater_discount) {
                       <span class="tp-product-price-3 old-price mx-1"
-                        >{{ product.price_eur }} €</span
+                        >{{ getTotalCurrency(product) }} {{ currency }}</span
                       >
                       }
                       <span class="tp-product-price-3 new-price"
-                        >{{ getTotalPrice(product) }} €</span
+                        >{{ getTotalPrice(product) }} {{ currency }}</span
                       >
                     </div>
                   </div>

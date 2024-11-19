@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalProductComponent } from '../component/modal-product/modal-product.component';
+import { CookieService } from 'ngx-cookie-service';
 
 declare var $: any;
 declare function MODAL_PRODUCT_DETAIL([]): any;
@@ -26,11 +27,14 @@ export class LandingProductComponent {
   CAMPAIGN_DISCOUNT_CODE: any;
   DISCOUNT_CAMPAIGN: any;
 
+  currency: string = 'EUR';
+
   constructor(
     public homeService: HomeService,
     public activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router,
+    private cookieService: CookieService,
     @Inject(PLATFORM_ID) private platformId: any
   ) {
     this.activatedRoute.params.subscribe((res: any) => {
@@ -77,6 +81,9 @@ export class LandingProductComponent {
         MODAL_PRODUCT_DETAIL($);
         LANDING_PRODUCT($);
       }, 50);
+      this.currency = this.cookieService.get('currency')
+        ? this.cookieService.get('currency')
+        : 'EUR';
     });
   }
 
@@ -89,17 +96,32 @@ export class LandingProductComponent {
 
   // Flash discounts
   getNewPrice(product: any, DISCOUNTS_FLASH_PARAMETER: any) {
-    if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
-      // type % dsicount
-      return (
-        product.price_eur -
-        product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
-      ).toFixed(2);
+    if (this.currency == 'EUR') {
+      if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
+        // type % dsicount
+        return (
+          product.price_eur -
+          product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+        ).toFixed(2);
+      } else {
+        // EUR fix amount
+        return (product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
+          2
+        );
+      }
     } else {
-      // EUR/PEN fix amount
-      return (product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
-        2
-      );
+      if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
+        // type % dsicount
+        return (
+          product.price_usd -
+          product.price_usd * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+        ).toFixed(2);
+      } else {
+        // USD fix amount
+        return (product.price_usd - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
+          2
+        );
+      }
     }
   }
 
@@ -108,7 +130,19 @@ export class LandingProductComponent {
     if (product.greater_discount) {
       return this.getNewPrice(product, product.greater_discount);
     }
-    return product.price_eur;
+    if (this.currency == 'EUR') {
+      return product.price_eur;
+    } else {
+      return product.price_usd;
+    }
+  }
+
+  getTotalCurrency(product: any) {
+    if (this.currency == 'EUR') {
+      return product.price_eur;
+    } else {
+      return product.price_usd;
+    }
   }
 
   selectedVariation(variation: any) {
