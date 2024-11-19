@@ -1,24 +1,26 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component } from '@angular/core';
+import { afterNextRender, Component } from '@angular/core';
 import { HomeService } from '../../home/service/home.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ModalProductComponent } from '../component/modal-product/modal-product.component';
 
 declare var $: any;
 declare function MODAL_PRODUCT_DETAIL([]): any;
 @Component({
   selector: 'app-landing-product',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ModalProductComponent],
   templateUrl: './landing-product.component.html',
   styleUrl: './landing-product.component.css',
 })
 export class LandingProductComponent {
   PRODUCT_SLUG: any;
   PRODUCT_SELECTED: any;
-
   variation_selected: any = null;
+  PRODUCTS_RELATED: any = null;
+  product_selected_modal: any;
 
   constructor(
     public homeService: HomeService,
@@ -32,6 +34,7 @@ export class LandingProductComponent {
     this.homeService.showProduct(this.PRODUCT_SLUG).subscribe({
       next: (res: any) => {
         this.PRODUCT_SELECTED = res.product;
+        this.PRODUCTS_RELATED = res.products_related.data;
       },
       error: (err) => {
         if (err.status == 404) {
@@ -42,6 +45,11 @@ export class LandingProductComponent {
           this.toastr.error('Error', 'Error en la operación');
         }
       },
+    });
+    afterNextRender(() => {
+      setTimeout(() => {
+        MODAL_PRODUCT_DETAIL($);
+      }, 50);
     });
   }
 
@@ -75,6 +83,14 @@ export class LandingProductComponent {
     setTimeout(() => {
       this.variation_selected = variation;
       MODAL_PRODUCT_DETAIL($);
+    }, 50);
+  }
+
+  openDetailModal(product: any) {
+    this.product_selected_modal = null;
+
+    setTimeout(() => {
+      this.product_selected_modal = product;
     }, 50);
   }
 }

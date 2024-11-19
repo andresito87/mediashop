@@ -3,6 +3,7 @@ import { HomeService } from './service/home.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ModalProductComponent } from '../guest-view/component/modal-product/modal-product.component';
 
 declare function SLIDER_PRINCIPAL([]: any): any;
 declare var $: any;
@@ -12,7 +13,7 @@ declare function MODAL_PRODUCT_DETAIL([]): any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, ModalProductComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

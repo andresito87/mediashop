@@ -204,7 +204,14 @@ class HomeController extends Controller
                 ->json(["message" => "El producto no existe"], 404);
         }
 
+        $products_related = Product::where("categorie_first_id", $product->categorie_first_id)
+            ->where("state", 2)
+            ->get();
+
         return response()
-            ->json(["product" => ProductEcommerceResource::make($product)], 200);
+            ->json([
+                "product" => ProductEcommerceResource::make($product),
+                "products_related" => ProductEcommerceCollection::make($products_related),
+            ], 200);
     }
 }
