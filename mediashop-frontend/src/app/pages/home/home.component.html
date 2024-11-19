@@ -35,14 +35,16 @@
               <div class="row align-items-center">
                 <div class="col-xl-5 col-lg-6 col-md-6">
                   <div class="tp-slider-content p-relative z-index-1">
-                    <span [id]="'label-' + slider.id">{{
+                    <span [id]="'label-' + slider.id">
+                      <!-- {{
                       getLabelSlider(slider)
-                    }}</span>
+                    }} -->
+                    </span>
                     <h3 class="tp-slider-title">
                       {{ slider.title }}
                     </h3>
                     <p [id]="'subtitle-' + slider.id">
-                      {{ getSubtitleSlider(slider) }}
+                      <!-- {{ getSubtitleSlider(slider) }} -->
                     </p>
 
                     <div class="tp-slider-btn" *ngIf="slider.link">
@@ -1421,12 +1423,14 @@
                   href="#"
                   onclick="return false;"
                   [id]="'title-banner-secondary' + banner.id"
-                  >{{
+                >
+                  <!-- {{
                     getTitleBannerSecondary(
                       banner,
                       "title-banner-secondary" + banner.id
                     )
-                  }}<br />
+                  }} -->
+                  <br />
                   BLU G91 Pro 2022</a
                 >
               </h3>
@@ -1477,13 +1481,14 @@
                   href="#"
                   onclick="return false;"
                   [id]="'title-banner-secondary-small' + banner.id"
-                  >{{
+                >
+                  <!-- {{
                     getTitleBannerSecondary(
                       banner,
                       "title-banner-secondary-small" + banner.id
                     )
-                  }}</a
-                >
+                  }} -->
+                </a>
               </h3>
               <p>{{ banner.subtitle }}</p>
               @if(banner.link){

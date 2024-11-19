@@ -67,6 +67,23 @@ export class HomeComponent implements OnInit {
         SLIDER_PRINCIPAL($);
         DATA_VALUES($);
         PRODUCTS_SLIDER_HOME($);
+        this.SLIDERS.forEach((slider: any) => {
+          this.getLabelSlider(slider);
+          this.getSubtitleSlider(slider);
+        });
+        this.BANNERS_SECONDARIES.forEach((banner: any, index: number) => {
+          if (index == 0) {
+            this.getTitleBannerSecondary(
+              banner,
+              'title-banner-small-' + banner.id
+            );
+          } else {
+            this.getTitleBannerSecondary(
+              banner,
+              'title-banner-sa-' + banner.id
+            );
+          }
+        });
       }, 50);
     });
   }

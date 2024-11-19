@@ -23,6 +23,7 @@
     "@angular/ssr": "^18.2.7",
     "express": "^4.18.2",
     "mediashop-frontend": "file:",
+    "ngx-cookie-service": "^18.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
