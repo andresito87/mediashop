@@ -1,4 +1,4 @@
-import { afterNextRender, Component, OnInit } from '@angular/core';
+import { afterRender, Component, OnInit } from '@angular/core';
 import { HomeService } from './service/home.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -41,34 +41,33 @@ export class HomeComponent implements OnInit {
   variation_selected: any = null;
 
   constructor(public homeService: HomeService) {
-    afterNextRender(() => {
-      this.homeService.home().subscribe((res: any) => {
-        this.SLIDERS = res.sliders_principal;
-        this.CATEGORIES_RANDOMS = res.categories_random;
-        this.TRENDING_PRODUCTS_NEW = res.products_trending_new.data;
-        this.TRENDING_PRODUCTS_FEATURED = res.products_trending_featured.data;
-        this.BANNERS_SECONDARIES = res.sliders_secondaries;
-        this.TRENDING_PRODUCTS_TOP_SELLER =
-          res.products_trending_top_sellers.data;
-        this.PRODUCTS_ELECTRONICS_GADGETS =
-          res.products_electronics_gadgets.data;
-        this.PRODUCTS_SLIDER = res.products_slider.data;
-        this.BANNERS_TERTIARIES = res.sliders_tertiaries;
+    this.homeService.home().subscribe((res: any) => {
+      this.SLIDERS = res.sliders_principal;
+      this.CATEGORIES_RANDOMS = res.categories_random;
+      this.TRENDING_PRODUCTS_NEW = res.products_trending_new.data;
+      this.TRENDING_PRODUCTS_FEATURED = res.products_trending_featured.data;
+      this.BANNERS_SECONDARIES = res.sliders_secondaries;
+      this.TRENDING_PRODUCTS_TOP_SELLER =
+        res.products_trending_top_sellers.data;
+      this.PRODUCTS_ELECTRONICS_GADGETS = res.products_electronics_gadgets.data;
+      this.PRODUCTS_SLIDER = res.products_slider.data;
+      this.BANNERS_TERTIARIES = res.sliders_tertiaries;
 
-        this.DISCOUNT_PRODUCTS_COLUMN = res.discount_products_column.data;
-        this.FEATURED_PRODUCTS_COLUMN = res.featured_products_column.data;
-        this.SELLING_PRODUCTS_COLUMN = res.selling_products_column.data;
+      this.DISCOUNT_PRODUCTS_COLUMN = res.discount_products_column.data;
+      this.FEATURED_PRODUCTS_COLUMN = res.featured_products_column.data;
+      this.SELLING_PRODUCTS_COLUMN = res.selling_products_column.data;
 
-        this.DISCOUNTS_FLASH = res.discounts_flash;
-        this.DISCOUNTS_FLASH_PRODUCTS = res.discounts_flash_products;
+      this.DISCOUNTS_FLASH = res.discounts_flash;
+      this.DISCOUNTS_FLASH_PRODUCTS = res.discounts_flash_products;
+    });
 
-        // it's necessary ejecute these functions to sincronize html template  and angular app
-        setTimeout(() => {
-          SLIDER_PRINCIPAL($);
-          DATA_VALUES($);
-          PRODUCTS_SLIDER_HOME($);
-        }, 50);
-      });
+    // it's necessary ejecute these functions to sincronize html template and angular app
+    afterRender(() => {
+      setTimeout(() => {
+        SLIDER_PRINCIPAL($);
+        DATA_VALUES($);
+        PRODUCTS_SLIDER_HOME($);
+      }, 50);
     });
   }
 

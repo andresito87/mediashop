@@ -89,7 +89,9 @@ class HomeController extends Controller
                 }
             }
             // format Sep 30 2014 20:20:23
-            $discounts_flash->end_date_format = Carbon::parse($discounts_flash->end_date)->format("Y-m-d\TH:i:s");
+            $discounts_flash->end_date_format = Carbon::parse($discounts_flash->end_date)
+                ->addDays(1)
+                ->format("Y-m-d\TH:i:s");
         }
 
 
@@ -195,6 +197,13 @@ class HomeController extends Controller
 
     public function show_product(Request $request, $slug)
     {
+        $campaign_discount = $request->get("campaign_discount");
+
+        $discount = null;
+        if ($campaign_discount) {
+            $discount = Discount::where("code", $campaign_discount)->first();
+        }
+
         $product = Product::where("slug", $slug)
             ->where("state", 2)
             ->first();
@@ -212,6 +221,7 @@ class HomeController extends Controller
             ->json([
                 "product" => ProductEcommerceResource::make($product),
                 "products_related" => ProductEcommerceCollection::make($products_related),
+                "discount_campaign" => $discount
             ], 200);
     }
 }
