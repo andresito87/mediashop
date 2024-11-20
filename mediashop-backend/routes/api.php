@@ -114,12 +114,12 @@ Route::prefix("ecommerce")
 
         // =============================== CARTS =============================== //
         Route::group([
-            "middleware" => "auth:api",
+            "middleware" => "auth:api", // endpoints protected against unathenticated users
         ], function ($router) {
             Route::resource('carts', CartController::class);
         });
         // ====================================================================== //
-    
+
     });
 
 // =============================================================================================== //

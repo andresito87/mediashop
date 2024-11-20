@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Renderer2 } from '@angular/core';
+import { CartService } from '../../pages/home/service/cart.service';
+import { CartItem } from '../../pages/home/interfaces/cart-item';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +22,8 @@ export class HeaderComponent {
     public homeService: HomeService,
     public cookieService: CookieService,
     private renderer: Renderer2,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public cartService: CartService
   ) {
     afterNextRender(() => {
       this.homeService.menus().subscribe((res: any) => {
@@ -36,6 +39,10 @@ export class HeaderComponent {
     this.currency = this.cookieService.get('currency')
       ? this.cookieService.get('currency')
       : 'EUR';
+
+    this.cartService.currentDataCart$.subscribe((res: CartItem[]) => {
+      console.log(res);
+    });
   }
 
   getIconMenu(menu: any) {

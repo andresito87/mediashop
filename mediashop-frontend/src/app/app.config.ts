@@ -9,6 +9,7 @@ import { provideToastr } from 'ngx-toastr';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
+import { PermissionAuth } from './pages/auth/service/auth.guard';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +20,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideClientHydration(), // HttpClient providers
     CookieService,
+    PermissionAuth,
   ],
 };

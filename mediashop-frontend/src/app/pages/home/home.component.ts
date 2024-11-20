@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ModalProductComponent } from '../guest-view/component/modal-product/modal-product.component';
 import { CookieService } from 'ngx-cookie-service';
+import { CartService } from './service/cart.service';
 
 declare function SLIDER_PRINCIPAL([]: any): any;
 declare var $: any;
@@ -44,7 +45,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public homeService: HomeService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    public cartService: CartService
   ) {
     this.homeService.home().subscribe((res: any) => {
       this.SLIDERS = res.sliders_principal;
@@ -100,6 +102,12 @@ export class HomeComponent implements OnInit {
     this.currency = this.cookieService.get('currency')
       ? this.cookieService.get('currency')
       : 'EUR';
+
+    this.cartService.changeCart({
+      id: '1',
+      name: 'Prueba realizada con exito',
+      quantity: 23,
+    });
   }
 
   getLabelSlider(slider: any) {
