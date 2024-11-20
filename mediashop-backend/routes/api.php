@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Product\ProductSpecificationsController;
 use App\Http\Controllers\Admin\Product\ProductVariationsController;
 use App\Http\Controllers\Admin\Product\PropertyAttributetController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Ecommerce\CartController;
 use App\Http\Controllers\Ecommerce\HomeController;
 use App\Http\Controllers\JWTAuthController;
 use App\Http\Middleware\JwtMiddleware;
@@ -102,14 +103,23 @@ Route::prefix("ecommerce")
         // ================================ HOME ================================ //
         Route::get("home", [HomeController::class, "home"]);
         // ====================================================================== //
-    
+
         // =============================== MENUS =============================== //
         Route::get("menus", [HomeController::class, "menus"]);
         // ====================================================================== //
-    
+
         // =============================== PRODUCT-DETAILS =============================== //
         Route::get("product/{slug}", [HomeController::class, "show_product"]);
         // ====================================================================== //
+
+        // =============================== CARTS =============================== //
+        Route::group([
+            "middleware" => "auth:api",
+        ], function ($router) {
+            Route::resource('carts', CartController::class);
+        });
+        // ====================================================================== //
+    
     });
 
 // =============================================================================================== //
