@@ -176,7 +176,7 @@
         }
       </div>
 
-      @if(variation_selected){
+      @if(variation_selected && variation_selected.subvariation){
       <div class="tp-product-details-variation-item">
         <h4 class="tp-product-details-variation-title">
           {{ variation_selected.subvariation.attribute.name }} :
@@ -185,7 +185,11 @@
           @for(subvariation of variation_selected.subvariations; track
           subvariation.id){ @if (subvariation.property &&
           subvariation.property.code) {
-          <button type="button" class="color tp-color-variation-btn mx-1">
+          <button
+            type="button"
+            class="color tp-color-variation-btn mx-1"
+            (click)="selectedSubvariation(subvariation)"
+          >
             <span [attr.data-bg-color]="subvariation.property.code"></span>
             <span class="tp-color-variation-tootltip">
               {{ subvariation.property.name }}
@@ -195,6 +199,7 @@
           <button
             type="button"
             class="tp-size-variation-btn mx-1"
+            (click)="selectedSubvariation(subvariation)"
             style="width: 80px"
           >
             <span>{{ subvariation.property.name }}</span>
@@ -203,6 +208,7 @@
           <button
             type="button"
             class="tp-size-variation-btn mx-1"
+            (click)="selectedSubvariation(subvariation)"
             style="width: 80px"
           >
             <span>{{ subvariation.value_add }}</span>
@@ -266,7 +272,10 @@
           </div>
         </div>
         <div class="tp-product-details-add-to-cart mb-15 w-100">
-          <button class="tp-product-details-add-to-cart-btn w-100">
+          <button
+            class="tp-product-details-add-to-cart-btn w-100"
+            (click)="addCart()"
+          >
             Add To Cart
           </button>
         </div>

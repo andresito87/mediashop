@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../../../home/service/cart.service';
+import { CookieService } from 'ngx-cookie-service';
 
 declare var $: any;
 declare function MODAL_PRODUCT_DETAIL([]): any;
@@ -15,8 +19,22 @@ export class ModalProductComponent {
   //comes from its parent component
   @Input() product_selected: any;
   variation_selected: any;
+  subvariation_selected: any;
+
+  currency: string = 'EUR';
+
+  constructor(
+    private cartService: CartService,
+    private toastr: ToastrService,
+    private router: Router,
+    public cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
+    // set the currency in this component
+    this.currency = this.cookieService.get('currency')
+      ? this.cookieService.get('currency')
+      : 'EUR';
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     setTimeout(() => {
@@ -30,6 +48,14 @@ export class ModalProductComponent {
     setTimeout(() => {
       this.variation_selected = variation;
       MODAL_PRODUCT_DETAIL($);
+    }, 50);
+  }
+
+  selectedSubvariation(subvariation: any) {
+    this.subvariation_selected = null;
+
+    setTimeout(() => {
+      this.subvariation_selected = subvariation;
     }, 50);
   }
 
@@ -55,5 +81,80 @@ export class ModalProductComponent {
       return this.getNewPrice(product, product.greater_discount);
     }
     return product.price_eur;
+  }
+
+  addCart() {
+    if (!this.cartService.authService.user) {
+      this.toastr.error('Error', 'Ingrese a la tienda');
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    let product_variation_id = null;
+    // check if product has variations and subvariations which must be choose them before to add it to cart
+    if (this.product_selected.variations.length > 0) {
+      if (!this.variation_selected) {
+        this.toastr.error('Error', 'Necesitas seleccionar una variación');
+        return;
+      }
+      if (
+        this.variation_selected &&
+        this.variation_selected.subvariations.length > 0
+      ) {
+        if (!this.subvariation_selected) {
+          this.toastr.error(
+            'Error',
+            'Necesitas seleccionar la variación anidada correspondiente'
+          );
+        }
+      }
+    }
+
+    // product hasn't got subvariations
+    if (
+      this.product_selected.variations.length > 0 &&
+      this.variation_selected &&
+      this.variation_selected.subvariations.length == 0
+    ) {
+      product_variation_id = this.variation_selected.id;
+    }
+
+    // product has got some subvariations
+    if (
+      this.product_selected.variations.length > 0 &&
+      this.variation_selected &&
+      this.variation_selected.subvariations.length > 0
+    ) {
+      product_variation_id = this.subvariation_selected.id;
+    }
+
+    let data = {
+      product_id: this.product_selected.id,
+      discount: 0,
+      type_discount: null,
+      type_campign: null,
+      code_coupon: null,
+      code_discount: null,
+      product_variation_id: product_variation_id,
+      quantity: 1,
+      price_unit: this.product_selected.price_eur,
+      subtotal: this.product_selected.price_eur,
+      total: this.product_selected.price_eur,
+      currency: this.currency,
+    };
+
+    this.cartService.registerCart(data).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.cartService.changeCart(res.cart);
+        this.toastr.success(
+          'Éxito',
+          'El producto se ha agregado al carrito de compra'
+        );
+      },
+      error: (err: any) => {
+        this.toastr.error('Error', err.error.message);
+      },
+    });
   }
 }

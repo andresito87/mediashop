@@ -32,7 +32,7 @@ class CartEcommerceResource extends JsonResource
             ],
             "discount" => $this->resource->discount,
             "type_discount" => $this->resource->type_discount,
-            "type_campign" => $this->resource->type_campign,
+            "type_campaign" => $this->resource->type_campaign,
             "code_coupon" => $this->resource->code_coupon,
             "code_discount" => $this->resource->code_discount,
             "product_variation_id" => $this->resource->product_variation_id,

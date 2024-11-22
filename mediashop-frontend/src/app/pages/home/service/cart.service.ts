@@ -16,7 +16,9 @@ export class CartService {
 
   changeCart(data: CartItem) {
     let listCart = this.cart.getValue();
-    let index = listCart.findIndex((item: CartItem) => item.id == data.id);
+    let index = listCart.findIndex(
+      (item: CartItem) => item.product_id == data.product_id
+    );
 
     // check if cartitem is in the cart
     if (index !== -1) {
@@ -38,7 +40,9 @@ export class CartService {
 
   removeCart(data: CartItem) {
     let listCart: CartItem[] = [];
-    let index = listCart.findIndex((item: CartItem) => item.id == data.id);
+    let index = listCart.findIndex(
+      (item: CartItem) => item.product_id == data.product_id
+    );
 
     // check if cartitem is in the cart
     if (index !== -1) {

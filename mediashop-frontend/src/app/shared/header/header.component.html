@@ -193,7 +193,7 @@
     <div class="cartmini__top-wrapper">
       <div class="cartmini__top p-relative">
         <div class="cartmini__top-title">
-          <h4>Shopping cart</h4>
+          <h4>Carrito compra</h4>
         </div>
         <div class="cartmini__close">
           <button type="button" class="cartmini__close-btn cartmini-close-btn">
@@ -201,7 +201,7 @@
           </button>
         </div>
       </div>
-      <div class="cartmini__shipping">
+      <!-- <div class="cartmini__shipping">
         <p>Free Shipping for all orders over <span>$50</span></p>
         <div class="progress">
           <div
@@ -213,27 +213,63 @@
             aria-valuemax="100"
           ></div>
         </div>
-      </div>
+      </div> -->
       <div class="cartmini__widget">
+        @for(cart of listCarts; track cart.id){
         <div class="cartmini__widget-item">
-          <div class="cartmini__thumb">
-            <a href="product-details.html">
-              <img src="assets/img/product/product-1.jpg" alt="" />
+          <div
+            class="cartmini__thumb"
+            style="display: flex; align-items: center"
+          >
+            <a [routerLink]="'/product/' + cart.product.slug">
+              <img [src]="cart.product.image" alt="" />
             </a>
           </div>
           <div class="cartmini__content">
             <h5 class="cartmini__title">
-              <a href="product-details.html">Level Bolt Smart Lock</a>
+              <a [routerLink]="'/product/' + cart.product.slug">
+                {{ cart.product.title }}
+              </a>
             </h5>
             <div class="cartmini__price-wrapper">
-              <span class="cartmini__price">$46.00</span>
-              <span class="cartmini__quantity">x2</span>
+              <span class="cartmini__price">
+                {{ cart.subtotal }} {{ currency }}
+              </span>
+              <span class="cartmini__quantity mx-1">
+                x {{ cart.quantity }}
+              </span>
+              <br />
+              <span class="cartmini__price">
+                SubTotal: {{ cart.total }} {{ currency }}
+              </span>
+              @if(cart.product_variation){
+              <br />
+              <span class="cartmini__quantity mx-1">
+                {{ cart.product_variation.attribute.name }} :
+                {{
+                  cart.product_variation.property
+                    ? cart.product_variation.property.name
+                    : cart.product_variation.value_add
+                }}
+              </span>
+              @if(cart.product_variation.variation_parent){
+              <br />
+              <span class="cartmini__quantity mx-1">
+                {{ cart.product_variation.variation_parent.attribute.name }} :
+                {{
+                  cart.product_variation.variation_parent.property
+                    ? cart.product_variation.variation_parent.property.name
+                    : cart.product_variation.variation_parent.value_add
+                }}
+              </span>
+              } }
             </div>
           </div>
           <a href="#" class="cartmini__del"
             ><i class="fa-regular fa-xmark"></i
           ></a>
         </div>
+        }
       </div>
       <!-- for wp -->
       <!-- if no item in cart -->
@@ -245,8 +281,8 @@
     </div>
     <div class="cartmini__checkout">
       <div class="cartmini__checkout-title mb-30">
-        <h4>Subtotal:</h4>
-        <span>$113.00</span>
+        <h4>Total:</h4>
+        <span> {{ totalCarts }} {{ currency }} </span>
       </div>
       <div class="cartmini__checkout-btn">
         <a href="cart.html" class="tp-btn mb-10 w-100"> view cart</a>
@@ -586,7 +622,9 @@
                         stroke-linejoin="round"
                       />
                     </svg>
-                    <span class="tp-header-action-badge">13</span>
+                    <span class="tp-header-action-badge">
+                      {{ listCarts.length }}
+                    </span>
                   </button>
                 </div>
                 <div class="tp-header-action-item d-lg-none">
@@ -1542,7 +1580,9 @@
                     stroke-linejoin="round"
                   />
                 </svg>
-                <span class="tp-header-action-badge">13</span>
+                <span class="tp-header-action-badge">
+                  {{ listCarts.length }}
+                </span>
               </button>
             </div>
             <div class="tp-header-action-item d-lg-none">

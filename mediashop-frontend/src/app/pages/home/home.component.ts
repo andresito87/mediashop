@@ -1,11 +1,13 @@
+import { CartItem } from './interfaces/cart-item';
 import { afterRender, Component, OnInit } from '@angular/core';
 import { HomeService } from './service/home.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ModalProductComponent } from '../guest-view/component/modal-product/modal-product.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CartService } from './service/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 declare function SLIDER_PRINCIPAL([]: any): any;
 declare var $: any;
@@ -46,7 +48,9 @@ export class HomeComponent implements OnInit {
   constructor(
     public homeService: HomeService,
     private cookieService: CookieService,
-    public cartService: CartService
+    public cartService: CartService,
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.homeService.home().subscribe((res: any) => {
       this.SLIDERS = res.sliders_principal;
@@ -102,11 +106,49 @@ export class HomeComponent implements OnInit {
     this.currency = this.cookieService.get('currency')
       ? this.cookieService.get('currency')
       : 'EUR';
+  }
 
-    this.cartService.changeCart({
-      id: '1',
-      name: 'Prueba realizada con exito',
-      quantity: 23,
+  addCart(product: any) {
+    if (!this.cartService.authService.user) {
+      this.toastr.error('Error', 'Ingrese a la tienda');
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    // check if product has variations and open jquery modal window
+    if (product.variations.length > 0) {
+      $('#productQuickViewModal').modal('show');
+      this.openDetailProduct(product);
+      return;
+    }
+
+    let data = {
+      product_id: product.id,
+      discount: 0,
+      type_discount: null,
+      type_campign: null,
+      code_coupon: null,
+      code_discount: null,
+      product_variation_id: null,
+      quantity: 1,
+      price_unit: product.price_eur,
+      subtotal: product.price_eur,
+      total: product.price_eur,
+      currency: this.currency,
+    };
+
+    this.cartService.registerCart(data).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.cartService.changeCart(res.cart);
+        this.toastr.success(
+          'Éxito',
+          'El producto se ha agregado al carrito de compra'
+        );
+      },
+      error: (err: any) => {
+        this.toastr.error('Error', err.error.message);
+      },
     });
   }
 

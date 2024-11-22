@@ -10,6 +10,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
 import { PermissionAuth } from './pages/auth/service/auth.guard';
+import { provideServerRendering } from '@angular/platform-server';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +22,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(), // HttpClient providers
     CookieService,
     PermissionAuth,
+    provideServerRendering(),
   ],
 };

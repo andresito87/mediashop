@@ -17,7 +17,7 @@ class Cart extends Model
         "product_id",
         "discount",
         "type_discount",
-        "type_campign",
+        "type_campaign",
         "code_coupon",
         "code_discount",
         "product_variation_id",
