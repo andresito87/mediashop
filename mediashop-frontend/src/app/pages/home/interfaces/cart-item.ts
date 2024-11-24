@@ -2,7 +2,7 @@ export interface CartItem {
   product_id: string;
   discount?: number;
   type_discount?: null;
-  type_campign?: null;
+  type_campaign?: null;
   code_coupon?: null;
   code_discount?: null;
   product_variation_id?: null;

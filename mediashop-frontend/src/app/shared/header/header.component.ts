@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Renderer2 } from '@angular/core';
 import { CartService } from '../../pages/home/service/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -27,7 +28,8 @@ export class HeaderComponent {
     public cookieService: CookieService,
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
-    public cartService: CartService
+    public cartService: CartService,
+    private toastr: ToastrService
   ) {
     afterNextRender(() => {
       this.homeService.menus().subscribe((res: any) => {
@@ -60,6 +62,18 @@ export class HeaderComponent {
         (sum: number, item: CartItem) => sum + item.total,
         0
       );
+    });
+  }
+
+  deleteCart(cart: any) {
+    this.cartService.deleteCart(cart.id).subscribe((res: any) => {
+      this.toastr.info(
+        'Eliminación',
+        'Se ha eliminado el producto ' +
+          cart.product.title +
+          ' del carrito de compra'
+      );
+      this.cartService.removeCart(cart.id);
     });
   }
 

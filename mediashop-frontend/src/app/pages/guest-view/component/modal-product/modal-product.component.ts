@@ -44,6 +44,7 @@ export class ModalProductComponent {
 
   selectedVariation(variation: any) {
     this.variation_selected = null;
+    this.subvariation_selected = null;
 
     setTimeout(() => {
       this.variation_selected = variation;
@@ -128,24 +129,32 @@ export class ModalProductComponent {
       product_variation_id = this.subvariation_selected.id;
     }
 
+    let greater_discount = null;
+
+    if (this.product_selected.greater_discount) {
+      greater_discount = this.product_selected.greater_discount;
+    }
+
     let data = {
       product_id: this.product_selected.id,
-      discount: 0,
-      type_discount: null,
-      type_campign: null,
+      product_title: this.product_selected.title,
+      discount: greater_discount ? greater_discount.discount : null,
+      type_discount: greater_discount ? greater_discount.type_discount : null,
+      type_campaign: greater_discount ? greater_discount.type_campaign : null,
       code_coupon: null,
-      code_discount: null,
+      code_discount: greater_discount ? greater_discount.code : null,
       product_variation_id: product_variation_id,
-      quantity: 1,
+      quantity: $('#tp-cart-input-val').val(),
       price_unit: this.product_selected.price_eur,
-      subtotal: this.product_selected.price_eur,
-      total: this.product_selected.price_eur,
+      subtotal: this.getTotalPrice(this.product_selected),
+      total:
+        this.getTotalPrice(this.product_selected) *
+        $('#tp-cart-input-val').val(),
       currency: this.currency,
     };
 
     this.cartService.registerCart(data).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.cartService.changeCart(res.cart);
         this.toastr.success(
           'Éxito',

@@ -265,7 +265,11 @@
               } }
             </div>
           </div>
-          <a href="#" class="cartmini__del"
+          <a
+            href="#"
+            class="cartmini__del"
+            onclick="return false;"
+            (click)="deleteCart(cart)"
             ><i class="fa-regular fa-xmark"></i
           ></a>
         </div>

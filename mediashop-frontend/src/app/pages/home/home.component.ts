@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
             this.getLabelSlider(slider);
             this.getSubtitleSlider(slider);
           });
-        }, 100);
+        }, 25);
       }, 50);
     });
   }
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
       : 'EUR';
   }
 
-  addCart(product: any) {
+  addCart(product: any, discount_flash: any = null) {
     if (!this.cartService.authService.user) {
       this.toastr.error('Error', 'Ingrese a la tienda');
       this.router.navigateByUrl('/login');
@@ -122,24 +122,31 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    let greater_discount = null;
+
+    if (product.greater_discount) {
+      greater_discount = product.greater_discount;
+    }
+
     let data = {
       product_id: product.id,
-      discount: 0,
-      type_discount: null,
-      type_campign: null,
+      discount: greater_discount ? greater_discount.discount : null,
+      type_discount: greater_discount ? greater_discount.type_discount : null,
+      type_campaign: greater_discount ? greater_discount.type_campaign : null,
       code_coupon: null,
-      code_discount: null,
+      code_discount: greater_discount ? greater_discount.code : null,
       product_variation_id: null,
       quantity: 1,
       price_unit: product.price_eur,
-      subtotal: product.price_eur,
-      total: product.price_eur,
+      subtotal: this.getTotalPrice(product),
+      total: this.getTotalPrice(product) * 1,
       currency: this.currency,
     };
 
+    console.log('Data', data);
+
     this.cartService.registerCart(data).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.cartService.changeCart(res.cart);
         this.toastr.success(
           'Éxito',
@@ -221,13 +228,19 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  openDetailProduct(product: any) {
+  openDetailProduct(product: any, discount_flash: any = null) {
     this.product_selected = null;
     this.variation_selected = null;
 
     setTimeout(() => {
+      setTimeout(() => {
+        if (discount_flash) {
+          this.product_selected.greater_discount = discount_flash;
+        }
+      }, 25);
+
       this.product_selected = product;
-      MODAL_PRODUCT_DETAIL($);
+      //MODAL_PRODUCT_DETAIL($);
     }, 50);
   }
 
