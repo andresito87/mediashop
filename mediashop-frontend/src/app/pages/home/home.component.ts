@@ -122,6 +122,11 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    // if it is adding from deal of day section, apply the greater discount to the product received
+    if (discount_flash) {
+      product.greater_discount = discount_flash;
+    }
+
     let greater_discount = null;
 
     if (product.greater_discount) {
@@ -142,8 +147,6 @@ export class HomeComponent implements OnInit {
       total: this.getTotalPrice(product) * 1,
       currency: this.currency,
     };
-
-    console.log('Data', data);
 
     this.cartService.registerCart(data).subscribe({
       next: (res: any) => {
