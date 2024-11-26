@@ -2441,22 +2441,51 @@ function MODAL_PRODUCT_DETAIL($) {
       $(this).addClass("active").siblings().removeClass("active");
     });
   }, 50);
+}
 
-  $(".tp-cart-minus").on("click", function () {
-    var $input = $(this).parent().find("input");
-    var count = parseInt($input.val()) - 1;
-    count = count < 1 ? 1 : count;
-    $input.val(count);
-    $input.change();
-    return false;
-  });
+function MODAL_QUANTITY($) {
+  setTimeout(() => {
+    $("#tp-cart-minus-modal").on("click", function () {
+      console.log("Entra menos Modal");
+      var $input = $("#tp-cart-minus-modal").parent().find("input");
+      var count = parseInt($input.val()) - 1;
+      count = count < 1 ? 1 : count;
+      $input.val(count);
+      $input.change();
+      return false;
+    });
 
-  $(".tp-cart-plus").on("click", function () {
-    var $input = $(this).parent().find("input");
-    $input.val(parseInt($input.val()) + 1);
-    $input.change();
-    return false;
-  });
+    $("#tp-cart-plus-modal").on("click", function () {
+      console.log("Entra mas Modal");
+      var $input = $("#tp-cart-plus-modal").parent().find("input");
+      $input.val(parseInt($input.val()) + 1);
+      $input.change();
+      return false;
+    });
+  }, 50);
+}
+
+function MODAL_QUANTITY_LANDING($) {
+  setTimeout(() => {
+    console.log($("#tp-cart-minus-landing"));
+    $("#tp-cart-minus-landing").on("click", function () {
+      console.log("Entra menos");
+      var $input = $("#tp-cart-minus-landing").parent().find("input");
+      var count = parseInt($input.val()) - 1;
+      count = count < 1 ? 1 : count;
+      $input.val(count);
+      $input.change();
+      return false;
+    });
+
+    $("#tp-cart-plus-landing").on("click", function () {
+      console.log("Entra mas");
+      var $input = $("#tp-cart-plus-landing").parent().find("input");
+      $input.val(parseInt($input.val()) + 1);
+      $input.change();
+      return false;
+    });
+  }, 50);
 }
 
 function LANDING_PRODUCT($) {

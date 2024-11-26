@@ -246,6 +246,7 @@
                     <button
                       type="button"
                       class="color tp-color-variation-btn mx-1"
+                      (click)="selectedSubvariation(subvariation)"
                     >
                       <span
                         [attr.data-bg-color]="subvariation.property.code"
@@ -259,6 +260,7 @@
                     <button
                       type="button"
                       class="tp-size-variation-btn mx-1"
+                      (click)="selectedSubvariation(subvariation)"
                       style="width: 80px"
                     >
                       <span>{{ subvariation.property.name }}</span>
@@ -267,6 +269,7 @@
                     <button
                       type="button"
                       class="tp-size-variation-btn mx-1"
+                      (click)="selectedSubvariation(subvariation)"
                       style="width: 80px"
                     >
                       <span>{{ subvariation.value_add }}</span>
@@ -285,7 +288,7 @@
                 >
                   <div class="tp-product-details-quantity">
                     <div class="tp-product-quantity mb-15 mr-15">
-                      <span class="tp-cart-minus">
+                      <span class="tp-cart-minus" id="tp-cart-minus-landing">
                         <svg
                           width="11"
                           height="2"
@@ -302,8 +305,13 @@
                           />
                         </svg>
                       </span>
-                      <input class="tp-cart-input" type="text" value="1" />
-                      <span class="tp-cart-plus">
+                      <input
+                        class="tp-cart-input"
+                        id="tp-cart-input-val"
+                        type="text"
+                        value="1"
+                      />
+                      <span class="tp-cart-plus" id="tp-cart-plus-landing">
                         <svg
                           width="11"
                           height="12"
@@ -330,7 +338,10 @@
                     </div>
                   </div>
                   <div class="tp-product-details-add-to-cart mb-15 w-100">
-                    <button class="tp-product-details-add-to-cart-btn w-100">
+                    <button
+                      class="tp-product-details-add-to-cart-btn w-100"
+                      (click)="addCart()"
+                    >
                       Add To Cart
                     </button>
                   </div>

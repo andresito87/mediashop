@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 declare var $: any;
 declare function MODAL_PRODUCT_DETAIL([]): any;
+declare function MODAL_QUANTITY([]): any;
 @Component({
   selector: 'app-modal-product',
   standalone: true,
@@ -39,6 +40,7 @@ export class ModalProductComponent {
     //Add 'implements OnInit' to the class.
     setTimeout(() => {
       MODAL_PRODUCT_DETAIL($);
+      MODAL_QUANTITY($);
     }, 50);
   }
 

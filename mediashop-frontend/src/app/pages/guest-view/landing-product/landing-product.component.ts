@@ -7,10 +7,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalProductComponent } from '../component/modal-product/modal-product.component';
 import { CookieService } from 'ngx-cookie-service';
+import { CartService } from '../../home/service/cart.service';
 
 declare var $: any;
 declare function MODAL_PRODUCT_DETAIL([]): any;
 declare function LANDING_PRODUCT([]): any;
+declare function MODAL_QUANTITY_LANDING([]): any;
 @Component({
   selector: 'app-landing-product',
   standalone: true,
@@ -22,6 +24,7 @@ export class LandingProductComponent {
   PRODUCT_SLUG: any;
   PRODUCT_SELECTED: any;
   variation_selected: any = null;
+  subvariation_selected: any;
   PRODUCTS_RELATED: any = null;
   product_selected_modal: any;
   CAMPAIGN_DISCOUNT_CODE: any;
@@ -35,7 +38,8 @@ export class LandingProductComponent {
     private toastr: ToastrService,
     private router: Router,
     private cookieService: CookieService,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
+    public cartService: CartService
   ) {
     this.activatedRoute.params.subscribe((res: any) => {
       this.PRODUCT_SLUG = res.slug;
@@ -85,6 +89,13 @@ export class LandingProductComponent {
         ? this.cookieService.get('currency')
         : 'EUR';
     });
+  }
+
+  // its necessary to load script from main.js after DOM is loaded
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      MODAL_QUANTITY_LANDING($);
+    }, 500);
   }
 
   ngOnInit(): void {
@@ -147,10 +158,19 @@ export class LandingProductComponent {
 
   selectedVariation(variation: any) {
     this.variation_selected = null;
+    this.subvariation_selected = null;
 
     setTimeout(() => {
       this.variation_selected = variation;
       MODAL_PRODUCT_DETAIL($);
+    }, 50);
+  }
+
+  selectedSubvariation(subvariation: any) {
+    this.subvariation_selected = null;
+
+    setTimeout(() => {
+      this.subvariation_selected = subvariation;
     }, 50);
   }
 
@@ -160,5 +180,88 @@ export class LandingProductComponent {
     setTimeout(() => {
       this.product_selected_modal = product;
     }, 50);
+  }
+
+  addCart() {
+    if (!this.cartService.authService.user) {
+      this.toastr.error('Error', 'Ingrese a la tienda');
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    let product_variation_id = null;
+    // check if product has variations and subvariations which must be choose them before to add it to cart
+    if (this.PRODUCT_SELECTED.variations.length > 0) {
+      if (!this.variation_selected) {
+        this.toastr.error('Error', 'Necesitas seleccionar una variación');
+        return;
+      }
+      if (
+        this.variation_selected &&
+        this.variation_selected.subvariations.length > 0
+      ) {
+        if (!this.subvariation_selected) {
+          this.toastr.error(
+            'Error',
+            'Necesitas seleccionar la variación anidada correspondiente'
+          );
+        }
+      }
+    }
+
+    // product hasn't got subvariations
+    if (
+      this.PRODUCT_SELECTED.variations.length > 0 &&
+      this.variation_selected &&
+      this.variation_selected.subvariations.length == 0
+    ) {
+      product_variation_id = this.variation_selected.id;
+    }
+
+    // product has got some subvariations
+    if (
+      this.PRODUCT_SELECTED.variations.length > 0 &&
+      this.variation_selected &&
+      this.variation_selected.subvariations.length > 0
+    ) {
+      product_variation_id = this.subvariation_selected.id;
+    }
+
+    let greater_discount = null;
+
+    if (this.PRODUCT_SELECTED.greater_discount) {
+      greater_discount = this.PRODUCT_SELECTED.greater_discount;
+    }
+
+    let data = {
+      product_id: this.PRODUCT_SELECTED.id,
+      product_title: this.PRODUCT_SELECTED.title,
+      discount: greater_discount ? greater_discount.discount : null,
+      type_discount: greater_discount ? greater_discount.type_discount : null,
+      type_campaign: greater_discount ? greater_discount.type_campaign : null,
+      code_coupon: null,
+      code_discount: greater_discount ? greater_discount.code : null,
+      product_variation_id: product_variation_id,
+      quantity: $('#tp-cart-input-val').val(),
+      price_unit: this.PRODUCT_SELECTED.price_eur,
+      subtotal: this.getTotalPrice(this.PRODUCT_SELECTED),
+      total:
+        this.getTotalPrice(this.PRODUCT_SELECTED) *
+        $('#tp-cart-input-val').val(),
+      currency: this.currency,
+    };
+
+    this.cartService.registerCart(data).subscribe({
+      next: (res: any) => {
+        this.cartService.changeCart(res.cart);
+        this.toastr.success(
+          'Éxito',
+          'El producto se ha agregado al carrito de compra'
+        );
+      },
+      error: (err: any) => {
+        this.toastr.error('Error', err.error.message);
+      },
+    });
   }
 }

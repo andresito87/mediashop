@@ -164,19 +164,26 @@ export class HomeComponent implements OnInit {
 
   getLabelSlider(slider: any) {
     let miDiv: any = document.getElementById('label-' + slider.id);
-    miDiv.innerHTML = slider.label;
+    if (miDiv) {
+      miDiv.innerHTML = slider.label;
+    }
+
     return '';
   }
 
   getSubtitleSlider(slider: any) {
     let miDiv: any = document.getElementById('subtitle-' + slider.id);
-    miDiv.innerHTML = slider.subtitle;
+    if (miDiv) {
+      miDiv.innerHTML = slider.subtitle;
+    }
     return '';
   }
 
   getTitleBannerSecondary(banner: any, idBanner: string) {
     let miDiv: any = document.getElementById(idBanner);
-    miDiv.innerHTML = banner.title;
+    if (miDiv) {
+      miDiv.innerHTML = banner.title;
+    }
     return '';
   }
 
