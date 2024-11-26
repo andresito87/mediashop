@@ -64,17 +64,32 @@ export class ModalProductComponent {
 
   // Flash discounts
   getNewPrice(product: any, DISCOUNTS_FLASH_PARAMETER: any) {
-    if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
-      // type % dsicount
-      return (
-        product.price_eur -
-        product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
-      ).toFixed(2);
+    if (this.currency == 'EUR') {
+      if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
+        // type % dsicount
+        return (
+          product.price_eur -
+          product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+        ).toFixed(2);
+      } else {
+        // EUR/PEN fix amount
+        return (product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
+          2
+        );
+      }
     } else {
-      // EUR/PEN fix amount
-      return (product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
-        2
-      );
+      if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
+        // type % dsicount
+        return (
+          product.price_usd -
+          product.price_usd * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+        ).toFixed(2);
+      } else {
+        // USD fix amount
+        return (product.price_usd - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
+          2
+        );
+      }
     }
   }
 
@@ -83,7 +98,11 @@ export class ModalProductComponent {
     if (product.greater_discount) {
       return this.getNewPrice(product, product.greater_discount);
     }
-    return product.price_eur;
+    if (this.currency == 'EUR') {
+      return product.price_eur;
+    } else {
+      return product.price_usd;
+    }
   }
 
   addCart() {
@@ -147,7 +166,10 @@ export class ModalProductComponent {
       code_discount: greater_discount ? greater_discount.code : null,
       product_variation_id: product_variation_id,
       quantity: $('#tp-cart-input-val').val(),
-      price_unit: this.product_selected.price_eur,
+      price_unit:
+        this.currency == 'EUR'
+          ? this.product_selected.price_eur
+          : this.product_selected.price_usd,
       subtotal: this.getTotalPrice(this.product_selected),
       total:
         this.getTotalPrice(this.product_selected) *

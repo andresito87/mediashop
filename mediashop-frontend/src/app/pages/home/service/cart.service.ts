@@ -17,7 +17,6 @@ export class CartService {
   changeCart(data: CartItem) {
     let listCart = this.cart.getValue();
     let index = listCart.findIndex((item: CartItem) => {
-      console.log(item);
       return item.id == data.id;
     });
 
@@ -77,7 +76,10 @@ export class CartService {
     });
     let URL = URL_SERVICIOS + '/ecommerce/carts/' + cart_id;
 
-    return this.http.put(URL, data, { headers: headersAdded });
+    return this.http.put(URL, data, {
+      headers: headersAdded,
+      observe: 'response',
+    });
   }
 
   deleteCart(cart_id: string) {
@@ -87,5 +89,23 @@ export class CartService {
     let URL = URL_SERVICIOS + '/ecommerce/carts/' + cart_id;
 
     return this.http.delete(URL, { headers: headersAdded });
+  }
+
+  deleteCartsAll() {
+    let headersAdded = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authService.token,
+    });
+    let URL = URL_SERVICIOS + '/ecommerce/carts/delete_all';
+
+    return this.http.delete(URL, { headers: headersAdded });
+  }
+
+  applyCoupon(code_coupon: any) {
+    let headersAdded = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authService.token,
+    });
+    let URL = URL_SERVICIOS + '/ecommerce/carts/apply_coupon';
+
+    return this.http.post(URL, code_coupon, { headers: headersAdded });
   }
 }

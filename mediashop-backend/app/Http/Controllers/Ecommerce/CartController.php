@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ecommerce;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Ecommerce\Cart\CartEcommerceCollection;
 use App\Http\Resources\Ecommerce\Cart\CartEcommerceResource;
+use App\Models\Coupon\Coupon;
 use App\Models\Product\Product;
 use App\Models\Product\ProductVariation;
 use App\Models\Sale\Cart;
@@ -81,6 +82,32 @@ class CartController extends Controller
     }
 
     /**
+     * Apply a coupon to the cart.
+     */
+    public function apply_coupon(Request $request)
+    {
+        $coupon = Coupon::where("code", $request->code_coupon)->where("state", 1)->first();
+
+        if (!$coupon) {
+            return response()->json(["message" => "El cupón ingresado no existe"], 403);
+        }
+
+        $user = auth("api")->user();
+        $carts = Cart::where("user_id", $user->id)->get();
+
+        foreach ($carts as $key => $cart) {
+            if ($coupon->type_coupon == 1) { // Product coupon
+            }
+
+            if ($coupon->type_coupon == 2) { // Categorie coupon
+            }
+
+            if ($coupon->type_coupon == 3) { // Brand coupon
+            }
+        }
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(string $id)
@@ -142,6 +169,22 @@ class CartController extends Controller
         $cart->update($request->all());
 
         return response()->json(["cart" => CartEcommerceResource::make($cart)], 200);
+    }
+
+    /**
+     * Remove all cart items.
+     */
+    public function delete_all()
+    {
+        $user = auth("api")->user();
+        $carts = Cart::where("user_id", $user->id)->get();
+        foreach ($carts as $key => $cart) {
+            $cart->delete();
+        }
+
+        return response()->json([
+            "message" => "Carrito de compra limpiado correctamente"
+        ], 200);
     }
 
     /**

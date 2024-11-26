@@ -3,7 +3,7 @@ import { afterNextRender, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { HomeService } from '../../pages/home/service/home.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Renderer2 } from '@angular/core';
 import { CartService } from '../../pages/home/service/cart.service';
@@ -23,13 +23,15 @@ export class HeaderComponent {
   user: any;
   listCarts: any = [];
   totalCarts: number = 0;
+
   constructor(
     public homeService: HomeService,
     public cookieService: CookieService,
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
     public cartService: CartService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     afterNextRender(() => {
       this.homeService.menus().subscribe((res: any) => {
@@ -40,6 +42,13 @@ export class HeaderComponent {
       if (this.user) {
         this.cartService.listCart().subscribe((res: any) => {
           res.carts.data.forEach((item: CartItem) => {
+            if (item.currency != this.currency) {
+              this.cookieService.set('currency', item.currency);
+              setTimeout(() => {
+                window.location.reload();
+              }, 25);
+            }
+
             this.cartService.changeCart(item);
           });
         });
@@ -63,6 +72,15 @@ export class HeaderComponent {
         0
       );
     });
+
+    let cartCleared = this.cookieService.get('cartCleared');
+    if (cartCleared) {
+      this.toastr.info(
+        'Información',
+        'El carrito se vació al cambiar de moneda'
+      );
+      this.cookieService.delete('cartCleared');
+    }
   }
 
   deleteCart(cart: any) {
@@ -88,9 +106,19 @@ export class HeaderComponent {
   }
 
   changeCurrency(value: string) {
-    this.cookieService.set('currency', value);
-    setTimeout(() => {
+    this.user = this.cartService.authService.user;
+
+    // clean shopping cart when user changes currency
+    if (this.user) {
+      this.cartService.deleteCartsAll().subscribe((res: any) => {
+        // save if cart was cleared
+        this.cookieService.set('cartCleared', 'true');
+
+        this.cookieService.set('currency', value);
+        window.location.reload();
+      });
+    } else {
       window.location.reload();
-    }, 50);
+    }
   }
 }

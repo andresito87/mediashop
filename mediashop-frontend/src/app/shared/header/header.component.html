@@ -233,14 +233,14 @@
             </h5>
             <div class="cartmini__price-wrapper">
               <span class="cartmini__price">
-                {{ cart.subtotal }} {{ currency }}
+                {{ cart.subtotal }} {{ cart.currency }}
               </span>
               <span class="cartmini__quantity mx-1">
                 x {{ cart.quantity }}
               </span>
               <br />
               <span class="cartmini__price">
-                SubTotal: {{ cart.total }} {{ currency }}
+                SubTotal: {{ cart.total }} {{ cart.currency }}
               </span>
               @if(cart.product_variation){
               <br />
@@ -280,7 +280,7 @@
       <div class="cartmini__empty text-center d-none">
         <img src="assets/img/product/cartmini/empty-cart.png" alt="" />
         <p>Your Cart is empty</p>
-        <a href="shop.html" class="tp-btn">Go to Shop</a>
+        <a href="/" class="tp-btn">Ir al Inicio</a>
       </div>
     </div>
     <div class="cartmini__checkout">
@@ -289,8 +289,10 @@
         <span> {{ totalCarts }} {{ currency }} </span>
       </div>
       <div class="cartmini__checkout-btn">
-        <a href="cart.html" class="tp-btn mb-10 w-100"> view cart</a>
-        <a href="checkout.html" class="tp-btn tp-btn-border w-100"> checkout</a>
+        <a routerLink="/shopping-cart" class="tp-btn mb-10 w-100">
+          Carrito de compra</a
+        >
+        <a routerLink="/checkout" class="tp-btn tp-btn-border w-100"> Pagar</a>
       </div>
     </div>
   </div>
@@ -379,10 +381,20 @@
                   </span>
                   <ul>
                     <li *ngIf="currency == 'EUR'">
-                      <a href="#" (click)="changeCurrency('USD')">USD</a>
+                      <a
+                        href="#"
+                        onclick="return false;"
+                        (click)="changeCurrency('USD')"
+                        >USD</a
+                      >
                     </li>
                     <li *ngIf="currency == 'USD'">
-                      <a href="#" (click)="changeCurrency('EUR')">EUR</a>
+                      <a
+                        href="#"
+                        onclick="return false;"
+                        (click)="changeCurrency('EUR')"
+                        >EUR</a
+                      >
                     </li>
                   </ul>
                 </div>

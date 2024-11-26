@@ -142,7 +142,8 @@ export class HomeComponent implements OnInit {
       code_discount: greater_discount ? greater_discount.code : null,
       product_variation_id: null,
       quantity: 1,
-      price_unit: product.price_eur,
+      price_unit:
+        this.currency == 'EUR' ? product.price_eur : product.price_usd,
       subtotal: this.getTotalPrice(product),
       total: this.getTotalPrice(product) * 1,
       currency: this.currency,

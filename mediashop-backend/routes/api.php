@@ -103,23 +103,25 @@ Route::prefix("ecommerce")
         // ================================ HOME ================================ //
         Route::get("home", [HomeController::class, "home"]);
         // ====================================================================== //
-
+    
         // =============================== MENUS =============================== //
         Route::get("menus", [HomeController::class, "menus"]);
         // ====================================================================== //
-
+    
         // =============================== PRODUCT-DETAILS =============================== //
         Route::get("product/{slug}", [HomeController::class, "show_product"]);
         // ====================================================================== //
-
+    
         // =============================== CARTS =============================== //
         Route::group([
             "middleware" => "auth:api", // endpoints protected against unathenticated users
         ], function ($router) {
+            Route::delete("carts/delete_all", [CartController::class, "delete_all"]);
+            Route::post("carts/apply_coupon", [CartController::class, "apply_coupon"]);
             Route::resource('carts', CartController::class);
         });
         // ====================================================================== //
-
+    
     });
 
 // =============================================================================================== //

@@ -243,7 +243,10 @@ export class LandingProductComponent {
       code_discount: greater_discount ? greater_discount.code : null,
       product_variation_id: product_variation_id,
       quantity: $('#tp-cart-input-val').val(),
-      price_unit: this.PRODUCT_SELECTED.price_eur,
+      price_unit:
+        this.currency == 'EUR'
+          ? this.PRODUCT_SELECTED.price_eur
+          : this.PRODUCT_SELECTED.price_usd,
       subtotal: this.getTotalPrice(this.PRODUCT_SELECTED),
       total:
         this.getTotalPrice(this.PRODUCT_SELECTED) *

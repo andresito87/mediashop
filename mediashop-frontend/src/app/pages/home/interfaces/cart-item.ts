@@ -1,7 +1,7 @@
 export interface CartItem {
   id: string;
   product_id: string;
-  discount?: number;
+  discount: number;
   type_discount?: null;
   type_campaign?: null;
   code_coupon?: null;
@@ -9,7 +9,7 @@ export interface CartItem {
   product_variation_id?: null;
   quantity: number;
   price_unit?: number;
-  subtotal?: number;
+  subtotal: number;
   total: number;
   currency: string;
 }
