@@ -123,11 +123,11 @@
     <div class="tp-product-details-price-wrapper mb-20">
       @if (product_selected.greater_discount) {
       <span class="tp-product-details-price old-price mx-1"
-        >{{ product_selected.price_eur }} €</span
+        >{{ getTotalCurrency(product_selected) }} {{ currency }}</span
       >
       }
       <span class="tp-product-details-price new-price"
-        >{{ getTotalPrice(product_selected) }} €</span
+        >{{ getTotalPrice(product_selected) }} {{ currency }}</span
       >
     </div>
 

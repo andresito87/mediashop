@@ -2,7 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { isPlatformBrowser } from '@angular/common';
 import { afterRender, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { HomeService } from '../../home/service/home.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalProductComponent } from '../component/modal-product/modal-product.component';
@@ -16,7 +16,7 @@ declare function MODAL_QUANTITY_LANDING([]): any;
 @Component({
   selector: 'app-landing-product',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalProductComponent],
+  imports: [CommonModule, FormsModule, RouterModule, ModalProductComponent],
   templateUrl: './landing-product.component.html',
   styleUrl: './landing-product.component.css',
 })

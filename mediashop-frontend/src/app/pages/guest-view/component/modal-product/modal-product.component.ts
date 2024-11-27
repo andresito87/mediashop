@@ -44,6 +44,14 @@ export class ModalProductComponent {
     }, 50);
   }
 
+  getTotalCurrency(product: any) {
+    if (this.currency == 'EUR') {
+      return product.price_eur;
+    } else {
+      return product.price_usd;
+    }
+  }
+
   selectedVariation(variation: any) {
     this.variation_selected = null;
     this.subvariation_selected = null;

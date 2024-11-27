@@ -2421,13 +2421,15 @@ function PRODUCTS_SLIDER_HOME($) {
   });
 
   setTimeout(() => {
-    $("[data-countdown]").countdown();
+    if ($("[data-countdown]").length > 0) {
+      $("[data-countdown]").countdown();
+    }
   }, 50);
 }
 
 function MODAL_PRODUCT_DETAIL($) {
   setTimeout(() => {
-    $("[data-countdown]").countdown();
+    // $("[data-countdown]").countdown();
 
     $("[data-bg-color]").each(function () {
       $(this).css("background-color", $(this).attr("data-bg-color"));

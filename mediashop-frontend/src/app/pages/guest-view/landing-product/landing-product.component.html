@@ -969,7 +969,7 @@
                   <div
                     class="tp-product-thumb-3 mb-15 fix p-relative z-index-1"
                   >
-                    <a href="#" onclick="return false;">
+                    <a [routerLink]="'/product/' + product.slug">
                       <img
                         [src]="product.image"
                         style="width: 282px; height: 320px; object-fit: contain"
@@ -1123,7 +1123,7 @@
                       </span>
                     </div>
                     <h3 class="tp-product-title-3">
-                      <a href="#" onclick="return false;">{{
+                      <a [routerLink]="'/product/' + product.slug">{{
                         product.title
                       }}</a>
                     </h3>
