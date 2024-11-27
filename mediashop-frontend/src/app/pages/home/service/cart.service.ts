@@ -106,6 +106,9 @@ export class CartService {
     });
     let URL = URL_SERVICIOS + '/ecommerce/carts/apply_coupon';
 
-    return this.http.post(URL, code_coupon, { headers: headersAdded });
+    return this.http.post(URL, code_coupon, {
+      headers: headersAdded,
+      observe: 'response',
+    });
   }
 }

@@ -97,14 +97,97 @@ class CartController extends Controller
 
         foreach ($carts as $key => $cart) {
             if ($coupon->type_coupon == 1) { // Product coupon
+                $exist_product_coupon = false;
+                foreach ($coupon->products as $coupon_product) {
+                    if ($coupon_product->product_id == $cart->product_id) {
+                        $exist_product_coupon = true;
+                        break;
+                    }
+                }
+                if ($exist_product_coupon) {
+                    $subtotal = 0;
+                    if ($coupon->type_discount == 1) { // %
+                        $subtotal = $cart->price_unit - $cart->price_unit * ($coupon->discount * 0.01);
+                    }
+
+                    if ($coupon->type_discount == 2) { // fixed amount
+                        $subtotal = $cart->price_unit - $coupon->discount;
+                    }
+
+                    $cart->update([
+                        "type_discount" => $coupon->type_discount,
+                        "discount" => $coupon->discount,
+                        "code_coupon" => $coupon->code,
+                        "subtotal" => $subtotal,
+                        "total" => $subtotal * $cart->quantity,
+                        "type_campaign" => NULL,
+                        "code_discount" => NULL
+                    ]);
+                }
             }
 
             if ($coupon->type_coupon == 2) { // Categorie coupon
+                $exist_categorie_coupon = false;
+                foreach ($coupon->categories as $coupon_product) {
+                    if ($coupon_product->categorie_id == $cart->product->categorie_first_id) {
+                        $exist_categorie_coupon = true;
+                        break;
+                    }
+                }
+                if ($exist_categorie_coupon) {
+                    $subtotal = 0;
+                    if ($coupon->type_discount == 1) { // %
+                        $subtotal = $cart->price_unit - $cart->price_unit * ($coupon->discount * 0.01);
+                    }
+
+                    if ($coupon->type_discount == 2) { // fixed amount
+                        $subtotal = $cart->price_unit - $coupon->discount;
+                    }
+
+                    $cart->update([
+                        "type_discount" => $coupon->type_discount,
+                        "discount" => $coupon->discount,
+                        "code_coupon" => $coupon->code,
+                        "subtotal" => $subtotal,
+                        "total" => $subtotal * $cart->quantity,
+                        "type_campaign" => NULL,
+                        "code_discount" => NULL
+                    ]);
+                }
             }
 
             if ($coupon->type_coupon == 3) { // Brand coupon
+                $exist_brand_coupon = false;
+                foreach ($coupon->brands as $coupon_product) {
+                    if ($coupon_product->brand_id == $cart->product->brand_id) {
+                        $exist_brand_coupon = true;
+                        break;
+                    }
+                }
+                if ($exist_brand_coupon) {
+                    $subtotal = 0;
+                    if ($coupon->type_discount == 1) { // %
+                        $subtotal = $cart->price_unit - $cart->price_unit * ($coupon->discount * 0.01);
+                    }
+
+                    if ($coupon->type_discount == 2) { // fixed amount
+                        $subtotal = $cart->price_unit - $coupon->discount;
+                    }
+
+                    $cart->update([
+                        "type_discount" => $coupon->type_discount,
+                        "discount" => $coupon->discount,
+                        "code_coupon" => $coupon->code,
+                        "subtotal" => $subtotal,
+                        "total" => $subtotal * $cart->quantity,
+                        "type_campaign" => NULL,
+                        "code_discount" => NULL
+                    ]);
+                }
             }
         }
+
+        return response()->json(['message' => 'Cupón aplicado correctamente'], 200);
     }
 
     /**

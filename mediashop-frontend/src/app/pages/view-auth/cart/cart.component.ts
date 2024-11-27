@@ -114,6 +114,22 @@ export class CartComponent {
     let data = {
       code_coupon: this.code_coupon,
     };
-    this.cartService.applyCoupon(data).subscribe((res: any) => {});
+    this.cartService.applyCoupon(data).subscribe({
+      next: (res: any) => {
+        if (res.status == 200) {
+          this.cartService.resetCart();
+          this.cartService.listCart().subscribe((res: any) => {
+            res.carts.data.forEach((item: CartItem) => {
+              this.cartService.changeCart(item);
+            });
+          });
+          this.toastr.success('Éxito', res.body.message);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error('Validación', err.error.message);
+      },
+    });
   }
 }
