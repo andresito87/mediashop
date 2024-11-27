@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Sale\Cart;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,5 +64,11 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    // a user could have many items in the cart
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'user_id');
     }
 }

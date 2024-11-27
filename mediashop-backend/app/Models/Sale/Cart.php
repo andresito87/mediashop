@@ -26,7 +26,8 @@ class Cart extends Model
         "price_unit",
         "subtotal",
         "total",
-        "currency"
+        "currency",
+        "updated_at"
     ];
 
     public function setCreatedAtAttribute($value)
