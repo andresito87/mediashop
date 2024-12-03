@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Sale\Cart;
+use App\Models\Sale\UserAddres;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,5 +71,11 @@ class User extends Authenticatable implements JWTSubject
     public function carts()
     {
         return $this->hasMany(Cart::class, 'user_id');
+    }
+
+    // a user could have many addresses
+    public function address()
+    {
+        return $this->hasMany(UserAddres::class, 'user_id');
     }
 }

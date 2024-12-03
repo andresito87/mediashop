@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Product\PropertyAttributetController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Ecommerce\CartController;
 use App\Http\Controllers\Ecommerce\HomeController;
+use App\Http\Controllers\Ecommerce\UserAddressController;
 use App\Http\Controllers\JWTAuthController;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -112,16 +113,26 @@ Route::prefix("ecommerce")
         Route::get("product/{slug}", [HomeController::class, "show_product"]);
         // ====================================================================== //
     
-        // =============================== CARTS =============================== //
+
+        /******************************* AUTHENTICATED USERS *******************************/
         Route::group([
             "middleware" => "auth:api", // endpoints protected against unathenticated users
         ], function ($router) {
+
+            // ==================================== CARTS ==================================== //
             Route::delete("carts/delete_all", [CartController::class, "delete_all"]);
             Route::post("carts/apply_coupon", [CartController::class, "apply_coupon"]);
             Route::resource('carts', CartController::class);
-        });
-        // ====================================================================== //
+            // ============================================================================== //
     
+            // =============================== USER ADDRESS =============================== //
+            Route::resource('user_address', UserAddressController::class);
+            // ====================================================================== //
+    
+            /***************************** AUTHENTICATED USERS ********************************/
+        });
+
+
     });
 
 // =============================================================================================== //

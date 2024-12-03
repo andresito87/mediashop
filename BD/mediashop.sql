@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 20-11-2024 a las 14:24:47
+-- Tiempo de generación: 27-11-2024 a las 18:21:14
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -162,6 +162,157 @@ CREATE TABLE `carts` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Volcado de datos para la tabla `carts`
+--
+
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `type_discount`, `discount`, `type_campaign`, `code_coupon`, `code_discount`, `product_variation_id`, `quantity`, `price_unit`, `subtotal`, `total`, `currency`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(19, 53, 15, NULL, 0, NULL, NULL, NULL, NULL, 1, 170, 170, 170, 'EUR', '2024-11-24 17:37:38', '2024-11-24 17:04:25', '2024-11-24 17:04:25'),
+(20, 53, 8, NULL, 0, NULL, NULL, NULL, NULL, 1, 425, 425, 425, 'EUR', '2024-11-24 17:37:40', '2024-11-24 17:09:17', '2024-11-24 17:09:17'),
+(21, 53, 21, NULL, 0, NULL, NULL, NULL, NULL, 1, 69, 69, 69, 'EUR', '2024-11-24 17:37:42', '2024-11-24 16:41:33', '2024-11-24 16:41:33'),
+(22, 53, 3, NULL, 0, NULL, NULL, NULL, 11, 1, 1800, 1800, 1800, 'EUR', '2024-11-24 17:40:32', '2024-11-24 17:27:55', '2024-11-24 17:27:55'),
+(23, 53, 11, NULL, 0, NULL, NULL, NULL, NULL, 1, 500, 500, 500, 'EUR', '2024-11-24 18:10:53', '2024-11-24 17:14:06', '2024-11-24 17:14:06'),
+(24, 53, 15, NULL, 0, NULL, NULL, NULL, NULL, 1, 170, 170, 170, 'EUR', '2024-11-24 18:10:54', '2024-11-24 17:11:07', '2024-11-24 17:11:07'),
+(25, 53, 16, NULL, 0, NULL, NULL, NULL, NULL, 1, 729, 729, 729, 'EUR', '2024-11-24 18:10:57', '2024-11-24 17:15:15', '2024-11-24 17:15:15'),
+(26, 53, 11, NULL, 0, NULL, NULL, NULL, NULL, 1, 500, 500, 500, 'EUR', '2024-11-24 18:28:02', '2024-11-24 17:29:06', '2024-11-24 17:29:06'),
+(27, 53, 29, NULL, 0, NULL, NULL, NULL, NULL, 1, 1799, 1799, 1799, 'EUR', '2024-11-24 18:28:05', '2024-11-24 17:38:31', '2024-11-24 17:38:31'),
+(28, 53, 16, NULL, 0, NULL, NULL, NULL, NULL, 1, 729, 729, 729, 'EUR', '2024-11-24 18:28:09', '2024-11-24 17:30:27', '2024-11-24 17:30:27'),
+(29, 53, 19, NULL, 0, NULL, NULL, NULL, NULL, 1, 2998, 2998, 2998, 'EUR', '2024-11-24 18:30:18', '2024-11-24 17:30:24', '2024-11-24 17:30:24'),
+(30, 53, 20, NULL, 0, NULL, NULL, NULL, NULL, 1, 3300, 3300, 3300, 'EUR', '2024-11-24 18:30:56', '2024-11-24 17:36:53', '2024-11-24 17:36:53'),
+(31, 53, 15, NULL, 0, NULL, NULL, NULL, NULL, 1, 170, 170, 170, 'EUR', '2024-11-24 18:30:58', '2024-11-24 17:35:05', '2024-11-24 17:35:05'),
+(32, 53, 10, NULL, 0, NULL, NULL, NULL, NULL, 1, 1599, 1599, 1599, 'EUR', '2024-11-24 18:31:04', '2024-11-24 17:40:23', '2024-11-24 17:40:23'),
+(33, 53, 29, NULL, 0, NULL, NULL, NULL, NULL, 1, 1799, 1799, 1799, 'EUR', '2024-11-24 18:42:35', '2024-11-24 17:45:48', '2024-11-24 17:45:48'),
+(34, 53, 9, NULL, 0, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 18:42:37', '2024-11-24 17:43:55', '2024-11-24 17:43:55'),
+(35, 53, 8, NULL, 0, NULL, NULL, NULL, NULL, 1, 425, 425, 425, 'EUR', '2024-11-24 18:42:38', '2024-11-24 17:42:47', '2024-11-24 17:42:47'),
+(36, 53, 21, NULL, 0, NULL, NULL, NULL, NULL, 1, 69, 69, 69, 'EUR', '2024-11-24 18:42:40', '2024-11-24 17:47:55', '2024-11-24 17:47:55'),
+(37, 53, 18, NULL, 0, NULL, NULL, NULL, NULL, 1, 53, 53, 53, 'EUR', '2024-11-24 18:50:12', '2024-11-24 17:51:22', '2024-11-24 17:51:22'),
+(38, 53, 23, NULL, 0, NULL, NULL, NULL, NULL, 1, 2449, 2449, 2449, 'EUR', '2024-11-24 18:50:15', '2024-11-24 17:51:26', '2024-11-24 17:51:26'),
+(39, 53, 16, NULL, 0, NULL, NULL, NULL, NULL, 1, 729, 729, 729, 'EUR', '2024-11-24 18:50:18', '2024-11-24 17:50:24', '2024-11-24 17:50:24'),
+(40, 53, 2, NULL, 0, NULL, NULL, NULL, NULL, 1, 855, 855, 855, 'EUR', '2024-11-24 18:51:32', '2024-11-24 18:48:58', '2024-11-24 18:48:58'),
+(41, 53, 5, NULL, 0, NULL, NULL, NULL, NULL, 1, 799, 799, 799, 'EUR', '2024-11-24 18:51:34', '2024-11-24 17:51:44', '2024-11-24 17:51:44'),
+(42, 53, 29, NULL, 0, NULL, NULL, NULL, NULL, 1, 1799, 1799, 1799, 'EUR', '2024-11-24 18:51:40', '2024-11-24 17:51:48', '2024-11-24 17:51:48'),
+(43, 53, 28, 1, 55, NULL, NULL, '65b3268ea4599', NULL, 1, 540, 243, 243, 'EUR', '2024-11-24 19:40:16', '2024-11-24 19:19:30', '2024-11-24 19:19:30'),
+(44, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 19:40:35', '2024-11-24 18:48:31', '2024-11-24 18:48:31'),
+(45, 53, 9, 1, 75, NULL, NULL, '65b1ed147a9c4', NULL, 1, 149, 37.25, 37.25, 'EUR', '2024-11-24 19:48:41', '2024-11-24 18:58:23', '2024-11-24 18:58:23'),
+(46, 53, 2, 1, 75, NULL, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-24 19:50:09', '2024-11-24 18:58:20', '2024-11-24 18:58:20'),
+(47, 53, 15, NULL, NULL, NULL, NULL, NULL, NULL, 1, 170, 170, 170, 'EUR', '2024-11-24 20:09:06', '2024-11-24 19:19:23', '2024-11-24 19:19:23'),
+(48, 53, 2, 2, 1500, 1, NULL, '65b326c549356', NULL, 1, 855, -645, -645, 'EUR', '2024-11-24 20:12:04', '2024-11-24 19:14:20', '2024-11-24 19:14:20'),
+(49, 53, 19, NULL, NULL, NULL, NULL, NULL, NULL, 1, 2998, 2998, 2998, 'EUR', '2024-11-24 20:14:29', '2024-11-24 19:19:27', '2024-11-24 19:19:27'),
+(50, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 20:18:38', '2024-11-24 19:19:20', '2024-11-24 19:19:20'),
+(51, 53, 9, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 149, 37.25, 37.25, 'EUR', '2024-11-24 20:19:44', '2024-11-24 19:21:24', '2024-11-24 19:21:24'),
+(52, 53, 2, 2, 1500, 1, NULL, '65b326c549356', NULL, 1, 855, -645, -645, 'EUR', '2024-11-24 20:20:01', '2024-11-24 19:21:26', '2024-11-24 19:21:26'),
+(53, 53, 17, 2, 75, 1, NULL, '65ab61021a4f4', NULL, 1, 499, 424, 424, 'EUR', '2024-11-24 20:20:11', '2024-11-24 19:21:22', '2024-11-24 19:21:22'),
+(54, 53, 2, 2, 1500, 1, NULL, '65b326c549356', NULL, 1, 855, -645, -645, 'EUR', '2024-11-24 20:21:31', '2024-11-24 19:21:49', '2024-11-24 19:21:49'),
+(55, 53, 17, 2, 75, 1, NULL, '65ab61021a4f4', NULL, 1, 499, 424, 424, 'EUR', '2024-11-24 20:21:36', '2024-11-24 19:21:47', '2024-11-24 19:21:47'),
+(56, 53, 2, 2, 1500, 1, NULL, '65b326c549356', NULL, 1, 855, -645, -645, 'EUR', '2024-11-24 20:26:23', '2024-11-24 20:01:27', '2024-11-24 20:01:27'),
+(57, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 20:27:09', '2024-11-24 19:39:12', '2024-11-24 19:39:12'),
+(58, 53, 25, NULL, NULL, NULL, NULL, NULL, NULL, 1, 929, 929, 929, 'EUR', '2024-11-24 20:37:40', '2024-11-24 19:38:40', '2024-11-24 19:38:40'),
+(59, 53, 17, 2, 75, 1, NULL, '65ab61021a4f4', NULL, 1, 499, 424, 424, 'EUR', '2024-11-24 20:38:49', '2024-11-24 19:39:13', '2024-11-24 19:39:13'),
+(60, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 20:39:21', '2024-11-24 20:01:29', '2024-11-24 20:01:29'),
+(61, 53, 2, 2, 1500, 1, NULL, '65b326c549356', NULL, 1, 855, -645, -645, 'EUR', '2024-11-24 21:01:34', '2024-11-24 20:01:39', '2024-11-24 20:01:39'),
+(62, 53, 27, 2, 100, NULL, NULL, '6738bc8902f40', 37, 1, 3799, 3699, 3699, 'EUR', '2024-11-24 21:02:03', '2024-11-24 20:13:48', '2024-11-24 20:13:48'),
+(63, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 21:03:50', '2024-11-24 20:13:50', '2024-11-24 20:13:50'),
+(64, 53, 2, 2, 1500, 1, NULL, '65b326c549356', NULL, 1, 855, -645, -645, 'EUR', '2024-11-24 21:13:41', '2024-11-24 20:13:52', '2024-11-24 20:13:52'),
+(65, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-24 21:14:03', '2024-11-24 20:14:12', '2024-11-24 20:14:12'),
+(66, 53, 2, 2, 1500, 1, NULL, '65b326c549356', NULL, 1, 855, -645, -645, 'EUR', '2024-11-24 21:14:21', '2024-11-24 20:14:28', '2024-11-24 20:14:28'),
+(67, 53, 2, 2, 1500, 1, NULL, '65b326c549356', NULL, 1, 855, -645, -645, 'EUR', '2024-11-24 21:14:37', '2024-11-24 20:15:58', '2024-11-24 20:15:58'),
+(68, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 21:16:05', '2024-11-24 20:16:15', '2024-11-24 20:16:15'),
+(69, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 21:16:30', '2024-11-24 20:17:01', '2024-11-24 20:17:01'),
+(70, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-24 21:17:18', '2024-11-24 20:17:34', '2024-11-24 20:17:34'),
+(71, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 21:19:06', '2024-11-24 20:21:26', '2024-11-24 20:21:26'),
+(72, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 21:19:16', '2024-11-24 20:21:24', '2024-11-24 20:21:24'),
+(73, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 21:21:30', '2024-11-24 20:26:45', '2024-11-24 20:26:45'),
+(74, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-24 21:23:02', '2024-11-24 20:26:48', '2024-11-24 20:26:48'),
+(75, 53, 9, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 149, 37.25, 37.25, 'EUR', '2024-11-24 21:26:55', '2024-11-24 20:30:37', '2024-11-24 20:30:37'),
+(76, 53, 17, 2, 75, 1, NULL, '65ab61021a4f4', NULL, 1, 499, 424, 424, 'EUR', '2024-11-24 21:30:40', '2024-11-24 20:30:45', '2024-11-24 20:30:45'),
+(77, 53, 28, 1, 55, 1, NULL, '65b3268ea4599', NULL, 1, 540, 243, 243, 'EUR', '2024-11-24 21:31:30', '2024-11-24 20:31:36', '2024-11-24 20:31:36'),
+(78, 53, 28, 1, 55, 1, NULL, '65b3268ea4599', NULL, 1, 540, 243, 243, 'EUR', '2024-11-24 21:31:47', '2024-11-24 20:31:57', '2024-11-24 20:31:57'),
+(79, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 21:35:10', '2024-11-24 20:41:19', '2024-11-24 20:41:19'),
+(80, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 21:41:23', '2024-11-24 20:53:18', '2024-11-24 20:53:18'),
+(81, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 21:51:38', '2024-11-24 20:53:20', '2024-11-24 20:53:20'),
+(82, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 21:53:41', '2024-11-24 20:54:52', '2024-11-24 20:54:52'),
+(83, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 21:54:56', '2024-11-24 21:01:44', '2024-11-24 21:01:44'),
+(84, 53, 21, 1, 55, 1, NULL, '65b3268ea4599', NULL, 1, 69, 31.05, 31.05, 'EUR', '2024-11-24 21:59:05', '2024-11-24 21:01:42', '2024-11-24 21:01:42'),
+(85, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 21:59:18', '2024-11-24 21:01:41', '2024-11-24 21:01:41'),
+(86, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 22:08:35', '2024-11-24 21:08:41', '2024-11-24 21:08:41'),
+(87, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 22:08:50', '2024-11-24 21:08:56', '2024-11-24 21:08:56'),
+(88, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 22:12:00', '2024-11-24 21:17:42', '2024-11-24 21:17:42'),
+(89, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 22:12:20', '2024-11-24 21:17:40', '2024-11-24 21:17:40'),
+(90, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 22:17:46', '2024-11-24 21:17:52', '2024-11-24 21:17:52'),
+(91, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 22:20:25', '2024-11-24 21:21:52', '2024-11-24 21:21:52'),
+(92, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 22:21:55', '2024-11-24 21:23:22', '2024-11-24 21:23:22'),
+(93, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 22:22:02', '2024-11-24 21:23:20', '2024-11-24 21:23:20'),
+(94, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 22:23:38', '2024-11-24 21:25:35', '2024-11-24 21:25:35'),
+(95, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 22:24:59', '2024-11-24 21:25:33', '2024-11-24 21:25:33'),
+(96, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-24 22:25:44', '2024-11-26 07:10:23', '2024-11-26 07:10:23'),
+(97, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 22:30:41', '2024-11-24 21:30:46', '2024-11-24 21:30:46'),
+(98, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 22:30:56', '2024-11-24 21:31:39', '2024-11-24 21:31:39'),
+(99, 53, 9, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 149, 37.25, 37.25, 'EUR', '2024-11-24 22:31:49', '2024-11-24 21:32:00', '2024-11-24 21:32:00'),
+(100, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-24 22:32:44', '2024-11-26 07:10:25', '2024-11-26 07:10:25'),
+(101, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 08:10:41', '2024-11-26 07:11:06', '2024-11-26 07:11:06'),
+(102, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 08:11:12', '2024-11-26 07:11:17', '2024-11-26 07:11:17'),
+(103, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 08:17:09', '2024-11-26 07:17:14', '2024-11-26 07:17:14'),
+(104, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 08:19:27', '2024-11-26 07:19:31', '2024-11-26 07:19:31'),
+(105, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 08:20:50', '2024-11-26 07:20:56', '2024-11-26 07:20:56'),
+(106, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 08:24:23', '2024-11-26 07:24:29', '2024-11-26 07:24:29'),
+(107, 53, 9, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 149, 37.25, 37.25, 'EUR', '2024-11-26 08:24:35', '2024-11-26 07:24:42', '2024-11-26 07:24:42'),
+(108, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 08:25:06', '2024-11-26 07:25:15', '2024-11-26 07:25:15'),
+(109, 53, 9, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 149, 37.25, 37.25, 'EUR', '2024-11-26 08:25:24', '2024-11-26 07:25:33', '2024-11-26 07:25:33'),
+(110, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 08:25:49', '2024-11-26 07:25:56', '2024-11-26 07:25:56'),
+(111, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 08:28:52', '2024-11-26 07:32:37', '2024-11-26 07:32:37'),
+(112, 53, 17, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 499, 124.75, 124.75, 'EUR', '2024-11-26 08:28:57', '2024-11-26 07:29:58', '2024-11-26 07:29:58'),
+(113, 53, 29, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 1799, 449.75, 449.75, 'EUR', '2024-11-26 08:30:10', '2024-11-26 07:32:35', '2024-11-26 07:32:35'),
+(114, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-26 08:32:18', '2024-11-26 07:32:33', '2024-11-26 07:32:33'),
+(115, 53, 17, 2, 75, 1, NULL, '65ab61021a4f4', NULL, 1, 499, 424, 424, 'EUR', '2024-11-26 08:33:21', '2024-11-26 07:33:57', '2024-11-26 07:33:57'),
+(116, 53, 25, NULL, NULL, NULL, NULL, NULL, NULL, 1, 929, 929, 929, 'EUR', '2024-11-26 08:33:36', '2024-11-26 07:33:49', '2024-11-26 07:33:49'),
+(117, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 1, 149, 149, 149, 'EUR', '2024-11-26 08:34:02', '2024-11-26 07:35:54', '2024-11-26 07:35:54'),
+(118, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 08:35:21', '2024-11-26 07:35:58', '2024-11-26 07:35:58'),
+(119, 53, 19, NULL, NULL, NULL, NULL, NULL, NULL, 1, 2998, 2998, 2998, 'EUR', '2024-11-26 08:35:43', '2024-11-26 07:36:00', '2024-11-26 07:36:00'),
+(120, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 08:37:39', '2024-11-26 07:40:26', '2024-11-26 07:40:26'),
+(121, 53, 9, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 149, 37.25, 37.25, 'EUR', '2024-11-26 08:37:49', '2024-11-26 07:40:24', '2024-11-26 07:40:24'),
+(122, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 08:40:31', '2024-11-26 07:40:35', '2024-11-26 07:40:35'),
+(123, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 08:41:15', '2024-11-26 07:43:00', '2024-11-26 07:43:00'),
+(124, 53, 25, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 929, 929, 929, 'EUR', '2024-11-26 08:43:12', '2024-11-26 07:45:22', '2024-11-26 07:45:22'),
+(125, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 08:48:42', '2024-11-26 07:50:26', '2024-11-26 07:50:26'),
+(126, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 08:50:29', '2024-11-26 07:50:33', '2024-11-26 07:50:33'),
+(127, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 09:06:31', '2024-11-26 08:06:35', '2024-11-26 08:06:35'),
+(128, 53, 2, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 855, 213.75, 213.75, 'EUR', '2024-11-26 09:06:41', '2024-11-26 08:06:44', '2024-11-26 08:06:44'),
+(129, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 855, 455, 455, 'EUR', '2024-11-26 09:07:03', '2024-11-26 08:07:06', '2024-11-26 08:07:06'),
+(130, 53, 3, NULL, NULL, NULL, NULL, NULL, 12, 1, 1800, 1800, 1800, 'EUR', '2024-11-26 09:25:19', '2024-11-26 08:39:45', '2024-11-26 08:39:45'),
+(131, 53, 3, NULL, NULL, NULL, NULL, NULL, 13, 1, 1800, 1800, 1800, 'EUR', '2024-11-26 09:36:03', '2024-11-26 08:39:35', '2024-11-26 08:39:35'),
+(132, 53, 3, NULL, NULL, NULL, NULL, NULL, 9, 3, 1800, 1800, 5400, 'EUR', '2024-11-26 09:38:21', '2024-11-26 08:39:25', '2024-11-26 08:39:25'),
+(133, 53, 4, NULL, NULL, NULL, NULL, NULL, 4, 1, 1500, 1500, 1500, 'EUR', '2024-11-26 09:40:07', '2024-11-26 09:00:49', '2024-11-26 09:00:49'),
+(134, 53, 4, NULL, NULL, NULL, NULL, NULL, 3, 1, 1500, 1500, 1500, 'EUR', '2024-11-26 09:40:17', '2024-11-26 08:41:54', '2024-11-26 08:41:54'),
+(135, 53, 4, NULL, NULL, NULL, NULL, NULL, 3, 1, 1500, 1500, 1500, 'EUR', '2024-11-26 09:41:59', '2024-11-26 09:00:48', '2024-11-26 09:00:48'),
+(136, 53, 3, NULL, NULL, NULL, NULL, NULL, 12, 1, 1800, 1800, 1800, 'EUR', '2024-11-26 09:44:34', '2024-11-26 09:00:51', '2024-11-26 09:00:51'),
+(137, 53, 3, NULL, NULL, NULL, NULL, NULL, 13, 1, 1800, 1800, 1800, 'EUR', '2024-11-26 09:44:39', '2024-11-26 09:00:52', '2024-11-26 09:00:52'),
+(138, 53, 3, NULL, NULL, NULL, NULL, NULL, 11, 4, 1800, 1800, 7200, 'EUR', '2024-11-26 10:00:39', '2024-11-26 09:00:54', '2024-11-26 09:00:54'),
+(139, 53, 29, 1, 55, 1, NULL, '65b3268ea4599', NULL, 6, 1799, 809.55, 4857.3, 'EUR', '2024-11-26 13:30:36', '2024-11-26 17:55:01', '2024-11-26 17:55:01'),
+(140, 53, 15, NULL, NULL, NULL, NULL, NULL, NULL, 1, 170, 170, 170, 'EUR', '2024-11-26 13:30:37', '2024-11-26 18:55:01', '2024-11-26 18:55:01'),
+(141, 53, 9, NULL, NULL, NULL, NULL, NULL, NULL, 24, 149, 149, 3576, 'EUR', '2024-11-26 15:22:05', '2024-11-26 18:55:01', '2024-11-26 18:55:01'),
+(142, 53, 28, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 540, 135, 135, 'EUR', '2024-11-26 15:25:54', '2024-11-26 14:27:28', '2024-11-26 14:27:28'),
+(143, 53, 11, NULL, NULL, NULL, NULL, NULL, NULL, 1, 500, 500, 500, 'EUR', '2024-11-26 18:58:42', '2024-11-26 17:59:01', '2024-11-26 17:59:01'),
+(144, 53, 8, NULL, NULL, NULL, NULL, NULL, NULL, 1, 425, 425, 425, 'EUR', '2024-11-26 18:58:44', '2024-11-26 18:59:01', '2024-11-26 18:59:01'),
+(145, 53, 4, NULL, NULL, NULL, NULL, NULL, 4, 1, 490, 490, 490, 'USD', '2024-11-26 19:04:39', '2024-11-26 18:09:54', '2024-11-26 18:09:54'),
+(146, 53, 28, 1, 55, 1, NULL, '65b3268ea4599', NULL, 1, 125, 56.25, 56.25, 'USD', '2024-11-26 19:05:55', '2024-11-26 19:09:54', '2024-11-26 19:09:54'),
+(147, 53, 6, 1, 55, 1, NULL, '65b3268ea4599', NULL, 1, 680, 306, 306, 'USD', '2024-11-26 19:08:43', '2024-11-26 19:09:54', '2024-11-26 19:09:54'),
+(148, 53, 29, 1, 55, 1, NULL, '65b3268ea4599', NULL, 1, 650, 292.5, 292.5, 'USD', '2024-11-26 19:08:46', '2024-11-26 19:09:54', '2024-11-26 19:09:54'),
+(149, 53, 13, NULL, NULL, NULL, NULL, NULL, 21, 1, 160, 160, 160, 'USD', '2024-11-26 19:09:26', '2024-11-26 19:09:54', '2024-11-26 19:09:54'),
+(150, 53, 16, NULL, NULL, NULL, NULL, NULL, NULL, 1, 265, 265, 265, 'USD', '2024-11-26 19:24:41', '2024-11-26 18:24:57', '2024-11-26 18:24:57'),
+(151, 53, 6, 1, 55, 1, NULL, '65b3268ea4599', NULL, 1, 680, 306, 306, 'USD', '2024-11-26 19:24:43', '2024-11-26 19:24:57', '2024-11-26 19:24:57'),
+(152, 53, 2, 2, 400, 1, NULL, '65b326c549356', NULL, 1, 1000, 600, 600, 'USD', '2024-11-26 19:24:44', '2024-11-26 19:24:57', '2024-11-26 19:24:57'),
+(153, 53, 22, NULL, NULL, NULL, NULL, NULL, NULL, 1, 99, 99, 99, 'EUR', '2024-11-26 19:30:05', '2024-11-26 18:33:08', '2024-11-26 18:33:08'),
+(154, 53, 5, NULL, NULL, NULL, NULL, NULL, NULL, 1, 799, 799, 799, 'EUR', '2024-11-26 19:30:07', '2024-11-26 19:33:08', '2024-11-26 19:33:08'),
+(155, 53, 8, NULL, NULL, NULL, NULL, NULL, NULL, 1, 160, 160, 160, 'USD', '2024-11-26 20:13:54', '2024-11-26 19:15:00', '2024-11-26 19:15:00'),
+(156, 53, 25, NULL, NULL, NULL, NULL, NULL, NULL, 1, 375, 375, 375, 'USD', '2024-11-26 20:13:56', '2024-11-26 20:15:00', '2024-11-26 20:15:00'),
+(157, 53, 6, 1, 55, 1, NULL, '65b3268ea4599', NULL, 1, 680, 306, 306, 'USD', '2024-11-27 05:39:14', '2024-11-27 05:14:10', '2024-11-27 05:14:10'),
+(158, 53, 29, 1, 60, NULL, 'CODIGONOVIEMBRE2024', NULL, NULL, 1, 650, 260, 260, 'USD', '2024-11-27 06:13:28', '2024-11-27 17:07:27', NULL),
+(159, 53, 5, NULL, NULL, NULL, NULL, NULL, NULL, 1, 250, 250, 250, 'USD', '2024-11-27 06:13:40', '2024-11-27 17:07:27', NULL),
+(160, 53, 28, 1, 60, NULL, 'CODIGONOVIEMBRE2024', NULL, NULL, 1, 125, 50, 50, 'USD', '2024-11-27 06:13:46', '2024-11-27 17:07:27', NULL),
+(161, 53, 4, 2, 80, NULL, 'CODIGOREBAJAS2026', NULL, 4, 1, 490, 410, 410, 'USD', '2024-11-27 06:27:53', '2024-11-27 17:07:27', NULL),
+(162, 53, 2, 2, 80, NULL, 'CODIGOREBAJAS2026', NULL, NULL, 1, 1000, 920, 920, 'USD', '2024-11-27 06:33:12', '2024-11-27 17:07:27', NULL),
+(163, 53, 9, 1, 75, 2, NULL, '65b1ed147a9c4', NULL, 1, 55, 13.75, 13.75, 'USD', '2024-11-27 06:34:05', '2024-11-27 17:07:27', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -257,10 +408,10 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `code`, `type_discount`, `discount`, `type_count`, `num_uses`, `type_coupon`, `state`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, 'CODIGOMARZO', 1, 25, 1, 0, 2, 1, '2024-01-19 05:43:19', '2024-01-19 10:43:19', NULL),
-(3, 'CODIGONOVIEMBRE2023', 1, 60, 1, 0, 2, 1, '2024-01-19 05:44:16', '2024-01-19 10:44:16', NULL),
+(2, 'CODIGOMARZO', 1, 25, 1, 0, 1, 1, '2024-01-19 05:43:19', '2024-11-27 06:09:54', NULL),
+(3, 'CODIGONOVIEMBRE2024', 1, 60, 1, 0, 2, 1, '2024-01-19 05:44:16', '2024-11-27 06:10:33', NULL),
 (4, 'STACKMEAN', 1, 75, 1, 0, 3, 2, '2024-01-19 05:44:40', '2024-01-20 11:46:57', NULL),
-(5, 'CODIGOREBAJAS2026', 2, 80, 1, 0, 1, 2, '2024-01-19 05:46:02', '2024-01-20 11:48:02', NULL),
+(5, 'CODIGOREBAJAS2026', 2, 80, 1, 0, 1, 1, '2024-01-19 05:46:02', '2024-11-27 06:51:55', NULL),
 (6, 'VERANO2025', 1, 50, 2, 60, 1, 1, '2024-01-19 06:27:48', '2024-01-19 11:49:57', '2024-01-19 11:49:57');
 
 -- --------------------------------------------------------
@@ -306,10 +457,12 @@ CREATE TABLE `coupon_categories` (
 --
 
 INSERT INTO `coupon_categories` (`id`, `categorie_id`, `coupon_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 5, 2, '2024-01-19 05:43:19', '2024-01-19 05:43:19', NULL),
-(2, 4, 2, '2024-01-19 05:43:19', '2024-01-19 05:43:19', NULL),
-(3, 5, 3, '2024-01-19 05:44:16', '2024-01-19 05:44:16', NULL),
-(4, 1, 3, '2024-01-19 05:44:16', '2024-01-19 05:44:16', NULL);
+(1, 5, 2, '2024-01-19 05:43:19', '2024-11-27 06:09:54', '2024-11-27 06:09:54'),
+(2, 4, 2, '2024-01-19 05:43:19', '2024-11-27 06:09:54', '2024-11-27 06:09:54'),
+(3, 5, 3, '2024-01-19 05:44:16', '2024-11-27 05:09:12', '2024-11-27 05:09:12'),
+(4, 1, 3, '2024-01-19 05:44:16', '2024-11-27 06:09:12', '2024-11-27 06:09:12'),
+(5, 1, 3, '2024-11-27 06:09:12', '2024-11-27 06:10:33', '2024-11-27 06:10:33'),
+(6, 1, 3, '2024-11-27 06:10:33', '2024-11-27 06:10:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -339,7 +492,10 @@ INSERT INTO `coupon_products` (`id`, `product_id`, `coupon_id`, `created_at`, `u
 (6, 2, 5, '2024-01-19 06:47:02', '2024-01-20 11:46:16', '2024-01-20 11:46:16'),
 (7, 2, 6, '2024-01-19 06:47:41', '2024-01-19 11:47:41', NULL),
 (8, 2, 5, '2024-01-20 06:46:16', '2024-01-20 11:48:02', '2024-01-20 11:48:02'),
-(9, 2, 5, '2024-01-20 06:48:02', '2024-01-20 11:48:02', NULL);
+(9, 2, 5, '2024-01-20 06:48:02', '2024-11-27 06:51:55', '2024-11-27 06:51:55'),
+(10, 29, 2, '2024-11-27 06:09:54', '2024-11-27 06:09:54', NULL),
+(11, 2, 5, '2024-11-27 06:51:55', '2024-11-27 06:51:55', NULL),
+(12, 4, 5, '2024-11-27 06:51:55', '2024-11-27 06:51:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -373,7 +529,7 @@ INSERT INTO `discounts` (`id`, `code`, `type_campaign`, `type_discount`, `discou
 (4, '65ab613152419', 1, 1, 50, 2, 2, '2024-01-24 05:00:00', '2026-01-26 05:00:00', '2024-01-20 05:59:13', '2024-01-20 11:51:20', '2024-01-20 11:51:20'),
 (5, '65b1ed147a9c4', 2, 1, 75, 1, 1, '2024-01-24 05:00:00', '2025-08-29 05:00:00', '2024-01-25 05:09:40', '2024-01-28 10:32:53', NULL),
 (6, '65b3268ea4599', 1, 1, 55, 2, 1, '2024-01-24 05:00:00', '2025-08-29 05:00:00', '2024-01-26 03:27:10', '2024-01-28 10:45:26', NULL),
-(7, '65b326c549356', 1, 2, 1500, 1, 1, '2024-01-24 00:00:00', '2025-01-26 00:00:00', '2024-01-26 03:28:05', '2024-11-16 17:27:23', NULL),
+(7, '65b326c549356', 1, 2, 400, 1, 1, '2024-01-24 00:00:00', '2025-01-26 00:00:00', '2024-01-26 03:28:05', '2024-11-24 21:15:23', NULL),
 (8, '6733a18b3feb7', 2, 1, 50, 1, 1, '2024-11-10 00:00:00', '2025-11-16 00:00:00', '2024-11-12 19:42:19', '2024-11-12 19:42:19', NULL),
 (9, '6738bc8902f40', 1, 2, 100, 1, 1, '2024-11-16 00:00:00', '2025-11-16 00:00:00', '2024-11-16 16:38:49', '2024-11-16 16:38:49', NULL);
 
@@ -490,7 +646,8 @@ INSERT INTO `discount_products` (`id`, `product_id`, `discount_id`, `created_at`
 (41, 2, 7, '2024-11-16 17:23:10', '2024-11-16 17:24:32', '2024-11-16 17:24:32'),
 (42, 2, 7, '2024-11-16 17:24:32', '2024-11-16 17:24:43', '2024-11-16 17:24:43'),
 (43, 2, 7, '2024-11-16 17:24:43', '2024-11-16 17:27:23', '2024-11-16 17:27:23'),
-(44, 2, 7, '2024-11-16 17:27:23', '2024-11-16 17:27:23', NULL);
+(44, 2, 7, '2024-11-16 17:27:23', '2024-11-24 21:15:23', '2024-11-24 21:15:23'),
+(45, 2, 7, '2024-11-24 21:15:23', '2024-11-24 21:15:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -645,7 +802,7 @@ INSERT INTO `products` (`id`, `title`, `slug`, `sku`, `price_eur`, `price_usd`, 
 (15, 'Banpresto Mha The Movie Whm The Amazing Heroe Katsuki Bakugo', 'banpresto-mha-the-movie-whm-the-amazing-heroe-katsuki-bakugo', 'Katsuki-Bakugo123', 170, 50, '<p>Altura 15 cm aproximadamente<br />\r\n<br />\r\nTienda virtual dedicada a la venta de figuras de colecci&oacute;n, nuestros productos son 100% originales, nuevos y sellados, estamos contentos de poder brindarte la mejor atenci&oacute;n, cualquier consulta no dudes en hacerla.<br />\r\n<br />\r\nTodos los pedidos van debidamente embalados en una caja para regalo!!.<br />\r\n<br />\r\nEnvi&oacute; gratis por mercado de env&iacute;os (Lima - provincia), Mercado env&iacute;o que es el Courier de Mercado Libre, los tiempos de entrega los maneja la Courier, si deseas una entrega para cualquier distrito de Lima Metropolitana ind&iacute;canos cual es para indicarte un tiempo de entrega aproximada.<br />\r\n<br />\r\nPuede recoger personalmente su pedido en nuestra direcci&oacute;n en Bre&ntilde;a Debe colocar la opci&oacute;n recoger en tienda.<br />\r\n<br />\r\nTENEMOS UNA EXCELENTE CALIFICACI&Oacute;N POR VENTAS REALIZADAS, LO INVITAMOS A VER LOS COMENTARIOS DE LOS CLIENTES EN NUESTRA INFORMACI&Oacute;N DE VENDEDOR<br />\r\n<br />\r\nSe Emite Boleta de Venta o Factura<br />\r\n<br />\r\nGarant&iacute;a del vendedor: 7 d&iacute;as</p>', 'Tienda virtual dedicada a la venta de figuras de colección, nuestros productos son 100% originales, nuevos y sellados, estamos contentos de poder brindarte la mejor atención, cualquier consulta no dudes en hacerla', 'products/B8RsWAsO9UANGHcXgiQNWfQV6OTav28gNcZdaSYc.webp', 2, '[{\"item_id\": 1705984287953, \"item_text\": \"Bakugo\"}, {\"item_id\": 1705984293059, \"item_text\": \"Heroe Katsuki\"}, {\"item_id\": 1705984298259, \"item_text\": \"Banpresto Mha\"}]', 11, 34, NULL, NULL, 22, '2024-01-23 04:32:23', '2024-01-23 09:33:46', NULL),
 (16, 'One Piece Variable Action Heroes Roronoa Zoro Megahouse', 'one-piece-variable-action-heroes-roronoa-zoro-megahouse', 'MegahouseS124', 729, 265, '<p>EN STOCK<br />\r\nNUEVO Y SELLADO<br />\r\nZORO - ONE PIECE (Renewal Ver.)<br />\r\nVARIABLE ACTION HEROES<br />\r\n<br />\r\nENTREGAS A COORDINAR EN LA MOLINA<br />\r\nENV&Iacute;OS GRATIS A TODO EL PER&Uacute;</p>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<th scope=\"col\">\r\n			<p>Marca</p>\r\n			</th>\r\n			<td>Megahouse</td>\r\n		</tr>\r\n		<tr>\r\n			<th scope=\"col\">\r\n			<p>Fabricante</p>\r\n			</th>\r\n			<td>Megahouse</td>\r\n		</tr>\r\n		<tr>\r\n			<th scope=\"col\">\r\n			<p>Colecci&oacute;n</p>\r\n			</th>\r\n			<td>One Piece</td>\r\n		</tr>\r\n		<tr>\r\n			<th scope=\"col\">\r\n			<p>Personaje</p>\r\n			</th>\r\n			<td>Zoro</td>\r\n		</tr>\r\n	</tbody>\r\n</table>', 'ZORO - ONE PIECE (Renewal Ver.)', 'products/5jxHwvOdBeg40vLi5fghyPTrMByZJXSLIHEMWlYp.webp', 2, '[{\"item_id\": 1705984530139, \"item_text\": \"Megahouse\"}, {\"item_id\": 1705984532661, \"item_text\": \"Variable\"}, {\"item_id\": 1705984540340, \"item_text\": \"Heroes Roronoa\"}]', 12, 34, NULL, NULL, 18, '2024-01-23 04:37:02', '2024-01-23 09:37:23', NULL),
 (17, 'CUATRIMOTO A BATERÍA STRAWBERRY CON CONTROL REMOTO 7053762', 'cuatrimoto-a-bateria-strawberry-con-control-remoto-7053762', '7053762', 499, 265, '<p>No te despegues ni un segundo de tus engre&iacute;dos y comparte con ellos de momentos inolvidables gracias a los juguetes que Ripley.com tiene para ti durante esta temporada.</p>\r\n\r\n<p>Con dise&ntilde;os y accesorios exclusivos, este divertido juego acompa&ntilde;ar&aacute; a tus peque&ntilde;os durante sus aventuras dentro o fuera de casa.</p>\r\n\r\n<h3>Caracter&iacute;sticas Adicionales:</h3>\r\n\r\n<ul>\r\n	<li>Luz, m&uacute;sica, modo de educaci&oacute;n temprana.</li>\r\n</ul>\r\n\r\n<p>&iexcl;No lo pienses m&aacute;s y adqui&eacute;relo al mejor precio!</p>\r\n\r\n<p>Compra lo mejor en jugueter&iacute;a s&oacute;lo en Ripley Per&uacute;. Conoce sus caracter&iacute;sticas y rec&iacute;belo en pocos d&iacute;as.</p>', 'No te despegues ni un segundo de tus engreídos y comparte con ellos de momentos inolvidables gracias a los juguetes que Ripley.com tiene para ti durante esta temporada', 'products/TMhcMT4CMKpZ0ZH13MZn7WFidZ2TRb2Ohwa6hRjX.jpg', 2, '[{\"item_id\": 1705984910011, \"item_text\": \"7053762\"}, {\"item_id\": 1705984912236, \"item_text\": \"STRAWBERRY\"}, {\"item_id\": 1705984914851, \"item_text\": \"BATERÍA\"}]', 13, 34, NULL, NULL, 23, '2024-01-23 04:42:57', '2024-01-23 09:43:03', NULL),
-(18, 'Manta / Cobertor Para Mascotas Calientitas (50x60cm)', 'manta-cobertor-para-mascotas-calientitas-50x60cm', 'Calientitas156', 53, 28, '<p>&lt;&lt;&lt; SOMOS MAKIPURATC y tenemos el orgullo de ser &ldquo;MERCADO L&Iacute;DER GOLD&quot;, seis a&ntilde;os trabajando ON-LINE por MERCADO LIBRE y el contar con la satisfacci&oacute;n del 100% de nuestros clientes es nuestra mejor carta de presentaci&oacute;n y garant&iacute;a para nuestros clientes &gt;&gt;&gt;<br />\r\n<br />\r\n&quot;&quot; SOMOS FABRICANTES&quot;&quot;<br />\r\n<br />\r\n&quot;&quot;LLEGO EL INVIERNO, QUE EL FRIO NO CASTIGUE A NUESTRAS MASCOTAS&quot;&quot;&quot;<br />\r\n<br />\r\n=== MANTITAS PARA PROTEGER DEL FRI&Oacute; A TU MASCOTA ===<br />\r\n<br />\r\nCARACTER&Iacute;STICAS:<br />\r\nMAKIPURATC e-comerce<br />\r\n- 100 % Pol&iacute;ester<br />\r\n- Antial&eacute;rgicas<br />\r\n- Material:<br />\r\n* Un lado piel de durazno o polar con carnero<br />\r\n* lados de piel de durazno o polar<br />\r\n* lados de carnero<br />\r\n<br />\r\nLindas mantas de doble pieza calientitas para este invierno tan frieron<br />\r\nDiferentes medidas y medidas especiales si las deseas<br />\r\nTambi&eacute;n mantas con cierre para que impermeabilicen sus mantas<br />\r\n<br />\r\n********************************************************************************************************<br />\r\n<br />\r\nPRODUCTOS RELACIONADOS:<br />\r\n<br />\r\n(1) Cobertor para mascotas Polar con Carnero Reversible 30X40cm<br />\r\n(2) Cobertor para mascotas Polar con Carnero Reversible 50X60cm<br />\r\n(3) Cobertor para mascotas Polar con Carnero Reversible 60X90cm<br />\r\n(4) Cobertor para mascotas Polar con Carnero Reversible 90X120cm<br />\r\n(5) Cobertor para mascotas Polar con Carnero Reversible 120X150cm<br />\r\n(6) Cobertor para mascotas Piel de durazno con Carnero Reversible 30X40cm<br />\r\n(7) Cobertor para mascotas Piel de durazno con Carnero Reversible 50X60cm<br />\r\n(8) Cobertor para mascotas Piel de durazno con Carnero Reversible 60X90cm<br />\r\n(9) Cobertor para mascotas Piel de durazno con Carnero Reversible 90X120cm<br />\r\n(10) Cobertor para mascotas Piel de durazno con Carnero Reversible 120X150cmColores: Diversidad de colores al gusto del cliente (seg&uacute;n stock)<br />\r\nCONFECCIONAMOS TALLAS ESPECIALES AL GUSTO Y NECESIDAD DE NUESTROS CLIENTES<br />\r\nEn MAKIPURATC, tenemos stock disponible de cualquiera de los productos relacionados, consultar<br />\r\n&quot;&quot;VENTAS POR MENOR Y MAYOR&quot;&quot;<br />\r\n<br />\r\n********************************************************************************************************<br />\r\n<br />\r\nPRECIO PROMOCI&Oacute;N *** OFERTA **<br />\r\nCOMPRAS POR DOCENAS: 5% DESCUENTO<br />\r\nCOMPRAS POR 50 UNIDADES 10% DESCUENTO<br />\r\nDESCUENTOS ESPECIALES POR COMPRAS DE MAS DE 100 UNIDADES<br />\r\n<br />\r\n********************************************************************************************************<br />\r\nUSOS:<br />\r\n- Est&aacute; reservado pr&aacute;cticamente para uso en el Hogar<br />\r\n- Para proteger del frio intenso a nuestras mascotas<br />\r\n<br />\r\n&iquest;C&Oacute;MO COMPRAR?<br />\r\n1. Haga todas las preguntas necesarias antes de efectuar la compra.<br />\r\n2. Dele click en comprar cuando est&eacute; 100% seguro de adquirir el producto.<br />\r\n3. Seleccione el m&eacute;todo de entrega de su preferencia.<br />\r\n4. Seleccione el m&eacute;todo de pago de su preferencia.<br />\r\n5. Reciba su producto en la comodidad de su hogar o ret&iacute;relo en nuestros puntos de entrega<br />\r\n6.- COMPRE AL POR MAYOR TAMBI&Eacute;N: Consulte sus descuentos.<br />\r\n<br />\r\nCONF&Iacute;ANOS LA ENTREGA DE TUS PEDIDOS:<br />\r\n<br />\r\nLima:<br />\r\n- Sin costo entrega en nuestra planta de la Molina<br />\r\n- Distritos de Lima:<br />\r\n* Entrega en estaci&oacute;n Cultura del Tren o el Jockey Plaza (lunes/mi&eacute;rcoles/viernes 9:30) S/. 6.00<br />\r\n* Delivery a direcci&oacute;n exacta de su preferencia, por TAXI GARANTIZADO, pago en destino.<br />\r\n* Zonas perif&eacute;ricas env&iacute;o por OLVA CUOURIER S/. 25.00<br />\r\n- *Provincia: Delivery hasta la Agencia de Transporte (S/. 15.00)<br />\r\nAgencias de transportes interprovinciales a todos los destinos del Per&uacute; con la modalidad PAGO en DESTINO.<br />\r\n<br />\r\nNota.- Para los despachos a provincias nuestra responsabilidad culmina con la entrega del pedido a la Agencia de Transportes de carga y remisi&oacute;n a nuestra distinguida clientela del comprobante de env&iacute;o. La mercader&iacute;a viaja por cuenta y riesgo del cliente.<br />\r\n<br />\r\nEL PAGO ES POR MERCADO PAGO, CON LO CUAL SU DINERO ESTA PROTEGIDO TOTALMENTE<br />\r\nENTREGAS EN 48 HORAS<br />\r\n<br />\r\nTRANSFERENCIAS Y DEP&Oacute;SITOS:<br />\r\nEfect&uacute;e el dep&oacute;sito en Agentes o Cajeros.<br />\r\n- Banco de Cr&eacute;dito - BCP<br />\r\n- Banco Continental - BBVA<br />\r\n- Banco Internacional - Interbank<br />\r\n- Scotiabank Per&uacute; - Scotiabank.<br />\r\n<br />\r\nNota.- Para el caso de dep&oacute;sitos en provincias (Cajeros y Agencias Bancarias), considerar la comisi&oacute;n de abono fuera de Lima de un monto de S/. 9.00 adicional (Comisi&oacute;n Interplaza).</p>', 'Para los despachos a provincias nuestra responsabilidad culmina con la entrega del pedido a la Agencia de Transportes de carga y remisión a nuestra distinguida clientela del comprobante de envío', 'products/wheGlacPpjxYls1GgvBQUWjYBx0Hqh7j5rhpxB6a.webp', 2, '[{\"item_id\": 1705985387333, \"item_text\": \"MAKIPURATC\"}, {\"item_id\": 1705985390134, \"item_text\": \"Mascotas\"}, {\"item_id\": 1705985400430, \"item_text\": \"Cobertor Para Mascotas\"}]', 9, 35, NULL, NULL, 17, '2024-01-23 04:51:20', '2024-01-23 09:51:31', NULL),
+(18, 'Manta / Cobertor Para Mascotas Calientitas (50x60cm)', 'manta-cobertor-para-mascotas-calientitas-50x60cm', 'Calientitas156', 53, 28, '<p>&lt;&lt;&lt; SOMOS MAKIPURATC y tenemos el orgullo de ser &ldquo;MERCADO L&Iacute;DER GOLD&quot;, seis a&ntilde;os trabajando ON-LINE por MERCADO LIBRE y el contar con la satisfacci&oacute;n del 100% de nuestros clientes es nuestra mejor carta de presentaci&oacute;n y garant&iacute;a para nuestros clientes &gt;&gt;&gt;<br />\r\n<br />\r\n&quot;&quot; SOMOS FABRICANTES&quot;&quot;<br />\r\n<br />\r\n&quot;&quot;LLEGO EL INVIERNO, QUE EL FRIO NO CASTIGUE A NUESTRAS MASCOTAS&quot;&quot;&quot;<br />\r\n<br />\r\n=== MANTITAS PARA PROTEGER DEL FRI&Oacute; A TU MASCOTA ===<br />\r\n<br />\r\nCARACTER&Iacute;STICAS:<br />\r\nMAKIPURATC e-comerce<br />\r\n- 100 % Pol&iacute;ester<br />\r\n- Antial&eacute;rgicas<br />\r\n- Material:<br />\r\n* Un lado piel de durazno o polar con carnero<br />\r\n* lados de piel de durazno o polar<br />\r\n* lados de carnero<br />\r\n<br />\r\nLindas mantas de doble pieza calientitas para este invierno tan frieron<br />\r\nDiferentes medidas y medidas especiales si las deseas<br />\r\nTambi&eacute;n mantas con cierre para que impermeabilicen sus mantas<br />\r\n<br />\r\n********************************************************************************************************<br />\r\n<br />\r\nPRODUCTOS RELACIONADOS:<br />\r\n<br />\r\n(1) Cobertor para mascotas Polar con Carnero Reversible 30X40cm<br />\r\n(2) Cobertor para mascotas Polar con Carnero Reversible 50X60cm<br />\r\n(3) Cobertor para mascotas Polar con Carnero Reversible 60X90cm<br />\r\n(4) Cobertor para mascotas Polar con Carnero Reversible 90X120cm<br />\r\n(5) Cobertor para mascotas Polar con Carnero Reversible 120X150cm<br />\r\n(6) Cobertor para mascotas Piel de durazno con Carnero Reversible 30X40cm<br />\r\n(7) Cobertor para mascotas Piel de durazno con Carnero Reversible 50X60cm<br />\r\n(8) Cobertor para mascotas Piel de durazno con Carnero Reversible 60X90cm<br />\r\n(9) Cobertor para mascotas Piel de durazno con Carnero Reversible 90X120cm<br />\r\n(10) Cobertor para mascotas Piel de durazno con Carnero Reversible 120X150cmColores: Diversidad de colores al gusto del cliente (seg&uacute;n stock)<br />\r\nCONFECCIONAMOS TALLAS ESPECIALES AL GUSTO Y NECESIDAD DE NUESTROS CLIENTES<br />\r\nEn MAKIPURATC, tenemos stock disponible de cualquiera de los productos relacionados, consultar<br />\r\n&quot;&quot;VENTAS POR MENOR Y MAYOR&quot;&quot;<br />\r\n<br />\r\n********************************************************************************************************<br />\r\n<br />\r\nPRECIO PROMOCI&Oacute;N *** OFERTA **<br />\r\nCOMPRAS POR DOCENAS: 5% DESCUENTO<br />\r\nCOMPRAS POR 50 UNIDADES 10% DESCUENTO<br />\r\nDESCUENTOS ESPECIALES POR COMPRAS DE MAS DE 100 UNIDADES<br />\r\n<br />\r\n********************************************************************************************************<br />\r\nUSOS:<br />\r\n- Est&aacute; reservado pr&aacute;cticamente para uso en el Hogar<br />\r\n- Para proteger del frio intenso a nuestras mascotas<br />\r\n<br />\r\n&iquest;C&Oacute;MO COMPRAR?<br />\r\n1. Haga todas las preguntas necesarias antes de efectuar la compra.<br />\r\n2. Dele click en comprar cuando est&eacute; 100% seguro de adquirir el producto.<br />\r\n3. Seleccione el m&eacute;todo de entrega de su preferencia.<br />\r\n4. Seleccione el m&eacute;todo de pago de su preferencia.<br />\r\n5. Reciba su producto en la comodidad de su hogar o ret&iacute;relo en nuestros puntos de entrega<br />\r\n6.- COMPRE AL POR MAYOR TAMBI&Eacute;N: Consulte sus descuentos.<br />\r\n<br />\r\nCONF&Iacute;ANOS LA ENTREGA DE TUS PEDIDOS:<br />\r\n<br />\r\nLima:<br />\r\n- Sin costo entrega en nuestra planta de la Molina<br />\r\n- Distritos de Lima:<br />\r\n* Entrega en estaci&oacute;n Cultura del Tren o el Jockey Plaza (lunes/mi&eacute;rcoles/viernes 9:30) S/. 6.00<br />\r\n* Delivery a direcci&oacute;n exacta de su preferencia, por TAXI GARANTIZADO, pago en destino.<br />\r\n* Zonas perif&eacute;ricas env&iacute;o por OLVA CUOURIER S/. 25.00<br />\r\n- *Provincia: Delivery hasta la Agencia de Transporte (S/. 15.00)<br />\r\nAgencias de transportes interprovinciales a todos los destinos del Per&uacute; con la modalidad PAGO en DESTINO.<br />\r\n<br />\r\nNota.- Para los despachos a provincias nuestra responsabilidad culmina con la entrega del pedido a la Agencia de Transportes de carga y remisi&oacute;n a nuestra distinguida clientela del comprobante de env&iacute;o. La mercader&iacute;a viaja por cuenta y riesgo del cliente.<br />\r\n<br />\r\nEL PAGO ES POR MERCADO PAGO, CON LO CUAL SU DINERO ESTA PROTEGIDO TOTALMENTE<br />\r\nENTREGAS EN 48 HORAS<br />\r\n<br />\r\nTRANSFERENCIAS Y DEP&Oacute;SITOS:<br />\r\nEfect&uacute;e el dep&oacute;sito en Agentes o Cajeros.<br />\r\n- Banco de Cr&eacute;dito - BCP<br />\r\n- Banco Continental - BBVA<br />\r\n- Banco Internacional - Interbank<br />\r\n- Scotiabank Per&uacute; - Scotiabank.<br />\r\n<br />\r\nNota.- Para el caso de dep&oacute;sitos en provincias (Cajeros y Agencias Bancarias), considerar la comisi&oacute;n de abono fuera de Lima de un monto de S/. 9.00 adicional (Comisi&oacute;n Interplaza).</p>', 'Para los despachos a provincias nuestra responsabilidad culmina con la entrega del pedido a la Agencia de Transportes de carga y remisión a nuestra distinguida clientela del comprobante de envío', 'products/wheGlacPpjxYls1GgvBQUWjYBx0Hqh7j5rhpxB6a.webp', 2, '[{\"item_id\": 1705985387333, \"item_text\": \"MAKIPURATC\"}, {\"item_id\": 1705985390134, \"item_text\": \"Mascotas\"}, {\"item_id\": 1705985400430, \"item_text\": \"Cobertor Para Mascotas\"}]', 9, 35, NULL, NULL, 3, '2024-01-23 04:51:20', '2024-01-23 09:51:31', NULL),
 (19, 'Cpu Amd Ryzen 7 5700g, Ssd 1tb M.2, Ram 32gb Radeon Vega 8', 'cpu-amd-ryzen-7-5700g-ssd-1tb-m2-ram-32gb-radeon-vega-8', 'Radeon-Vega-8', 2998, 1500, '<p>SOMOS PC GO<br />\r\n<br />\r\n=====================================<br />\r\n<br />\r\nSOMOS MERCADOLIDER GOLD - COMPRA 100% SEGURA<br />\r\n<br />\r\n=====================================<br />\r\n<br />\r\nCpu Amd Ryzen 7 5700g, Ram 32gb, Ssd 1tb M.2, Radeon Vega 8<br />\r\n<br />\r\nSE ENTREGA ENSAMBLADO Y CONFIGURADO,( WINDOWS 10, OFFICE, UTILITARIOS, ANTIVIRUS)<br />\r\n<br />\r\n=====================================<br />\r\n<br />\r\n***CARACTERISTICA***<br />\r\n<br />\r\n-Procesador AMD Ryzen 7 5700G, 3.80 / 4.60GHz, 16MB L3, 8-Core, AM4, 7nm, 65W<br />\r\n<br />\r\n-PLACA Asus PRIME B550M-A AC, Chipset AMD B550, Socket AMD AM4, mATX<br />\r\n<br />\r\n-Memoria TG T-Force Vulcan Z 32GB (2x16GB) DDR4-3200MHz<br />\r\n<br />\r\n-Disco solido SSD TEAMGROUP MP44L 1TB, M.2, PCI-E 4.0 x4 con NVMe 1.4<br />\r\n<br />\r\n-CASE MIRAGE 18&quot; - MIC GC834, ATX / Micro ATX sin Fuente<br />\r\n<br />\r\n-FUENTE DE PODER GAMER MACHINE 500W PSU<br />\r\n<br />\r\n===================================================================<br />\r\n<br />\r\n----------------------------------------------ATENCION-------------------------------------------------<br />\r\n<br />\r\n* LAS IMAGENES SON REFERENCIALES<br />\r\n<br />\r\n* SE EMITE BOLETA O FACTURA ELECTRONICA<br />\r\n<br />\r\n* SE REALIZAN ENVIOS A TODO EL PAIS &quot;&quot;&quot;&quot;( UTILIZAR EL COTIZADOR DE MERCADO ENVIOS PARA VER EL TIEMPO DE ENTREGA DEL PRODCUTO)&quot;&quot;&quot;&quot;<br />\r\n<br />\r\n* SI ERES CLIENTE DE PROVINCIA Y DESEAS EL ENVIO MAS RAPIDO POR ALGUNA AGENCIA , ELIJE LA OPCION &quot;&quot;&quot;RETIRAR COMPRA EN EL DOMICILIO DEL VENDEDOR&quot;&quot;&quot; Y COORDINAMOS LA ENTREGA<br />\r\n<br />\r\n*ANTES DE COMPRAR EL PRODUCTO REALICE TODAS SUS CONSULTAS NECESARIAS, ESTAREMOS LISTOS PARA RESPONDER Y AYUDARLO<br />\r\n<br />\r\n* TODOS NUESTROS DATOS SERAN PROPORCIONADOS AUTOMATICAMENTE UNA VEZ CONCRETADA SU COMPRA</p>', 'Cpu Amd Ryzen 7 5700g, Ram 32gb, Ssd 1tb M.2, Radeon Vega 8', 'products/eVl5ZGu7MHeNey3v4ZV7Yw1mccL6t9fNLYSgAbsM.webp', 2, '[{\"item_id\": 1705985726035, \"item_text\": \"Ryzen 7 5700g\"}, {\"item_id\": 1705985728836, \"item_text\": \"Ram 32gb\"}, {\"item_id\": 1705985732396, \"item_text\": \"Radeon Vega 8\"}]', 14, 12, 13, NULL, 12, '2024-01-23 04:56:05', '2024-01-23 09:59:27', NULL),
 (20, 'Cpu Gamer Ryzen 7 5700g, Ssd 1tb, Ram 16gb,m.2 Rx Vega 8 2gb', 'cpu-gamer-ryzen-7-5700g-ssd-1tb-ram-16gbm2-rx-vega-8-2gb', 'Ryzen-7-5700g', 3300, 1580, '<p>SOMOS PC GO<br />\r\n<br />\r\n=====================================<br />\r\n<br />\r\nSOMOS MERCADOLIDER GOLD - COMPRA 100% SEGURA<br />\r\n<br />\r\n=====================================<br />\r\n<br />\r\nCpu Gamer Ryzen 7 5700g, Ram 16gb, Ssd 1tb M.2 Rx Vega 8 2gb<br />\r\n<br />\r\nSE ENTREGA ENSAMBLADO Y CONFIGURADO,( WINDOWS 10, OFFICE, UTILITARIOS, ANTIVIRUS)<br />\r\n<br />\r\n=====================================<br />\r\n<br />\r\n***CARACTERISTICA***<br />\r\n<br />\r\n-Procesador AMD Ryzen 7 5700G, 3.80 / 4.60GHz, 16MB L3, 8-Core, AM4, 7nm, 65W<br />\r\n<br />\r\n-PLACA Asus PRIME B550M-A AC, Chipset AMD B550, Socket AMD AM4, mATX<br />\r\n<br />\r\n-Memoria RAM Team Group T-Force Vulcan Z, 16GB (2x8GB) DDR4 3200MHz<br />\r\n<br />\r\n-Disco solido SSD TEAMGROUP MP44L 1TB, M.2, PCI-E 4.0 x4 con NVMe 1.4<br />\r\n<br />\r\n-CASE SAMURAI - CBX 5021, ATX / Micro ATX sin Fuente<br />\r\n<br />\r\n-FUENTE DE PODER GAMER MACHINE 500W PSU<br />\r\n<br />\r\n===================================================================<br />\r\n<br />\r\n----------------------------------------------ATENCION-------------------------------------------------<br />\r\n<br />\r\n* LAS IMAGENES SON REFERENCIALES<br />\r\n<br />\r\n* SE EMITE BOLETA O FACTURA ELECTRONICA<br />\r\n<br />\r\n* SE REALIZAN ENVIOS A TODO EL PAIS &quot;&quot;&quot;&quot;( UTILIZAR EL COTIZADOR DE MERCADO ENVIOS PARA VER EL TIEMPO DE ENTREGA DEL PRODCUTO)&quot;&quot;&quot;&quot;<br />\r\n<br />\r\n* SI ERES CLIENTE DE PROVINCIA Y DESEAS EL ENVIO MAS RAPIDO POR ALGUNA AGENCIA , ELIJE LA OPCION &quot;&quot;&quot;RETIRAR COMPRA EN EL DOMICILIO DEL VENDEDOR&quot;&quot;&quot; Y COORDINAMOS LA ENTREGA<br />\r\n<br />\r\n*ANTES DE COMPRAR EL PRODUCTO REALICE TODAS SUS CONSULTAS NECESARIAS, ESTAREMOS LISTOS PARA RESPONDER Y AYUDARLO<br />\r\n<br />\r\n* TODOS NUESTROS DATOS SERAN PROPORCIONADOS AUTOMATICAMENTE UNA VEZ CONCRETADA SU COMPRA</p>', 'Cpu Gamer Ryzen 7 5700g, Ram 16gb, Ssd 1tb M.2 Rx Vega 8 2gbm,Procesador AMD Ryzen 7 5700G, 3.80 / 4.60GHz, 16MB L3, 8-Core, AM4, 7nm, 65W', 'products/iGeymiAv7RKXbbLcNAyCcxYe7urEMgfYiAmlja8v.webp', 2, '[{\"item_id\": 1705985981717, \"item_text\": \"Vega 8 2gb\"}, {\"item_id\": 1705985985830, \"item_text\": \"Ram 16gb\"}, {\"item_id\": 1705985990238, \"item_text\": \"Ryzen 7 5700g\"}]', 14, 12, NULL, NULL, 29, '2024-01-23 05:00:27', '2024-01-23 10:00:54', NULL);
 INSERT INTO `products` (`id`, `title`, `slug`, `sku`, `price_eur`, `price_usd`, `description`, `resume`, `image`, `state`, `tags`, `brand_id`, `categorie_first_id`, `categorie_second_id`, `categorie_third_id`, `stock`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -1386,7 +1543,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT de la tabla `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -1410,13 +1567,13 @@ ALTER TABLE `coupon_brands`
 -- AUTO_INCREMENT de la tabla `coupon_categories`
 --
 ALTER TABLE `coupon_categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `coupon_products`
 --
 ALTER TABLE `coupon_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `discounts`
@@ -1440,7 +1597,7 @@ ALTER TABLE `discount_categories`
 -- AUTO_INCREMENT de la tabla `discount_products`
 --
 ALTER TABLE `discount_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
