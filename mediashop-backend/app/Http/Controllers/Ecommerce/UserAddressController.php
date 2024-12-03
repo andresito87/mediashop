@@ -13,7 +13,9 @@ class UserAddressController extends Controller
      */
     public function index()
     {
-        $addresses = UserAddres::orderBy("id", "desc")->get();
+        $user = auth('api')->user();
+        $addresses = UserAddres::where("user_id", $user->id)
+            ->orderBy("id", "desc")->get();
 
         return response()->json([
             "addresses" => $addresses
@@ -25,6 +27,9 @@ class UserAddressController extends Controller
      */
     public function store(Request $request)
     {
+        $request->request->add([
+            "user_id" => auth("api")->user()->id
+        ]);
         $address = UserAddres::create($request->all());
 
         return response()->json([

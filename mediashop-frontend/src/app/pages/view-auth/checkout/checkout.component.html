@@ -54,17 +54,15 @@
                 </span>
               </div>
               <div class="profile__address-content">
-                <h3 class="profile__address-title">Billing Address</h3>
-                <p><span>Street:</span>3576 Glen Street</p>
-                <p><span>City:</span>Summer Shade</p>
-                <p><span>State/province/area:</span>Kentucky</p>
-                <p><span>Phone number:</span>270-428-8378</p>
-                <p><span>Zip code:</span>42166</p>
-                <p><span>Country calling code:</span> +1</p>
-                <p><span>Country:</span>United States</p>
+                <h3 class="profile__address-title">
+                  <a href="#" onclick="return false;" (click)="resetAddress()">
+                    + Nueva Dirección</a
+                  >
+                </h3>
               </div>
             </div>
           </div>
+          @for(address of addresses;track address.id){
           <div class="col-md-6">
             <div class="profile__address-item d-sm-flex align-items-start">
               <div class="profile__address-icon">
@@ -92,18 +90,30 @@
                   </svg>
                 </span>
               </div>
-              <div class="profile__address-content">
-                <h3 class="profile__address-title">Shipping Address</h3>
-                <p><span>Street:</span>3133 Lewis Street</p>
-                <p><span>City:</span>Naperville</p>
-                <p><span>State/province/area:</span>Illinois</p>
-                <p><span>Phone number:</span>630-857-9127</p>
-                <p><span>Zip code:</span> 60563</p>
-                <p><span>Country calling code:</span>+1</p>
-                <p><span>Country:</span>United States</p>
-              </div>
+              <a
+                href="#"
+                onclick="return false;"
+                (click)="selectedAddress(address)"
+              >
+                <div class="profile__address-content">
+                  <h3 class="profile__address-title">
+                    Shipping Address (clic para usar esta dirección)
+                  </h3>
+                  <p>
+                    <span>Full Name:</span>{{ address.name }},
+                    {{ address.surname }}
+                  </p>
+                  <p><span>Street:</span>{{ address.street_address }}</p>
+                  <p><span>City:</span>{{ address.city }}</p>
+                  <p><span>Phone number:</span>{{ address.phone }}</p>
+                  <p><span>Zip code:</span>{{ address.postcode_zip }}</p>
+                  <p><span>Company:</span>{{ address.company }}</p>
+                  <p><span>Country:</span>{{ address.country_region }}</p>
+                </div>
+              </a>
             </div>
           </div>
+          }
         </div>
       </div>
       <div class="row">
@@ -118,25 +128,45 @@
                     <div class="col-md-6">
                       <div class="tp-checkout-input">
                         <label>First Name <span>*</span></label>
-                        <input type="text" placeholder="First Name" />
+                        <input
+                          type="text"
+                          name="name"
+                          [(ngModel)]="name"
+                          placeholder="First Name"
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="tp-checkout-input">
                         <label>Last Name <span>*</span></label>
-                        <input type="text" placeholder="Last Name" />
+                        <input
+                          type="text"
+                          name="surname"
+                          [(ngModel)]="surname"
+                          placeholder="Last Name"
+                        />
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="tp-checkout-input">
                         <label>Company name (optional)</label>
-                        <input type="text" placeholder="Example LTD." />
+                        <input
+                          type="text"
+                          name="company"
+                          [(ngModel)]="company"
+                          placeholder="Example LTD."
+                        />
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="tp-checkout-input">
                         <label>Country / Region </label>
-                        <input type="text" placeholder="United States (US)" />
+                        <input
+                          type="text"
+                          name="country_region"
+                          [(ngModel)]="country_region"
+                          placeholder="United States (US)"
+                        />
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -144,53 +174,57 @@
                         <label>Street address</label>
                         <input
                           type="text"
+                          name="street_address"
+                          [(ngModel)]="street_address"
                           placeholder="House number and street name"
-                        />
-                      </div>
-
-                      <div class="tp-checkout-input">
-                        <input
-                          type="text"
-                          placeholder="Apartment, suite, unit, etc. (optional)"
                         />
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="tp-checkout-input">
                         <label>Town / City</label>
-                        <input type="text" placeholder="" />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="tp-checkout-input">
-                        <label>State / County</label>
-                        <select>
-                          <option>New York US</option>
-                          <option>Berlin Germany</option>
-                          <option>Paris France</option>
-                          <option>Tokiyo Japan</option>
-                        </select>
+                        <input
+                          type="text"
+                          name="city"
+                          [(ngModel)]="city"
+                          placeholder=""
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="tp-checkout-input">
                         <label>Postcode ZIP</label>
-                        <input type="text" placeholder="" />
+                        <input
+                          type="text"
+                          name="postcode_zip"
+                          [(ngModel)]="postcode_zip"
+                          placeholder=""
+                        />
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="tp-checkout-input">
                         <label>Phone <span>*</span></label>
-                        <input type="text" placeholder="" />
+                        <input
+                          type="text"
+                          name="phone"
+                          [(ngModel)]="phone"
+                          placeholder=""
+                        />
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="tp-checkout-input">
                         <label>Email address <span>*</span></label>
-                        <input type="email" placeholder="" />
+                        <input
+                          type="email"
+                          name="email"
+                          [(ngModel)]="email"
+                          placeholder=""
+                        />
                       </div>
                     </div>
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                       <div class="tp-checkout-option-wrapper">
                         <div class="tp-checkout-option">
                           <input id="create_free_account" type="checkbox" />
@@ -205,7 +239,7 @@
                           >
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-12">
                       <div class="tp-checkout-input">
                         <label>Order notes (optional)</label>
@@ -213,6 +247,25 @@
                           placeholder="Notes about your order, e.g. special notes for delivery."
                         ></textarea>
                       </div>
+                    </div>
+                    <div class="col-md-12">
+                      @if(!address_selected){
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-lg"
+                        (click)="registerAddress()"
+                      >
+                        Registrar dirección
+                      </button>
+                      }@else {
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-lg"
+                        (click)="editAddress()"
+                      >
+                        Editar dirección
+                      </button>
+                      }
                     </div>
                   </div>
                 </div>

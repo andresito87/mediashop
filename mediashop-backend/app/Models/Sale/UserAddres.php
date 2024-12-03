@@ -17,7 +17,7 @@ class UserAddres extends Model
         "surname",
         "company",
         "country_region",
-        "address",
+        "street_address",
         "city",
         "postcode_zip",
         "phone",
