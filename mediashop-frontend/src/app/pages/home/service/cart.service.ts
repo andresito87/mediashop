@@ -17,6 +17,8 @@ export class CartService {
   changeCart(data: CartItem) {
     let listCart = this.cart.getValue();
     let index = listCart.findIndex((item: CartItem) => {
+      console.log('item', item);
+      console.log('data', data);
       return item.id == data.id;
     });
 
@@ -107,6 +109,18 @@ export class CartService {
     let URL = URL_SERVICIOS + '/ecommerce/carts/apply_coupon';
 
     return this.http.post(URL, code_coupon, {
+      headers: headersAdded,
+      observe: 'response',
+    });
+  }
+
+  checkout(data: any) {
+    let headersAdded = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authService.token,
+    });
+    let URL = URL_SERVICIOS + '/ecommerce/checkout';
+
+    return this.http.post(URL, data, {
       headers: headersAdded,
       observe: 'response',
     });

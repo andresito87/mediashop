@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Product\PropertyAttributetController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Ecommerce\CartController;
 use App\Http\Controllers\Ecommerce\HomeController;
+use App\Http\Controllers\Ecommerce\SaleController;
 use App\Http\Controllers\Ecommerce\UserAddressController;
 use App\Http\Controllers\JWTAuthController;
 use App\Http\Middleware\JwtMiddleware;
@@ -125,9 +126,13 @@ Route::prefix("ecommerce")
             Route::resource('carts', CartController::class);
             // ============================================================================== //
     
-            // =============================== USER ADDRESS =============================== //
+            // =============================== USER ADDRESS ================================= //
             Route::resource('user_address', UserAddressController::class);
-            // ====================================================================== //
+            // ============================================================================= //
+    
+            // =========================== CHECKOUT & PAYMENT ============================= //
+            Route::post("checkout", [SaleController::class, "store"]);
+            // ============================================================================ //
     
             /***************************** AUTHENTICATED USERS ********************************/
         });
