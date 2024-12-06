@@ -10,7 +10,7 @@ import {
 import { UserAddressService } from '../service/user-address.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 declare var paypal: any;
@@ -46,7 +46,8 @@ export class CheckoutComponent {
     public cartService: CartService,
     public cookieService: CookieService,
     public addressService: UserAddressService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public router: Router
   ) {
     afterNextRender(() => {
       this.addressService.listAddress().subscribe((res: any) => {
@@ -166,6 +167,10 @@ export class CheckoutComponent {
                 'La compra se ha realizado correctamente'
               );
               // redirect to gratefull page
+              this.router.navigateByUrl(
+                '/thank-you-for-your-purchase/' +
+                  Order.purchase_units[0].payments.captures[0].id
+              );
             },
             error: (err: any) => {
               this.toastr.error('Error', err.error.message);

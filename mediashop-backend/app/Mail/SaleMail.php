@@ -31,7 +31,7 @@ class SaleMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->user->name . ' ' . $this->user->surname . ' gracias por tu compra',
+            subject: 'Gracias por tu compra, ' . $this->user->name . ' ' . $this->user->surname,
         );
     }
 

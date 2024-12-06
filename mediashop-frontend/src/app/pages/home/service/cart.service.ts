@@ -123,4 +123,13 @@ export class CartService {
       observe: 'response',
     });
   }
+
+  showOrder(sale_id: string = '') {
+    let headersAdded = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authService.token,
+    });
+    let URL = URL_SERVICIOS + '/ecommerce/sale/' + sale_id;
+
+    return this.http.get(URL, { headers: headersAdded });
+  }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Ecommerce\Sale\SaleResource;
 use App\Mail\SaleMail;
 use App\Models\Sale\Cart;
 use App\Models\Sale\Sale;
@@ -64,7 +65,11 @@ class SaleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $sale = Sale::where("code_transaction", $id)->first();
+
+        return response()->json([
+            "sale" => SaleResource::make($sale),
+        ], 200);
     }
 
     /**
