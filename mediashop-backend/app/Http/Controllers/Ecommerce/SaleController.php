@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SaleMail;
 use App\Models\Sale\Cart;
 use App\Models\Sale\Sale;
 use App\Models\Sale\SaleAddres;
 use App\Models\Sale\SaleDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SaleController extends Controller
 {
@@ -42,6 +44,16 @@ class SaleController extends Controller
         $sale_address = SaleAddres::create($sale_addres);
 
         // send mail to the customer with sale details
+        $sale_new = Sale::findOrFail($sale->id);
+        try {
+            Mail::to(auth("api")->user()->email)
+                ->send(new SaleMail(auth("api")->user(), $sale_new));
+        } catch (\Exception $e) {
+            return response()->json([
+                "message" => "Error al enviar el correo",
+                "error" => $e->getMessage(),
+            ], 500);
+        }
         return response()->json([
             "message" => "Venta creada correctamente"
         ], 200);

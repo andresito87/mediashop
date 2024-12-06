@@ -17,8 +17,6 @@ export class CartService {
   changeCart(data: CartItem) {
     let listCart = this.cart.getValue();
     let index = listCart.findIndex((item: CartItem) => {
-      console.log('item', item);
-      console.log('data', data);
       return item.id == data.id;
     });
 

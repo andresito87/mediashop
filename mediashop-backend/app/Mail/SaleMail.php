@@ -13,12 +13,16 @@ class SaleMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
+    public $sale;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($user, $sale)
     {
-        //
+        $this->user = $user;
+        $this->sale = $sale;
     }
 
     /**
@@ -27,7 +31,7 @@ class SaleMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Sale Mail',
+            subject: $this->user->name . ' ' . $this->user->surname . ' gracias por tu compra',
         );
     }
 
@@ -36,8 +40,12 @@ class SaleMail extends Mailable
      */
     public function content(): Content
     {
+
+        $user = $this->user;
+        $sale = $this->sale;
+
         return new Content(
-            view: 'view.name',
+            view: 'mail.sale',
         );
     }
 

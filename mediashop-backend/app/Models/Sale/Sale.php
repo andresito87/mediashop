@@ -45,6 +45,6 @@ class Sale extends Model
     // a sale has only one address
     public function sale_addres()
     {
-        $this->hasOne(SaleAddres::class);
+        return $this->hasOne(SaleAddres::class);
     }
 }
