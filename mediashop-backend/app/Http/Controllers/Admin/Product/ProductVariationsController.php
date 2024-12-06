@@ -23,7 +23,7 @@ class ProductVariationsController extends Controller
         return response()->json([
             "variations" => $product_variations->map(function ($variation) {
                 // Get the total stock of the variation by summing the stock of nested variations
-                $nestedVariationsStock = $variation->variation_children()->sum("stock");
+                // $nestedVariationsStock = $variation->variation_children()->sum("stock");
                 return [
                     "id" => $variation->id,
                     "product_id" => $variation->product_id,
@@ -39,7 +39,7 @@ class ProductVariationsController extends Controller
                     ] : NULL,
                     "value_add" => $variation->value_add,
                     "add_price" => $variation->add_price,
-                    "stock" => $nestedVariationsStock
+                    "stock" => $variation->stock
                 ];
             })
         ]);
@@ -133,7 +133,7 @@ class ProductVariationsController extends Controller
         $product_variation = ProductVariation::create($request->all());
 
         // Get the total stock of the variation by summing the stock of nested variations
-        $nestedVariationsStock = $product_variation->variation_children()->sum("stock");
+        // $nestedVariationsStock = $product_variation->variation_children()->sum("stock");
 
         return response()->json([
             "message" => 200,
@@ -153,7 +153,7 @@ class ProductVariationsController extends Controller
                 ] : NULL,
                 "value_add" => $product_variation->value_add,
                 "add_price" => $product_variation->add_price,
-                "stock" => $nestedVariationsStock
+                "stock" => $product_variation->stock
             ]
         ]);
     }
@@ -212,7 +212,7 @@ class ProductVariationsController extends Controller
         $product_variation->update($request->all());
 
         // Get the total stock of the variation by summing the stock of nested variations
-        $nestedVariationsStock = $product_variation->variation_children()->sum("stock");
+        // $nestedVariationsStock = $product_variation->variation_children()->sum("stock");
 
         return response()->json([
             "message" => 200,
@@ -232,7 +232,7 @@ class ProductVariationsController extends Controller
                 ] : NULL,
                 "value_add" => $product_variation->value_add,
                 "add_price" => $product_variation->add_price,
-                "stock" => $nestedVariationsStock
+                "stock" => $product_variation->stock
             ]
         ]);
     }
