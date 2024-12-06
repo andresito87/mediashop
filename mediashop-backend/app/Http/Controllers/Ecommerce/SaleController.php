@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Ecommerce;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Ecommerce\Sale\SaleResource;
 use App\Mail\SaleMail;
+use App\Models\Product\Product;
+use App\Models\Product\ProductVariation;
 use App\Models\Sale\Cart;
 use App\Models\Sale\Sale;
 use App\Models\Sale\SaleAddres;
@@ -33,11 +35,36 @@ class SaleController extends Controller
         $carts = Cart::where("user_id", auth("api")->user()->id)->get();
 
         foreach ($carts as $key => $cart) {
+            $original_cart = $cart;
             $new_detail = [];
-            $new_detail = $cart->toArray();
+            $new_detail = $original_cart->toArray();
             $new_detail["sale_id"] = $sale->id;
             SaleDetail::create($new_detail);
+
+            // decrease the total product stock by the quantity
+            if ($cart->product_variation_id) {
+                $variation = ProductVariation::find($cart->product_variation_id);
+                if ($variation->variation_parent) {
+                    $variation->variation_parent->update([
+                        "stock" => $variation->variation_parent->stock - $cart->quantity
+                    ]);
+                    $variation->update([
+                        "stock" => $variation->stock - $cart->quantity
+                    ]);
+                } else {
+                    $variation->update([
+                        "stock" => $variation->stock - $cart->quantity
+                    ]);
+                }
+            } else {
+                $product = Product::find($cart->product_id);
+                $product->update([
+                    "stock" => $product->stock - $cart->quantity
+                ]);
+            }
+
             // clean shopping cart
+            $cart->delete();
         }
 
         $sale_addres = $request->sale_address;
@@ -46,15 +73,9 @@ class SaleController extends Controller
 
         // send mail to the customer with sale details
         $sale_new = Sale::findOrFail($sale->id);
-        try {
-            Mail::to(auth("api")->user()->email)
-                ->send(new SaleMail(auth("api")->user(), $sale_new));
-        } catch (\Exception $e) {
-            return response()->json([
-                "message" => "Error al enviar el correo",
-                "error" => $e->getMessage(),
-            ], 500);
-        }
+        Mail::to(auth("api")->user()->email)
+            ->send(new SaleMail(auth("api")->user(), $sale_new));
+
         return response()->json([
             "message" => "Venta creada correctamente"
         ], 200);

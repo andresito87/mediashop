@@ -166,11 +166,15 @@ export class CheckoutComponent {
                 'Éxito',
                 'La compra se ha realizado correctamente'
               );
+              // clean the shopping cart
+              this.cartService.resetCart();
               // redirect to gratefull page
-              this.router.navigateByUrl(
-                '/thank-you-for-your-purchase/' +
-                  Order.purchase_units[0].payments.captures[0].id
-              );
+              setTimeout(() => {
+                this.router.navigateByUrl(
+                  '/thank-you-for-your-purchase/' +
+                    Order.purchase_units[0].payments.captures[0].id
+                );
+              }, 50);
             },
             error: (err: any) => {
               this.toastr.error('Error', err.error.message);
