@@ -23,6 +23,7 @@ export class ModalProductComponent {
   subvariation_selected: any;
 
   currency: string = 'EUR';
+  plus: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -55,8 +56,10 @@ export class ModalProductComponent {
   selectedVariation(variation: any) {
     this.variation_selected = null;
     this.subvariation_selected = null;
+    this.plus = 0;
 
     setTimeout(() => {
+      this.plus += variation.add_price;
       this.variation_selected = variation;
       MODAL_PRODUCT_DETAIL($);
     }, 50);
@@ -64,8 +67,10 @@ export class ModalProductComponent {
 
   selectedSubvariation(subvariation: any) {
     this.subvariation_selected = null;
+    this.plus = this.variation_selected.add_price;
 
     setTimeout(() => {
+      this.plus += subvariation.add_price;
       this.subvariation_selected = subvariation;
     }, 50);
   }
@@ -76,27 +81,35 @@ export class ModalProductComponent {
       if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
         // type % dsicount
         return (
-          product.price_eur -
-          product.price_eur * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+          product.price_eur +
+          this.plus -
+          (product.price_eur + this.plus) *
+            (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
         ).toFixed(2);
       } else {
         // EUR/PEN fix amount
-        return (product.price_eur - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
-          2
-        );
+        return (
+          product.price_eur +
+          this.plus -
+          DISCOUNTS_FLASH_PARAMETER.discount
+        ).toFixed(2);
       }
     } else {
       if (DISCOUNTS_FLASH_PARAMETER.type_discount == 1) {
         // type % dsicount
         return (
-          product.price_usd -
-          product.price_usd * (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
+          product.price_usd +
+          this.plus -
+          (product.price_usd + this.plus) *
+            (DISCOUNTS_FLASH_PARAMETER.discount * 0.01)
         ).toFixed(2);
       } else {
         // USD fix amount
-        return (product.price_usd - DISCOUNTS_FLASH_PARAMETER.discount).toFixed(
-          2
-        );
+        return (
+          product.price_usd +
+          this.plus -
+          DISCOUNTS_FLASH_PARAMETER.discount
+        ).toFixed(2);
       }
     }
   }
@@ -107,9 +120,9 @@ export class ModalProductComponent {
       return this.getNewPrice(product, product.greater_discount);
     }
     if (this.currency == 'EUR') {
-      return product.price_eur;
+      return product.price_eur + this.plus;
     } else {
-      return product.price_usd;
+      return product.price_usd + this.plus;
     }
   }
 
