@@ -118,8 +118,8 @@
             <div class="profile__input">
               <input
                 type="text"
-                name="name"
-                [(ngModel)]="name"
+                name="fbLink"
+                [(ngModel)]="fbLink"
                 placeholder="Enter username"
               />
               <span>
@@ -176,7 +176,7 @@
         <div class="col-xxl-6 col-md-6">
           <div class="profile__input-box">
             <div class="profile__input">
-              <select [(ngModel)]="gender">
+              <select name="gender" [(ngModel)]="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Others">Others</option>
@@ -189,8 +189,8 @@
             <div class="profile__input">
               <input
                 type="text"
-                name="address"
-                [(ngModel)]="address"
+                name="address_city"
+                [(ngModel)]="address_city"
                 placeholder="Enter your address"
               />
               <span>

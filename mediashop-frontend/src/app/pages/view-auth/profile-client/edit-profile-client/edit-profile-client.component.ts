@@ -21,13 +21,24 @@ export class EditProfileClientComponent {
   fbLink: string = '';
   twLink: string = '';
   gender: string = '';
-  address: string = '';
+  address_city: string = '';
 
   constructor(
     public profileClient: ProfileClientService,
     public toastr: ToastrService
   ) {
-    this.profileClient.showUsers().subscribe((res: any) => {});
+    this.profileClient.showUsers().subscribe((res: any) => {
+      console.log(res);
+      this.name = res.name;
+      this.surname = res.surname;
+      this.email = res.email;
+      this.phone = res.phone;
+      this.biography = res.biography;
+      this.fbLink = res.fbLink;
+      this.twLink = res.twLink;
+      this.gender = res.gender;
+      this.address_city = res.address_city;
+    });
   }
 
   updateUser() {}

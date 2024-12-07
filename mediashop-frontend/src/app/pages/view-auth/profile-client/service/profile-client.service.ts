@@ -41,7 +41,6 @@ export class ProfileClientService {
 
     return this.http.get(URL, {
       headers: headersAdded,
-      observe: 'response',
     });
   }
 }

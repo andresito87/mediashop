@@ -174,12 +174,34 @@ class JWTAuthController extends Controller
         return response()->json(compact('user'));
     }
 
+    public function me()
+    {
+
+        $user = User::find(auth('api')->user()->id);
+
+        return response()->json([
+            'name' => $user->name,
+            'surname' => $user->surname,
+            'phone' => $user->phone,
+            'email' => $user->email,
+            'biography' => $user->biography,
+            'fbLink' => $user->fbLink,
+            'gender' => $user->gender,
+            'address_city' => $user->address_city
+        ]);
+    }
+
     // User logout
     public function logout()
     {
         JWTAuth::invalidate(JWTAuth::getToken());
 
         return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    public function refresh()
+    {
+        return $this->respondWithToken(JWTAuth::refresh());
     }
 
     public function respondWithToken($token)
