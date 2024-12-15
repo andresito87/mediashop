@@ -3,6 +3,9 @@ import { EditProfileClientComponent } from './edit-profile-client/edit-profile-c
 import { AddressProfileClientComponent } from './address-profile-client/address-profile-client.component';
 import { OrdersProfileClientComponent } from './orders-profile-client/orders-profile-client.component';
 import { PasswordProfileClientComponent } from './password-profile-client/password-profile-client.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile-client',
@@ -12,8 +15,17 @@ import { PasswordProfileClientComponent } from './password-profile-client/passwo
     AddressProfileClientComponent,
     OrdersProfileClientComponent,
     PasswordProfileClientComponent,
+    CommonModule,
+    FormsModule,
+    RouterModule,
   ],
   templateUrl: './profile-client.component.html',
   styleUrl: './profile-client.component.css',
 })
-export class ProfileClientComponent {}
+export class ProfileClientComponent {
+  seletedTab: number = 0;
+
+  selectTab(value: number) {
+    this.seletedTab = value;
+  }
+}

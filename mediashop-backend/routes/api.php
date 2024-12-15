@@ -144,6 +144,7 @@ Route::prefix("ecommerce")
     
             // =============================== PROFILE ================================= //
             Route::get("profile_client/me", [JWTAuthController::class, "me"]);
+            Route::put("profile_client", [JWTAuthController::class, "update"]);
             // ========================================================================= //
     
         });

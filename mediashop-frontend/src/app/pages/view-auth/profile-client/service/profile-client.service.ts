@@ -25,7 +25,7 @@ export class ProfileClientService {
     let headersAdded = new HttpHeaders({
       Authorization: 'Bearer ' + this.authService.token,
     });
-    let URL = URL_SERVICIOS + '/ecommerce/profile_client/';
+    let URL = URL_SERVICIOS + '/ecommerce/profile_client';
 
     return this.http.put(URL, data, {
       headers: headersAdded,

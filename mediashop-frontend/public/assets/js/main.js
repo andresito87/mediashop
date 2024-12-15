@@ -660,9 +660,9 @@ function HOMEINIT($) {
   }
 
   ////////////////////////////////////////////////////
-  // 12. Nice Select Js
+  // 12. Nice Select Js , .profile__area select
   $(
-    ".tp-header-search-category select, .tp-shop-area select, .tp-checkout-area select, .profile__area select"
+    ".tp-header-search-category select, .tp-shop-area select, .tp-checkout-area select"
   ).niceSelect();
 
   ////////////////////////////////////////////////////

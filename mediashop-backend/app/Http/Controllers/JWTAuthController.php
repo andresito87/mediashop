@@ -59,6 +59,25 @@ class JWTAuthController extends Controller
         return response()->json(compact('user', 'token'), 201);
     }
 
+    public function update(Request $request)
+    {
+        //validate if email exists in DB
+        $exist_email = User::where("id", "<>", auth("api")->user()->id)
+            ->where("email", $request->email)->first();
+
+        if ($exist_email) {
+            return response()->json([
+                "message" => "El email ya existe"
+            ], 409);
+        }
+
+        $user = User::find(auth("api")->user()->id);
+        $user->update($request->all());
+        return response()->json([
+            "message" => "Usuario editado correctamente"
+        ], 200);
+    }
+
     /* Process to change password*/
     public function verified_email(Request $request)
     {

@@ -262,7 +262,7 @@ export class CheckoutComponent {
           item.id == res.body.address.id;
         });
         if (index != -1) {
-          this.addresses[index] = res.address;
+          this.addresses[index] = res.body.address;
         }
 
         this.toastr.success('Éxito', 'Dirección actualizada correctamente');

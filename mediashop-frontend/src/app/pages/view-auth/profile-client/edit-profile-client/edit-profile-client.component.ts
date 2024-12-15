@@ -41,5 +41,35 @@ export class EditProfileClientComponent {
     });
   }
 
-  updateUser() {}
+  updateUser() {
+    if (!this.name || !this.email) {
+      this.toastr.error(
+        'VAlidación',
+        'Es necesario inngresar un nombre y un correo electrónico'
+      );
+      return;
+    }
+    let data = {
+      name: this.name,
+      surname: this.surname,
+      email: this.email,
+      phone: this.phone,
+      biography: this.biography,
+      fbLink: this.fbLink,
+      twLink: this.twLink,
+      gender: this.gender,
+      address_city: this.address_city,
+    };
+    this.profileClient.updateProfile(data).subscribe({
+      next: (res: any) => {
+        if (res.status == 200) {
+          this.toastr.success('Éxito', res.body.message);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error('Validación', err.error.message);
+      },
+    });
+  }
 }
