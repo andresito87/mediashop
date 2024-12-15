@@ -87,6 +87,7 @@
                     data-bs-toggle="tab"
                     data-bs-target="#nav-order"
                     type="button"
+                    (click)="selectTab(3)"
                     role="tab"
                     aria-controls="nav-order"
                     aria-selected="false"
@@ -322,11 +323,9 @@
                   aria-labelledby="nav-information-tab"
                 >
                   @defer(when seletedTab==1){
-                  <app-edit-profile-client
-                    *ngIf="seletedTab == 1"
-                  ></app-edit-profile-client>
+                  <app-edit-profile-client></app-edit-profile-client>
                   }@placeholder {
-                  <div>Wait for the duck ...</div>
+                  <div>Loading ...</div>
                   }
                 </div>
                 <div
@@ -346,7 +345,7 @@
                   @defer(when seletedTab==2){
                   <app-address-profile-client></app-address-profile-client>
                   }@placeholder {
-                  <div>Wait for the duck ...</div>
+                  <div>Loading ...</div>
                   }
                 </div>
                 <div
@@ -355,7 +354,12 @@
                   role="tabpanel"
                   aria-labelledby="nav-order-tab"
                 >
+                  @defer(when seletedTab==3){
                   <app-orders-profile-client></app-orders-profile-client>
+                  }@placeholder {
+                  <div>Loading ...</div>
+
+                  }
                 </div>
                 <div
                   class="tab-pane fade"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Ecommerce\Sale\SaleCollection;
 use App\Http\Resources\Ecommerce\Sale\SaleResource;
 use App\Mail\SaleMail;
 use App\Models\Product\Product;
@@ -24,11 +25,25 @@ class SaleController extends Controller
         //
     }
 
+    public function orders()
+    {
+        $user = auth("api")->user();
+
+        $sales = Sale::where("user_id", $user->id)
+            ->orderBy("id", "desc")
+            ->get();
+
+        return response()->json([
+            "sales" => SaleCollection::make($sales)
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(
+        Request $request
+    ) {
         $request->request->add(["user_id" => auth("api")->user()->id]);
         $sale = Sale::create($request->all());
 

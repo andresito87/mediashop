@@ -43,4 +43,15 @@ export class ProfileClientService {
       headers: headersAdded,
     });
   }
+
+  showOrders() {
+    let headersAdded = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authService.token,
+    });
+    let URL = URL_SERVICIOS + '/ecommerce/profile_client/orders';
+
+    return this.http.get(URL, {
+      headers: headersAdded,
+    });
+  }
 }
