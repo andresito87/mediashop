@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Product\PropertyAttributetController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Ecommerce\CartController;
 use App\Http\Controllers\Ecommerce\HomeController;
+use App\Http\Controllers\Ecommerce\ReviewController;
 use App\Http\Controllers\Ecommerce\SaleController;
 use App\Http\Controllers\Ecommerce\UserAddressController;
 use App\Http\Controllers\JWTAuthController;
@@ -148,6 +149,9 @@ Route::prefix("ecommerce")
             Route::put("profile_client", [JWTAuthController::class, "update"]);
             // ========================================================================= //
     
+            // =============================== REVIEWS ========================= //
+            Route::resource('reviews', ReviewController::class);
+            // ================================================================== //
         });
 
         /******************************************************************************************/

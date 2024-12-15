@@ -66,8 +66,7 @@ export class EditProfileClientComponent {
           this.toastr.success('Éxito', res.body.message);
         }
       },
-      error: (err) => {
-        console.log(err);
+      error: (err: any) => {
         this.toastr.error('Validación', err.error.message);
       },
     });

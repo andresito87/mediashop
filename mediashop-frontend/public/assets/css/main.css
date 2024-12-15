@@ -17889,6 +17889,13 @@ product all slider
   padding: 9px 45px;
   background-color: var(--tp-theme-primary);
 }
+.tp-product-details-review-exit-btn {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--tp-common-white);
+  padding: 9px 45px;
+  background-color: var(--tp-common-black-solid);
+}
 .tp-product-details-bottom {
   border-bottom: 1px solid #E0E2E3;
 }

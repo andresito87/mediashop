@@ -6,6 +6,7 @@ import { PasswordProfileClientComponent } from './password-profile-client/passwo
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../auth/service/auth.service';
 
 @Component({
   selector: 'app-profile-client',
@@ -25,7 +26,13 @@ import { RouterModule } from '@angular/router';
 export class ProfileClientComponent {
   seletedTab: number = 0;
 
+  constructor(public authService: AuthService) {}
+
   selectTab(value: number) {
     this.seletedTab = value;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

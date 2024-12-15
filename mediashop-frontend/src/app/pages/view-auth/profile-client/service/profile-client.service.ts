@@ -54,4 +54,28 @@ export class ProfileClientService {
       headers: headersAdded,
     });
   }
+
+  registerReview(data: any) {
+    let headersAdded = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authService.token,
+    });
+    let URL = URL_SERVICIOS + '/ecommerce/reviews';
+
+    return this.http.post(URL, data, {
+      headers: headersAdded,
+      observe: 'response',
+    });
+  }
+
+  updateReview(review_id: string, data: any) {
+    let headersAdded = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authService.token,
+    });
+    let URL = URL_SERVICIOS + '/ecommerce/reviews/' + review_id;
+
+    return this.http.put(URL, data, {
+      headers: headersAdded,
+      observe: 'response',
+    });
+  }
 }
