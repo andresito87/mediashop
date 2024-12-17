@@ -97,11 +97,12 @@ export class LandingProductComponent {
 
   // its necessary to load script from main.js after DOM is loaded
   ngAfterViewInit(): void {
-    if (typeof MODAL_QUANTITY_LANDING === 'function') {
-      setTimeout(() => {
+    setTimeout(() => {
+      if (typeof MODAL_QUANTITY_LANDING === 'function') {
         MODAL_QUANTITY_LANDING($);
-      }, 50);
-    }
+        console.log('Se ejecuta');
+      }
+    }, 500);
   }
 
   ngOnInit(): void {
