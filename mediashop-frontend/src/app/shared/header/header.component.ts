@@ -1,5 +1,12 @@
+import { ProfileClientService } from './../../pages/view-auth/profile-client/service/profile-client.service';
 import { CartItem } from './../../pages/home/interfaces/cart-item';
-import { afterNextRender, Component, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { HomeService } from '../../pages/home/service/home.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +28,7 @@ export class HeaderComponent {
   currency: string = 'EUR';
 
   user: any;
+  avatar: any;
   listCarts: any = [];
   totalCarts: number = 0;
 
@@ -31,7 +39,8 @@ export class HeaderComponent {
     @Inject(PLATFORM_ID) private platformId: Object,
     public cartService: CartService,
     private toastr: ToastrService,
-    private router: Router
+    private cdRef: ChangeDetectorRef,
+    private profileClientService: ProfileClientService
   ) {
     afterNextRender(() => {
       this.homeService.menus().subscribe((res: any) => {
@@ -39,7 +48,12 @@ export class HeaderComponent {
       });
 
       this.user = this.cartService.authService.user;
+
+      this.cdRef.detectChanges();
       if (this.user) {
+        this.profileClientService.showUsers().subscribe((res: any) => {
+          this.avatar = res.avatar;
+        });
         this.cartService.listCart().subscribe((res: any) => {
           res.carts.data.forEach((item: CartItem) => {
             if (item.currency != this.currency) {
@@ -120,5 +134,9 @@ export class HeaderComponent {
     } else {
       window.location.reload();
     }
+  }
+
+  logout() {
+    this.cartService.authService.logout();
   }
 }

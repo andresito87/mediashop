@@ -158,14 +158,49 @@
                   class="tp-product-details-rating-wrapper d-flex align-items-center mb-10"
                 >
                   <div class="tp-product-details-rating">
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><i class="fa-solid fa-star"></i></span>
+                    <span
+                      ><i
+                        class="fa-solid fa-star"
+                        [ngClass]="{
+                          'fa-star-grey': PRODUCT_SELECTED.avg_reviews < 1
+                        }"
+                      ></i
+                    ></span>
+                    <span
+                      ><i
+                        class="fa-solid fa-star"
+                        [ngClass]="{
+                          'fa-star-grey': PRODUCT_SELECTED.avg_reviews < 2
+                        }"
+                      ></i
+                    ></span>
+                    <span
+                      ><i
+                        class="fa-solid fa-star"
+                        [ngClass]="{
+                          'fa-star-grey': PRODUCT_SELECTED.avg_reviews < 3
+                        }"
+                      ></i
+                    ></span>
+                    <span
+                      ><i
+                        class="fa-solid fa-star"
+                        [ngClass]="{
+                          'fa-star-grey': PRODUCT_SELECTED.avg_reviews < 4
+                        }"
+                      ></i
+                    ></span>
+                    <span
+                      ><i
+                        class="fa-solid fa-star"
+                        [ngClass]="{
+                          'fa-star-grey': PRODUCT_SELECTED.avg_reviews < 5
+                        }"
+                      ></i
+                    ></span>
                   </div>
-                  <div class="tp-product-details-reviews">
-                    <span>(36 Reviews)</span>
+                  <div class="tp-product-rating-text">
+                    <span>({{ PRODUCT_SELECTED.count_reviews }} Reviews)</span>
                   </div>
                 </div>
               </div>
@@ -542,7 +577,7 @@
                     aria-controls="nav-review"
                     aria-selected="false"
                   >
-                    Reviews (2)
+                    Reviews ({{ PRODUCT_SELECTED.count_reviews }})
                   </button>
 
                   <span
@@ -625,7 +660,7 @@
                               <div
                                 class="tp-product-details-review-summery-value"
                               >
-                                <span>4.5</span>
+                                <span>{{ PRODUCT_SELECTED.avg_reviews }}</span>
                               </div>
                               <div
                                 class="tp-product-details-review-summery-rating d-flex align-items-center"
@@ -635,7 +670,9 @@
                                 <span><i class="fa-solid fa-star"></i></span>
                                 <span><i class="fa-solid fa-star"></i></span>
                                 <span><i class="fa-solid fa-star"></i></span>
-                                <p>(36 Reviews)</p>
+                                <p>
+                                  ({{ PRODUCT_SELECTED.count_reviews }} Reviews)
+                                </p>
                               </div>
                             </div>
                             <div class="tp-product-details-review-rating-list">
@@ -751,6 +788,7 @@
                             <h3 class="tp-product-details-review-title">
                               Rating & Review
                             </h3>
+                            @for(review of reviews;track review.id){
                             <div
                               class="tp-product-details-review-avater d-flex align-items-start"
                             >
@@ -758,10 +796,7 @@
                                 class="tp-product-details-review-avater-thumb"
                               >
                                 <a href="#">
-                                  <img
-                                    src="assets/img/users/user-3.jpg"
-                                    alt=""
-                                  />
+                                  <img [src]="review.user.avatar" alt="" />
                                 </a>
                               </div>
                               <div
@@ -770,34 +805,68 @@
                                 <div
                                   class="tp-product-details-review-avater-rating d-flex align-items-center"
                                 >
-                                  <span><i class="fa-solid fa-star"></i></span>
-                                  <span><i class="fa-solid fa-star"></i></span>
-                                  <span><i class="fa-solid fa-star"></i></span>
-                                  <span><i class="fa-solid fa-star"></i></span>
-                                  <span><i class="fa-solid fa-star"></i></span>
+                                  <span
+                                    ><i
+                                      class="fa-solid fa-star"
+                                      [ngClass]="{
+                                        'fa-star-grey': review.rating < 1
+                                      }"
+                                    ></i
+                                  ></span>
+                                  <span
+                                    ><i
+                                      class="fa-solid fa-star"
+                                      [ngClass]="{
+                                        'fa-star-grey': review.rating < 2
+                                      }"
+                                    ></i
+                                  ></span>
+                                  <span
+                                    ><i
+                                      class="fa-solid fa-star"
+                                      [ngClass]="{
+                                        'fa-star-grey': review.rating < 3
+                                      }"
+                                    ></i
+                                  ></span>
+                                  <span
+                                    ><i
+                                      class="fa-solid fa-star"
+                                      [ngClass]="{
+                                        'fa-star-grey': review.rating < 4
+                                      }"
+                                    ></i
+                                  ></span>
+                                  <span
+                                    ><i
+                                      class="fa-solid fa-star"
+                                      [ngClass]="{
+                                        'fa-star-grey': review.rating < 5
+                                      }"
+                                    ></i
+                                  ></span>
                                 </div>
                                 <h3
                                   class="tp-product-details-review-avater-title"
                                 >
-                                  Eleanor Fant
+                                  {{ review.user.fullname }}
                                 </h3>
                                 <span
                                   class="tp-product-details-review-avater-meta"
-                                  >06 March, 2023
+                                  >{{ review.created_at }}
                                 </span>
 
                                 <div
                                   class="tp-product-details-review-avater-comment"
                                 >
                                   <p>
-                                    Designed very similarly to the nearly double
-                                    priced Galaxy tab S6, with the only removal
-                                    being.
+                                    {{ review.message }}
                                   </p>
                                 </div>
                               </div>
                             </div>
-                            <div
+                            }
+                            <!-- <div
                               class="tp-product-details-review-avater d-flex align-items-start"
                             >
                               <div
@@ -842,13 +911,13 @@
                                   </p>
                                 </div>
                               </div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
                       <!-- end col -->
                       <div class="col-lg-6">
-                        <div class="tp-product-details-review-form">
+                        <!-- <div class="tp-product-details-review-form">
                           <h3 class="tp-product-details-review-form-title">
                             Review this product
                           </h3>
@@ -936,7 +1005,7 @@
                               </button>
                             </div>
                           </form>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>

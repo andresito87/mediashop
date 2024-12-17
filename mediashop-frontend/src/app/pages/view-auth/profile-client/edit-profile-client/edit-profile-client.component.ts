@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProfileClientService } from '../service/profile-client.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './edit-profile-client.component.css',
 })
 export class EditProfileClientComponent {
+  @Output() imagePreviewChanged = new EventEmitter<string>();
+
   name: string = '';
   surname: string = '';
   email: string = '';
@@ -23,12 +25,14 @@ export class EditProfileClientComponent {
   gender: string = '';
   address_city: string = '';
 
+  image_preview: any;
+  file_image: any;
+
   constructor(
     public profileClient: ProfileClientService,
     public toastr: ToastrService
   ) {
     this.profileClient.showUsers().subscribe((res: any) => {
-      console.log(res);
       this.name = res.name;
       this.surname = res.surname;
       this.email = res.email;
@@ -38,7 +42,23 @@ export class EditProfileClientComponent {
       this.twLink = res.twLink;
       this.gender = res.gender;
       this.address_city = res.address_city;
+      this.image_preview = res.avatar;
     });
+  }
+
+  processFile($event: any) {
+    if ($event.target.files[0].type.indexOf('image') < 0) {
+      this.toastr.error('Validacion', 'El archivo no es una imagen');
+      return;
+    }
+
+    this.file_image = $event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(this.file_image);
+    reader.onloadend = () => {
+      this.image_preview = reader.result;
+      this.imagePreviewChanged.emit(this.image_preview);
+    };
   }
 
   updateUser() {
@@ -49,18 +69,34 @@ export class EditProfileClientComponent {
       );
       return;
     }
-    let data = {
-      name: this.name,
-      surname: this.surname,
-      email: this.email,
-      phone: this.phone,
-      biography: this.biography,
-      fbLink: this.fbLink,
-      twLink: this.twLink,
-      gender: this.gender,
-      address_city: this.address_city,
-    };
-    this.profileClient.updateProfile(data).subscribe({
+
+    let formData = new FormData();
+    formData.append('name', this.name);
+    formData.append('surname', this.surname);
+    formData.append('email', this.email);
+    if (this.phone) {
+      formData.append('phone', this.phone);
+    }
+    if (this.biography) {
+      formData.append('biography', this.biography);
+    }
+    if (this.fbLink) {
+      formData.append('fbLink', this.fbLink);
+    }
+    if (this.twLink) {
+      formData.append('twLink', this.twLink);
+    }
+    if (this.gender) {
+      formData.append('gender', this.gender);
+    }
+    if (this.address_city) {
+      formData.append('address_city', this.address_city);
+    }
+    if (this.file_image) {
+      formData.append('file_image', this.file_image);
+    }
+
+    this.profileClient.updateProfile(formData).subscribe({
       next: (res: any) => {
         if (res.status == 200) {
           this.toastr.success('Éxito', res.body.message);

@@ -163,6 +163,11 @@ button.toast-close-button {
   background-color: #000000;
   opacity: 0.4;
 }
+
+.fa-star-grey{
+  color:#a9a9a9 !important
+}
+
 /* Responsive Design */
 @media all and (max-width: 240px) {
   .toast-container .ngx-toastr.div {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 07-12-2024 a las 18:43:51
+-- Tiempo de generación: 15-12-2024 a las 18:05:07
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.21
 
@@ -1265,6 +1265,32 @@ INSERT INTO `properties` (`id`, `attribute_id`, `name`, `code`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `sale_detail_id` bigint UNSIGNED NOT NULL,
+  `message` text,
+  `rating` tinyint UNSIGNED NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `sale_detail_id`, `message`, `rating`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 29, 53, 54, 'Estupenda consola, calidad insuperable', 4, '2024-12-15 15:09:39', '2024-12-15 15:39:32', NULL),
+(5, 26, 53, 55, 'Bueno de verdad', 5, '2024-12-15 15:39:55', '2024-12-15 15:39:55', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `sales`
 --
 
@@ -1529,7 +1555,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `surname`, `phone`, `unique_id`, `avatar`, `fbLink`, `address_city`, `biography`, `gender`, `email`, `type_user`, `code_verified`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (52, 'asadad', 'asdasd', '233234234', '6702a93eb70a6', NULL, NULL, NULL, NULL, NULL, 'andrespodadera87@gmail.com', 1, NULL, '2024-10-06 15:30:10', '$2y$12$DEF01W6Ab5q/ZAX0RxOQ2.G4eLKjrsdUzzmALWkDbzAHxrgpBnReq', NULL, '2024-10-06 15:14:06', '2024-10-09 14:53:22', NULL),
-(53, 'andres', 'podadera', '2234234', '67227b97b72c9', NULL, NULL, NULL, NULL, NULL, 'andrespoda@gmail.com', 2, NULL, '2024-10-30 18:33:17', '$2y$12$Cz8swfIyuveMBQOrlNhcUuljVOaVnMkZNbAoMOigA7NboKUz1dA/2', NULL, '2024-10-30 18:31:51', '2024-10-30 18:33:17', NULL);
+(53, 'andres', 'podadera', '605163721', '67227b97b72c9', NULL, 'Andres prueba', 'Camino De Casabermeja 22 3° E', 'developer', 'Male', 'andrespoda@gmail.com', 2, NULL, '2024-10-30 18:33:17', '$2y$12$FtGZ.wENvX6hs1qTz1XRvenul7xbvmy6roYOJ8OC//SFVU8X7SdW6', NULL, '2024-10-30 18:31:51', '2024-12-15 16:31:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -1559,7 +1585,7 @@ CREATE TABLE `user_addres` (
 --
 
 INSERT INTO `user_addres` (`id`, `user_id`, `name`, `surname`, `company`, `country_region`, `street_address`, `city`, `postcode_zip`, `phone`, `email`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, 53, 'Andrés Samuel', 'Podadera', 'Cocacola', 'España', 'Camino real 22', 'Málaga', 29015, '6054545435', 'andrespodadera87@gmail.com', '2024-12-03 19:21:29', '2024-12-03 19:49:04', NULL);
+(2, 53, 'Andrés Samuel', 'Podadera', 'Cocacola', 'España', 'Camino real 22', 'Málaga', 29015, '6054545435', 'andrespodadera87@gmail.com', '2024-12-03 19:21:29', '2024-12-15 08:54:05', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -1717,6 +1743,12 @@ ALTER TABLE `product_variations`
 -- Indices de la tabla `properties`
 --
 ALTER TABLE `properties`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `reviews`
+--
+ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1895,6 +1927,12 @@ ALTER TABLE `properties`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT de la tabla `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
@@ -1928,7 +1966,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `user_addres`
 --
 ALTER TABLE `user_addres`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

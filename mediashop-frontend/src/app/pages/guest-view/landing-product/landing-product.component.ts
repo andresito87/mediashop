@@ -33,6 +33,8 @@ export class LandingProductComponent {
   currency: string = 'EUR';
   plus: number = 0;
 
+  reviews: any = [];
+
   constructor(
     public homeService: HomeService,
     public activatedRoute: ActivatedRoute,
@@ -57,6 +59,7 @@ export class LandingProductComponent {
           this.PRODUCT_SELECTED = res.product;
           this.PRODUCTS_RELATED = res.products_related.data;
           this.DISCOUNT_CAMPAIGN = res.discount_campaign;
+          this.reviews = res.reviews;
           if (this.DISCOUNT_CAMPAIGN) {
             this.PRODUCT_SELECTED.greater_discount = this.DISCOUNT_CAMPAIGN;
           }
@@ -94,9 +97,11 @@ export class LandingProductComponent {
 
   // its necessary to load script from main.js after DOM is loaded
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      MODAL_QUANTITY_LANDING($);
-    }, 500);
+    if (typeof MODAL_QUANTITY_LANDING === 'function') {
+      setTimeout(() => {
+        MODAL_QUANTITY_LANDING($);
+      }, 50);
+    }
   }
 
   ngOnInit(): void {

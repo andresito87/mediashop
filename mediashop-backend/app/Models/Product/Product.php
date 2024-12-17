@@ -3,6 +3,7 @@
 namespace App\Models\Product;
 
 use App\Models\Discount\DiscountProduct;
+use App\Models\Sale\Review;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -80,6 +81,23 @@ class Product extends Model
     public function specifications()
     {
         return $this->hasMany(ProductSpecification::class, "product_id");
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, "product_id");
+    }
+
+    // Reviews mutator, we will access them as if they were a property.
+    public function getReviewsCountAttribute()
+    {
+        return $this->reviews->count();
+    }
+
+    // Reviews mutator, we will access them as if they were a property.
+    public function getReviewsAvgAttribute()
+    {
+        return $this->reviews->avg("rating");
     }
 
     // function to check if the product has a product discount

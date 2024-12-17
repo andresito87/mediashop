@@ -147,7 +147,7 @@
                             class="profile__main-inner d-flex flex-wrap align-items-center"
                           >
                             <div class="profile__main-thumb">
-                              <img src="assets/img/users/user-10.jpg" alt="" />
+                              <img [src]="avatar" alt="" />
                               <div class="profile__main-thumb-edit">
                                 <input
                                   id="profile-thumb-input"
@@ -327,7 +327,9 @@
                   aria-labelledby="nav-information-tab"
                 >
                   @defer(when seletedTab==1){
-                  <app-edit-profile-client></app-edit-profile-client>
+                  <app-edit-profile-client
+                    (imagePreviewChanged)="onImagePreviewChanged($event)"
+                  ></app-edit-profile-client>
                   }@placeholder {
                   <div>Loading ...</div>
                   }

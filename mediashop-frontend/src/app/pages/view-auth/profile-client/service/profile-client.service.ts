@@ -27,7 +27,7 @@ export class ProfileClientService {
     });
     let URL = URL_SERVICIOS + '/ecommerce/profile_client';
 
-    return this.http.put(URL, data, {
+    return this.http.post(URL, data, {
       headers: headersAdded,
       observe: 'response',
     });

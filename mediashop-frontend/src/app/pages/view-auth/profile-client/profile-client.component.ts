@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
+import { ProfileClientService } from './service/profile-client.service';
 
 @Component({
   selector: 'app-profile-client',
@@ -25,8 +26,16 @@ import { AuthService } from '../../auth/service/auth.service';
 })
 export class ProfileClientComponent {
   seletedTab: number = 0;
+  avatar: string = '';
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    public profileClient: ProfileClientService
+  ) {
+    this.profileClient.showUsers().subscribe((res: any) => {
+      this.avatar = res.avatar;
+    });
+  }
 
   selectTab(value: number) {
     this.seletedTab = value;
@@ -34,5 +43,12 @@ export class ProfileClientComponent {
 
   logout() {
     this.authService.logout();
+    setTimeout(() => {
+      window.location.reload();
+    }, 50);
+  }
+
+  onImagePreviewChanged(newImage: string) {
+    this.avatar = newImage;
   }
 }

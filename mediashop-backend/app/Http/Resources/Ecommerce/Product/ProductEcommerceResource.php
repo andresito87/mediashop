@@ -150,6 +150,8 @@ class ProductEcommerceResource extends JsonResource
             }),
             "greater_discount" => $greater_discount,
             "variations" => $variation_collect,
+            "avg_reviews" => $this->resource->reviews_avg ? round($this->resource->reviews_avg) : 0,
+            "count_reviews" => $this->resource->reviews_count,
             "specifications" => $this->resource->specifications->map(function ($specification) {
                 return [
                     "id" => $specification->id,

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
@@ -83,6 +84,13 @@ class JWTAuthController extends Controller
         }
 
         $user = User::find(auth("api")->user()->id);
+        if ($request->hasFile("file_image")) {
+            if ($user->avatar) {
+                Storage::delete($user->avatar);
+            }
+            $path = Storage::putFile("users", $request->file("file_image"));
+            $request->request->add(["avatar" => $path]);
+        }
         $user->update($request->all());
         return response()->json([
             "message" => "Usuario editado correctamente"
@@ -217,7 +225,8 @@ class JWTAuthController extends Controller
             'biography' => $user->biography,
             'fbLink' => $user->fbLink,
             'gender' => $user->gender,
-            'address_city' => $user->address_city
+            'address_city' => $user->address_city,
+            'avatar' => $user->avatar ? env('APP_URL') . 'storage/' . $user->avatar : 'https://cdn-icons-png.flaticon.com/512/5567/5567235.png',
         ]);
     }
 
