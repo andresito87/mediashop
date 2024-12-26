@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProfileClientService } from '../service/profile-client.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +22,11 @@ export class OrdersProfileClientComponent {
   constructor(
     public profileClientService: ProfileClientService,
     public toastr: ToastrService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
     this.profileClientService.showOrders().subscribe((res: any) => {
       this.sales = res.sales.data;
     });

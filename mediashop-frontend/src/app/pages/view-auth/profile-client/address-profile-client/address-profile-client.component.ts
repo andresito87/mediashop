@@ -30,7 +30,11 @@ export class AddressProfileClientComponent {
   constructor(
     public addressService: UserAddressService,
     private toastr: ToastrService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
     this.addressService.listAddress().subscribe((res: any) => {
       this.addresses = res.addresses;
     });

@@ -326,7 +326,7 @@
                   role="tabpanel"
                   aria-labelledby="nav-information-tab"
                 >
-                  @defer(when seletedTab==1){
+                  @defer(when selectedTab==1){
                   <app-edit-profile-client
                     (imagePreviewChanged)="onImagePreviewChanged($event)"
                   ></app-edit-profile-client>
@@ -348,7 +348,7 @@
                   role="tabpanel"
                   aria-labelledby="nav-address-tab"
                 >
-                  @defer(when seletedTab==2){
+                  @defer(when selectedTab==2){
                   <app-address-profile-client></app-address-profile-client>
                   }@placeholder {
                   <div>Loading ...</div>
@@ -360,7 +360,7 @@
                   role="tabpanel"
                   aria-labelledby="nav-order-tab"
                 >
-                  @defer(when seletedTab==3){
+                  @defer(when selectedTab==3){
                   <app-orders-profile-client></app-orders-profile-client>
                   }@placeholder {
                   <div>Loading ...</div>

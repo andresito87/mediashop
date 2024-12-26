@@ -31,7 +31,11 @@ export class EditProfileClientComponent {
   constructor(
     public profileClient: ProfileClientService,
     public toastr: ToastrService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
     this.profileClient.showUsers().subscribe((res: any) => {
       this.name = res.name;
       this.surname = res.surname;

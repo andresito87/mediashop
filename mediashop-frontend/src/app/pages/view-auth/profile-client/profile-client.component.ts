@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { EditProfileClientComponent } from './edit-profile-client/edit-profile-client.component';
 import { AddressProfileClientComponent } from './address-profile-client/address-profile-client.component';
 import { OrdersProfileClientComponent } from './orders-profile-client/orders-profile-client.component';
@@ -25,12 +25,13 @@ import { ProfileClientService } from './service/profile-client.service';
   styleUrl: './profile-client.component.css',
 })
 export class ProfileClientComponent {
-  seletedTab: number = 0;
+  selectedTab: number = 0;
   avatar: string = '';
 
   constructor(
     public authService: AuthService,
-    public profileClient: ProfileClientService
+    public profileClient: ProfileClientService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.profileClient.showUsers().subscribe((res: any) => {
       this.avatar = res.avatar;
@@ -38,7 +39,8 @@ export class ProfileClientComponent {
   }
 
   selectTab(value: number) {
-    this.seletedTab = value;
+    this.selectedTab = value;
+    this.cdRef.detectChanges();
   }
 
   logout() {
