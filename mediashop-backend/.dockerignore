@@ -1,51 +1,12 @@
-# Ignorar el directorio de Composer
-/vendor
-
-# Ignorar los directorios de la base de datos
-/database/*
-
-# Ignorar los archivos de configuración locales
-/.env
-
-# Ignorar los archivos de caché
-/storage/*
-/node_modules
-
-# Ignorar los archivos de configuración de IDE
-.idea
-.vscode
-
-# Ignorar las dependencias de npm
-/package-lock.json
-/package.json
-
-# Excluir archivos del sistema operativo
-.DS_Store
-Thumbs.db
-
-# Excluir directorios de git y node_modules
-.git
-node_modules
-
-# Excluir archivos de Composer
-/vendor
-
-# Excluir archivos temporales
+# Ignorar archivos temporales
+*.swp
+*.bak
 *.log
-*.tmp
-
-# Excluir archivos temporales
-*.log
-*.tmp
-
-# Excluir directorios del sistema operativo
 .DS_Store
-Thumbs.db
 
-# Excluir directorios de IDE
-.idea
-.vscode
-
-# Excluir dependencias
-node_modules
-/vendor
+# Ignorar directorios que no son necesarios
+node_modules/
+vendor/
+tmp/
+logs/
+public/storage
