@@ -5,13 +5,13 @@ FROM node:20 AS build
 WORKDIR /app
 
 # Copiar los archivos de configuración de npm
-COPY package*.json ./
+COPY ./mediashop-frontend/package*.json ./
 
 # Instalar las dependencias de Angular
 RUN npm install
 
 # Copiar el resto de los archivos del proyecto
-COPY . .
+COPY ./mediashop-frontend ./
 
 # Construir la aplicación Angular Universal (SSR)
 RUN npm run prod  # Este comando construye tanto el cliente como el servidor
@@ -39,7 +39,7 @@ COPY --from=build /app/dist/mediashop-frontend/server /app/server/
 RUN apk update && apk add nginx
 
 # Copiar la configuración personalizada de Nginx
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./mediashop-frontend/nginx.conf /etc/nginx/nginx.conf
 
 # Exponer el puerto para Nginx y el servidor Node.js
 EXPOSE 80

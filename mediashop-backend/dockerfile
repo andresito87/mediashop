@@ -1,0 +1,34 @@
+# Usar una imagen oficial de PHP con CLI versión 8.2
+FROM php:8.2-cli
+
+# Establecer el directorio de trabajo
+WORKDIR /var/www
+
+# Instalar dependencias necesarias para Laravel
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    git \
+    zip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql
+
+# Instalar Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copiar los archivos del proyecto Laravel al contenedor
+COPY ./mediashop-backend/composer.json ./mediashop-backend/composer.lock ./
+
+# Instalar dependencias de Composer
+RUN composer install --no-dev --optimize-autoloader
+
+# Copiar todo el código fuente del backend
+COPY ./mediashop-backend /var/www/
+
+# Cambiar los permisos
+RUN chown -R www-data:www-data /var/www
+
+# Exponer el puerto 8000 para acceder a la aplicación
+EXPOSE 8000
+

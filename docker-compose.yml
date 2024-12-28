@@ -1,0 +1,55 @@
+services:
+  # Servicio backend para Laravel
+  app:
+    build:
+      context: .
+      dockerfile: mediashop-backend/Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=laravel
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    volumes:
+       - ./mediashop-backend:/var/www
+    depends_on:
+      - db
+    command: bash -c "composer install && php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000"  # Ejecuta migraciones antes de iniciar el servidor
+
+  # Servicio para base de datos MySQL
+  db:
+    image: mysql:8.2
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./scripts:/docker-entrypoint.d
+    ports:
+      - "3306:3306"
+
+# Servicio frontend para Angular (Tienda)
+  frontend:
+    build:
+      context: .
+      dockerfile: mediashop-frontend/Dockerfile
+    container_name: tienda
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+# Volumen para persistir los datos de MySQL
+volumes:
+  db_data:
+
+# Redes para comunicación entre los servicios
+networks:
+  app-network:
+    driver: bridge
