@@ -1,5 +1,5 @@
 export const environment = {
-  URL_BACKEND: 'http://api.dominio.com/',
-  URL_SERVICIOS: 'http://api.dominio.com/api',
-  URL_FRONTEND: 'http://tienda.dominio.com',
+  URL_BACKEND: 'https://api.andrescoder.dev/',
+  URL_SERVICIOS: 'https://api.andrescoder.dev/api',
+  URL_FRONTEND: 'https://tienda.andrescoder.dev',
 };

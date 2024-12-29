@@ -1,0 +1,23 @@
+Crear imagen frontend angular:
+ng build --configuration "production"
+
+
+Crear imágenes y desplegar contenedor de laravel y base de datos MySQL: npm run compose
+Eliminar tabla users que crea Laravel por defecto.
+Ejecutar script en base de datos: docker exec -it mysql-db mysql -u root -p, use laravel y source /docker-entrypoint.d/init.sql;
+Crear el enlace simbólico para que carguen todas las imágenes, ejecutar php artisan storage:link en el contenedor de backend
+
+----------------
+AWS
+sudo apt update && sudo apt upgrade -y
+sudo apt install docker.io -y
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker --version
+docker-compose --version
+git clone https://github.com/andresito87/mediashop.git
+cd mediashop
+sudo docker-compose up
+Crear y añadir el contenido del archivo .env del backend docker exec -it backend bash
