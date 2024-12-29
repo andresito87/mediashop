@@ -32,6 +32,8 @@ services:
       - ./scripts:/docker-entrypoint.d
     ports:
       - "3306:3306"
+    networks:
+      - app-network
 
 # Servicio frontend para Angular (Tienda)
   frontend:
