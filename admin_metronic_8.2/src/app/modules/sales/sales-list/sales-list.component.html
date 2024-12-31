@@ -124,11 +124,11 @@
               class="form-control form-select-solid fw-bolder"
               name="categorie"
               placeholder="Selec. SubCategoría"
-              [(ngModel)]="categorie_second_id"
+              [(ngModel)]="categorie_third_id"
               (change)="changeCategorie()"
             >
               <option value="">Selec. Categoría</option>
-              <ng-container *ngFor="let item of categories_second_filtered"
+              <ng-container *ngFor="let item of categories_third_filtered"
                 ><option [value]="item.id">
                   {{ item.name }}
                 </option></ng-container
@@ -242,7 +242,7 @@
                 tabindex="0"
               >
                 <span class="dt-column-title" role="button"
-                  >Region/Ciudad/País</span
+                  >Region/Ciudad/Compañía</span
                 ><span class="dt-column-order"></span>
               </th>
               <th
@@ -284,30 +284,31 @@
                 </td>
                 <td>
                   <span>
-                    {{ sale.methodPayment }}
+                    {{ sale.method_payment }}
                   </span>
                 </td>
                 <td>
                   <span>
-                    {{ sale.currencyTotal }}
+                    {{ sale.currency_total }}
                   </span>
                 </td>
                 <td>
-                  <span> {{ sale.total }} {{ sale.currencyPayment }} </span>
+                  <span> {{ sale.total }} {{ sale.currency_payment }} </span>
                 </td>
                 <td>
-                  <span> {{ sale.nTransaction }} </span>
+                  <span> {{ sale.code_transaction }} </span>
                 </td>
                 <td>
-                  <span> {{ sale.createdAt }} </span>
+                  <span> {{ sale.created_at }} </span>
                 </td>
                 <td>
                   <span>
-                    {{ sale.saleAddress.country }} /
-                    {{ sale.saleAddress.city }} / {{ sale.saleAddress.company }}
+                    {{ sale.sale_address.country_region }} /
+                    {{ sale.sale_address.city }} /
+                    {{ sale.sale_address.company }}
                   </span>
                 </td>
-                <td class="text-end">
+                <td class="text-start">
                   <a
                     href="#"
                     class="btn btn-icon btn-bg-danger btn-active-color-danger btn-sm me-1"

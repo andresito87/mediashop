@@ -283,11 +283,11 @@
               class="form-control form-select-solid fw-bolder"
               name="categorie"
               placeholder="Selec. SubCategoría"
-              [(ngModel)]="categorie_second_id"
+              [(ngModel)]="categorie_third_id"
               (change)="changeCategorie()"
             >
               <option value="">Selec. Categoría</option>
-              <ng-container *ngFor="let item of categories_second_filtered"
+              <ng-container *ngFor="let item of categories_third_filtered"
                 ><option [value]="item.id">
                   {{ item.name }}
                 </option></ng-container

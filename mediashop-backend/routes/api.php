@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Product\ProductNestedVariationsController;
 use App\Http\Controllers\Admin\Product\ProductSpecificationsController;
 use App\Http\Controllers\Admin\Product\ProductVariationsController;
 use App\Http\Controllers\Admin\Product\PropertyAttributetController;
+use App\Http\Controllers\Admin\Sale\SalesController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Ecommerce\CartController;
 use App\Http\Controllers\Ecommerce\HomeController;
@@ -95,6 +96,10 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     // ================================ DISCOUNTS ================================ //
     Route::resource('discounts', DiscountController::class);
     // =========================================================================== //
+
+    // ================================== SALES ================================ //
+    Route::post("sales/list", [SalesController::class, "list"]);
+    // ========================================================================= //
 });
 // =============================================================================================== //
 
@@ -152,6 +157,7 @@ Route::prefix("ecommerce")
             // =============================== REVIEWS ========================= //
             Route::resource('reviews', ReviewController::class);
             // ================================================================== //
+    
         });
 
         /******************************************************************************************/
