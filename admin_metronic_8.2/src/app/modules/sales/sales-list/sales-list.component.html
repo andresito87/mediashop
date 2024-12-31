@@ -1,0 +1,336 @@
+<div class="card">
+  <!--begin::Card header-->
+  <span
+    class="spinner-border spinner-border-sm align-middle ms-2"
+    *ngIf="isLoading$ | async"
+  ></span>
+  <div class="card-header border-0 pt-6">
+    <div class="row">
+      <div class="col-5">
+        <!--begin::Card title-->
+        <div class="card-title">
+          <!--begin::Search-->
+          <div class="d-flex align-items-center position-relative my-1">
+            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5"
+              ><span class="path1"></span><span class="path2"></span
+            ></i>
+            <input
+              type="text"
+              (keyup.enter)="searchTo()"
+              [(ngModel)]="search"
+              data-kt-user-table-filter="search"
+              class="form-control form-control-solid w-170px ps-13"
+              placeholder="Buscar Producto"
+            />
+          </div>
+          <!--end::Search-->
+        </div>
+        <!--begin::Card title-->
+      </div>
+      <div class="col-2"></div>
+      <div class="col-5">
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar">
+          <!--begin::Toolbar-->
+          <div
+            class="d-flex justify-content-end"
+            data-kt-user-table-toolbar="base"
+          >
+            <div class="col-6">
+              <a
+                class="btn btn-primary"
+                style="width: 100%"
+                (click)="searchTo()"
+              >
+                <i class="ki-duotone ki-magnifier text-gray-900 fs-2"
+                  ><span class="path1"></span><span class="path2"></span></i
+                >Buscar
+              </a>
+            </div>
+            <!--begin::Add categorie-->
+            <div class="col-6 mx-2">
+              <a class="btn btn-info" style="width: 100%" (click)="searchTo()">
+                <i class="ki-duotone ki-disk text-gray-1000 fs-2"
+                  ><span class="path1"></span><span class="path2"></span></i
+                >Limpiar
+              </a>
+            </div>
+            <!--end::Add categorie-->
+          </div>
+        </div>
+        <!--end::Card toolbar-->
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-3">
+            <label class="fw-semibold fs-6 py-2">Marca: (*)</label>
+            <select
+              class="form-control form-select-solid fw-bolder"
+              name="brand"
+              placeholder="Selec. Marca"
+              [(ngModel)]="brand_id"
+            >
+              <option value="">Selec. Marca</option>
+              <ng-container *ngFor="let brand of brands"
+                ><option [value]="brand.id">
+                  {{ brand.name }}
+                </option></ng-container
+              >
+            </select>
+          </div>
+          <div class="col-3">
+            <label class="fw-semibold fs-6 py-2"
+              >Departamento:(1º Nivel *)</label
+            >
+            <select
+              class="form-control form-select-solid fw-bolder"
+              name="departament"
+              placeholder="Selec. Departamento"
+              [(ngModel)]="categorie_first_id"
+              (change)="changeDepartment()"
+            >
+              <option value="">Selec. Departamento</option>
+              <ng-container *ngFor="let item of categories_first"
+                ><option [value]="item.id">
+                  {{ item.name }}
+                </option></ng-container
+              >
+            </select>
+          </div>
+          <div class="col-3">
+            <label class="fw-semibold fs-6 py-2"
+              >Categoria:(2º Nivel (Opcional))</label
+            >
+            <select
+              class="form-control form-select-solid fw-bolder"
+              name="categorie"
+              placeholder="Selec. Categoría"
+              [(ngModel)]="categorie_second_id"
+              (change)="changeCategorie()"
+            >
+              <option value="">Selec. Categoría</option>
+              <ng-container *ngFor="let item of categories_second_filtered"
+                ><option [value]="item.id">
+                  {{ item.name }}
+                </option></ng-container
+              >
+            </select>
+          </div>
+          <div class="col-3">
+            <label class="fw-semibold fs-6 py-2"
+              >SubCategoria:(3º Nivel (Opcional))</label
+            >
+            <select
+              class="form-control form-select-solid fw-bolder"
+              name="categorie"
+              placeholder="Selec. SubCategoría"
+              [(ngModel)]="categorie_second_id"
+              (change)="changeCategorie()"
+            >
+              <option value="">Selec. Categoría</option>
+              <ng-container *ngFor="let item of categories_second_filtered"
+                ><option [value]="item.id">
+                  {{ item.name }}
+                </option></ng-container
+              >
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end::Card header-->
+
+  <!--begin::Card body-->
+  <div class="card-body py-4">
+    <div
+      id="kt_table_users_wrapper"
+      class="dt-container dt-bootstrap5 dt-empty-footer"
+    >
+      <div id="" class="table-responsive">
+        <table
+          class="table align-middle table-row-dashed fs-6 gy-5 dataTable"
+          id="kt_table_users"
+          style="width: 100%"
+        >
+          <colgroup>
+            <col data-dt-column="0" style="width: 36.4px" />
+            <col data-dt-column="1" style="width: 202.812px" />
+            <col data-dt-column="2" style="width: 161.413px" />
+            <col data-dt-column="3" style="width: 161.413px" />
+            <col data-dt-column="4" style="width: 161.413px" />
+            <col data-dt-column="5" style="width: 215.062px" />
+            <col data-dt-column="6" style="width: 135.788px" />
+          </colgroup>
+          <thead>
+            <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+              <th
+                class="min-w-125px dt-orderable-asc dt-orderable-desc"
+                data-dt-column="1"
+                rowspan="1"
+                colspan="1"
+                aria-label="User: Activate to sort"
+                tabindex="0"
+              >
+                <span class="dt-column-title" role="button">Cliente</span
+                ><span class="dt-column-order"></span>
+              </th>
+              <th
+                class="min-w-125px dt-orderable-asc dt-orderable-desc"
+                data-dt-column="5"
+                rowspan="1"
+                colspan="1"
+                aria-label="Joined Date: Activate to sort"
+                tabindex="0"
+              >
+                <span class="dt-column-title" role="button">Método de pago</span
+                ><span class="dt-column-order"></span>
+              </th>
+              <th
+                class="min-w-125px dt-orderable-asc dt-orderable-desc"
+                data-dt-column="2"
+                rowspan="1"
+                colspan="1"
+                aria-label="Role: Activate to sort"
+                tabindex="0"
+              >
+                <span class="dt-column-title" role="button"
+                  >Tipo moneda total</span
+                ><span class="dt-column-order"></span>
+              </th>
+              <th
+                class="min-w-125px dt-orderable-asc dt-orderable-desc"
+                data-dt-column="2"
+                rowspan="1"
+                colspan="1"
+                aria-label="Role: Activate to sort"
+                tabindex="0"
+              >
+                <span class="dt-column-title" role="button">Total</span
+                ><span class="dt-column-order"></span>
+              </th>
+              <th
+                class="min-w-125px dt-orderable-asc dt-orderable-desc"
+                data-dt-column="2"
+                rowspan="1"
+                colspan="1"
+                aria-label="Role: Activate to sort"
+                tabindex="0"
+              >
+                <span class="dt-column-title" role="button"
+                  >Nº de Transacción</span
+                ><span class="dt-column-order"></span>
+              </th>
+              <th
+                class="min-w-125px dt-orderable-asc dt-orderable-desc"
+                data-dt-column="2"
+                rowspan="1"
+                colspan="1"
+                aria-label="Role: Activate to sort"
+                tabindex="0"
+              >
+                <span class="dt-column-title" role="button"
+                  >Fecha de registro</span
+                ><span class="dt-column-order"></span>
+              </th>
+              <th
+                class="min-w-80px dt-orderable-asc dt-orderable-desc"
+                data-dt-column="3"
+                rowspan="1"
+                colspan="1"
+                aria-label="Last login: Activate to sort"
+                tabindex="0"
+              >
+                <span class="dt-column-title" role="button"
+                  >Region/Ciudad/País</span
+                ><span class="dt-column-order"></span>
+              </th>
+              <th
+                class="text-start min-w-150px dt-orderable-none"
+                data-dt-column="6"
+                rowspan="1"
+                colspan="1"
+                aria-label="Actions"
+              >
+                <span class="dt-column-title">Acciones</span>
+                <span class="dt-column-order"></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600 fw-semibold">
+            <ng-container *ngFor="let sale of sales"
+              ><tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div
+                      class="symbol symbol-50px me-5"
+                      *ngIf="sale.user.avatar"
+                    >
+                      <img [src]="sale.user.avatar" class="" alt="" />
+                    </div>
+
+                    <div class="d-flex justify-content-start flex-column">
+                      <span
+                        href="#"
+                        class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6"
+                        >{{ sale.user.fullname }}</span
+                      >
+                      <span
+                        class="text-muted fw-semibold text-muted d-block fs-7"
+                        >{{ sale.user.phone }}</span
+                      >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span>
+                    {{ sale.methodPayment }}
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    {{ sale.currencyTotal }}
+                  </span>
+                </td>
+                <td>
+                  <span> {{ sale.total }} {{ sale.currencyPayment }} </span>
+                </td>
+                <td>
+                  <span> {{ sale.nTransaction }} </span>
+                </td>
+                <td>
+                  <span> {{ sale.createdAt }} </span>
+                </td>
+                <td>
+                  <span>
+                    {{ sale.saleAddress.country }} /
+                    {{ sale.saleAddress.city }} / {{ sale.saleAddress.company }}
+                  </span>
+                </td>
+                <td class="text-end">
+                  <a
+                    href="#"
+                    class="btn btn-icon btn-bg-danger btn-active-color-danger btn-sm me-1"
+                  >
+                    <i class="ki-duotone ki-folder-up text-gray-900 fs-2"
+                      ><span class="path1"></span><span class="path2"></span
+                    ></i>
+                  </a>
+                </td></tr
+            ></ng-container>
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+        <ngb-pagination
+          [collectionSize]="totalPages"
+          [(page)]="currentPage"
+          [pageSize]="25"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="loadPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </div>
+  <!--end::Card body-->
+</div>
