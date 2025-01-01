@@ -80,12 +80,10 @@ class Sale extends Model
 
         if ($start_date && $end_date) {
             $query->whereBetween(
+                "created_at",
                 [
-                    "created_at",
-                    [
-                        Carbon::parse($start_date)->format("Y-m-d") . " 00:00:00",
-                        Carbon::parse($end_date)->format("Y-m-d") . " 23:59:59"
-                    ]
+                    Carbon::parse($start_date)->format("Y-m-d") . " 00:00:00",
+                    Carbon::parse($end_date)->format("Y-m-d") . " 23:59:59"
                 ]
             );
         }

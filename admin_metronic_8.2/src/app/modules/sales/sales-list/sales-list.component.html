@@ -6,7 +6,7 @@
   ></span>
   <div class="card-header border-0 pt-6">
     <div class="row">
-      <div class="col-5">
+      <div class="col-4">
         <!--begin::Card title-->
         <div class="card-title">
           <!--begin::Search-->
@@ -27,8 +27,7 @@
         </div>
         <!--begin::Card title-->
       </div>
-      <div class="col-2"></div>
-      <div class="col-5">
+      <div class="col-8">
         <!--begin::Card toolbar-->
         <div class="card-toolbar">
           <!--begin::Toolbar-->
@@ -36,7 +35,7 @@
             class="d-flex justify-content-end"
             data-kt-user-table-toolbar="base"
           >
-            <div class="col-6">
+            <div class="col-4 mx-1">
               <a
                 class="btn btn-primary"
                 style="width: 100%"
@@ -48,11 +47,22 @@
               </a>
             </div>
             <!--begin::Add categorie-->
-            <div class="col-6 mx-2">
-              <a class="btn btn-info" style="width: 100%" (click)="searchTo()">
+            <div class="col-4 mx-1">
+              <a class="btn btn-info" style="width: 100%" (click)="reset()">
                 <i class="ki-duotone ki-disk text-gray-1000 fs-2"
                   ><span class="path1"></span><span class="path2"></span></i
                 >Limpiar
+              </a>
+            </div>
+            <div class="col-4 mx-1">
+              <a
+                class="btn btn-success"
+                style="width: 100%"
+                (click)="export_sale_download()"
+              >
+                <i class="ki-duotone ki-folder-down text-gray-1000 fs-2"
+                  ><span class="path1"></span><span class="path2"></span></i
+                >Exportar
               </a>
             </div>
             <!--end::Add categorie-->
@@ -60,80 +70,115 @@
         </div>
         <!--end::Card toolbar-->
       </div>
-      <div class="col-12">
-        <div class="row">
-          <div class="col-3">
-            <label class="fw-semibold fs-6 py-2">Marca: (*)</label>
-            <select
-              class="form-control form-select-solid fw-bolder"
-              name="brand"
-              placeholder="Selec. Marca"
-              [(ngModel)]="brand_id"
-            >
-              <option value="">Selec. Marca</option>
-              <ng-container *ngFor="let brand of brands"
-                ><option [value]="brand.id">
-                  {{ brand.name }}
-                </option></ng-container
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-3">
+              <label class="fw-semibold fs-6 py-2">Marca: (*)</label>
+              <select
+                class="form-control form-select-solid fw-bolder"
+                name="brand"
+                placeholder="Selec. Marca"
+                [(ngModel)]="brand_id"
               >
-            </select>
-          </div>
-          <div class="col-3">
-            <label class="fw-semibold fs-6 py-2"
-              >Departamento:(1º Nivel *)</label
-            >
-            <select
-              class="form-control form-select-solid fw-bolder"
-              name="departament"
-              placeholder="Selec. Departamento"
-              [(ngModel)]="categorie_first_id"
-              (change)="changeDepartment()"
-            >
-              <option value="">Selec. Departamento</option>
-              <ng-container *ngFor="let item of categories_first"
-                ><option [value]="item.id">
-                  {{ item.name }}
-                </option></ng-container
+                <option value="">Selec. Marca</option>
+                <ng-container *ngFor="let brand of brands"
+                  ><option [value]="brand.id">
+                    {{ brand.name }}
+                  </option></ng-container
+                >
+              </select>
+            </div>
+            <div class="col-3">
+              <label class="fw-semibold fs-6 py-2"
+                >Departamento:(1º Nivel *)</label
               >
-            </select>
-          </div>
-          <div class="col-3">
-            <label class="fw-semibold fs-6 py-2"
-              >Categoria:(2º Nivel (Opcional))</label
-            >
-            <select
-              class="form-control form-select-solid fw-bolder"
-              name="categorie"
-              placeholder="Selec. Categoría"
-              [(ngModel)]="categorie_second_id"
-              (change)="changeCategorie()"
-            >
-              <option value="">Selec. Categoría</option>
-              <ng-container *ngFor="let item of categories_second_filtered"
-                ><option [value]="item.id">
-                  {{ item.name }}
-                </option></ng-container
+              <select
+                class="form-control form-select-solid fw-bolder"
+                name="departament"
+                placeholder="Selec. Departamento"
+                [(ngModel)]="categorie_first_id"
+                (change)="changeDepartment()"
               >
-            </select>
-          </div>
-          <div class="col-3">
-            <label class="fw-semibold fs-6 py-2"
-              >SubCategoria:(3º Nivel (Opcional))</label
-            >
-            <select
-              class="form-control form-select-solid fw-bolder"
-              name="categorie"
-              placeholder="Selec. SubCategoría"
-              [(ngModel)]="categorie_third_id"
-              (change)="changeCategorie()"
-            >
-              <option value="">Selec. Categoría</option>
-              <ng-container *ngFor="let item of categories_third_filtered"
-                ><option [value]="item.id">
-                  {{ item.name }}
-                </option></ng-container
+                <option value="">Selec. Departamento</option>
+                <ng-container *ngFor="let item of categories_first"
+                  ><option [value]="item.id">
+                    {{ item.name }}
+                  </option></ng-container
+                >
+              </select>
+            </div>
+            <div class="col-3">
+              <label class="fw-semibold fs-6 py-2"
+                >Categoria:(2º Nivel (Opcional))</label
               >
-            </select>
+              <select
+                class="form-control form-select-solid fw-bolder"
+                name="categorie"
+                placeholder="Selec. Categoría"
+                [(ngModel)]="categorie_second_id"
+                (change)="changeCategorie()"
+              >
+                <option value="">Selec. Categoría</option>
+                <ng-container *ngFor="let item of categories_second_filtered"
+                  ><option [value]="item.id">
+                    {{ item.name }}
+                  </option></ng-container
+                >
+              </select>
+            </div>
+            <div class="col-3">
+              <label class="fw-semibold fs-6 py-2"
+                >SubCategoria:(3º Nivel (Opcional))</label
+              >
+              <select
+                class="form-control form-select-solid fw-bolder"
+                name="categorie"
+                placeholder="Selec. SubCategoría"
+                [(ngModel)]="categorie_third_id"
+                (change)="changeCategorie()"
+              >
+                <option value="">Selec. Categoría</option>
+                <ng-container *ngFor="let item of categories_third_filtered"
+                  ><option [value]="item.id">
+                    {{ item.name }}
+                  </option></ng-container
+                >
+              </select>
+            </div>
+            <div class="col-4 my-3">
+              <label class="fw-semibold fs-6 py-2">Fecha de inicio:</label>
+              <div class="input-group input-group-solid">
+                <input
+                  type="date"
+                  class="form-control form-control-lg form-control-solid"
+                  [(ngModel)]="start_date"
+                />
+              </div>
+            </div>
+            <div class="col-4 my-3">
+              <label class="fw-semibold fs-6 py-2">Fecha de fin:</label>
+              <div class="input-group input-group-solid">
+                <input
+                  type="date"
+                  class="form-control form-control-lg form-control-solid"
+                  [(ngModel)]="end_date"
+                />
+              </div>
+            </div>
+            <div class="col-3 my-3">
+              <label class="fw-semibold fs-6 py-2">Método de pago:</label>
+              <select
+                class="form-control form-select-solid fw-bolder"
+                name="method_payment"
+                placeholder="Selec. Método de pago"
+                [(ngModel)]="method_payment"
+              >
+                <option value="">Selec. Método de pago</option>
+                <option value="PAYPAL">PAYPAL</option>
+                <option value="STRIPE">STRIPE</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

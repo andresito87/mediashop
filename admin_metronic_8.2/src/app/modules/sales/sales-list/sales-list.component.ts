@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { SalesService } from '../service/sales.service';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { URL_SERVICIOS } from 'src/app/config/config';
+
+registerLocaleData(localeEs);
 
 @Component({
   selector: 'app-sales-list',
   templateUrl: './sales-list.component.html',
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   styleUrls: ['./sales-list.component.scss'],
 })
 export class SalesListComponent {
@@ -25,6 +31,10 @@ export class SalesListComponent {
   categories_second_filtered: any = [];
   categories_third: any = [];
   categories_third_filtered: any = [];
+
+  start_date: any;
+  end_date: any;
+  method_payment: any;
 
   constructor(
     public salesService: SalesService,
@@ -55,6 +65,9 @@ export class SalesListComponent {
       categorie_first_id: this.categorie_first_id,
       categorie_second_id: this.categorie_second_id,
       categorie_third_id: this.categorie_third_id,
+      start_date: this.start_date,
+      end_date: this.end_date,
+      method_payment: this.method_payment,
     };
     this.salesService.listSales(page, data).subscribe({
       next: (res: any) => {
@@ -70,6 +83,18 @@ export class SalesListComponent {
         );
       },
     });
+  }
+
+  reset() {
+    this.search = '';
+    this.brand_id = '';
+    this.categorie_first_id = '';
+    this.categorie_second_id = '';
+    this.categorie_third_id = '';
+    this.start_date = null;
+    this.end_date = null;
+    this.method_payment = '';
+    this.listSales();
   }
 
   changeDepartment() {
@@ -90,5 +115,34 @@ export class SalesListComponent {
 
   loadPage($event: any) {
     this.listSales($event);
+  }
+
+  export_sale_download() {
+    let params = '';
+    if (this.search) {
+      params += '&search=' + this.search;
+    }
+    if (this.brand_id) {
+      params += '&brand_id=' + this.brand_id;
+    }
+    if (this.categorie_first_id) {
+      params += '&categorie_first_id=' + this.categorie_first_id;
+    }
+    if (this.categorie_second_id) {
+      params += '&categorie_second_id=' + this.categorie_second_id;
+    }
+    if (this.categorie_third_id) {
+      params += '&categorie_third_id=' + this.categorie_third_id;
+    }
+    if (this.start_date) {
+      params += '&start_date=' + this.start_date;
+    }
+    if (this.end_date) {
+      params += '&end_date=' + this.end_date;
+    }
+    if (this.method_payment) {
+      params += '&method_payment=' + this.method_payment;
+    }
+    window.open(URL_SERVICIOS + '/sales/list-excel?k=1' + params, '_blank');
   }
 }
