@@ -117,7 +117,7 @@ export class SalesListComponent {
     this.listSales($event);
   }
 
-  export_sale_download() {
+  exportSaleDownload() {
     let params = '';
     if (this.search) {
       params += '&search=' + this.search;
@@ -144,5 +144,9 @@ export class SalesListComponent {
       params += '&method_payment=' + this.method_payment;
     }
     window.open(URL_SERVICIOS + '/sales/list-excel?k=1' + params, '_blank');
+  }
+
+  generatePdf(id: number) {
+    window.open(URL_SERVICIOS + '/sales/report-pdf/' + id, '_blank');
   }
 }

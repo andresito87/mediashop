@@ -6,6 +6,7 @@ use App\Exports\SaleExport;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Ecommerce\Sale\SaleCollection;
 use App\Models\Sale\Sale;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -68,5 +69,14 @@ class SalesController extends Controller
             ->orderBy("id", "desc")->get();
 
         return Excel::download(new SaleExport($sales), "sales_export.xlsx");
+    }
+
+    public function report_pdf($id)
+    {
+        $sale = Sale::findOrFail($id);
+
+        $pdf = Pdf::loadView("sale.sale_pdf", compact("sale"));
+
+        return $pdf->stream("venta_pdf{$sale->id}.pdf");
     }
 }

@@ -103,9 +103,15 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
 });
 // =============================================================================================== //
 
-// ========================== REPORTING EXCEL FILES ============================== //
+// =================== REPORTING LISTING SALES IN EXCEL FILES ====================== //
 Route::get("sales/list-excel", [SalesController::class, "list_excel"]);
 // ================================================================================ //
+
+// ===================== REPORTING INVOICE SALE IN PDF FILES ======================= //
+Route::get("sales/report-pdf/{id}", [SalesController::class, "report_pdf"]);
+// ================================================================================ //
+
+
 
 // ========================================== ECOMMERCE ========================================== //
 Route::prefix("ecommerce")
