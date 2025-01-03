@@ -10,7 +10,7 @@ import {
 import { HomeService } from '../../pages/home/service/home.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Renderer2 } from '@angular/core';
 import { CartService } from '../../pages/home/service/cart.service';
@@ -35,7 +35,7 @@ export class HeaderComponent {
   constructor(
     public homeService: HomeService,
     public cookieService: CookieService,
-    private renderer: Renderer2,
+    public renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
     public cartService: CartService,
     private toastr: ToastrService,

@@ -88,7 +88,10 @@ export class CartService {
     });
     let URL = URL_SERVICIOS + '/ecommerce/carts/' + cart_id;
 
-    return this.http.delete(URL, { headers: headersAdded });
+    return this.http.delete(URL, {
+      headers: headersAdded,
+      observe: 'response',
+    });
   }
 
   deleteCartsAll() {
@@ -97,7 +100,10 @@ export class CartService {
     });
     let URL = URL_SERVICIOS + '/ecommerce/carts/delete_all';
 
-    return this.http.delete(URL, { headers: headersAdded });
+    return this.http.delete(URL, {
+      headers: headersAdded,
+      observe: 'response',
+    });
   }
 
   applyCoupon(code_coupon: any) {

@@ -19,6 +19,10 @@ module.exports = function (config) {
         // for example, you can disable the random execution with `random: false`
         // or set a specific seed with `seed: 4321`
       },
+      config: {
+        // Cambiar el título de la página
+        karmaTitle: "Mi Proyecto de Karma - Resultados de Pruebas",
+      },
     },
     jasmineHtmlReporter: {
       suppressAll: true, // removes the duplicated traces
