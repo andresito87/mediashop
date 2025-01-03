@@ -1,0 +1,5 @@
+
+/* karma-hide-theme-settings.css */
+.tp-theme-settings-area {
+  display: none !important; /* Oculta el área de configuración del tema */
+}
