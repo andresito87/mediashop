@@ -199,7 +199,7 @@ class JWTAuthController extends Controller
     }
 
     // Get authenticated user
-    public function getUser()
+    public function get_user()
     {
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {

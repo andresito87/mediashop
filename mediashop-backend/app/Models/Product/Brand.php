@@ -4,6 +4,7 @@ namespace App\Models\Product;
 
 use App\Models\Discount\DiscountBrand;
 use Carbon\Carbon;
+use Database\Factories\BrandFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -37,5 +38,10 @@ class Brand extends Model
     public function discount_brands()
     {
         return $this->hasMany(DiscountBrand::class, "brand_id");
+    }
+
+    protected static function newFactory()
+    {
+        return new BrandFactory();
     }
 }

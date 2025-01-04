@@ -4,6 +4,7 @@ namespace App\Models\Product;
 
 use App\Models\Discount\DiscountCategorie;
 use Carbon\Carbon;
+use Database\Factories\CategorieFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -68,5 +69,10 @@ class Categorie extends Model
     public function discount_categories()
     {
         return $this->hasMany(DiscountCategorie::class, "categorie_id");
+    }
+
+    protected static function newFactory()
+    {
+        return new CategorieFactory();
     }
 }

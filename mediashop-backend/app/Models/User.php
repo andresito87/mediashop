@@ -83,4 +83,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(UserAddres::class, 'user_id');
     }
+
+    public function isAdmin()
+    {
+        return $this->type_user == 1;
+    }
+
+    public function isVerified()
+    {
+        return $this->email_verified_at != null;
+    }
 }

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 // ================================== REGISTER AND LOGIN ================================== //
 Route::prefix('auth')->group(function () {
     Route::post('register', [JWTAuthController::class, 'register']);
+    Route::post('update', [JWTAuthController::class, 'update']);
     Route::post('login', [JWTAuthController::class, 'login']);
     Route::post('admin_login', [JWTAuthController::class, 'admin_login']);
     Route::post('logout', [JWTAuthController::class, 'logout']);
@@ -37,7 +38,7 @@ Route::prefix('auth')->group(function () {
 
 // ====================================== USERS ====================================== //
 Route::middleware([JwtMiddleware::class])->group(function () {
-    Route::get('user', [JWTAuthController::class, 'getUser']);
+    Route::get('user', [JWTAuthController::class, 'get_user']);
 });
 // ==================================================================================== //
 
