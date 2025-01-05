@@ -45,7 +45,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
 // ==================================================================================== //
 
 // ========================================== ADMIN ========================================== //
-Route::middleware("auth:api")->prefix("admin")->group(function () {
+Route::middleware([JwtMiddleware::class])->prefix("admin")->group(function () {
 
     // ================================ CATEGORIES ================================ //
     Route::get('categories/config', [CategorieController::class, 'config']);
@@ -143,39 +143,38 @@ Route::prefix("ecommerce")
 
         /******************************* AUTHENTICATED USERS *******************************/
 
-        Route::group([
-            "middleware" => "auth:api", // endpoints protected against unathenticated users
-        ], function ($router) {
+        Route::middleware([JwtMiddleware::class])
+            ->group(function ($router) {
 
-            // ==================================== CARTS ==================================== //
-            Route::delete("carts/delete_all", [CartController::class, "delete_all"]);
-            Route::post("carts/apply_coupon", [CartController::class, "apply_coupon"]);
-            Route::resource('carts', CartController::class);
-            // ============================================================================== //
-    
-            // =============================== USER ADDRESS ================================= //
-            Route::resource('user_address', UserAddressController::class);
-            // ============================================================================= //
-    
-            // ========================= SALES & ORDERS ========================= //
-            Route::get("sale/{id}", [SaleController::class, "show"]);
-            // ================================================================== //
-    
-            // ===================== CHECKOUT & PAYMENT ======================= //
-            Route::post("checkout", [SaleController::class, "store"]);
-            // ================================================================ //
-    
-            // =============================== PROFILE ================================= //
-            Route::get("profile_client/me", [JWTAuthController::class, "me"]);
-            Route::get("profile_client/orders", [SaleController::class, "orders"]);
-            Route::post("profile_client", [JWTAuthController::class, "update"]);
-            // ========================================================================= //
-    
-            // =============================== REVIEWS ========================= //
-            Route::resource('reviews', ReviewController::class);
-            // ================================================================== //
-    
-        });
+                // ==================================== CARTS ==================================== //
+                Route::delete("carts/delete_all", [CartController::class, "delete_all"]);
+                Route::post("carts/apply_coupon", [CartController::class, "apply_coupon"]);
+                Route::resource('carts', CartController::class);
+                // ============================================================================== //
+        
+                // =============================== USER ADDRESS ================================= //
+                Route::resource('user_address', UserAddressController::class);
+                // ============================================================================= //
+        
+                // ========================= SALES & ORDERS ========================= //
+                Route::get("sale/{id}", [SaleController::class, "show"]);
+                // ================================================================== //
+        
+                // ===================== CHECKOUT & PAYMENT ======================= //
+                Route::post("checkout", [SaleController::class, "store"]);
+                // ================================================================ //
+        
+                // =============================== PROFILE ================================= //
+                Route::get("profile_client/me", [JWTAuthController::class, "me"]);
+                Route::get("profile_client/orders", [SaleController::class, "orders"]);
+                Route::post("profile_client", [JWTAuthController::class, "update"]);
+                // ========================================================================= //
+        
+                // =============================== REVIEWS ========================= //
+                Route::resource('reviews', ReviewController::class);
+                // ================================================================== //
+        
+            });
 
         /******************************************************************************************/
     });

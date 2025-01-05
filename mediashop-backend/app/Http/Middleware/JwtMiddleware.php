@@ -18,11 +18,14 @@ class JwtMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         try {
+            // try to authenticate the user using the token
             $user = JWTAuth::parseToken()->authenticate();
         } catch (JWTException $e) {
-            return response()->json(['error' => 'Token not valid'], 401);
+            // If an exception occurs, return an error response
+            return response()->json(['error' => 'Token is invalid or not provided'], 401);
         }
 
+        // If the user is authenticated, continue with the request
         return $next($request);
     }
 }
