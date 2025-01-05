@@ -21,9 +21,6 @@ class JWTAuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required|string|min:6',
@@ -40,7 +37,7 @@ class JWTAuthController extends Controller
             'name' => $request->get('name'),
             'surname' => $request->get('surname'),
             'phone' => $request->get('phone'),
-            'type_user' => 2,
+            'type_user' => $request->get('type_user') ? $request->get('type_user') : 2,
             'email' => $request->get('email'),
             'unique_id' => uniqid(),
             'password' => Hash::make($request->get('password')),
@@ -58,6 +55,27 @@ class JWTAuthController extends Controller
         $token = JWTAuth::fromUser($user);
 
         return response()->json(compact('user', 'token'), 201);
+    }
+
+    public function forgot_password(Request $request)
+    {
+        $user = User::where('email', $request->get('email'))->first();
+
+        if ($user == null) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        try {
+            $user->update(['code_verified' => uniqid()]);
+            Mail::to($request->get('email'))->send(new ForgotPasswordMail($user));
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error al enviar el correo: ' . $e->getMessage()
+            ], 500);
+        }
+
+        return response()->json(['message' => 'Email sent'], 200);
     }
 
     public function update(Request $request)
@@ -94,6 +112,17 @@ class JWTAuthController extends Controller
         $user->update($request->all());
         return response()->json([
             "message" => "Usuario editado correctamente"
+        ], 200);
+    }
+
+    public function update_password_admin(Request $request)
+    {
+        $user = User::where("email", $request->email)->first();
+        $user->update([
+            "password" => bcrypt($request->password)
+        ]);
+        return response()->json([
+            "message" => "Contraseña editada correctamente"
         ], 200);
     }
 
@@ -175,6 +204,10 @@ class JWTAuthController extends Controller
             // Check if user exists and is an admin
             if (!($token = Auth::guard('api')->attempt($credentials)) || Auth::user()->type_user != 1) {
                 return response()->json(['error' => 'Invalid credentials'], 401);
+            }
+
+            if (Auth::user()->email_verified_at == null) {
+                return response()->json(['error' => 'Email not verified'], 401);
             }
 
             return $this->respondWithToken(Auth::guard('api')->attempt($credentials));

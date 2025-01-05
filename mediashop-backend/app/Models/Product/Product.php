@@ -194,7 +194,7 @@ class Product extends Model
     public function scopeFilterAdvanceProduct($query, $search, $categorie_first_id, $categorie_second_id, $categorie_third_id, $brand_id)
     {
         if ($search) {
-            $query->where("title", "like", "%" . $search . "%");
+            $query->where("title", "like", "%$search%");
         }
 
         if ($categorie_first_id) {

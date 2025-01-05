@@ -58,10 +58,6 @@ export class AuthService implements OnDestroy {
           const result = this.setAuthFromLocalStorage(auth);
           return result;
         }),
-        catchError((err) => {
-          console.error('err', err);
-          return of(undefined);
-        }),
         finalize(() => this.isLoadingSubject.next(false))
       );
   }
@@ -110,10 +106,33 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  forgotPassword(email: string): Observable<boolean> {
+  forgotPassword(
+    email: string,
+    code: string,
+    newPassword: string
+  ): Observable<boolean> {
     this.isLoadingSubject.next(true);
+    if (newPassword) {
+      console.log('trae new password');
+      return this.authHttpService
+        .changePassword(email, newPassword)
+        .pipe(finalize(() => this.isLoadingSubject.next(false)));
+    }
+    if (code) {
+      console.log('trae code');
+      return this.authHttpService
+        .verifyCode(email, code)
+        .pipe(finalize(() => this.isLoadingSubject.next(false)));
+    }
     return this.authHttpService
       .forgotPassword(email)
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  verifyCode(email: string, code: string): Observable<boolean> {
+    this.isLoadingSubject.next(true);
+    return this.authHttpService
+      .verifyCode(email, code)
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 

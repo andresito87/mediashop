@@ -6,14 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Product\Property;
 use Illuminate\Http\Request;
 
-class PropertyAttributetController extends Controller
+class PropertyAttributeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $properties = Property::all();
+        return response()->json([
+            "properties" => $properties
+        ], 200);
     }
 
     /**
@@ -30,7 +33,7 @@ class PropertyAttributetController extends Controller
         }
         $property = Property::create($request->all());
         return response()->json([
-            "message" => 200,
+            "message" => 201,
             "property" => [
                 "id" => $property->id,
                 "name" => $property->name,
@@ -53,7 +56,26 @@ class PropertyAttributetController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $property = Property::find($id);
+
+        if (!$property) {
+            return response()->json([
+                "message" => 404,
+                "message_text" => "La propiedad no existe."
+            ]);
+        }
+
+        $property->update($request->all());
+        return response()->json([
+            "message" => 200,
+            "property" => [
+                "id" => $property->id,
+                "name" => $property->name,
+                "code" => $property->code,
+                "updated_at" => $property->updated_at->format("Y-m-d h:i:s"),
+            ]
+        ]);
     }
 
     /**
@@ -61,7 +83,14 @@ class PropertyAttributetController extends Controller
      */
     public function destroy(string $id)
     {
-        $property = Property::findOrFail($id);
+        $property = Property::find($id);
+
+        if (!$property) {
+            return response()->json([
+                "message" => 404,
+                "message_text" => "La propiedad no existe."
+            ]);
+        }
 
         // Validate when we delete property which is used in others products
         if (
@@ -73,7 +102,8 @@ class PropertyAttributetController extends Controller
 
         $property->delete();
         return response()->json([
-            "message" => 200
+            "message" => 200,
+            "message_text" => "La propiedad ha sido eliminada."
         ]);
     }
 }

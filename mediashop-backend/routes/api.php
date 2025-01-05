@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Product\ProductNestedVariationsController;
 use App\Http\Controllers\Admin\Product\ProductSpecificationsController;
 use App\Http\Controllers\Admin\Product\ProductVariationsController;
-use App\Http\Controllers\Admin\Product\PropertyAttributetController;
+use App\Http\Controllers\Admin\Product\PropertyAttributeController;
 use App\Http\Controllers\Admin\Sale\SalesController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Ecommerce\CartController;
@@ -29,6 +29,8 @@ Route::prefix('auth')->group(function () {
     Route::post('admin_login', [JWTAuthController::class, 'admin_login']);
     Route::post('logout', [JWTAuthController::class, 'logout']);
     Route::post('verified_auth', [JWTAuthController::class, 'verified_auth']);
+    Route::post('forgot_password', [JWTAuthController::class, 'forgot_password']);
+    Route::post('update_password_admin', [JWTAuthController::class, 'update_password_admin']);
     // Process to change password
     Route::post('verified_email', [JWTAuthController::class, 'verified_email']);
     Route::post('verified_code', [JWTAuthController::class, 'verified_code']);
@@ -48,6 +50,7 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     // ================================ CATEGORIES ================================ //
     Route::get('categories/config', [CategorieController::class, 'config']);
     Route::resource('categories', CategorieController::class);
+    /*It's necesary a method-post endpoint to send images, method-put doesn't allow it*/
     Route::post('categories/{id}', [CategorieController::class, "update"]);
     // ============================================================================ //
 
@@ -55,10 +58,12 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     Route::resource('attributes', AttributeProductController::class);
     // ============================================================================ //
 
-    // ================================ PROPERTIES ================================ //
-    Route::post('properties', [PropertyAttributetController::class, "store"]);
-    Route::delete('properties/{id}', [PropertyAttributetController::class, "destroy"]);
-    // ========================================================================= //
+    // ===================================== PROPERTIES ===================================== //
+    Route::get('properties', [PropertyAttributeController::class, "index"]);
+    Route::post('properties', [PropertyAttributeController::class, "store"]);
+    Route::put('properties/{id}', [PropertyAttributeController::class, "update"]);
+    Route::delete('properties/{id}', [PropertyAttributeController::class, "destroy"]);
+    // ======================================================================================= //
 
     // ================================= SLIDERS ================================= //
     Route::resource('sliders', SliderController::class);
@@ -76,6 +81,7 @@ Route::middleware("auth:api")->prefix("admin")->group(function () {
     Route::delete('products/images/{id}', [ProductController::class, "delete_image"]);
     Route::post('products/index', [ProductController::class, "index"]);
     Route::resource('products', ProductController::class);
+    /*It's necesary a method-post endpoint to send images, method-put doesn't allow it*/
     Route::post('products/{id}', [ProductController::class, "update"]);
     // ============================================================================ //
 

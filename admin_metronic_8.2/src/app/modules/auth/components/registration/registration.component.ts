@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   initForm() {
     this.registrationForm = this.fb.group(
       {
-        fullname: [
+        name: [
           '',
           Validators.compose([
             Validators.required,
@@ -53,7 +53,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
           ]),
         ],
         email: [
-          'qwe@qwe.qwe',
+          'mail@example.com',
           Validators.compose([
             Validators.required,
             Validators.email,
@@ -69,7 +69,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
             Validators.maxLength(100),
           ]),
         ],
-        cPassword: [
+        password_confirmation: [
           '',
           Validators.compose([
             Validators.required,

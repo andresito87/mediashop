@@ -16,7 +16,7 @@ class SliderController extends Controller
     {
         $search = $request->search;
 
-        $sliders = Slider::where("title", "like", "%" . $search . "%")->orderBy("id", "desc")->paginate(25);
+        $sliders = Slider::where("title", "like", "%$search%")->orderBy("id", "desc")->paginate(25);
 
         return response()->json([
             "total" => $sliders->total(),
@@ -50,7 +50,7 @@ class SliderController extends Controller
         }
 
         $slider = Slider::create($request->all());
-        return response()->json(["message" => 200]);
+        return response()->json(["message" => 200, "message_text" => "Slider creado", "id" => $slider->id]);
     }
 
     /**
@@ -58,7 +58,11 @@ class SliderController extends Controller
      */
     public function show(string $id)
     {
-        $slider = Slider::findOrFail($id);
+        $slider = Slider::find($id);
+
+        if (!$slider) {
+            return response()->json(["message" => 404, "message_text" => "Slider no encontrado"]);
+        }
 
         return response()->json([
             "slider" => [
@@ -82,7 +86,12 @@ class SliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $slider = Slider::findOrFail($id);
+        $slider = Slider::find($id);
+
+        if (!$slider) {
+            return response()->json(["message" => 404, "message_text" => "Slider no encontrado"], 404);
+        }
+
         if ($request->hasfile("imagen")) {
             if ($slider->image) {
                 Storage::delete($slider->image);
@@ -92,7 +101,7 @@ class SliderController extends Controller
         }
 
         $slider->update($request->all());
-        return response()->json(["message" => 200]);
+        return response()->json(["message" => 200, "message_text" => "Slider actualizado"], 200);
     }
 
     /**
@@ -100,8 +109,13 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        $slider = Slider::findOrFail($id);
+        $slider = Slider::find($id);
+
+        if (!$slider) {
+            return response()->json(["message" => 404, "message_text" => "Slider no encontrado"]);
+        }
+
         $slider->delete();
-        return response()->json(["message" => 200]);
+        return response()->json(["message" => 200, "message_text" => "Slider eliminado"]);
     }
 }

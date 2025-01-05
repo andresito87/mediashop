@@ -61,6 +61,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            "title" => "required",
+            "sku" => "required",
+            "slug" => "required",
+            "price_eur" => "required",
+            "price_usd" => "required",
+            "description" => "required",
+            "resume" => "required",
+            "image" => "required",
+            "brand_id" => "required",
+            "categorie_first_id" => "required",
+        ]);
+
         $exist = Product::where("title", $request->title)->first();
         if ($exist) {
             return response()->json(["message" => 403, "message_text" => "El nombre del producto ya existe"]);
@@ -76,7 +89,11 @@ class ProductController extends Controller
         $request->request->add(["tags" => $request->multiselect]);
 
         $product = Product::create($request->all());
-        return response()->json(["message" => 200]);
+        return response()->json([
+            "message" => 200,
+            "message_text" => "Producto creado correctamente",
+            "product" => ProductResource::make($product)
+        ], 201);
     }
 
     public function images(Request $request)
@@ -122,7 +139,12 @@ class ProductController extends Controller
         }
 
         // process to update product image
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json(["message" => 404, "message_text" => "Producto no encontrado"], 404);
+        }
+
         if ($request->hasFile("cover_image")) {
             if ($product->image) {
                 Storage::delete($product->image);
@@ -136,7 +158,7 @@ class ProductController extends Controller
         $request->request->add(["tags" => $request->multiselect]);
 
         $product->update($request->all());
-        return response()->json(["message" => 200]);
+        return response()->json(["message" => 200, "message_text" => "Producto actualizado correctamente"]);
     }
 
     /**
@@ -144,11 +166,15 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
-        // TODO: We can't delete a sold product
+        $product = Product::find($id);
 
-        return response()->json(["message" => 200]);
+        if (!$product) {
+            return response()->json(["message" => 404, "message_text" => "Producto no encontrado"], 404);
+        }
+
+        $product->delete();
+
+        return response()->json(["message" => 200, "message_text" => "Producto eliminado correctamente"]);
     }
 
     public function delete_image(string $id)
@@ -160,7 +186,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return response()->json(["message" => 200]);
+        return response()->json(["message" => 200, "message_text" => "Imagen eliminada correctamente"]);
     }
 
 }

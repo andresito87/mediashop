@@ -57,7 +57,7 @@ class CategorieController extends Controller
         }
 
         $categorie = Categorie::create($request->all());
-        return response()->json(["message" => 200]);
+        return response()->json(["message" => 200, "id" => $categorie->id]);
     }
 
     /**
@@ -78,9 +78,14 @@ class CategorieController extends Controller
         $is_exists = Categorie::where("id", "<>", $id)->where("name", $request->name)->first();
 
         if ($is_exists) {
-            return response()->json(["message" => 403]);
+            return response()->json(["message" => 403, "message_text" => "Ya existe una categoría con ese nombre"]);
         }
-        $categorie = Categorie::findOrFail($id);
+        $categorie = Categorie::find($id);
+
+        if (!$categorie) {
+            return response()->json(["message" => 404, "message_text" => "No se ha encontrado la categoría"]);
+        }
+
         if ($request->hasfile("image")) {
             if ($categorie->image) {
                 Storage::delete($categorie->image);
@@ -90,7 +95,7 @@ class CategorieController extends Controller
         }
 
         $categorie->update($request->all());
-        return response()->json(["message" => 200]);
+        return response()->json(["message" => 200, "message_text" => "Categoría actualizada correctamente"]);
     }
 
     /**
@@ -98,7 +103,11 @@ class CategorieController extends Controller
      */
     public function destroy(string $id)
     {
-        $categorie = Categorie::findOrFail($id);
+        $categorie = Categorie::find($id);
+
+        if (!$categorie) {
+            return response()->json(["message" => "No se ha encontrado la categoría"], 404);
+        }
 
         // Validate that the category is not included in any product
         if (

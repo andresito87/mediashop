@@ -8,7 +8,7 @@ import { AuthModel } from '../../../models/auth.model';
 import { UsersTable } from '../../../../../_fake/users.table';
 import { environment } from '../../../../../../environments/environment';
 
-const API_USERS_URL = `${environment.apiUrl}/users`;
+const API_USERS_URL = `${environment.URL_SERVICIOS}/auth/register`;
 
 @Injectable({
   providedIn: 'root',
@@ -49,11 +49,7 @@ export class AuthHTTPService {
   }
 
   createUser(user: UserModel): Observable<any> {
-    user.roles = [2]; // Manager
-    user.authToken = 'auth-token-' + Math.random();
-    user.refreshToken = 'auth-token-' + Math.random();
-    user.expiresIn = new Date(Date.now() + 100 * 24 * 60 * 60 * 1000);
-    user.pic = './assets/media/avatars/300-1.jpg';
+    user.type_user = 1;
 
     return this.http.post<UserModel>(API_USERS_URL, user);
   }

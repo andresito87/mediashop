@@ -80,13 +80,14 @@ class AttributeProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $id, Request $request)
     {
         $exist = Attribute::where("id", "<>", $id)
             ->where("name", $request->name)->first();
         if ($exist) {
             return response()->json([
-                "message" => 403
+                "message" => 403,
+                "message_text" => "El nombre del atributo ya está en uso."
             ]);
         }
         $attribute = Attribute::findOrFail($id);
@@ -115,7 +116,11 @@ class AttributeProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $attribute = Attribute::findOrFail($id);
+        $attribute = Attribute::find($id);
+
+        if (!$attribute) {
+            return response()->json(["message" => 404, "message_text" => "El atributo no existe."]);
+        }
 
         // Validate when we delete attribute which is used in others products
         if (
@@ -128,7 +133,8 @@ class AttributeProductController extends Controller
         $attribute->delete();
 
         return response()->json([
-            "message" => 200
+            "message" => 200,
+            "message_text" => "El atributo ha sido eliminado."
         ]);
     }
 }

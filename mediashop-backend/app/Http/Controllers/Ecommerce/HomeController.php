@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-
     public function home(Request $request)
     {
         $sliders_principal = $sliders_principal = Slider::where("state", 1)
