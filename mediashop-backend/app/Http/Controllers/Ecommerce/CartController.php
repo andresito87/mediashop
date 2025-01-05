@@ -10,6 +10,7 @@ use App\Models\Product\Product;
 use App\Models\Product\ProductVariation;
 use App\Models\Sale\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -32,6 +33,38 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            "id" => "required",
+            "product_id" => "required",
+            "product_variation_id" => "nullable",
+            "quantity" => "required|integer|min:1",
+            "price_unit" => "required|numeric|min:0",
+            "subtotal" => "required|numeric|min:0",
+            "total" => "required|numeric|min:0",
+        ], [
+            "product_id.required" => "El campo 'product_id' es obligatorio.",
+            "quantity.required" => "El campo 'quantity' es obligatorio.",
+            "quantity.integer" => "La cantidad debe ser un número entero.",
+            "quantity.min" => "La cantidad debe ser un número positivo.",
+            "price_unit.required" => "El campo 'price_unit' es obligatorio.",
+            "price_unit.numeric" => "El campo 'price_unit' debe ser un número.",
+            "price_unit.min" => "El precio unitario debe ser mayor o igual a cero.",
+            "subtotal.required" => "El campo 'subtotal' es obligatorio.",
+            "subtotal.numeric" => "El campo 'subtotal' debe ser un número.",
+            "subtotal.min" => "El subtotal debe ser mayor o igual a cero.",
+            "total.required" => "El campo 'total' es obligatorio.",
+            "total.numeric" => "El campo 'total' debe ser un número.",
+            "total.min" => "El total debe ser mayor o igual a cero."
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Hay errores en los datos enviados',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
         $user = auth('api')->user();
 
         // validate if there is a cart with the same VARIATION PRODUCT for the same user

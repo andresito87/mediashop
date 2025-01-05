@@ -16,6 +16,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   registrationForm: FormGroup;
   hasError: boolean;
   isLoading$: Observable<boolean>;
+  errorMessage: string;
 
   // private fields
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
@@ -98,13 +99,22 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     const registrationSubscr = this.authService
       .registration(newUser)
       .pipe(first())
-      .subscribe((user: UserModel) => {
-        if (user) {
-          this.router.navigate(['/']);
-        } else {
-          this.hasError = true;
+      .subscribe(
+        (user: UserModel) => {
+          if (user) {
+            this.router.navigate(['/']);
+          } else {
+            this.hasError = true;
+          }
+        },
+        (err: any) => {
+          this.hasError = true; // Si hay un error, activa el estado de error
+          // Aquí puedes manejar el error recibido desde el backend
+          console.log('API error details:', err.error); // Verifica qué contiene 'err.error'
+          this.errorMessage =
+            err?.error.error || 'An unexpected error occurred'; // Usar un mensaje de la API si está disponible
         }
-      });
+      );
     this.unsubscribe.push(registrationSubscr);
   }
 

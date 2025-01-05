@@ -14,6 +14,7 @@ use App\Models\Sale\SaleAddres;
 use App\Models\Sale\SaleDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class SaleController extends Controller
 {
@@ -101,6 +102,17 @@ class SaleController extends Controller
      */
     public function show(string $id)
     {
+        $validator = Validator::make(['id' => $id], [
+            'id' => 'required|exists:sales,code_transaction'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Hay errores en los datos enviados',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
         $sale = Sale::where("code_transaction", $id)->first();
 
         return response()->json([

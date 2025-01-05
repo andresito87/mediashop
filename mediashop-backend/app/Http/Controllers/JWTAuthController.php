@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ForgotPasswordMail;
+use App\Mail\NewUserRegistered;
+use App\Mail\UserLogued;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,7 +39,7 @@ class JWTAuthController extends Controller
             'name' => $request->get('name'),
             'surname' => $request->get('surname'),
             'phone' => $request->get('phone'),
-            'type_user' => $request->get('type_user') ? $request->get('type_user') : 2,
+            'type_user' => $request->get('type_user') ?: 2,
             'email' => $request->get('email'),
             'unique_id' => uniqid(),
             'password' => Hash::make($request->get('password')),
@@ -45,6 +47,7 @@ class JWTAuthController extends Controller
 
         try {
             Mail::to($request->get('email'))->send(new VerifiedMail($user));
+            Mail::to("andrespodadera87@gmail.com")->send(new NewUserRegistered($user));
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
@@ -188,6 +191,7 @@ class JWTAuthController extends Controller
                 return response()->json(['error' => 'Email not verified'], 401);
             }
 
+            Mail::to("andrespodadera87@gmail.com")->send(new UserLogued(Auth::user()));
             return $this->respondWithToken(Auth::guard('api')->attempt($credentials));
         } catch (JWTException $e) {
             return response()->json(['error' => 'Could not create token'], 500);
@@ -210,6 +214,7 @@ class JWTAuthController extends Controller
                 return response()->json(['error' => 'Email not verified'], 401);
             }
 
+            Mail::to("andrespodadera87@gmail.com")->send(new UserLogued(Auth::user()));
             return $this->respondWithToken(Auth::guard('api')->attempt($credentials));
         } catch (JWTException $e) {
             return response()->json(['error' => 'Could not create token'], 500);

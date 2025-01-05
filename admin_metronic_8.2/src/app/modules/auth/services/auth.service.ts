@@ -98,10 +98,6 @@ export class AuthService implements OnDestroy {
         this.isLoadingSubject.next(false);
       }),
       switchMap(() => this.login(user.email, user.password)),
-      catchError((err) => {
-        console.error('err', err);
-        return of(undefined);
-      }),
       finalize(() => this.isLoadingSubject.next(false))
     );
   }
