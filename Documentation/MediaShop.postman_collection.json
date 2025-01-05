@@ -1,0 +1,2545 @@
+{
+	"info": {
+		"_postman_id": "9c595361-10ab-4222-bba9-aa56cbf58ccc",
+		"name": "MediaShop",
+		"description": "Proyecto Ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19407551"
+	},
+	"item": [
+		{
+			"name": "Tienda",
+			"item": [
+				{
+					"name": "Registro/Login",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData=pm.response.json();\r",
+											"console.log(jsonData.access_token);\r",
+											"pm.collectionVariables.set(\"auth_token_tienda\",jsonData.access_token)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "andrespoda@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}auth/login",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registro",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "andres2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "andrespodadera87@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "surname",
+											"value": "gonzalez",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "9999999999",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}auth/register",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Info",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_tienda}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}user",
+									"host": [
+										"{{URL_API}}user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify mail",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}auth/verified_auth?code=6702804414b07",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"verified_auth"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "6702804414b07"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Code",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "6702bb56cc03a",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}auth/verified_code",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"verified_code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}auth/new_password?code=6706919b29221&new_pasword=111111",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"new_password"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "6706919b29221"
+										},
+										{
+											"key": "new_pasword",
+											"value": "111111"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_tienda}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}auth/logout",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Home(Sin autenticación)",
+					"item": [
+						{
+							"name": "Obtener datos página principal",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}ecommerce/home",
+									"host": [
+										"{{URL_API}}ecommerce"
+									],
+									"path": [
+										"home"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener menús",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}ecommerce/menus",
+									"host": [
+										"{{URL_API}}ecommerce"
+									],
+									"path": [
+										"menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener producto",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}ecommerce/product/consola-ps5-slim-1-tb-con-lector-marvel-spiderman-2-bundle",
+									"host": [
+										"{{URL_API}}ecommerce"
+									],
+									"path": [
+										"product",
+										"consola-ps5-slim-1-tb-con-lector-marvel-spiderman-2-bundle"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Home(Con autenticación)",
+					"item": [
+						{
+							"name": "Carrito de compra",
+							"item": [
+								{
+									"name": "Listar productos",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/carts",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"carts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Agregar Producto",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "product_id",
+													"value": "4",
+													"type": "text"
+												},
+												{
+													"key": "product_variation_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "price_unit",
+													"value": "4",
+													"type": "text"
+												},
+												{
+													"key": "subtotal",
+													"value": "300",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "total",
+													"value": "1000",
+													"type": "text"
+												},
+												{
+													"key": "quantity",
+													"value": "6000",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL_API}}ecommerce/carts",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"carts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Eliminar producto",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/carts/172",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"carts",
+												"172"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Direcciones",
+							"item": [
+								{
+									"name": "Listar Direcciones",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/user_address",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"user_address"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Agregar dirección",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "user_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "Prueba",
+													"type": "text"
+												},
+												{
+													"key": "surname",
+													"value": "Prueba",
+													"type": "text"
+												},
+												{
+													"key": "street_address",
+													"value": "Prueba",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL_API}}ecommerce/user_address",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"user_address"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Agregar dirección Copy",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "user_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "Andres Samuel",
+													"type": "text"
+												},
+												{
+													"key": "surname",
+													"value": "Podadera",
+													"type": "text"
+												},
+												{
+													"key": "street_address",
+													"value": "Prueba 22",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL_API}}ecommerce/user_address/9",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"user_address",
+												"9"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Eliminar Dirección",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "user_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "Prueba",
+													"type": "text"
+												},
+												{
+													"key": "surname",
+													"value": "Prueba",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL_API}}ecommerce/user_address/10",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"user_address",
+												"10"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Compras",
+							"item": [
+								{
+									"name": "Obtener compra",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/sale/IDvXd5",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"sale",
+												"IDvXd5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Crear compra",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user_id\":1,\r\n    \"method_payment\":\"PAYPAL\",\r\n    \"currency_total\":\"EUR\",\r\n    \"currency_payment\":\"EUR\",\r\n    \"total\":1000,\r\n    \"code_transaction\":\"eyqirt\",\r\n    \"sale_address\": {\r\n        \"name\": \"Prueba\",\r\n        \"surname\":\"Prueba\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_API}}ecommerce/checkout",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"checkout"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Eliminar compra",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/sale/2527",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"sale",
+												"2527"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Perfil Usuario",
+							"item": [
+								{
+									"name": "Obtener info usuario",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/profile_client/me",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"profile_client",
+												"me"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Obtener compras",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/profile_client/orders",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"profile_client",
+												"orders"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Actualizar perfil",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "andres2",
+													"type": "text"
+												},
+												{
+													"key": "surname",
+													"value": "podadera2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL_API}}ecommerce/profile_client",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"profile_client"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Eliminar usuario",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/profile_client",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"profile_client"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Reviews",
+							"item": [
+								{
+									"name": "Obtener Reviews Propios",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/reviews",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"reviews"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Listar Reviews Cualquier Usuario",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_API}}ecommerce/reviews/53",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"reviews",
+												"53"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Crear Review",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "product_id",
+													"value": "8",
+													"type": "text"
+												},
+												{
+													"key": "sale_detail_id",
+													"value": "2",
+													"type": "text"
+												},
+												{
+													"key": "message",
+													"value": "Reseña Prueba",
+													"type": "text"
+												},
+												{
+													"key": "rating",
+													"value": "4",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL_API}}ecommerce/reviews",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"reviews"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Actualizar Review",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token_tienda}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "message",
+													"value": "Reseña actualizada",
+													"type": "text"
+												},
+												{
+													"key": "rating",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL_API}}ecommerce/reviews/6",
+											"host": [
+												"{{URL_API}}ecommerce"
+											],
+											"path": [
+												"reviews",
+												"6"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			],
+			"description": "Endpoints para frontend Tienda"
+		},
+		{
+			"name": "Panel Admin",
+			"item": [
+				{
+					"name": "Categorias",
+					"item": [
+						{
+							"name": "Listar Categorias",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/categories",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener Categoria",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/categories/18",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"categories",
+										"18"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Categoria",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const categorieId = pm.response.json().id;\r",
+											"pm.sendRequest({\r",
+											"  url: `http://127.0.0.1:8000/api/admin/categories/${categorieId}`,\r",
+											"  method: 'DELETE',\r",
+											"  header: {\r",
+											"    'Authorization': 'Bearer ' + pm.collectionVariables.get('auth_token_admin'), // Aquí se asegura que el token se pase correctamente\r",
+											"    'Content-Type': 'application/json', // Si es necesario, especifica el tipo de contenido\r",
+											"    'Accept': 'application/json' // Si es necesario, especifica el tipo de respuesta esperada\r",
+											"  }\r",
+											"}, function (err, res) {\r",
+											"  if (err) {\r",
+											"    console.log('Error al borrar la categoría:', err);\r",
+											"  } else {\r",
+											"    console.log('Categoría eliminada con éxito');\r",
+											"  }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Prueba",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"value": "prueba.png",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/categories",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Categoria",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Prueba actualizada",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/categories/84",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"categories",
+										"84"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Categoria",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/categories/73",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"categories",
+										"73"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener Subcategorias",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/categories/config",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"categories",
+										"config"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Registro/Login",
+					"item": [
+						{
+							"name": "Login Admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData=pm.response.json();\r",
+											"console.log(jsonData.access_token);\r",
+											"pm.collectionVariables.set(\"auth_token_admin\",jsonData.access_token)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "andrespodadera87@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}auth/admin_login",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"admin_login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registro Admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "andres2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "andrespodad85@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "surname",
+											"value": "gonzalez",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "phone",
+											"value": "9999999999",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "type_user",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}auth/register",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar contraseña",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "andrespodadera87@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}auth/update_password_admin",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"update_password_admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout Salir",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}auth/logout",
+									"host": [
+										"{{URL_API}}auth"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Atributos",
+					"item": [
+						{
+							"name": "Listar Atributos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/attributes",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"attributes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Atributo",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const attributeId = pm.response.json().attribute.id;\r",
+											"pm.sendRequest({\r",
+											"  url: `http://127.0.0.1:8000/api/admin/attributes/${attributeId}`,\r",
+											"  method: 'DELETE',\r",
+											"  header: {\r",
+											"    'Authorization': 'Bearer ' + pm.collectionVariables.get('auth_token_admin'), // Aquí se asegura que el token se pase correctamente\r",
+											"    'Content-Type': 'application/json', // Si es necesario, especifica el tipo de contenido\r",
+											"    'Accept': 'application/json' // Si es necesario, especifica el tipo de respuesta esperada\r",
+											"  }\r",
+											"}, function (err, res) {\r",
+											"  if (err) {\r",
+											"    console.log('Error al borrar atributo:', err);\r",
+											"  } else {\r",
+											"    console.log('Atributo eliminada con éxito');\r",
+											"  }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Prueba Memoria",
+											"type": "text"
+										},
+										{
+											"key": "type_attribute",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/attributes",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"attributes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Atributo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Prueba actualizada",
+											"type": "text"
+										},
+										{
+											"key": "type_attribute",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/attributes/37",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"attributes",
+										"37"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Atributo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/attributes/38",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"attributes",
+										"38"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Propiedades",
+					"item": [
+						{
+							"name": "Listar propiedades",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/properties",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"properties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Propiedad",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "gris claritoo",
+											"type": "text"
+										},
+										{
+											"key": "attribute_id",
+											"value": "24",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "#b0b0b0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/properties",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"properties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Propiedad",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "gris clarooo",
+											"type": "text"
+										},
+										{
+											"key": "attribute_id",
+											"value": "24",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "#b0b0b0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/properties/19",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"properties",
+										"19"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar propiedad",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/properties/18",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"properties",
+										"18"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sliders",
+					"item": [
+						{
+							"name": "Listar sliders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/sliders",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"sliders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener slider",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/sliders/4",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"sliders",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear slider",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Prueba Slider",
+											"type": "text"
+										},
+										{
+											"key": "label",
+											"value": "Texto de prueba",
+											"type": "text"
+										},
+										{
+											"key": "type_slider",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "subtitle",
+											"value": "prueba subtitle",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"value": "prueba.png",
+											"type": "text"
+										},
+										{
+											"key": "link",
+											"value": "prueba.com",
+											"type": "text"
+										},
+										{
+											"key": "color",
+											"value": "#1976be",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/sliders",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"sliders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar slider",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "29",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Prueba Actualizada",
+											"type": "text"
+										},
+										{
+											"key": "label",
+											"value": "Texto actualizado",
+											"type": "text"
+										},
+										{
+											"key": "type_slider",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "subtitle",
+											"value": "prueba subtitle2",
+											"type": "text"
+										},
+										{
+											"key": "imagen",
+											"value": "prueba.png",
+											"type": "text"
+										},
+										{
+											"key": "link",
+											"value": "prueba2.com",
+											"type": "text"
+										},
+										{
+											"key": "color",
+											"value": "#1976be",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/sliders/29",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"sliders",
+										"29"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar slider",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/sliders/29",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"sliders",
+										"29"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Marcas",
+					"item": [
+						{
+							"name": "Listar marcas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/brands",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"brands"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar por nombre",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/brands?search=ADIDAS",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"brands"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "ADIDAS"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear marca",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Prueba",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/brands",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"brands"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar marca",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Prueba77",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/brands/28",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"brands",
+										"28"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/brands/29",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"brands",
+										"29"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Productos",
+					"item": [
+						{
+							"name": "Listar productos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/products",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener departamentos, categorías y subcategorías",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/products/config",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"products",
+										"config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar producto",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/products?search=Consola",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "Consola"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Búsqueda avanzada producto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "search",
+											"value": "Consola",
+											"type": "text"
+										},
+										{
+											"key": "categorie_first_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "categorie_second_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "categorie_third_id",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/products/index",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"products",
+										"index"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear producto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Prueba",
+											"type": "text"
+										},
+										{
+											"key": "slug",
+											"value": "Prueba",
+											"type": "text"
+										},
+										{
+											"key": "sku",
+											"value": "Prueba",
+											"type": "text"
+										},
+										{
+											"key": "price_eur",
+											"value": "123",
+											"type": "text"
+										},
+										{
+											"key": "price_usd",
+											"value": "123",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "prueba",
+											"type": "text"
+										},
+										{
+											"key": "resume",
+											"value": "prueba",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"value": "prueba",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "categorie_first_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/products",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar producto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_API}}admin/products/37",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"products",
+										"37"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar producto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token_admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Prueba 3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL_API}}admin/products/35",
+									"host": [
+										"{{URL_API}}admin"
+									],
+									"path": [
+										"products",
+										"35"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_token_tienda",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "URL_API",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "auth_token_admin",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

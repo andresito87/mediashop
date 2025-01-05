@@ -159,6 +159,7 @@ Route::prefix("ecommerce")
         
                 // ========================= SALES & ORDERS ========================= //
                 Route::get("sale/{id}", [SaleController::class, "show"]);
+                Route::delete("sale/{id}", [SaleController::class, "destroy"]);
                 // ================================================================== //
         
                 // ===================== CHECKOUT & PAYMENT ======================= //
@@ -169,9 +170,11 @@ Route::prefix("ecommerce")
                 Route::get("profile_client/me", [JWTAuthController::class, "me"]);
                 Route::get("profile_client/orders", [SaleController::class, "orders"]);
                 Route::post("profile_client", [JWTAuthController::class, "update"]);
+                Route::delete("profile_client", [JWTAuthController::class, "destroy"]);
                 // ========================================================================= //
         
                 // =============================== REVIEWS ========================= //
+                Route::get('reviews/{id?}', [ReviewController::class, 'index']);
                 Route::resource('reviews', ReviewController::class);
                 // ================================================================== //
         

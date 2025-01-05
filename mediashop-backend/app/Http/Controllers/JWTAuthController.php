@@ -299,4 +299,13 @@ class JWTAuthController extends Controller
             ]
         ]);
     }
+
+    public function destroy()
+    {
+        $user = User::find(auth("api")->user()->id);
+        $user->delete();
+        return response()->json([
+            "message" => "Su cuenta ha sido eliminada correctamente"
+        ], 200);
+    }
 }

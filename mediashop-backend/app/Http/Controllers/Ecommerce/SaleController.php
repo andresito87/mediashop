@@ -42,9 +42,8 @@ class SaleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(
-        Request $request
-    ) {
+    public function store(Request $request)
+    {
         $request->request->add(["user_id" => auth("api")->user()->id]);
         $sale = Sale::create($request->all());
 
@@ -93,7 +92,8 @@ class SaleController extends Controller
             ->send(new SaleMail(auth("api")->user(), $sale_new));
 
         return response()->json([
-            "message" => "Venta creada correctamente"
+            "message" => "Venta creada correctamente",
+            "sale" => SaleResource::make($sale),
         ], 200);
     }
 
@@ -133,6 +133,25 @@ class SaleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $validator = Validator::make(['id' => $id], [
+            'id' => 'required|numeric|exists:sales,id'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Hay errores en los datos enviados',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $sale = Sale::where("id", $id)->first();
+
+        $sale->delete();
+
+        return response()->json([
+            "message" => "Venta eliminada correctamente",
+        ], 200);
+
     }
 }
