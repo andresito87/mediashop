@@ -112,8 +112,9 @@ export class AuthService {
 
     this.token = '';
     this.user = null;
+    this.router.navigateByUrl('/login');
     setTimeout(() => {
-      this.router.navigateByUrl('/login');
-    }, 500);
+      window.location.reload();
+    }, 1);
   }
 }

@@ -73,8 +73,8 @@ export class LoginComponent implements OnInit {
           } else {
             this.toastr.success('Exito', '!!! Bienvenid@ a la tienda !!!');
             setTimeout(() => {
-              this.router.navigate(['/']);
-            }, 500);
+              window.location.reload();
+            }, 300);
           }
         }),
         catchError((error) => {

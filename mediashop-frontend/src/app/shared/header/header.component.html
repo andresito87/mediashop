@@ -406,7 +406,9 @@
                   >
                   <ul>
                     <li>
-                      <a href="profile.html">My Profile</a>
+                      <a routerLink="/profile" href="#" onclick="return false;"
+                        >My Profile</a
+                      >
                     </li>
                     <li>
                       <a href="wishlist.html">Wishlist</a>
@@ -527,7 +529,9 @@
                   <div class="tp-header-login-content d-none d-xl-block">
                     <span>Hello, {{ user.full_name }}</span>
                     <h5 class="tp-header-login-title">
-                      <a routerLink="/profile">Go Your Profile</a>
+                      <a routerLink="/profile" href="#" onclick="return false;"
+                        >Go Your Profile</a
+                      >
                     </h5>
                   </div>
                   }@else{
