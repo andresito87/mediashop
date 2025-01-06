@@ -1,0 +1,1287 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mediashop-frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">mediashop-frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ProfileClientComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/view-auth/profile-client/profile-client.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-profile-client</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/EditProfileClientComponent.html" target="_self" >EditProfileClientComponent</a></code>
+                                <code><a href="../components/AddressProfileClientComponent.html" target="_self" >AddressProfileClientComponent</a></code>
+                                <code><a href="../components/OrdersProfileClientComponent.html" target="_self" >OrdersProfileClientComponent</a></code>
+                                <code><a href="../components/PasswordProfileClientComponent.html" target="_self" >PasswordProfileClientComponent</a></code>
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>RouterModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./profile-client.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./profile-client.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#avatar" >avatar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#profileClient" >profileClient</a>
+                            </li>
+                            <li>
+                                <a href="#selectedTab" >selectedTab</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#onImagePreviewChanged" >onImagePreviewChanged</a>
+                            </li>
+                            <li>
+                                <a href="#selectTab" >selectTab</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, profileClient: <a href="../injectables/ProfileClientService.html" target="_self">ProfileClientService</a>, cdRef: ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/view-auth/profile-client/profile-client.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>profileClient</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ProfileClientService.html" target="_self" >ProfileClientService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ChangeDetectorRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/pages/view-auth/profile-client/profile-client.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onImagePreviewChanged"></a>
+                    <span class="name">
+                        <span ><b>onImagePreviewChanged</b></span>
+                        <a href="#onImagePreviewChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onImagePreviewChanged(newImage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/pages/view-auth/profile-client/profile-client.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>newImage</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectTab"></a>
+                    <span class="name">
+                        <span ><b>selectTab</b></span>
+                        <a href="#selectTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectTab(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/pages/view-auth/profile-client/profile-client.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/view-auth/profile-client/profile-client.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="avatar"></a>
+                    <span class="name">
+                        <span ><b>avatar</b></span>
+                        <a href="#avatar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/view-auth/profile-client/profile-client.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="profileClient"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>profileClient</b></span>
+                        <a href="#profileClient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/ProfileClientService.html" target="_self" >ProfileClientService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/view-auth/profile-client/profile-client.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedTab"></a>
+                    <span class="name">
+                        <span ><b>selectedTab</b></span>
+                        <a href="#selectedTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/view-auth/profile-client/profile-client.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, Component } from &#x27;@angular/core&#x27;;
+import { EditProfileClientComponent } from &#x27;./edit-profile-client/edit-profile-client.component&#x27;;
+import { AddressProfileClientComponent } from &#x27;./address-profile-client/address-profile-client.component&#x27;;
+import { OrdersProfileClientComponent } from &#x27;./orders-profile-client/orders-profile-client.component&#x27;;
+import { PasswordProfileClientComponent } from &#x27;./password-profile-client/password-profile-client.component&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+import { AuthService } from &#x27;../../auth/service/auth.service&#x27;;
+import { ProfileClientService } from &#x27;./service/profile-client.service&#x27;;
+
+@Component({
+  selector: &#x27;app-profile-client&#x27;,
+  standalone: true,
+  imports: [
+    EditProfileClientComponent,
+    AddressProfileClientComponent,
+    OrdersProfileClientComponent,
+    PasswordProfileClientComponent,
+    CommonModule,
+    FormsModule,
+    RouterModule,
+  ],
+  templateUrl: &#x27;./profile-client.component.html&#x27;,
+  styleUrl: &#x27;./profile-client.component.css&#x27;,
+})
+export class ProfileClientComponent {
+  selectedTab: number &#x3D; 0;
+  avatar: string &#x3D; &#x27;&#x27;;
+
+  constructor(
+    public authService: AuthService,
+    public profileClient: ProfileClientService,
+    private cdRef: ChangeDetectorRef
+  ) {
+    this.profileClient.showUsers().subscribe((res: any) &#x3D;&gt; {
+      this.avatar &#x3D; res.avatar;
+    });
+  }
+
+  selectTab(value: number) {
+    this.selectedTab &#x3D; value;
+    this.cdRef.detectChanges();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  onImagePreviewChanged(newImage: string) {
+    this.avatar &#x3D; newImage;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;main&gt;
+  &lt;!-- profile area start --&gt;
+  &lt;section class&#x3D;&quot;profile__area pt-120 pb-120&quot;&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+      &lt;div class&#x3D;&quot;profile__inner p-relative&quot;&gt;
+        &lt;div class&#x3D;&quot;profile__shape&quot;&gt;
+          &lt;img
+            class&#x3D;&quot;profile__shape-1&quot;
+            src&#x3D;&quot;assets/img/login/laptop.png&quot;
+            alt&#x3D;&quot;&quot;
+          /&gt;
+          &lt;img class&#x3D;&quot;profile__shape-2&quot; src&#x3D;&quot;assets/img/login/man.png&quot; alt&#x3D;&quot;&quot; /&gt;
+          &lt;img
+            class&#x3D;&quot;profile__shape-3&quot;
+            src&#x3D;&quot;assets/img/login/login-shape-1.png&quot;
+            alt&#x3D;&quot;&quot;
+          /&gt;
+          &lt;img
+            class&#x3D;&quot;profile__shape-4&quot;
+            src&#x3D;&quot;assets/img/login/login-shape-2.png&quot;
+            alt&#x3D;&quot;&quot;
+          /&gt;
+          &lt;img
+            class&#x3D;&quot;profile__shape-5&quot;
+            src&#x3D;&quot;assets/img/login/login-shape-3.png&quot;
+            alt&#x3D;&quot;&quot;
+          /&gt;
+          &lt;img
+            class&#x3D;&quot;profile__shape-6&quot;
+            src&#x3D;&quot;assets/img/login/login-shape-4.png&quot;
+            alt&#x3D;&quot;&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-xxl-4 col-lg-4&quot;&gt;
+            &lt;div class&#x3D;&quot;profile__tab mr-40&quot;&gt;
+              &lt;nav&gt;
+                &lt;div
+                  class&#x3D;&quot;nav nav-tabs tp-tab-menu flex-column&quot;
+                  id&#x3D;&quot;profile-tab&quot;
+                  role&#x3D;&quot;tablist&quot;
+                &gt;
+                  &lt;button
+                    class&#x3D;&quot;nav-link active&quot;
+                    id&#x3D;&quot;nav-profile-tab&quot;
+                    data-bs-toggle&#x3D;&quot;tab&quot;
+                    data-bs-target&#x3D;&quot;#nav-profile&quot;
+                    type&#x3D;&quot;button&quot;
+                    (click)&#x3D;&quot;selectTab(0)&quot;
+                    role&#x3D;&quot;tab&quot;
+                    aria-controls&#x3D;&quot;nav-profile&quot;
+                    aria-selected&#x3D;&quot;false&quot;
+                  &gt;
+                    &lt;span&gt;&lt;i class&#x3D;&quot;fa-regular fa-user-pen&quot;&gt;&lt;/i&gt;&lt;/span&gt;Profile
+                  &lt;/button&gt;
+                  &lt;button
+                    class&#x3D;&quot;nav-link&quot;
+                    id&#x3D;&quot;nav-information-tab&quot;
+                    data-bs-toggle&#x3D;&quot;tab&quot;
+                    data-bs-target&#x3D;&quot;#nav-information&quot;
+                    type&#x3D;&quot;button&quot;
+                    (click)&#x3D;&quot;selectTab(1)&quot;
+                    role&#x3D;&quot;tab&quot;
+                    aria-controls&#x3D;&quot;nav-information&quot;
+                    aria-selected&#x3D;&quot;false&quot;
+                  &gt;
+                    &lt;span&gt;&lt;i class&#x3D;&quot;fa-regular fa-circle-info&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    Information
+                  &lt;/button&gt;
+                  &lt;button
+                    class&#x3D;&quot;nav-link&quot;
+                    id&#x3D;&quot;nav-address-tab&quot;
+                    data-bs-toggle&#x3D;&quot;tab&quot;
+                    data-bs-target&#x3D;&quot;#nav-address&quot;
+                    type&#x3D;&quot;button&quot;
+                    (click)&#x3D;&quot;selectTab(2)&quot;
+                    role&#x3D;&quot;tab&quot;
+                    aria-controls&#x3D;&quot;nav-address&quot;
+                    aria-selected&#x3D;&quot;false&quot;
+                  &gt;
+                    &lt;span&gt;&lt;i class&#x3D;&quot;fa-light fa-location-dot&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    Address
+                  &lt;/button&gt;
+                  &lt;button
+                    class&#x3D;&quot;nav-link&quot;
+                    id&#x3D;&quot;nav-order-tab&quot;
+                    data-bs-toggle&#x3D;&quot;tab&quot;
+                    data-bs-target&#x3D;&quot;#nav-order&quot;
+                    type&#x3D;&quot;button&quot;
+                    (click)&#x3D;&quot;selectTab(3)&quot;
+                    role&#x3D;&quot;tab&quot;
+                    aria-controls&#x3D;&quot;nav-order&quot;
+                    aria-selected&#x3D;&quot;false&quot;
+                  &gt;
+                    &lt;span
+                      &gt;&lt;i class&#x3D;&quot;fa-light fa-clipboard-list-check&quot;&gt;&lt;/i
+                    &gt;&lt;/span&gt;
+                    My Orders
+                  &lt;/button&gt;
+                  &lt;button
+                    class&#x3D;&quot;nav-link&quot;
+                    id&#x3D;&quot;nav-notification-tab&quot;
+                    data-bs-toggle&#x3D;&quot;tab&quot;
+                    data-bs-target&#x3D;&quot;#nav-notification&quot;
+                    type&#x3D;&quot;button&quot;
+                    role&#x3D;&quot;tab&quot;
+                    aria-controls&#x3D;&quot;nav-notification&quot;
+                    aria-selected&#x3D;&quot;false&quot;
+                  &gt;
+                    &lt;span&gt;&lt;i class&#x3D;&quot;fa-regular fa-bell&quot;&gt;&lt;/i&gt;&lt;/span&gt; Notification
+                  &lt;/button&gt;
+                  &lt;button
+                    class&#x3D;&quot;nav-link&quot;
+                    id&#x3D;&quot;nav-password-tab&quot;
+                    data-bs-toggle&#x3D;&quot;tab&quot;
+                    data-bs-target&#x3D;&quot;#nav-password&quot;
+                    type&#x3D;&quot;button&quot;
+                    role&#x3D;&quot;tab&quot;
+                    aria-controls&#x3D;&quot;nav-password&quot;
+                    aria-selected&#x3D;&quot;false&quot;
+                  &gt;
+                    &lt;span&gt;&lt;i class&#x3D;&quot;fa-regular fa-lock&quot;&gt;&lt;/i&gt;&lt;/span&gt; Change
+                    Password
+                  &lt;/button&gt;
+                  &lt;span
+                    id&#x3D;&quot;marker-vertical&quot;
+                    class&#x3D;&quot;tp-tab-line d-none d-sm-inline-block&quot;
+                  &gt;&lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/nav&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-xxl-8 col-lg-8&quot;&gt;
+            &lt;div class&#x3D;&quot;profile__tab-content&quot;&gt;
+              &lt;div class&#x3D;&quot;tab-content&quot; id&#x3D;&quot;profile-tabContent&quot;&gt;
+                &lt;div
+                  class&#x3D;&quot;tab-pane fade show active&quot;
+                  id&#x3D;&quot;nav-profile&quot;
+                  role&#x3D;&quot;tabpanel&quot;
+                  aria-labelledby&#x3D;&quot;nav-profile-tab&quot;
+                &gt;
+                  &lt;div class&#x3D;&quot;profile__main&quot;&gt;
+                    &lt;div class&#x3D;&quot;profile__main-top pb-80&quot;&gt;
+                      &lt;div class&#x3D;&quot;row align-items-center&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                          &lt;div
+                            class&#x3D;&quot;profile__main-inner d-flex flex-wrap align-items-center&quot;
+                          &gt;
+                            &lt;div class&#x3D;&quot;profile__main-thumb&quot;&gt;
+                              &lt;img [src]&#x3D;&quot;avatar&quot; alt&#x3D;&quot;&quot; /&gt;
+                              &lt;div class&#x3D;&quot;profile__main-thumb-edit&quot;&gt;
+                                &lt;input
+                                  id&#x3D;&quot;profile-thumb-input&quot;
+                                  class&#x3D;&quot;profile-img-popup&quot;
+                                  type&#x3D;&quot;file&quot;
+                                /&gt;
+                                &lt;label for&#x3D;&quot;profile-thumb-input&quot;
+                                  &gt;&lt;i class&#x3D;&quot;fa-light fa-camera&quot;&gt;&lt;/i
+                                &gt;&lt;/label&gt;
+                              &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;profile__main-content&quot;&gt;
+                              &lt;h4 class&#x3D;&quot;profile__main-title&quot;&gt;
+                                Welcome Mr. Admin!
+                              &lt;/h4&gt;
+                              &lt;p&gt;You have &lt;span&gt;08&lt;/span&gt; notifications&lt;/p&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                          &lt;div class&#x3D;&quot;profile__main-logout text-sm-end&quot;&gt;
+                            &lt;a
+                              href&#x3D;&quot;#&quot;
+                              onclick&#x3D;&quot;return false;&quot;
+                              (click)&#x3D;&quot;logout()&quot;
+                              class&#x3D;&quot;tp-logout-btn&quot;
+                              &gt;Logout&lt;/a
+                            &gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;profile__main-info&quot;&gt;
+                      &lt;div class&#x3D;&quot;row gx-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-md-3 col-sm-6&quot;&gt;
+                          &lt;div class&#x3D;&quot;profile__main-info-item&quot;&gt;
+                            &lt;div class&#x3D;&quot;profile__main-info-icon&quot;&gt;
+                              &lt;span&gt;
+                                &lt;span
+                                  class&#x3D;&quot;profile-icon-count profile-download&quot;
+                                  &gt;2&lt;/span
+                                &gt;
+                                &lt;svg
+                                  enable-background&#x3D;&quot;new 0 0 512 512&quot;
+                                  viewBox&#x3D;&quot;0 0 512 512&quot;
+                                &gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m334.52 286.41c3.21 3.21 3.21 8.42 0 11.63l-71.73 71.73c-1.48 2.16-3.97 3.59-6.79 3.59-.03 0-.07 0-.1 0s-.07 0-.1 0c-2.11 0-4.21-.8-5.82-2.41l-72.5-72.5c-3.21-3.21-3.21-8.42 0-11.63s8.42-3.21 11.63 0l58.66 58.66v-198.62c0-4.54 3.68-8.23 8.23-8.23 4.54 0 8.23 3.68 8.23 8.23v198.21l58.66-58.66c3.21-3.21 8.42-3.21 11.63 0zm117.29-226.22c39.34 38.21 58.47 100.39 60.19 195.66v.3c-1.72 95.28-20.85 157.46-60.19 195.66-38.21 39.34-100.39 58.47-195.66 60.19-.05 0-.1 0-.15 0s-.1 0-.15 0c-95.28-1.72-157.46-20.85-195.66-60.19-39.34-38.21-58.47-100.38-60.19-195.66 0-.1 0-.2 0-.3 1.72-95.28 20.85-157.46 60.19-195.66 38.21-39.34 100.39-58.47 195.66-60.19h.3c95.27 1.72 157.45 20.85 195.66 60.19zm43.73 195.81c-1.65-90.63-19.22-149.13-55.28-184.09-.06-.06-.12-.12-.18-.18-34.95-36.06-93.45-53.62-184.08-55.27-90.63 1.65-149.13 19.22-184.09 55.28-.06.06-.12.12-.18.18-36.06 34.95-53.62 93.44-55.27 184.08 1.65 90.63 19.22 149.13 55.28 184.09l.18.18c34.95 36.06 93.45 53.62 184.09 55.28 90.63-1.65 149.13-19.22 184.09-55.28l.18-.18c36.04-34.96 53.61-93.45 55.26-184.09z&quot;
+                                  /&gt;
+                                &lt;/svg&gt;
+                              &lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;h4 class&#x3D;&quot;profile__main-info-title&quot;&gt;Downlaods&lt;/h4&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-3 col-sm-6&quot;&gt;
+                          &lt;div class&#x3D;&quot;profile__main-info-item&quot;&gt;
+                            &lt;div class&#x3D;&quot;profile__main-info-icon&quot;&gt;
+                              &lt;span&gt;
+                                &lt;span class&#x3D;&quot;profile-icon-count profile-order&quot;
+                                  &gt;5&lt;/span
+                                &gt;
+                                &lt;svg viewBox&#x3D;&quot;0 0 512 512&quot;&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M472.916,224H448.007a24.534,24.534,0,0,0-23.417-18H398V140.976a6.86,6.86,0,0,0-3.346-6.062L207.077,26.572a6.927,6.927,0,0,0-6.962,0L12.48,134.914A6.981,6.981,0,0,0,9,140.976V357.661a7,7,0,0,0,3.5,6.062L200.154,472.065a7,7,0,0,0,3.5.938,7.361,7.361,0,0,0,3.6-.938L306,415.108v41.174A29.642,29.642,0,0,0,335.891,486H472.916A29.807,29.807,0,0,0,503,456.282v-202.1A30.2,30.2,0,0,0,472.916,224Zm-48.077-4A10.161,10.161,0,0,1,435,230.161v.678A10.161,10.161,0,0,1,424.839,241H384.161A10.161,10.161,0,0,1,374,230.839v-.678A10.161,10.161,0,0,1,384.161,220ZM203.654,40.717l77.974,45.018L107.986,185.987,30.013,140.969ZM197,453.878,23,353.619V153.085L197,253.344Zm6.654-212.658-81.668-47.151L295.628,93.818,377.3,140.969ZM306,254.182V398.943l-95,54.935V253.344L384,153.085V206h.217A24.533,24.533,0,0,0,360.8,224H335.891A30.037,30.037,0,0,0,306,254.182Zm183,202.1A15.793,15.793,0,0,1,472.916,472H335.891A15.628,15.628,0,0,1,320,456.282v-202.1A16.022,16.022,0,0,1,335.891,238h25.182a23.944,23.944,0,0,0,23.144,17H424.59a23.942,23.942,0,0,0,23.143-17h25.183A16.186,16.186,0,0,1,489,254.182Z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M343.949,325h7.327a7,7,0,1,0,0-14H351V292h19.307a6.739,6.739,0,0,0,6.655,4.727A7.019,7.019,0,0,0,384,289.743v-4.71A7.093,7.093,0,0,0,376.924,278H343.949A6.985,6.985,0,0,0,337,285.033v32.975A6.95,6.95,0,0,0,343.949,325Z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M344,389h33a7,7,0,0,0,7-7V349a7,7,0,0,0-7-7H344a7,7,0,0,0-7,7v33A7,7,0,0,0,344,389Zm7-33h19v19H351Z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M351.277,439H351V420h18.929a7.037,7.037,0,0,0,14.071.014v-6.745A7.3,7.3,0,0,0,376.924,406H343.949A7.191,7.191,0,0,0,337,413.269v32.975A6.752,6.752,0,0,0,343.949,453h7.328a7,7,0,1,0,0-14Z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M393.041,286.592l-20.5,20.5-6.236-6.237a7,7,0,1,0-9.9,9.9l11.187,11.186a7,7,0,0,0,9.9,0l25.452-25.452a7,7,0,0,0-9.9-9.9Z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M393.041,415.841l-20.5,20.5-6.236-6.237a7,7,0,1,0-9.9,9.9l11.187,11.186a7,7,0,0,0,9.9,0l25.452-25.452a7,7,0,0,0-9.9-9.9Z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M464.857,295H420.891a7,7,0,0,0,0,14h43.966a7,7,0,0,0,0-14Z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M464.857,359H420.891a7,7,0,0,0,0,14h43.966a7,7,0,0,0,0-14Z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;M464.857,423H420.891a7,7,0,0,0,0,14h43.966a7,7,0,0,0,0-14Z&quot;
+                                  /&gt;
+                                &lt;/svg&gt;
+                              &lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;h4 class&#x3D;&quot;profile__main-info-title&quot;&gt;Orders&lt;/h4&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-3 col-sm-6&quot;&gt;
+                          &lt;div class&#x3D;&quot;profile__main-info-item&quot;&gt;
+                            &lt;div class&#x3D;&quot;profile__main-info-icon&quot;&gt;
+                              &lt;span&gt;
+                                &lt;span
+                                  class&#x3D;&quot;profile-icon-count profile-wishlist&quot;
+                                  &gt;10&lt;/span
+                                &gt;
+                                &lt;svg
+                                  viewBox&#x3D;&quot;0 -20 480 480&quot;
+                                  xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                                &gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m348 0c-43 .0664062-83.28125 21.039062-108 56.222656-24.71875-35.183594-65-56.1562498-108-56.222656-70.320312 0-132 65.425781-132 140 0 72.679688 41.039062 147.535156 118.6875 216.480469 35.976562 31.882812 75.441406 59.597656 117.640625 82.625 2.304687 1.1875 5.039063 1.1875 7.34375 0 42.183594-23.027344 81.636719-50.746094 117.601563-82.625 77.6875-68.945313 118.726562-143.800781 118.726562-216.480469 0-74.574219-61.679688-140-132-140zm-108 422.902344c-29.382812-16.214844-224-129.496094-224-282.902344 0-66.054688 54.199219-124 116-124 41.867188.074219 80.460938 22.660156 101.03125 59.128906 1.539062 2.351563 4.160156 3.765625 6.96875 3.765625s5.429688-1.414062 6.96875-3.765625c20.570312-36.46875 59.164062-59.054687 101.03125-59.128906 61.800781 0 116 57.945312 116 124 0 153.40625-194.617188 266.6875-224 282.902344zm0 0&quot;
+                                  /&gt;
+                                &lt;/svg&gt;
+                              &lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;h4 class&#x3D;&quot;profile__main-info-title&quot;&gt;Wishlist&lt;/h4&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-3 col-sm-6&quot;&gt;
+                          &lt;div class&#x3D;&quot;profile__main-info-item&quot;&gt;
+                            &lt;div class&#x3D;&quot;profile__main-info-icon&quot;&gt;
+                              &lt;span&gt;
+                                &lt;span
+                                  class&#x3D;&quot;profile-icon-count profile-wishlist&quot;
+                                  &gt;07&lt;/span
+                                &gt;
+                                &lt;svg viewBox&#x3D;&quot;0 0 512 512&quot;&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m352.742 291.476h-263.963l228.58-145.334a6 6 0 0 0 1.844-8.284l-22.647-35.618a36.285 36.285 0 0 0 -50.033-11.14l-32.165 20.451 2.548-12.191a34.314 34.314 0 1 0 -66.987-14.914l-16.71 75.054-55.951-12.454a34.315 34.315 0 0 0 -21 65.026l-34.458 21.91a36.285 36.285 0 0 0 -11.14 50.032l22.647 35.619a6 6 0 0 0 8.283 1.845l21.08-13.4v151.888a36.285 36.285 0 0 0 36.246 36.244h223.584a36.285 36.285 0 0 0 36.244-36.244v-162.49a6 6 0 0 0 -6.002-6zm-99.78-190.248a24.084 24.084 0 0 1 12.961-3.794 24.481 24.481 0 0 1 5.316.587 24.09 24.09 0 0 1 15.19 10.658l19.428 30.555-94.5 60.086-32.436-51.014zm-91.33-14.173a22.314 22.314 0 1 1 43.545 9.775l-4.926 23.564-53.667 34.249zm7.16 67.69 32.436 51.014-54.76 34.816-32.435-51.014zm-117.821 37.768a22.314 22.314 0 0 1 23.679-33.754l48.485 10.794-53.822 33.739-4.362-.972a22.168 22.168 0 0 1 -13.98-9.807zm-10.755 115.619-19.427-30.556a24.272 24.272 0 0 1 7.45-33.467l75.667-48.109 32.435 51.014zm116.353 176.078h-57.653a24.272 24.272 0 0 1 -24.244-24.244v-156.49h81.9zm76.264 0h-64.264v-180.734h64.264zm113.909-24.244a24.272 24.272 0 0 1 -24.242 24.244h-77.667v-180.734h101.909z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m419.833 236.971 2.87-16.735a6 6 0 0 0 -8.703-6.325l-15.028 7.9-15.029-7.9a6 6 0 0 0 -8.706 6.325l2.87 16.735-12.158 11.85a6 6 0 0 0 3.325 10.235l16.8 2.442 7.514 15.225a6 6 0 0 0 10.762 0l7.513-15.225 16.8-2.442a6 6 0 0 0 3.325-10.235zm-12.817 13.1a6 6 0 0 0 -4.518 3.282l-3.529 7.152-3.53-7.152a6 6 0 0 0 -4.517-3.282l-7.894-1.147 5.712-5.567a6 6 0 0 0 1.726-5.311l-1.349-7.862 7.06 3.711a5.994 5.994 0 0 0 5.584 0l7.059-3.711-1.348 7.862a6 6 0 0 0 1.725 5.311l5.712 5.567z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m488.841 154.3-16.5-4.01-6.051-15.863a6 6 0 0 0 -10.714-1.012l-8.911 14.453-16.957.853a6 6 0 0 0 -4.272 9.876l10.991 12.941-4.427 16.39a6 6 0 0 0 8.073 7.115l15.7-6.454 14.227 9.277a6 6 0 0 0 9.261-5.479l-1.285-16.93 13.213-10.657a6 6 0 0 0 -2.348-10.5zm-20.856 13.8a6 6 0 0 0 -2.216 5.125l.6 7.953-6.681-4.359a6 6 0 0 0 -5.559-.524l-7.376 3.032 2.08-7.7a6 6 0 0 0 -1.219-5.449l-5.163-6.079 7.966-.4a6 6 0 0 0 4.807-2.842l4.185-6.789 2.842 7.452a6 6 0 0 0 4.189 3.691l7.751 1.884z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m400.6 56.763-4.429 16.39a6 6 0 0 0 8.073 7.116l15.7-6.455 14.221 9.279a6 6 0 0 0 9.261-5.48l-1.285-16.93 13.216-10.658a6 6 0 0 0 -2.348-10.5l-16.5-4.009-6.05-15.864a6 6 0 0 0 -10.714-1.01l-8.91 14.452-16.958.852a6 6 0 0 0 -4.273 9.876zm13.991-11.844a6 6 0 0 0 4.806-2.843l4.186-6.789 2.842 7.452a6 6 0 0 0 4.189 3.692l7.75 1.883-6.208 5.006a6 6 0 0 0 -2.217 5.125l.6 7.954-6.681-4.359a6 6 0 0 0 -5.559-.524l-7.376 3.032 2.08-7.7a6 6 0 0 0 -1.219-5.45l-5.163-6.08z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m291.746 237.835c-13.546 8.525-20.164 18.855-20.439 19.291a6 6 0 0 0 10.134 6.427c.9-1.4 22.609-34.215 69.86-22.527a6 6 0 0 0 2.883-11.648c-29.072-7.193-50.001.628-62.438 8.457z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m405.6 174.293a6 6 0 0 0 4.6-11.084c-42.714-17.727-73.759-4.452-92.28 9.808a112.488 112.488 0 0 0 -29.868 35.246 6 6 0 1 0 10.748 5.337 101.191 101.191 0 0 1 26.44-31.075c23.288-17.925 50.325-20.697 80.36-8.232z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m338.178 129.844a6 6 0 0 0 3.862 7.555 90.163 90.163 0 0 0 25.438 3.676c10.034 0 21.623-1.811 32.015-7.971 13.6-8.058 22.32-21.787 25.934-40.8a6 6 0 1 0 -11.789-2.24c-2.938 15.461-9.738 26.46-20.211 32.69-19.921 11.853-47.267 3.367-47.7 3.229a6 6 0 0 0 -7.549 3.861z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m258.867 284.873a10.806 10.806 0 1 0 -10.805-10.806 10.819 10.819 0 0 0 10.805 10.806zm0-12a1.195 1.195 0 1 1 -1.194 1.194 1.2 1.2 0 0 1 1.194-1.194z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m343.887 88.873a10.806 10.806 0 1 0 -10.806-10.806 10.818 10.818 0 0 0 10.806 10.806zm0-12a1.195 1.195 0 1 1 -1.195 1.194 1.2 1.2 0 0 1 1.195-1.194z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m496.194 80.633a10.806 10.806 0 1 0 10.806 10.805 10.817 10.817 0 0 0 -10.806-10.805zm0 12a1.195 1.195 0 1 1 1.195-1.195 1.2 1.2 0 0 1 -1.195 1.195z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m254.444 224.027a10.806 10.806 0 1 0 -10.8 10.806 10.817 10.817 0 0 0 10.8-10.806zm-10.8 1.2a1.195 1.195 0 1 1 1.194-1.2 1.2 1.2 0 0 1 -1.199 1.195z&quot;
+                                  /&gt;
+                                  &lt;path
+                                    d&#x3D;&quot;m478.4 230.812a10.806 10.806 0 1 0 10.806 10.806 10.818 10.818 0 0 0 -10.806-10.806zm0 12a1.194 1.194 0 1 1 1.195-1.194 1.2 1.2 0 0 1 -1.195 1.194z&quot;
+                                  /&gt;
+                                &lt;/svg&gt;
+                              &lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;h4 class&#x3D;&quot;profile__main-info-title&quot;&gt;Gift Box&lt;/h4&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div
+                  class&#x3D;&quot;tab-pane fade&quot;
+                  id&#x3D;&quot;nav-information&quot;
+                  role&#x3D;&quot;tabpanel&quot;
+                  aria-labelledby&#x3D;&quot;nav-information-tab&quot;
+                &gt;
+                  @defer(when selectedTab&#x3D;&#x3D;1){
+                  &lt;app-edit-profile-client
+                    (imagePreviewChanged)&#x3D;&quot;onImagePreviewChanged($event)&quot;
+                  &gt;&lt;/app-edit-profile-client&gt;
+                  }@placeholder {
+                  &lt;div&gt;Loading ...&lt;/div&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div
+                  class&#x3D;&quot;tab-pane fade&quot;
+                  id&#x3D;&quot;nav-password&quot;
+                  role&#x3D;&quot;tabpanel&quot;
+                  aria-labelledby&#x3D;&quot;nav-password-tab&quot;
+                &gt;
+                  &lt;app-password-profile-client&gt;&lt;/app-password-profile-client&gt;
+                &lt;/div&gt;
+                &lt;div
+                  class&#x3D;&quot;tab-pane fade&quot;
+                  id&#x3D;&quot;nav-address&quot;
+                  role&#x3D;&quot;tabpanel&quot;
+                  aria-labelledby&#x3D;&quot;nav-address-tab&quot;
+                &gt;
+                  @defer(when selectedTab&#x3D;&#x3D;2){
+                  &lt;app-address-profile-client&gt;&lt;/app-address-profile-client&gt;
+                  }@placeholder {
+                  &lt;div&gt;Loading ...&lt;/div&gt;
+                  }
+                &lt;/div&gt;
+                &lt;div
+                  class&#x3D;&quot;tab-pane fade&quot;
+                  id&#x3D;&quot;nav-order&quot;
+                  role&#x3D;&quot;tabpanel&quot;
+                  aria-labelledby&#x3D;&quot;nav-order-tab&quot;
+                &gt;
+                  @defer(when selectedTab&#x3D;&#x3D;3){
+                  &lt;app-orders-profile-client&gt;&lt;/app-orders-profile-client&gt;
+                  }@placeholder {
+                  &lt;div&gt;Loading ...&lt;/div&gt;
+
+                  }
+                &lt;/div&gt;
+                &lt;div
+                  class&#x3D;&quot;tab-pane fade&quot;
+                  id&#x3D;&quot;nav-notification&quot;
+                  role&#x3D;&quot;tabpanel&quot;
+                  aria-labelledby&#x3D;&quot;nav-notification-tab&quot;
+                &gt;
+                  &lt;div class&#x3D;&quot;profile__notification&quot;&gt;
+                    &lt;div class&#x3D;&quot;profile__notification-top mb-30&quot;&gt;
+                      &lt;h3 class&#x3D;&quot;profile__notification-title&quot;&gt;
+                        My activity settings
+                      &lt;/h3&gt;
+                      &lt;p&gt;
+                        Stay up to date with notification on activity that
+                        involves you including mentions, messages, replies to
+                        your bids, new items, sale and administrative updates
+                      &lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;profile__notification-wrapper&quot;&gt;
+                      &lt;div class&#x3D;&quot;profile__notification-item mb-20&quot;&gt;
+                        &lt;div
+                          class&#x3D;&quot;form-check form-switch d-flex align-items-center&quot;
+                        &gt;
+                          &lt;input
+                            class&#x3D;&quot;form-check-input&quot;
+                            type&#x3D;&quot;checkbox&quot;
+                            role&#x3D;&quot;switch&quot;
+                            id&#x3D;&quot;like&quot;
+                            checked
+                          /&gt;
+                          &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;like&quot;
+                            &gt;Like &amp; Follows Notifications&lt;/label
+                          &gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class&#x3D;&quot;profile__notification-item mb-20&quot;&gt;
+                        &lt;div
+                          class&#x3D;&quot;form-check form-switch d-flex align-items-center&quot;
+                        &gt;
+                          &lt;input
+                            class&#x3D;&quot;form-check-input&quot;
+                            type&#x3D;&quot;checkbox&quot;
+                            role&#x3D;&quot;switch&quot;
+                            id&#x3D;&quot;post&quot;
+                            checked
+                          /&gt;
+                          &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;post&quot;
+                            &gt;Post, Comments &amp; Replies Notifications&lt;/label
+                          &gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class&#x3D;&quot;profile__notification-item mb-20&quot;&gt;
+                        &lt;div
+                          class&#x3D;&quot;form-check form-switch d-flex align-items-center&quot;
+                        &gt;
+                          &lt;input
+                            class&#x3D;&quot;form-check-input&quot;
+                            type&#x3D;&quot;checkbox&quot;
+                            role&#x3D;&quot;switch&quot;
+                            id&#x3D;&quot;new&quot;
+                            checked
+                          /&gt;
+                          &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;new&quot;
+                            &gt;New Product Notifications&lt;/label
+                          &gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class&#x3D;&quot;profile__notification-item mb-20&quot;&gt;
+                        &lt;div
+                          class&#x3D;&quot;form-check form-switch d-flex align-items-center&quot;
+                        &gt;
+                          &lt;input
+                            class&#x3D;&quot;form-check-input&quot;
+                            type&#x3D;&quot;checkbox&quot;
+                            role&#x3D;&quot;switch&quot;
+                            id&#x3D;&quot;sale&quot;
+                            checked
+                          /&gt;
+                          &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;sale&quot;
+                            &gt;Product on sale Notifications&lt;/label
+                          &gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class&#x3D;&quot;profile__notification-item mb-20&quot;&gt;
+                        &lt;div
+                          class&#x3D;&quot;form-check form-switch d-flex align-items-center&quot;
+                        &gt;
+                          &lt;input
+                            class&#x3D;&quot;form-check-input&quot;
+                            type&#x3D;&quot;checkbox&quot;
+                            role&#x3D;&quot;switch&quot;
+                            id&#x3D;&quot;payment&quot;
+                            checked
+                          /&gt;
+                          &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;payment&quot;
+                            &gt;Payment Notifications&lt;/label
+                          &gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;!-- profile area end --&gt;
+&lt;/main&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><main>  <!-- profile area start -->  <section class="profile__area pt-120 pb-120">    <div class="container">      <div class="profile__inner p-relative">        <div class="profile__shape">          <img            class="profile__shape-1"            src="assets/img/login/laptop.png"            alt=""          />          <img class="profile__shape-2" src="assets/img/login/man.png" alt="" />          <img            class="profile__shape-3"            src="assets/img/login/login-shape-1.png"            alt=""          />          <img            class="profile__shape-4"            src="assets/img/login/login-shape-2.png"            alt=""          />          <img            class="profile__shape-5"            src="assets/img/login/login-shape-3.png"            alt=""          />          <img            class="profile__shape-6"            src="assets/img/login/login-shape-4.png"            alt=""          />        </div>        <div class="row">          <div class="col-xxl-4 col-lg-4">            <div class="profile__tab mr-40">              <nav>                <div                  class="nav nav-tabs tp-tab-menu flex-column"                  id="profile-tab"                  role="tablist"                >                  <button                    class="nav-link active"                    id="nav-profile-tab"                    data-bs-toggle="tab"                    data-bs-target="#nav-profile"                    type="button"                    (click)="selectTab(0)"                    role="tab"                    aria-controls="nav-profile"                    aria-selected="false"                  >                    <span><i class="fa-regular fa-user-pen"></i></span>Profile                  </button>                  <button                    class="nav-link"                    id="nav-information-tab"                    data-bs-toggle="tab"                    data-bs-target="#nav-information"                    type="button"                    (click)="selectTab(1)"                    role="tab"                    aria-controls="nav-information"                    aria-selected="false"                  >                    <span><i class="fa-regular fa-circle-info"></i></span>                    Information                  </button>                  <button                    class="nav-link"                    id="nav-address-tab"                    data-bs-toggle="tab"                    data-bs-target="#nav-address"                    type="button"                    (click)="selectTab(2)"                    role="tab"                    aria-controls="nav-address"                    aria-selected="false"                  >                    <span><i class="fa-light fa-location-dot"></i></span>                    Address                  </button>                  <button                    class="nav-link"                    id="nav-order-tab"                    data-bs-toggle="tab"                    data-bs-target="#nav-order"                    type="button"                    (click)="selectTab(3)"                    role="tab"                    aria-controls="nav-order"                    aria-selected="false"                  >                    <span                      ><i class="fa-light fa-clipboard-list-check"></i                    ></span>                    My Orders                  </button>                  <button                    class="nav-link"                    id="nav-notification-tab"                    data-bs-toggle="tab"                    data-bs-target="#nav-notification"                    type="button"                    role="tab"                    aria-controls="nav-notification"                    aria-selected="false"                  >                    <span><i class="fa-regular fa-bell"></i></span> Notification                  </button>                  <button                    class="nav-link"                    id="nav-password-tab"                    data-bs-toggle="tab"                    data-bs-target="#nav-password"                    type="button"                    role="tab"                    aria-controls="nav-password"                    aria-selected="false"                  >                    <span><i class="fa-regular fa-lock"></i></span> Change                    Password                  </button>                  <span                    id="marker-vertical"                    class="tp-tab-line d-none d-sm-inline-block"                  ></span>                </div>              </nav>            </div>          </div>          <div class="col-xxl-8 col-lg-8">            <div class="profile__tab-content">              <div class="tab-content" id="profile-tabContent">                <div                  class="tab-pane fade show active"                  id="nav-profile"                  role="tabpanel"                  aria-labelledby="nav-profile-tab"                >                  <div class="profile__main">                    <div class="profile__main-top pb-80">                      <div class="row align-items-center">                        <div class="col-md-6">                          <div                            class="profile__main-inner d-flex flex-wrap align-items-center"                          >                            <div class="profile__main-thumb">                              <img [src]="avatar" alt="" />                              <div class="profile__main-thumb-edit">                                <input                                  id="profile-thumb-input"                                  class="profile-img-popup"                                  type="file"                                />                                <label for="profile-thumb-input"                                  ><i class="fa-light fa-camera"></i                                ></label>                              </div>                            </div>                            <div class="profile__main-content">                              <h4 class="profile__main-title">                                Welcome Mr. Admin!                              </h4>                              <p>You have <span>08</span> notifications</p>                            </div>                          </div>                        </div>                        <div class="col-md-6">                          <div class="profile__main-logout text-sm-end">                            <a                              href="#"                              onclick="return false;"                              (click)="logout()"                              class="tp-logout-btn"                              >Logout</a                            >                          </div>                        </div>                      </div>                    </div>                    <div class="profile__main-info">                      <div class="row gx-3">                        <div class="col-md-3 col-sm-6">                          <div class="profile__main-info-item">                            <div class="profile__main-info-icon">                              <span>                                <span                                  class="profile-icon-count profile-download"                                  >2</span                                >                                <svg                                  enable-background="new 0 0 512 512"                                  viewBox="0 0 512 512"                                >                                  <path                                    d="m334.52 286.41c3.21 3.21 3.21 8.42 0 11.63l-71.73 71.73c-1.48 2.16-3.97 3.59-6.79 3.59-.03 0-.07 0-.1 0s-.07 0-.1 0c-2.11 0-4.21-.8-5.82-2.41l-72.5-72.5c-3.21-3.21-3.21-8.42 0-11.63s8.42-3.21 11.63 0l58.66 58.66v-198.62c0-4.54 3.68-8.23 8.23-8.23 4.54 0 8.23 3.68 8.23 8.23v198.21l58.66-58.66c3.21-3.21 8.42-3.21 11.63 0zm117.29-226.22c39.34 38.21 58.47 100.39 60.19 195.66v.3c-1.72 95.28-20.85 157.46-60.19 195.66-38.21 39.34-100.39 58.47-195.66 60.19-.05 0-.1 0-.15 0s-.1 0-.15 0c-95.28-1.72-157.46-20.85-195.66-60.19-39.34-38.21-58.47-100.38-60.19-195.66 0-.1 0-.2 0-.3 1.72-95.28 20.85-157.46 60.19-195.66 38.21-39.34 100.39-58.47 195.66-60.19h.3c95.27 1.72 157.45 20.85 195.66 60.19zm43.73 195.81c-1.65-90.63-19.22-149.13-55.28-184.09-.06-.06-.12-.12-.18-.18-34.95-36.06-93.45-53.62-184.08-55.27-90.63 1.65-149.13 19.22-184.09 55.28-.06.06-.12.12-.18.18-36.06 34.95-53.62 93.44-55.27 184.08 1.65 90.63 19.22 149.13 55.28 184.09l.18.18c34.95 36.06 93.45 53.62 184.09 55.28 90.63-1.65 149.13-19.22 184.09-55.28l.18-.18c36.04-34.96 53.61-93.45 55.26-184.09z"                                  />                                </svg>                              </span>                            </div>                            <h4 class="profile__main-info-title">Downlaods</h4>                          </div>                        </div>                        <div class="col-md-3 col-sm-6">                          <div class="profile__main-info-item">                            <div class="profile__main-info-icon">                              <span>                                <span class="profile-icon-count profile-order"                                  >5</span                                >                                <svg viewBox="0 0 512 512">                                  <path                                    d="M472.916,224H448.007a24.534,24.534,0,0,0-23.417-18H398V140.976a6.86,6.86,0,0,0-3.346-6.062L207.077,26.572a6.927,6.927,0,0,0-6.962,0L12.48,134.914A6.981,6.981,0,0,0,9,140.976V357.661a7,7,0,0,0,3.5,6.062L200.154,472.065a7,7,0,0,0,3.5.938,7.361,7.361,0,0,0,3.6-.938L306,415.108v41.174A29.642,29.642,0,0,0,335.891,486H472.916A29.807,29.807,0,0,0,503,456.282v-202.1A30.2,30.2,0,0,0,472.916,224Zm-48.077-4A10.161,10.161,0,0,1,435,230.161v.678A10.161,10.161,0,0,1,424.839,241H384.161A10.161,10.161,0,0,1,374,230.839v-.678A10.161,10.161,0,0,1,384.161,220ZM203.654,40.717l77.974,45.018L107.986,185.987,30.013,140.969ZM197,453.878,23,353.619V153.085L197,253.344Zm6.654-212.658-81.668-47.151L295.628,93.818,377.3,140.969ZM306,254.182V398.943l-95,54.935V253.344L384,153.085V206h.217A24.533,24.533,0,0,0,360.8,224H335.891A30.037,30.037,0,0,0,306,254.182Zm183,202.1A15.793,15.793,0,0,1,472.916,472H335.891A15.628,15.628,0,0,1,320,456.282v-202.1A16.022,16.022,0,0,1,335.891,238h25.182a23.944,23.944,0,0,0,23.144,17H424.59a23.942,23.942,0,0,0,23.143-17h25.183A16.186,16.186,0,0,1,489,254.182Z"                                  />                                  <path                                    d="M343.949,325h7.327a7,7,0,1,0,0-14H351V292h19.307a6.739,6.739,0,0,0,6.655,4.727A7.019,7.019,0,0,0,384,289.743v-4.71A7.093,7.093,0,0,0,376.924,278H343.949A6.985,6.985,0,0,0,337,285.033v32.975A6.95,6.95,0,0,0,343.949,325Z"                                  />                                  <path                                    d="M344,389h33a7,7,0,0,0,7-7V349a7,7,0,0,0-7-7H344a7,7,0,0,0-7,7v33A7,7,0,0,0,344,389Zm7-33h19v19H351Z"                                  />                                  <path                                    d="M351.277,439H351V420h18.929a7.037,7.037,0,0,0,14.071.014v-6.745A7.3,7.3,0,0,0,376.924,406H343.949A7.191,7.191,0,0,0,337,413.269v32.975A6.752,6.752,0,0,0,343.949,453h7.328a7,7,0,1,0,0-14Z"                                  />                                  <path                                    d="M393.041,286.592l-20.5,20.5-6.236-6.237a7,7,0,1,0-9.9,9.9l11.187,11.186a7,7,0,0,0,9.9,0l25.452-25.452a7,7,0,0,0-9.9-9.9Z"                                  />                                  <path                                    d="M393.041,415.841l-20.5,20.5-6.236-6.237a7,7,0,1,0-9.9,9.9l11.187,11.186a7,7,0,0,0,9.9,0l25.452-25.452a7,7,0,0,0-9.9-9.9Z"                                  />                                  <path                                    d="M464.857,295H420.891a7,7,0,0,0,0,14h43.966a7,7,0,0,0,0-14Z"                                  />                                  <path                                    d="M464.857,359H420.891a7,7,0,0,0,0,14h43.966a7,7,0,0,0,0-14Z"                                  />                                  <path                                    d="M464.857,423H420.891a7,7,0,0,0,0,14h43.966a7,7,0,0,0,0-14Z"                                  />                                </svg>                              </span>                            </div>                            <h4 class="profile__main-info-title">Orders</h4>                          </div>                        </div>                        <div class="col-md-3 col-sm-6">                          <div class="profile__main-info-item">                            <div class="profile__main-info-icon">                              <span>                                <span                                  class="profile-icon-count profile-wishlist"                                  >10</span                                >                                <svg                                  viewBox="0 -20 480 480"                                  xmlns="http://www.w3.org/2000/svg"                                >                                  <path                                    d="m348 0c-43 .0664062-83.28125 21.039062-108 56.222656-24.71875-35.183594-65-56.1562498-108-56.222656-70.320312 0-132 65.425781-132 140 0 72.679688 41.039062 147.535156 118.6875 216.480469 35.976562 31.882812 75.441406 59.597656 117.640625 82.625 2.304687 1.1875 5.039063 1.1875 7.34375 0 42.183594-23.027344 81.636719-50.746094 117.601563-82.625 77.6875-68.945313 118.726562-143.800781 118.726562-216.480469 0-74.574219-61.679688-140-132-140zm-108 422.902344c-29.382812-16.214844-224-129.496094-224-282.902344 0-66.054688 54.199219-124 116-124 41.867188.074219 80.460938 22.660156 101.03125 59.128906 1.539062 2.351563 4.160156 3.765625 6.96875 3.765625s5.429688-1.414062 6.96875-3.765625c20.570312-36.46875 59.164062-59.054687 101.03125-59.128906 61.800781 0 116 57.945312 116 124 0 153.40625-194.617188 266.6875-224 282.902344zm0 0"                                  />                                </svg>                              </span>                            </div>                            <h4 class="profile__main-info-title">Wishlist</h4>                          </div>                        </div>                        <div class="col-md-3 col-sm-6">                          <div class="profile__main-info-item">                            <div class="profile__main-info-icon">                              <span>                                <span                                  class="profile-icon-count profile-wishlist"                                  >07</span                                >                                <svg viewBox="0 0 512 512">                                  <path                                    d="m352.742 291.476h-263.963l228.58-145.334a6 6 0 0 0 1.844-8.284l-22.647-35.618a36.285 36.285 0 0 0 -50.033-11.14l-32.165 20.451 2.548-12.191a34.314 34.314 0 1 0 -66.987-14.914l-16.71 75.054-55.951-12.454a34.315 34.315 0 0 0 -21 65.026l-34.458 21.91a36.285 36.285 0 0 0 -11.14 50.032l22.647 35.619a6 6 0 0 0 8.283 1.845l21.08-13.4v151.888a36.285 36.285 0 0 0 36.246 36.244h223.584a36.285 36.285 0 0 0 36.244-36.244v-162.49a6 6 0 0 0 -6.002-6zm-99.78-190.248a24.084 24.084 0 0 1 12.961-3.794 24.481 24.481 0 0 1 5.316.587 24.09 24.09 0 0 1 15.19 10.658l19.428 30.555-94.5 60.086-32.436-51.014zm-91.33-14.173a22.314 22.314 0 1 1 43.545 9.775l-4.926 23.564-53.667 34.249zm7.16 67.69 32.436 51.014-54.76 34.816-32.435-51.014zm-117.821 37.768a22.314 22.314 0 0 1 23.679-33.754l48.485 10.794-53.822 33.739-4.362-.972a22.168 22.168 0 0 1 -13.98-9.807zm-10.755 115.619-19.427-30.556a24.272 24.272 0 0 1 7.45-33.467l75.667-48.109 32.435 51.014zm116.353 176.078h-57.653a24.272 24.272 0 0 1 -24.244-24.244v-156.49h81.9zm76.264 0h-64.264v-180.734h64.264zm113.909-24.244a24.272 24.272 0 0 1 -24.242 24.244h-77.667v-180.734h101.909z"                                  />                                  <path                                    d="m419.833 236.971 2.87-16.735a6 6 0 0 0 -8.703-6.325l-15.028 7.9-15.029-7.9a6 6 0 0 0 -8.706 6.325l2.87 16.735-12.158 11.85a6 6 0 0 0 3.325 10.235l16.8 2.442 7.514 15.225a6 6 0 0 0 10.762 0l7.513-15.225 16.8-2.442a6 6 0 0 0 3.325-10.235zm-12.817 13.1a6 6 0 0 0 -4.518 3.282l-3.529 7.152-3.53-7.152a6 6 0 0 0 -4.517-3.282l-7.894-1.147 5.712-5.567a6 6 0 0 0 1.726-5.311l-1.349-7.862 7.06 3.711a5.994 5.994 0 0 0 5.584 0l7.059-3.711-1.348 7.862a6 6 0 0 0 1.725 5.311l5.712 5.567z"                                  />                                  <path                                    d="m488.841 154.3-16.5-4.01-6.051-15.863a6 6 0 0 0 -10.714-1.012l-8.911 14.453-16.957.853a6 6 0 0 0 -4.272 9.876l10.991 12.941-4.427 16.39a6 6 0 0 0 8.073 7.115l15.7-6.454 14.227 9.277a6 6 0 0 0 9.261-5.479l-1.285-16.93 13.213-10.657a6 6 0 0 0 -2.348-10.5zm-20.856 13.8a6 6 0 0 0 -2.216 5.125l.6 7.953-6.681-4.359a6 6 0 0 0 -5.559-.524l-7.376 3.032 2.08-7.7a6 6 0 0 0 -1.219-5.449l-5.163-6.079 7.966-.4a6 6 0 0 0 4.807-2.842l4.185-6.789 2.842 7.452a6 6 0 0 0 4.189 3.691l7.751 1.884z"                                  />                                  <path                                    d="m400.6 56.763-4.429 16.39a6 6 0 0 0 8.073 7.116l15.7-6.455 14.221 9.279a6 6 0 0 0 9.261-5.48l-1.285-16.93 13.216-10.658a6 6 0 0 0 -2.348-10.5l-16.5-4.009-6.05-15.864a6 6 0 0 0 -10.714-1.01l-8.91 14.452-16.958.852a6 6 0 0 0 -4.273 9.876zm13.991-11.844a6 6 0 0 0 4.806-2.843l4.186-6.789 2.842 7.452a6 6 0 0 0 4.189 3.692l7.75 1.883-6.208 5.006a6 6 0 0 0 -2.217 5.125l.6 7.954-6.681-4.359a6 6 0 0 0 -5.559-.524l-7.376 3.032 2.08-7.7a6 6 0 0 0 -1.219-5.45l-5.163-6.08z"                                  />                                  <path                                    d="m291.746 237.835c-13.546 8.525-20.164 18.855-20.439 19.291a6 6 0 0 0 10.134 6.427c.9-1.4 22.609-34.215 69.86-22.527a6 6 0 0 0 2.883-11.648c-29.072-7.193-50.001.628-62.438 8.457z"                                  />                                  <path                                    d="m405.6 174.293a6 6 0 0 0 4.6-11.084c-42.714-17.727-73.759-4.452-92.28 9.808a112.488 112.488 0 0 0 -29.868 35.246 6 6 0 1 0 10.748 5.337 101.191 101.191 0 0 1 26.44-31.075c23.288-17.925 50.325-20.697 80.36-8.232z"                                  />                                  <path                                    d="m338.178 129.844a6 6 0 0 0 3.862 7.555 90.163 90.163 0 0 0 25.438 3.676c10.034 0 21.623-1.811 32.015-7.971 13.6-8.058 22.32-21.787 25.934-40.8a6 6 0 1 0 -11.789-2.24c-2.938 15.461-9.738 26.46-20.211 32.69-19.921 11.853-47.267 3.367-47.7 3.229a6 6 0 0 0 -7.549 3.861z"                                  />                                  <path                                    d="m258.867 284.873a10.806 10.806 0 1 0 -10.805-10.806 10.819 10.819 0 0 0 10.805 10.806zm0-12a1.195 1.195 0 1 1 -1.194 1.194 1.2 1.2 0 0 1 1.194-1.194z"                                  />                                  <path                                    d="m343.887 88.873a10.806 10.806 0 1 0 -10.806-10.806 10.818 10.818 0 0 0 10.806 10.806zm0-12a1.195 1.195 0 1 1 -1.195 1.194 1.2 1.2 0 0 1 1.195-1.194z"                                  />                                  <path                                    d="m496.194 80.633a10.806 10.806 0 1 0 10.806 10.805 10.817 10.817 0 0 0 -10.806-10.805zm0 12a1.195 1.195 0 1 1 1.195-1.195 1.2 1.2 0 0 1 -1.195 1.195z"                                  />                                  <path                                    d="m254.444 224.027a10.806 10.806 0 1 0 -10.8 10.806 10.817 10.817 0 0 0 10.8-10.806zm-10.8 1.2a1.195 1.195 0 1 1 1.194-1.2 1.2 1.2 0 0 1 -1.199 1.195z"                                  />                                  <path                                    d="m478.4 230.812a10.806 10.806 0 1 0 10.806 10.806 10.818 10.818 0 0 0 -10.806-10.806zm0 12a1.194 1.194 0 1 1 1.195-1.194 1.2 1.2 0 0 1 -1.195 1.194z"                                  />                                </svg>                              </span>                            </div>                            <h4 class="profile__main-info-title">Gift Box</h4>                          </div>                        </div>                      </div>                    </div>                  </div>                </div>                <div                  class="tab-pane fade"                  id="nav-information"                  role="tabpanel"                  aria-labelledby="nav-information-tab"                >                  @defer(when selectedTab==1){                  <app-edit-profile-client                    (imagePreviewChanged)="onImagePreviewChanged($event)"                  ></app-edit-profile-client>                  }@placeholder {                  <div>Loading ...</div>                  }                </div>                <div                  class="tab-pane fade"                  id="nav-password"                  role="tabpanel"                  aria-labelledby="nav-password-tab"                >                  <app-password-profile-client></app-password-profile-client>                </div>                <div                  class="tab-pane fade"                  id="nav-address"                  role="tabpanel"                  aria-labelledby="nav-address-tab"                >                  @defer(when selectedTab==2){                  <app-address-profile-client></app-address-profile-client>                  }@placeholder {                  <div>Loading ...</div>                  }                </div>                <div                  class="tab-pane fade"                  id="nav-order"                  role="tabpanel"                  aria-labelledby="nav-order-tab"                >                  @defer(when selectedTab==3){                  <app-orders-profile-client></app-orders-profile-client>                  }@placeholder {                  <div>Loading ...</div>                  }                </div>                <div                  class="tab-pane fade"                  id="nav-notification"                  role="tabpanel"                  aria-labelledby="nav-notification-tab"                >                  <div class="profile__notification">                    <div class="profile__notification-top mb-30">                      <h3 class="profile__notification-title">                        My activity settings                      </h3>                      <p>                        Stay up to date with notification on activity that                        involves you including mentions, messages, replies to                        your bids, new items, sale and administrative updates                      </p>                    </div>                    <div class="profile__notification-wrapper">                      <div class="profile__notification-item mb-20">                        <div                          class="form-check form-switch d-flex align-items-center"                        >                          <input                            class="form-check-input"                            type="checkbox"                            role="switch"                            id="like"                            checked                          />                          <label class="form-check-label" for="like"                            >Like & Follows Notifications</label                          >                        </div>                      </div>                      <div class="profile__notification-item mb-20">                        <div                          class="form-check form-switch d-flex align-items-center"                        >                          <input                            class="form-check-input"                            type="checkbox"                            role="switch"                            id="post"                            checked                          />                          <label class="form-check-label" for="post"                            >Post, Comments & Replies Notifications</label                          >                        </div>                      </div>                      <div class="profile__notification-item mb-20">                        <div                          class="form-check form-switch d-flex align-items-center"                        >                          <input                            class="form-check-input"                            type="checkbox"                            role="switch"                            id="new"                            checked                          />                          <label class="form-check-label" for="new"                            >New Product Notifications</label                          >                        </div>                      </div>                      <div class="profile__notification-item mb-20">                        <div                          class="form-check form-switch d-flex align-items-center"                        >                          <input                            class="form-check-input"                            type="checkbox"                            role="switch"                            id="sale"                            checked                          />                          <label class="form-check-label" for="sale"                            >Product on sale Notifications</label                          >                        </div>                      </div>                      <div class="profile__notification-item mb-20">                        <div                          class="form-check form-switch d-flex align-items-center"                        >                          <input                            class="form-check-input"                            type="checkbox"                            role="switch"                            id="payment"                            checked                          />                          <label class="form-check-label" for="payment"                            >Payment Notifications</label                          >                        </div>                      </div>                    </div>                  </div>                </div>              </div>            </div>          </div>        </div>      </div>    </div>  </section>  <!-- profile area end --></main></div>'
+    var COMPONENTS = [{'name': 'AddressProfileClientComponent', 'selector': 'app-address-profile-client'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CheckoutComponent', 'selector': 'app-checkout'},{'name': 'CodeForgotPasswordComponent', 'selector': 'app-code-forgot-password'},{'name': 'EditProfileClientComponent', 'selector': 'app-edit-profile-client'},{'name': 'FilterAdvanceProductComponent', 'selector': 'app-filter-advance-product'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LandingProductComponent', 'selector': 'app-landing-product'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'ModalProductComponent', 'selector': 'app-modal-product'},{'name': 'NewPasswordComponent', 'selector': 'app-new-password'},{'name': 'OrdersProfileClientComponent', 'selector': 'app-orders-profile-client'},{'name': 'PasswordProfileClientComponent', 'selector': 'app-password-profile-client'},{'name': 'ProfileClientComponent', 'selector': 'app-profile-client'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ThankYouOrderComponent', 'selector': 'app-thank-you-order'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ProfileClientComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ProfileClientComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,510 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mediashop-frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">mediashop-frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FooterComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/footer/footer.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-footer</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./footer.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./footer.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-footer&#x27;,
+  standalone: true,
+  imports: [],
+  templateUrl: &#x27;./footer.component.html&#x27;,
+  styleUrl: &#x27;./footer.component.css&#x27;
+})
+export class FooterComponent {
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- footer area start --&gt;
+&lt;footer&gt;
+  &lt;div class&#x3D;&quot;tp-footer-area&quot; data-bg-color&#x3D;&quot;footer-bg-grey&quot;&gt;
+    &lt;div class&#x3D;&quot;tp-footer-top pt-95 pb-40&quot;&gt;
+      &lt;div class&#x3D;&quot;container&quot;&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-xl-4 col-lg-3 col-md-4 col-sm-6&quot;&gt;
+            &lt;div class&#x3D;&quot;tp-footer-widget footer-col-1 mb-50&quot;&gt;
+              &lt;div class&#x3D;&quot;tp-footer-widget-content&quot;&gt;
+                &lt;div class&#x3D;&quot;tp-footer-logo&quot;&gt;
+                  &lt;a href&#x3D;&quot;index.html&quot;&gt;
+                    &lt;img src&#x3D;&quot;assets/img/logo/logo.png&quot; alt&#x3D;&quot;logo&quot; /&gt;
+                  &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;p class&#x3D;&quot;tp-footer-desc&quot;&gt;
+                  We are a team of designers and developers that create high
+                  quality WordPress
+                &lt;/p&gt;
+                &lt;div class&#x3D;&quot;tp-footer-social&quot;&gt;
+                  &lt;a href&#x3D;&quot;#&quot;&gt;&lt;i class&#x3D;&quot;fa-brands fa-facebook-f&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                  &lt;a href&#x3D;&quot;#&quot;&gt;&lt;i class&#x3D;&quot;fa-brands fa-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                  &lt;a href&#x3D;&quot;#&quot;&gt;&lt;i class&#x3D;&quot;fa-brands fa-linkedin-in&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                  &lt;a href&#x3D;&quot;#&quot;&gt;&lt;i class&#x3D;&quot;fa-brands fa-vimeo-v&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-xl-2 col-lg-3 col-md-4 col-sm-6&quot;&gt;
+            &lt;div class&#x3D;&quot;tp-footer-widget footer-col-2 mb-50&quot;&gt;
+              &lt;h4 class&#x3D;&quot;tp-footer-widget-title&quot;&gt;My Account&lt;/h4&gt;
+              &lt;div class&#x3D;&quot;tp-footer-widget-content&quot;&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Track Orders&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Shipping&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Wishlist&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;My Account&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Order History&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Returns&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-xl-3 col-lg-3 col-md-4 col-sm-6&quot;&gt;
+            &lt;div class&#x3D;&quot;tp-footer-widget footer-col-3 mb-50&quot;&gt;
+              &lt;h4 class&#x3D;&quot;tp-footer-widget-title&quot;&gt;Infomation&lt;/h4&gt;
+              &lt;div class&#x3D;&quot;tp-footer-widget-content&quot;&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Our Story&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Careers&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Privacy Policy&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Terms &amp; Conditions&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Latest News&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Contact Us&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-xl-3 col-lg-3 col-md-4 col-sm-6&quot;&gt;
+            &lt;div class&#x3D;&quot;tp-footer-widget footer-col-4 mb-50&quot;&gt;
+              &lt;h4 class&#x3D;&quot;tp-footer-widget-title&quot;&gt;Talk To Us&lt;/h4&gt;
+              &lt;div class&#x3D;&quot;tp-footer-widget-content&quot;&gt;
+                &lt;div class&#x3D;&quot;tp-footer-talk mb-20&quot;&gt;
+                  &lt;span&gt;Got Questions? Call us&lt;/span&gt;
+                  &lt;h4&gt;&lt;a href&#x3D;&quot;tel:670-413-90-762&quot;&gt;+670 413 90 762&lt;/a&gt;&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;tp-footer-contact&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-footer-contact-item d-flex align-items-start&quot;&gt;
+                    &lt;div class&#x3D;&quot;tp-footer-contact-icon&quot;&gt;
+                      &lt;span&gt;
+                        &lt;svg
+                          width&#x3D;&quot;18&quot;
+                          height&#x3D;&quot;16&quot;
+                          viewBox&#x3D;&quot;0 0 18 16&quot;
+                          fill&#x3D;&quot;none&quot;
+                          xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                        &gt;
+                          &lt;path
+                            d&#x3D;&quot;M1 5C1 2.2 2.6 1 5 1H13C15.4 1 17 2.2 17 5V10.6C17 13.4 15.4 14.6 13 14.6H5&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                            stroke-miterlimit&#x3D;&quot;10&quot;
+                            stroke-linecap&#x3D;&quot;round&quot;
+                            stroke-linejoin&#x3D;&quot;round&quot;
+                          /&gt;
+                          &lt;path
+                            d&#x3D;&quot;M13 5.40039L10.496 7.40039C9.672 8.05639 8.32 8.05639 7.496 7.40039L5 5.40039&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                            stroke-miterlimit&#x3D;&quot;10&quot;
+                            stroke-linecap&#x3D;&quot;round&quot;
+                            stroke-linejoin&#x3D;&quot;round&quot;
+                          /&gt;
+                          &lt;path
+                            d&#x3D;&quot;M1 11.4004H5.8&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                            stroke-miterlimit&#x3D;&quot;10&quot;
+                            stroke-linecap&#x3D;&quot;round&quot;
+                            stroke-linejoin&#x3D;&quot;round&quot;
+                          /&gt;
+                          &lt;path
+                            d&#x3D;&quot;M1 8.19922H3.4&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                            stroke-miterlimit&#x3D;&quot;10&quot;
+                            stroke-linecap&#x3D;&quot;round&quot;
+                            stroke-linejoin&#x3D;&quot;round&quot;
+                          /&gt;
+                        &lt;/svg&gt;
+                      &lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;tp-footer-contact-content&quot;&gt;
+                      &lt;p&gt;
+                        &lt;a href&#x3D;&quot;mailto:shofy_support.com&quot;
+                          &gt;tiendaandrescoder.dev&lt;/a
+                        &gt;
+                      &lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;tp-footer-contact-item d-flex align-items-start&quot;&gt;
+                    &lt;div class&#x3D;&quot;tp-footer-contact-icon&quot;&gt;
+                      &lt;span&gt;
+                        &lt;svg
+                          width&#x3D;&quot;17&quot;
+                          height&#x3D;&quot;20&quot;
+                          viewBox&#x3D;&quot;0 0 17 20&quot;
+                          fill&#x3D;&quot;none&quot;
+                          xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                        &gt;
+                          &lt;path
+                            d&#x3D;&quot;M8.50001 10.9417C9.99877 10.9417 11.2138 9.72668 11.2138 8.22791C11.2138 6.72915 9.99877 5.51416 8.50001 5.51416C7.00124 5.51416 5.78625 6.72915 5.78625 8.22791C5.78625 9.72668 7.00124 10.9417 8.50001 10.9417Z&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                          /&gt;
+                          &lt;path
+                            d&#x3D;&quot;M1.21115 6.64496C2.92464 -0.887449 14.0841 -0.878751 15.7889 6.65366C16.7891 11.0722 14.0406 14.8123 11.6313 17.126C9.88298 18.8134 7.11704 18.8134 5.36006 17.126C2.95943 14.8123 0.210885 11.0635 1.21115 6.64496Z&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                          /&gt;
+                        &lt;/svg&gt;
+                      &lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;tp-footer-contact-content&quot;&gt;
+                      &lt;p&gt;
+                        &lt;a
+                          href&#x3D;&quot;https://www.google.com/maps/place/Sleepy+Hollow+Rd,+Gouverneur,+NY+13642,+USA/@44.3304966,-75.4552367,17z/data&#x3D;!3m1!4b1!4m6!3m5!1s0x4cccddac8972c5eb:0x56286024afff537a!8m2!3d44.3304928!4d-75.453048!16s%2Fg%2F1tdsjdj4&quot;
+                          target&#x3D;&quot;_blank&quot;
+                          &gt;Camino real 25 &lt;br /&gt;
+                          Málaga, España&lt;/a
+                        &gt;
+                      &lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;tp-footer-bottom&quot;&gt;
+      &lt;div class&#x3D;&quot;container&quot;&gt;
+        &lt;div class&#x3D;&quot;tp-footer-bottom-wrapper&quot;&gt;
+          &lt;div class&#x3D;&quot;row align-items-center&quot;&gt;
+            &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+              &lt;div class&#x3D;&quot;tp-footer-copyright&quot;&gt;
+                &lt;p&gt;© 2025 All Rights Reserved | Mediashop&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+              &lt;div class&#x3D;&quot;tp-footer-payment text-md-end&quot;&gt;
+                &lt;p&gt;
+                  &lt;img src&#x3D;&quot;assets/img/footer/footer-pay.png&quot; alt&#x3D;&quot;&quot; /&gt;
+                &lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+&lt;!-- footer area end --&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- footer area start --><footer>  <div class="tp-footer-area" data-bg-color="footer-bg-grey">    <div class="tp-footer-top pt-95 pb-40">      <div class="container">        <div class="row">          <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6">            <div class="tp-footer-widget footer-col-1 mb-50">              <div class="tp-footer-widget-content">                <div class="tp-footer-logo">                  <a href="index.html">                    <img src="assets/img/logo/logo.png" alt="logo" />                  </a>                </div>                <p class="tp-footer-desc">                  We are a team of designers and developers that create high                  quality WordPress                </p>                <div class="tp-footer-social">                  <a href="#"><i class="fa-brands fa-facebook-f"></i></a>                  <a href="#"><i class="fa-brands fa-twitter"></i></a>                  <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>                  <a href="#"><i class="fa-brands fa-vimeo-v"></i></a>                </div>              </div>            </div>          </div>          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">            <div class="tp-footer-widget footer-col-2 mb-50">              <h4 class="tp-footer-widget-title">My Account</h4>              <div class="tp-footer-widget-content">                <ul>                  <li><a href="#">Track Orders</a></li>                  <li><a href="#">Shipping</a></li>                  <li><a href="#">Wishlist</a></li>                  <li><a href="#">My Account</a></li>                  <li><a href="#">Order History</a></li>                  <li><a href="#">Returns</a></li>                </ul>              </div>            </div>          </div>          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">            <div class="tp-footer-widget footer-col-3 mb-50">              <h4 class="tp-footer-widget-title">Infomation</h4>              <div class="tp-footer-widget-content">                <ul>                  <li><a href="#">Our Story</a></li>                  <li><a href="#">Careers</a></li>                  <li><a href="#">Privacy Policy</a></li>                  <li><a href="#">Terms & Conditions</a></li>                  <li><a href="#">Latest News</a></li>                  <li><a href="#">Contact Us</a></li>                </ul>              </div>            </div>          </div>          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">            <div class="tp-footer-widget footer-col-4 mb-50">              <h4 class="tp-footer-widget-title">Talk To Us</h4>              <div class="tp-footer-widget-content">                <div class="tp-footer-talk mb-20">                  <span>Got Questions? Call us</span>                  <h4><a href="tel:670-413-90-762">+670 413 90 762</a></h4>                </div>                <div class="tp-footer-contact">                  <div class="tp-footer-contact-item d-flex align-items-start">                    <div class="tp-footer-contact-icon">                      <span>                        <svg                          width="18"                          height="16"                          viewBox="0 0 18 16"                          fill="none"                          xmlns="http://www.w3.org/2000/svg"                        >                          <path                            d="M1 5C1 2.2 2.6 1 5 1H13C15.4 1 17 2.2 17 5V10.6C17 13.4 15.4 14.6 13 14.6H5"                            stroke="currentColor"                            stroke-width="1.5"                            stroke-miterlimit="10"                            stroke-linecap="round"                            stroke-linejoin="round"                          />                          <path                            d="M13 5.40039L10.496 7.40039C9.672 8.05639 8.32 8.05639 7.496 7.40039L5 5.40039"                            stroke="currentColor"                            stroke-width="1.5"                            stroke-miterlimit="10"                            stroke-linecap="round"                            stroke-linejoin="round"                          />                          <path                            d="M1 11.4004H5.8"                            stroke="currentColor"                            stroke-width="1.5"                            stroke-miterlimit="10"                            stroke-linecap="round"                            stroke-linejoin="round"                          />                          <path                            d="M1 8.19922H3.4"                            stroke="currentColor"                            stroke-width="1.5"                            stroke-miterlimit="10"                            stroke-linecap="round"                            stroke-linejoin="round"                          />                        </svg>                      </span>                    </div>                    <div class="tp-footer-contact-content">                      <p>                        <a href="mailto:shofy_support.com"                          >tiendaandrescoder.dev</a                        >                      </p>                    </div>                  </div>                  <div class="tp-footer-contact-item d-flex align-items-start">                    <div class="tp-footer-contact-icon">                      <span>                        <svg                          width="17"                          height="20"                          viewBox="0 0 17 20"                          fill="none"                          xmlns="http://www.w3.org/2000/svg"                        >                          <path                            d="M8.50001 10.9417C9.99877 10.9417 11.2138 9.72668 11.2138 8.22791C11.2138 6.72915 9.99877 5.51416 8.50001 5.51416C7.00124 5.51416 5.78625 6.72915 5.78625 8.22791C5.78625 9.72668 7.00124 10.9417 8.50001 10.9417Z"                            stroke="currentColor"                            stroke-width="1.5"                          />                          <path                            d="M1.21115 6.64496C2.92464 -0.887449 14.0841 -0.878751 15.7889 6.65366C16.7891 11.0722 14.0406 14.8123 11.6313 17.126C9.88298 18.8134 7.11704 18.8134 5.36006 17.126C2.95943 14.8123 0.210885 11.0635 1.21115 6.64496Z"                            stroke="currentColor"                            stroke-width="1.5"                          />                        </svg>                      </span>                    </div>                    <div class="tp-footer-contact-content">                      <p>                        <a                          href="https://www.google.com/maps/place/Sleepy+Hollow+Rd,+Gouverneur,+NY+13642,+USA/@44.3304966,-75.4552367,17z/data=!3m1!4b1!4m6!3m5!1s0x4cccddac8972c5eb:0x56286024afff537a!8m2!3d44.3304928!4d-75.453048!16s%2Fg%2F1tdsjdj4"                          target="_blank"                          >Camino real 25 <br />                          Málaga, España</a                        >                      </p>                    </div>                  </div>                </div>              </div>            </div>          </div>        </div>      </div>    </div>    <div class="tp-footer-bottom">      <div class="container">        <div class="tp-footer-bottom-wrapper">          <div class="row align-items-center">            <div class="col-md-6">              <div class="tp-footer-copyright">                <p>© 2025 All Rights Reserved | Mediashop</p>              </div>            </div>            <div class="col-md-6">              <div class="tp-footer-payment text-md-end">                <p>                  <img src="assets/img/footer/footer-pay.png" alt="" />                </p>              </div>            </div>          </div>        </div>      </div>    </div>  </div></footer><!-- footer area end --></div>'
+    var COMPONENTS = [{'name': 'AddressProfileClientComponent', 'selector': 'app-address-profile-client'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CheckoutComponent', 'selector': 'app-checkout'},{'name': 'CodeForgotPasswordComponent', 'selector': 'app-code-forgot-password'},{'name': 'EditProfileClientComponent', 'selector': 'app-edit-profile-client'},{'name': 'FilterAdvanceProductComponent', 'selector': 'app-filter-advance-product'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LandingProductComponent', 'selector': 'app-landing-product'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'ModalProductComponent', 'selector': 'app-modal-product'},{'name': 'NewPasswordComponent', 'selector': 'app-new-password'},{'name': 'OrdersProfileClientComponent', 'selector': 'app-orders-profile-client'},{'name': 'PasswordProfileClientComponent', 'selector': 'app-password-profile-client'},{'name': 'ProfileClientComponent', 'selector': 'app-profile-client'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ThankYouOrderComponent', 'selector': 'app-thank-you-order'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FooterComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FooterComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

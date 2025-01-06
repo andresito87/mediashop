@@ -1,0 +1,1011 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mediashop-frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">mediashop-frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  LoginComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/auth/login/login.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-login</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>FormsModule</code>
+                            <code>RouterModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./login.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./login.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#code_user" >code_user</a>
+                            </li>
+                            <li>
+                                <a href="#email" >email</a>
+                            </li>
+                            <li>
+                                <a href="#password" >password</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#login" >login</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#sendToRegister" >sendToRegister</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(toastr: ToastrService, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router, activatedRoute: ActivatedRoute)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/auth/login/login.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>activatedRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="login"></a>
+                    <span class="name">
+                        <span ><b>login</b></span>
+                        <a href="#login"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>login()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/pages/auth/login/login.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/pages/auth/login/login.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sendToRegister"></a>
+                    <span class="name">
+                        <span ><b>sendToRegister</b></span>
+                        <a href="#sendToRegister"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sendToRegister(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/pages/auth/login/login.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="code_user"></a>
+                    <span class="name">
+                        <span ><b>code_user</b></span>
+                        <a href="#code_user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/auth/login/login.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="email"></a>
+                    <span class="name">
+                        <span ><b>email</b></span>
+                        <a href="#email"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/pages/auth/login/login.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="password"></a>
+                    <span class="name">
+                        <span ><b>password</b></span>
+                        <a href="#password"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/pages/auth/login/login.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { AuthService } from &#x27;../service/auth.service&#x27;;
+import { ActivatedRoute, Router, RouterModule } from &#x27;@angular/router&#x27;;
+import { FormsModule, NgModel } from &#x27;@angular/forms&#x27;;
+import { catchError, tap } from &#x27;rxjs/operators&#x27;;
+import { of } from &#x27;rxjs&#x27;;
+
+@Component({
+  selector: &#x27;app-login&#x27;,
+  standalone: true,
+  imports: [FormsModule, RouterModule],
+  templateUrl: &#x27;./login.component.html&#x27;,
+  styleUrl: &#x27;./login.component.css&#x27;,
+})
+export class LoginComponent implements OnInit {
+  email: string &#x3D; &#x27;&#x27;;
+  password: string &#x3D; &#x27;&#x27;;
+  code_user: string &#x3D; &#x27;&#x27;;
+  constructor(
+    private toastr: ToastrService,
+    private authService: AuthService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    if (this.authService.token &amp;&amp; this.authService.user) {
+      setTimeout(() &#x3D;&gt; {
+        this.router.navigate([&#x27;/&#x27;]);
+      }, 500);
+      return;
+    }
+    this.activatedRoute.queryParams.subscribe((params: any) &#x3D;&gt; {
+      if (params.code) {
+        this.code_user &#x3D; params.code;
+      }
+    });
+
+    if (this.code_user) {
+      const data: any &#x3D; {
+        code: this.code_user,
+      };
+      this.authService.verifiedAuth(data).subscribe((res: any) &#x3D;&gt; {
+        if (res.message &#x3D;&#x3D; &#x27;User not found&#x27;) {
+          this.toastr.error(&#x27;Error&#x27;, &#x27;Error de conexión, intente más tarde&#x27;);
+          return;
+        }
+        this.toastr.success(
+          &#x27;Exito&#x27;,
+          &#x27;!!! Correo verificado, ingrese a la tienda !!!&#x27;
+        );
+        setTimeout(() &#x3D;&gt; {
+          this.router.navigate([&#x27;/login&#x27;]);
+        }, 500);
+      });
+    }
+  }
+
+  login() {
+    if (!this.email || !this.password) {
+      this.toastr.error(&#x27;Validacion&#x27;, &#x27;Necesitas ingresar todos los campos&#x27;);
+      return;
+    }
+
+    this.authService
+      .login(this.email, this.password)
+      .pipe(
+        tap((res: any) &#x3D;&gt; {
+          if (res.error &amp;&amp; res.error.error &#x3D;&#x3D; &#x27;Invalid credentials&#x27;) {
+            this.toastr.error(&#x27;Error&#x27;, &#x27;Usuario o contraseña incorrectos&#x27;);
+            return;
+          } else {
+            this.toastr.success(&#x27;Exito&#x27;, &#x27;!!! Bienvenid@ a la tienda !!!&#x27;);
+            setTimeout(() &#x3D;&gt; {
+              window.location.reload();
+            }, 300);
+          }
+        }),
+        catchError((error) &#x3D;&gt; {
+          this.toastr.error(&#x27;Error&#x27;, &#x27;Error de conexión, intente más tarde&#x27;);
+          // Return empty observable to complete the flow of observable
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
+  sendToRegister(event: MouseEvent) {
+    event.preventDefault();
+    this.router.navigate([&#x27;/register&#x27;]);
+    // Reload JQuery code
+    setTimeout(() &#x3D;&gt; {
+      document.location.reload();
+    }, 100);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;main&gt;
+  &lt;!-- breadcrumb area start --&gt;
+  &lt;section class&#x3D;&quot;breadcrumb__area include-bg text-center pt-95 pb-50&quot;&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+      &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-xxl-12&quot;&gt;
+          &lt;div class&#x3D;&quot;breadcrumb__content p-relative z-index-1&quot;&gt;
+            &lt;h3 class&#x3D;&quot;breadcrumb__title&quot;&gt;My account&lt;/h3&gt;
+            &lt;div class&#x3D;&quot;breadcrumb__list&quot;&gt;
+              &lt;span&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/span&gt;
+              &lt;span&gt;My account&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;!-- breadcrumb area end --&gt;
+
+  &lt;!-- login area start --&gt;
+  &lt;section class&#x3D;&quot;tp-login-area pb-140 p-relative z-index-1 fix&quot;&gt;
+    &lt;div class&#x3D;&quot;tp-login-shape&quot;&gt;
+      &lt;img
+        class&#x3D;&quot;tp-login-shape-1&quot;
+        src&#x3D;&quot;assets/img/login/login-shape-1.png&quot;
+        alt&#x3D;&quot;&quot;
+      /&gt;
+      &lt;img
+        class&#x3D;&quot;tp-login-shape-2&quot;
+        src&#x3D;&quot;assets/img/login/login-shape-2.png&quot;
+        alt&#x3D;&quot;&quot;
+      /&gt;
+      &lt;img
+        class&#x3D;&quot;tp-login-shape-3&quot;
+        src&#x3D;&quot;assets/img/login/login-shape-3.png&quot;
+        alt&#x3D;&quot;&quot;
+      /&gt;
+      &lt;img
+        class&#x3D;&quot;tp-login-shape-4&quot;
+        src&#x3D;&quot;assets/img/login/login-shape-4.png&quot;
+        alt&#x3D;&quot;&quot;
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+      &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+        &lt;div class&#x3D;&quot;col-xl-6 col-lg-8&quot;&gt;
+          &lt;div class&#x3D;&quot;tp-login-wrapper&quot;&gt;
+            &lt;div class&#x3D;&quot;tp-login-top text-center mb-30&quot;&gt;
+              &lt;h3 class&#x3D;&quot;tp-login-title&quot;&gt;Login to Shofy.&lt;/h3&gt;
+              &lt;p&gt;
+                Don’t have an account?
+                &lt;span
+                  &gt;&lt;a href&#x3D;&quot;#&quot; (click)&#x3D;&quot;sendToRegister($event)&quot;
+                    &gt;Create a free account&lt;/a
+                  &gt;&lt;/span
+                &gt;
+              &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;tp-login-option&quot;&gt;
+              &lt;div
+                class&#x3D;&quot;tp-login-social mb-10 d-flex flex-wrap align-items-center justify-content-center&quot;
+              &gt;
+                &lt;div class&#x3D;&quot;tp-login-option-item has-google&quot;&gt;
+                  &lt;a href&#x3D;&quot;#&quot;&gt;
+                    &lt;img src&#x3D;&quot;assets/img/icon/login/google.png&quot; alt&#x3D;&quot;&quot; /&gt;
+                    Sign in with google
+                  &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;tp-login-option-item&quot;&gt;
+                  &lt;a href&#x3D;&quot;#&quot;&gt;
+                    &lt;img src&#x3D;&quot;assets/img/icon/login/facebook.png&quot; alt&#x3D;&quot;&quot; /&gt;
+                  &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;tp-login-option-item&quot;&gt;
+                  &lt;a href&#x3D;&quot;#&quot;&gt;
+                    &lt;img
+                      class&#x3D;&quot;apple.png&quot;
+                      src&#x3D;&quot;assets/img/icon/login/apple.png&quot;
+                      alt&#x3D;&quot;&quot;
+                    /&gt;
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;tp-login-mail text-center mb-40&quot;&gt;
+                &lt;p&gt;or Sign in with &lt;a href&#x3D;&quot;#&quot;&gt;Email&lt;/a&gt;&lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;tp-login-input-wrapper&quot;&gt;
+                &lt;div class&#x3D;&quot;tp-login-input-box&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-login-input&quot;&gt;
+                    &lt;input
+                      [(ngModel)]&#x3D;&quot;email&quot;
+                      id&#x3D;&quot;email&quot;
+                      type&#x3D;&quot;email&quot;
+                      placeholder&#x3D;&quot;shofy@mail.com&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;tp-login-input-title&quot;&gt;
+                    &lt;label for&#x3D;&quot;email&quot;&gt;Your Email&lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;tp-login-input-box&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-login-input&quot;&gt;
+                    &lt;input
+                      [(ngModel)]&#x3D;&quot;password&quot;
+                      id&#x3D;&quot;tp_password&quot;
+                      type&#x3D;&quot;password&quot;
+                      placeholder&#x3D;&quot;Min. 6 character&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;tp-login-input-eye&quot; id&#x3D;&quot;password-show-toggle&quot;&gt;
+                    &lt;span id&#x3D;&quot;open-eye&quot; class&#x3D;&quot;open-eye&quot;&gt;
+                      &lt;svg
+                        width&#x3D;&quot;18&quot;
+                        height&#x3D;&quot;14&quot;
+                        viewBox&#x3D;&quot;0 0 18 14&quot;
+                        fill&#x3D;&quot;none&quot;
+                        xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                      &gt;
+                        &lt;path
+                          d&#x3D;&quot;M1 6.77778C1 6.77778 3.90909 1 9 1C14.0909 1 17 6.77778 17 6.77778C17 6.77778 14.0909 12.5556 9 12.5556C3.90909 12.5556 1 6.77778 1 6.77778Z&quot;
+                          stroke&#x3D;&quot;currentColor&quot;
+                          stroke-width&#x3D;&quot;1.2&quot;
+                          stroke-linecap&#x3D;&quot;round&quot;
+                          stroke-linejoin&#x3D;&quot;round&quot;
+                        /&gt;
+                        &lt;path
+                          d&#x3D;&quot;M9.00018 8.94466C10.2052 8.94466 11.182 7.97461 11.182 6.77799C11.182 5.58138 10.2052 4.61133 9.00018 4.61133C7.79519 4.61133 6.81836 5.58138 6.81836 6.77799C6.81836 7.97461 7.79519 8.94466 9.00018 8.94466Z&quot;
+                          stroke&#x3D;&quot;currentColor&quot;
+                          stroke-width&#x3D;&quot;1.2&quot;
+                          stroke-linecap&#x3D;&quot;round&quot;
+                          stroke-linejoin&#x3D;&quot;round&quot;
+                        /&gt;
+                      &lt;/svg&gt;
+                    &lt;/span&gt;
+                    &lt;span id&#x3D;&quot;close-eye&quot; class&#x3D;&quot;open-close&quot;&gt;
+                      &lt;svg
+                        width&#x3D;&quot;19&quot;
+                        height&#x3D;&quot;18&quot;
+                        viewBox&#x3D;&quot;0 0 19 18&quot;
+                        fill&#x3D;&quot;none&quot;
+                        xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                      &gt;
+                        &lt;path
+                          d&#x3D;&quot;M6.8822 11.7457C6.72311 11.7457 6.56402 11.6871 6.43842 11.5615C5.7518 10.8749 5.375 9.9622 5.375 8.99926C5.375 6.99803 6.99943 5.3736 9.00066 5.3736C9.9636 5.3736 10.8763 5.7504 11.5629 6.43701C11.6801 6.55424 11.7471 6.71333 11.7471 6.8808C11.7471 7.04827 11.6801 7.20736 11.5629 7.32459L7.32599 11.5615C7.20039 11.6871 7.0413 11.7457 6.8822 11.7457ZM9.00066 6.6296C7.69442 6.6296 6.631 7.69302 6.631 8.99926C6.631 9.41793 6.73986 9.81985 6.94082 10.1715L10.1729 6.93941C9.82125 6.73845 9.41933 6.6296 9.00066 6.6296Z&quot;
+                          fill&#x3D;&quot;#1C274C&quot;
+                        /&gt;
+                        &lt;path
+                          opacity&#x3D;&quot;0.5&quot;
+                          d&#x3D;&quot;M3.63816 14.4503C3.49582 14.4503 3.3451 14.4001 3.22787 14.2996C2.33192 13.5376 1.52808 12.5998 0.841463 11.5112C-0.0461127 10.1296 -0.0461127 7.87721 0.841463 6.48723C2.88456 3.28861 5.8571 1.44647 8.99711 1.44647C10.8393 1.44647 12.6563 2.08285 14.2472 3.28024C14.5235 3.48957 14.5821 3.88312 14.3728 4.15944C14.1635 4.43576 13.7699 4.49437 13.4936 4.28504C12.1204 3.24674 10.5629 2.70248 8.99711 2.70248C6.29252 2.70248 3.70515 4.32691 1.89651 7.16547C1.2685 8.14516 1.2685 9.85332 1.89651 10.833C2.52451 11.8127 3.24462 12.6584 4.04009 13.345C4.29966 13.5711 4.33315 13.9646 4.10707 14.2326C3.98984 14.3749 3.814 14.4503 3.63816 14.4503Z&quot;
+                          fill&#x3D;&quot;#1C274C&quot;
+                        /&gt;
+                        &lt;path
+                          opacity&#x3D;&quot;0.5&quot;
+                          d&#x3D;&quot;M9.00382 16.552C7.89017 16.552 6.80163 16.3259 5.75496 15.8821C5.43678 15.7482 5.28606 15.3797 5.42003 15.0616C5.554 14.7434 5.92243 14.5927 6.24062 14.7266C7.12819 15.1034 8.05764 15.296 8.99545 15.296C11.7 15.296 14.2874 13.6716 16.0961 10.833C16.7241 9.85333 16.7241 8.14517 16.0961 7.16548C15.8365 6.75519 15.5518 6.36164 15.2503 5.99321C15.0326 5.72527 15.0745 5.33172 15.3425 5.10564C15.6104 4.88793 16.0039 4.92142 16.23 5.19775C16.5566 5.59967 16.8748 6.03508 17.1595 6.48724C18.047 7.86885 18.047 10.1213 17.1595 11.5113C15.1164 14.7099 12.1438 16.552 9.00382 16.552Z&quot;
+                          fill&#x3D;&quot;#1C274C&quot;
+                        /&gt;
+                        &lt;path
+                          d&#x3D;&quot;M9.58061 12.5747C9.28754 12.5747 9.01959 12.3654 8.96098 12.0639C8.89399 11.7206 9.12007 11.3941 9.46338 11.3355C10.3845 11.168 11.1548 10.3976 11.3223 9.47657C11.3893 9.13327 11.7158 8.91556 12.0591 8.97417C12.4024 9.04116 12.6285 9.36772 12.5615 9.71103C12.2936 11.1596 11.1381 12.3068 9.69783 12.5747C9.65597 12.5663 9.62247 12.5747 9.58061 12.5747Z&quot;
+                          fill&#x3D;&quot;#1C274C&quot;
+                        /&gt;
+                        &lt;path
+                          d&#x3D;&quot;M0.625908 18.0007C0.466815 18.0007 0.307721 17.9421 0.18212 17.8165C-0.0607068 17.5736 -0.0607068 17.1717 0.18212 16.9289L6.43702 10.674C6.67984 10.4312 7.08177 10.4312 7.32459 10.674C7.56742 10.9168 7.56742 11.3188 7.32459 11.5616L1.0697 17.8165C0.944096 17.9421 0.785002 18.0007 0.625908 18.0007Z&quot;
+                          fill&#x3D;&quot;#1C274C&quot;
+                        /&gt;
+                        &lt;path
+                          d&#x3D;&quot;M11.122 7.50881C10.9629 7.50881 10.8038 7.45019 10.6782 7.32459C10.4354 7.08177 10.4354 6.67984 10.6782 6.43702L16.9331 0.182121C17.1759 -0.0607068 17.5779 -0.0607068 17.8207 0.182121C18.0635 0.424948 18.0635 0.826869 17.8207 1.0697L11.5658 7.32459C11.4402 7.45019 11.2811 7.50881 11.122 7.50881Z&quot;
+                          fill&#x3D;&quot;#1C274C&quot;
+                        /&gt;
+                      &lt;/svg&gt;
+                    &lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;tp-login-input-title&quot;&gt;
+                    &lt;label for&#x3D;&quot;tp_password&quot;&gt;Password&lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div
+                class&#x3D;&quot;tp-login-suggetions d-sm-flex align-items-center justify-content-between mb-20&quot;
+              &gt;
+                &lt;div class&#x3D;&quot;tp-login-remeber&quot;&gt;
+                  &lt;input id&#x3D;&quot;remeber&quot; type&#x3D;&quot;checkbox&quot; /&gt;
+                  &lt;label for&#x3D;&quot;remeber&quot;&gt;Remember me&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;tp-login-forgot&quot;&gt;
+                  &lt;a routerLink&#x3D;&quot;/cambiar-credenciales&quot;&gt;Forgot Password?&lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;tp-login-bottom&quot;&gt;
+                &lt;a
+                  href&#x3D;&quot;#&quot;
+                  onclick&#x3D;&quot;return false&quot;
+                  (click)&#x3D;&quot;login()&quot;
+                  class&#x3D;&quot;tp-login-btn w-100&quot;
+                  &gt;Login&lt;/a
+                &gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;!-- login area end --&gt;
+&lt;/main&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><main>  <!-- breadcrumb area start -->  <section class="breadcrumb__area include-bg text-center pt-95 pb-50">    <div class="container">      <div class="row">        <div class="col-xxl-12">          <div class="breadcrumb__content p-relative z-index-1">            <h3 class="breadcrumb__title">My account</h3>            <div class="breadcrumb__list">              <span><a href="#">Home</a></span>              <span>My account</span>            </div>          </div>        </div>      </div>    </div>  </section>  <!-- breadcrumb area end -->  <!-- login area start -->  <section class="tp-login-area pb-140 p-relative z-index-1 fix">    <div class="tp-login-shape">      <img        class="tp-login-shape-1"        src="assets/img/login/login-shape-1.png"        alt=""      />      <img        class="tp-login-shape-2"        src="assets/img/login/login-shape-2.png"        alt=""      />      <img        class="tp-login-shape-3"        src="assets/img/login/login-shape-3.png"        alt=""      />      <img        class="tp-login-shape-4"        src="assets/img/login/login-shape-4.png"        alt=""      />    </div>    <div class="container">      <div class="row justify-content-center">        <div class="col-xl-6 col-lg-8">          <div class="tp-login-wrapper">            <div class="tp-login-top text-center mb-30">              <h3 class="tp-login-title">Login to Shofy.</h3>              <p>                Don’t have an account?                <span                  ><a href="#" (click)="sendToRegister($event)"                    >Create a free account</a                  ></span                >              </p>            </div>            <div class="tp-login-option">              <div                class="tp-login-social mb-10 d-flex flex-wrap align-items-center justify-content-center"              >                <div class="tp-login-option-item has-google">                  <a href="#">                    <img src="assets/img/icon/login/google.png" alt="" />                    Sign in with google                  </a>                </div>                <div class="tp-login-option-item">                  <a href="#">                    <img src="assets/img/icon/login/facebook.png" alt="" />                  </a>                </div>                <div class="tp-login-option-item">                  <a href="#">                    <img                      class="apple.png"                      src="assets/img/icon/login/apple.png"                      alt=""                    />                  </a>                </div>              </div>              <div class="tp-login-mail text-center mb-40">                <p>or Sign in with <a href="#">Email</a></p>              </div>              <div class="tp-login-input-wrapper">                <div class="tp-login-input-box">                  <div class="tp-login-input">                    <input                      [(ngModel)]="email"                      id="email"                      type="email"                      placeholder="shofy@mail.com"                    />                  </div>                  <div class="tp-login-input-title">                    <label for="email">Your Email</label>                  </div>                </div>                <div class="tp-login-input-box">                  <div class="tp-login-input">                    <input                      [(ngModel)]="password"                      id="tp_password"                      type="password"                      placeholder="Min. 6 character"                    />                  </div>                  <div class="tp-login-input-eye" id="password-show-toggle">                    <span id="open-eye" class="open-eye">                      <svg                        width="18"                        height="14"                        viewBox="0 0 18 14"                        fill="none"                        xmlns="http://www.w3.org/2000/svg"                      >                        <path                          d="M1 6.77778C1 6.77778 3.90909 1 9 1C14.0909 1 17 6.77778 17 6.77778C17 6.77778 14.0909 12.5556 9 12.5556C3.90909 12.5556 1 6.77778 1 6.77778Z"                          stroke="currentColor"                          stroke-width="1.2"                          stroke-linecap="round"                          stroke-linejoin="round"                        />                        <path                          d="M9.00018 8.94466C10.2052 8.94466 11.182 7.97461 11.182 6.77799C11.182 5.58138 10.2052 4.61133 9.00018 4.61133C7.79519 4.61133 6.81836 5.58138 6.81836 6.77799C6.81836 7.97461 7.79519 8.94466 9.00018 8.94466Z"                          stroke="currentColor"                          stroke-width="1.2"                          stroke-linecap="round"                          stroke-linejoin="round"                        />                      </svg>                    </span>                    <span id="close-eye" class="open-close">                      <svg                        width="19"                        height="18"                        viewBox="0 0 19 18"                        fill="none"                        xmlns="http://www.w3.org/2000/svg"                      >                        <path                          d="M6.8822 11.7457C6.72311 11.7457 6.56402 11.6871 6.43842 11.5615C5.7518 10.8749 5.375 9.9622 5.375 8.99926C5.375 6.99803 6.99943 5.3736 9.00066 5.3736C9.9636 5.3736 10.8763 5.7504 11.5629 6.43701C11.6801 6.55424 11.7471 6.71333 11.7471 6.8808C11.7471 7.04827 11.6801 7.20736 11.5629 7.32459L7.32599 11.5615C7.20039 11.6871 7.0413 11.7457 6.8822 11.7457ZM9.00066 6.6296C7.69442 6.6296 6.631 7.69302 6.631 8.99926C6.631 9.41793 6.73986 9.81985 6.94082 10.1715L10.1729 6.93941C9.82125 6.73845 9.41933 6.6296 9.00066 6.6296Z"                          fill="#1C274C"                        />                        <path                          opacity="0.5"                          d="M3.63816 14.4503C3.49582 14.4503 3.3451 14.4001 3.22787 14.2996C2.33192 13.5376 1.52808 12.5998 0.841463 11.5112C-0.0461127 10.1296 -0.0461127 7.87721 0.841463 6.48723C2.88456 3.28861 5.8571 1.44647 8.99711 1.44647C10.8393 1.44647 12.6563 2.08285 14.2472 3.28024C14.5235 3.48957 14.5821 3.88312 14.3728 4.15944C14.1635 4.43576 13.7699 4.49437 13.4936 4.28504C12.1204 3.24674 10.5629 2.70248 8.99711 2.70248C6.29252 2.70248 3.70515 4.32691 1.89651 7.16547C1.2685 8.14516 1.2685 9.85332 1.89651 10.833C2.52451 11.8127 3.24462 12.6584 4.04009 13.345C4.29966 13.5711 4.33315 13.9646 4.10707 14.2326C3.98984 14.3749 3.814 14.4503 3.63816 14.4503Z"                          fill="#1C274C"                        />                        <path                          opacity="0.5"                          d="M9.00382 16.552C7.89017 16.552 6.80163 16.3259 5.75496 15.8821C5.43678 15.7482 5.28606 15.3797 5.42003 15.0616C5.554 14.7434 5.92243 14.5927 6.24062 14.7266C7.12819 15.1034 8.05764 15.296 8.99545 15.296C11.7 15.296 14.2874 13.6716 16.0961 10.833C16.7241 9.85333 16.7241 8.14517 16.0961 7.16548C15.8365 6.75519 15.5518 6.36164 15.2503 5.99321C15.0326 5.72527 15.0745 5.33172 15.3425 5.10564C15.6104 4.88793 16.0039 4.92142 16.23 5.19775C16.5566 5.59967 16.8748 6.03508 17.1595 6.48724C18.047 7.86885 18.047 10.1213 17.1595 11.5113C15.1164 14.7099 12.1438 16.552 9.00382 16.552Z"                          fill="#1C274C"                        />                        <path                          d="M9.58061 12.5747C9.28754 12.5747 9.01959 12.3654 8.96098 12.0639C8.89399 11.7206 9.12007 11.3941 9.46338 11.3355C10.3845 11.168 11.1548 10.3976 11.3223 9.47657C11.3893 9.13327 11.7158 8.91556 12.0591 8.97417C12.4024 9.04116 12.6285 9.36772 12.5615 9.71103C12.2936 11.1596 11.1381 12.3068 9.69783 12.5747C9.65597 12.5663 9.62247 12.5747 9.58061 12.5747Z"                          fill="#1C274C"                        />                        <path                          d="M0.625908 18.0007C0.466815 18.0007 0.307721 17.9421 0.18212 17.8165C-0.0607068 17.5736 -0.0607068 17.1717 0.18212 16.9289L6.43702 10.674C6.67984 10.4312 7.08177 10.4312 7.32459 10.674C7.56742 10.9168 7.56742 11.3188 7.32459 11.5616L1.0697 17.8165C0.944096 17.9421 0.785002 18.0007 0.625908 18.0007Z"                          fill="#1C274C"                        />                        <path                          d="M11.122 7.50881C10.9629 7.50881 10.8038 7.45019 10.6782 7.32459C10.4354 7.08177 10.4354 6.67984 10.6782 6.43702L16.9331 0.182121C17.1759 -0.0607068 17.5779 -0.0607068 17.8207 0.182121C18.0635 0.424948 18.0635 0.826869 17.8207 1.0697L11.5658 7.32459C11.4402 7.45019 11.2811 7.50881 11.122 7.50881Z"                          fill="#1C274C"                        />                      </svg>                    </span>                  </div>                  <div class="tp-login-input-title">                    <label for="tp_password">Password</label>                  </div>                </div>              </div>              <div                class="tp-login-suggetions d-sm-flex align-items-center justify-content-between mb-20"              >                <div class="tp-login-remeber">                  <input id="remeber" type="checkbox" />                  <label for="remeber">Remember me</label>                </div>                <div class="tp-login-forgot">                  <a routerLink="/cambiar-credenciales">Forgot Password?</a>                </div>              </div>              <div class="tp-login-bottom">                <a                  href="#"                  onclick="return false"                  (click)="login()"                  class="tp-login-btn w-100"                  >Login</a                >              </div>            </div>          </div>        </div>      </div>    </div>  </section>  <!-- login area end --></main></div>'
+    var COMPONENTS = [{'name': 'AddressProfileClientComponent', 'selector': 'app-address-profile-client'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CheckoutComponent', 'selector': 'app-checkout'},{'name': 'CodeForgotPasswordComponent', 'selector': 'app-code-forgot-password'},{'name': 'EditProfileClientComponent', 'selector': 'app-edit-profile-client'},{'name': 'FilterAdvanceProductComponent', 'selector': 'app-filter-advance-product'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LandingProductComponent', 'selector': 'app-landing-product'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'ModalProductComponent', 'selector': 'app-modal-product'},{'name': 'NewPasswordComponent', 'selector': 'app-new-password'},{'name': 'OrdersProfileClientComponent', 'selector': 'app-orders-profile-client'},{'name': 'PasswordProfileClientComponent', 'selector': 'app-password-profile-client'},{'name': 'ProfileClientComponent', 'selector': 'app-profile-client'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ThankYouOrderComponent', 'selector': 'app-thank-you-order'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LoginComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

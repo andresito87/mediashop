@@ -1,0 +1,1431 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mediashop-frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">mediashop-frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AddressProfileClientComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-address-profile-client</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>RouterModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./address-profile-client.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./address-profile-client.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#address_selected" >address_selected</a>
+                            </li>
+                            <li>
+                                <a href="#addresses" >addresses</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#addressService" >addressService</a>
+                            </li>
+                            <li>
+                                <a href="#city" >city</a>
+                            </li>
+                            <li>
+                                <a href="#company" >company</a>
+                            </li>
+                            <li>
+                                <a href="#country_region" >country_region</a>
+                            </li>
+                            <li>
+                                <a href="#email" >email</a>
+                            </li>
+                            <li>
+                                <a href="#name" >name</a>
+                            </li>
+                            <li>
+                                <a href="#phone" >phone</a>
+                            </li>
+                            <li>
+                                <a href="#postcode_zip" >postcode_zip</a>
+                            </li>
+                            <li>
+                                <a href="#street_address" >street_address</a>
+                            </li>
+                            <li>
+                                <a href="#surname" >surname</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#editAddress" >editAddress</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#registerAddress" >registerAddress</a>
+                            </li>
+                            <li>
+                                <a href="#resetAddress" >resetAddress</a>
+                            </li>
+                            <li>
+                                <a href="#selectedAddress" >selectedAddress</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(addressService: <a href="../injectables/UserAddressService.html" target="_self">UserAddressService</a>, toastr: ToastrService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>addressService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserAddressService.html" target="_self" >UserAddressService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editAddress"></a>
+                    <span class="name">
+                        <span ><b>editAddress</b></span>
+                        <a href="#editAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editAddress()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerAddress"></a>
+                    <span class="name">
+                        <span ><b>registerAddress</b></span>
+                        <a href="#registerAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerAddress()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetAddress"></a>
+                    <span class="name">
+                        <span ><b>resetAddress</b></span>
+                        <a href="#resetAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetAddress()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedAddress"></a>
+                    <span class="name">
+                        <span ><b>selectedAddress</b></span>
+                        <a href="#selectedAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectedAddress(address: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>address</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="address_selected"></a>
+                    <span class="name">
+                        <span ><b>address_selected</b></span>
+                        <a href="#address_selected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addresses"></a>
+                    <span class="name">
+                        <span ><b>addresses</b></span>
+                        <a href="#addresses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addressService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>addressService</b></span>
+                        <a href="#addressService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UserAddressService.html" target="_self" >UserAddressService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="city"></a>
+                    <span class="name">
+                        <span ><b>city</b></span>
+                        <a href="#city"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="company"></a>
+                    <span class="name">
+                        <span ><b>company</b></span>
+                        <a href="#company"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="country_region"></a>
+                    <span class="name">
+                        <span ><b>country_region</b></span>
+                        <a href="#country_region"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="email"></a>
+                    <span class="name">
+                        <span ><b>email</b></span>
+                        <a href="#email"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="name"></a>
+                    <span class="name">
+                        <span ><b>name</b></span>
+                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="phone"></a>
+                    <span class="name">
+                        <span ><b>phone</b></span>
+                        <a href="#phone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postcode_zip"></a>
+                    <span class="name">
+                        <span ><b>postcode_zip</b></span>
+                        <a href="#postcode_zip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="street_address"></a>
+                    <span class="name">
+                        <span ><b>street_address</b></span>
+                        <a href="#street_address"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="surname"></a>
+                    <span class="name">
+                        <span ><b>surname</b></span>
+                        <a href="#surname"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/view-auth/profile-client/address-profile-client/address-profile-client.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { UserAddressService } from &#x27;../../service/user-address.service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+
+@Component({
+  selector: &#x27;app-address-profile-client&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
+  templateUrl: &#x27;./address-profile-client.component.html&#x27;,
+  styleUrl: &#x27;./address-profile-client.component.css&#x27;,
+})
+export class AddressProfileClientComponent {
+  addresses: any &#x3D; [];
+
+  name: string &#x3D; &#x27;&#x27;;
+  surname: string &#x3D; &#x27;&#x27;;
+  company: string &#x3D; &#x27;&#x27;;
+  country_region: string &#x3D; &#x27;&#x27;;
+  city: string &#x3D; &#x27;&#x27;;
+  street_address: string &#x3D; &#x27;&#x27;;
+  postcode_zip: string &#x3D; &#x27;&#x27;;
+  phone: string &#x3D; &#x27;&#x27;;
+  email: string &#x3D; &#x27;&#x27;;
+
+  address_selected: any;
+
+  constructor(
+    public addressService: UserAddressService,
+    private toastr: ToastrService
+  ) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add &#x27;implements OnInit&#x27; to the class.
+    this.addressService.listAddress().subscribe((res: any) &#x3D;&gt; {
+      this.addresses &#x3D; res.addresses;
+    });
+  }
+
+  registerAddress() {
+    if (
+      !this.name ||
+      !this.surname ||
+      !this.company ||
+      !this.country_region ||
+      !this.city ||
+      !this.street_address ||
+      !this.postcode_zip ||
+      !this.phone ||
+      !this.email
+    ) {
+      this.toastr.error(&#x27;Validación&#x27;, &#x27;Todos los campos son requeridos&#x27;);
+      return;
+    }
+
+    let data &#x3D; {
+      name: this.name,
+      surname: this.surname,
+      company: this.company,
+      country_region: this.country_region,
+      city: this.city,
+      street_address: this.street_address,
+      postcode_zip: this.postcode_zip,
+      phone: this.phone,
+      email: this.email,
+    };
+
+    this.addressService.registerAddress(data).subscribe((res: any) &#x3D;&gt; {
+      this.addresses.unshift(res.address);
+      this.toastr.success(&#x27;Éxito&#x27;, &#x27;Dirección registrada correctamente&#x27;);
+      this.resetAddress();
+    });
+  }
+
+  editAddress() {
+    if (
+      !this.name ||
+      !this.surname ||
+      !this.company ||
+      !this.country_region ||
+      !this.city ||
+      !this.street_address ||
+      !this.postcode_zip ||
+      !this.phone ||
+      !this.email
+    ) {
+      this.toastr.error(&#x27;Validación&#x27;, &#x27;Todos los campos son requeridos&#x27;);
+      return;
+    }
+
+    let data &#x3D; {
+      name: this.name,
+      surname: this.surname,
+      company: this.company,
+      country_region: this.country_region,
+      city: this.city,
+      street_address: this.street_address,
+      postcode_zip: this.postcode_zip,
+      phone: this.phone,
+      email: this.email,
+    };
+
+    this.addressService
+      .updateAddress(this.address_selected.id, data)
+      .subscribe((res: any) &#x3D;&gt; {
+        let index &#x3D; this.addresses.findIndex((item: any) &#x3D;&gt; {
+          console.log(res);
+          return item.id &#x3D;&#x3D; res.body.address.id;
+        });
+        console.log(&#x27;index&#x27;, index);
+        if (index !&#x3D; -1) {
+          this.addresses[index] &#x3D; res.body.address;
+        }
+
+        this.toastr.success(&#x27;Éxito&#x27;, &#x27;Dirección actualizada correctamente&#x27;);
+      });
+  }
+
+  selectedAddress(address: any) {
+    this.address_selected &#x3D; address;
+    this.name &#x3D; this.address_selected.name;
+    this.surname &#x3D; this.address_selected.surname;
+    this.company &#x3D; this.address_selected.company;
+    this.country_region &#x3D; this.address_selected.country_region;
+    this.city &#x3D; this.address_selected.city;
+    this.street_address &#x3D; this.address_selected.street_address;
+    this.postcode_zip &#x3D; this.address_selected.postcode_zip;
+    this.phone &#x3D; this.address_selected.phone;
+    this.email &#x3D; this.address_selected.email;
+  }
+
+  resetAddress() {
+    this.address_selected &#x3D; null;
+    this.name &#x3D; &#x27;&#x27;;
+    this.surname &#x3D; &#x27;&#x27;;
+    this.company &#x3D; &#x27;&#x27;;
+    this.country_region &#x3D; &#x27;&#x27;;
+    this.city &#x3D; &#x27;&#x27;;
+    this.street_address &#x3D; &#x27;&#x27;;
+    this.postcode_zip &#x3D; &#x27;&#x27;;
+    this.phone &#x3D; &#x27;&#x27;;
+    this.email &#x3D; &#x27;&#x27;;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;profile__address&quot;&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+      &lt;div class&#x3D;&quot;profile__address-item d-sm-flex align-items-start&quot;&gt;
+        &lt;div class&#x3D;&quot;profile__address-icon&quot;&gt;
+          &lt;span&gt;
+            &lt;svg enable-background&#x3D;&quot;new 0 0 32 32&quot; viewBox&#x3D;&quot;0 0 32 32&quot;&gt;
+              &lt;g&gt;
+                &lt;path
+                  d&#x3D;&quot;m31.494 23.128-.959-.844v-3.708c0-1.315-1.067-2.382-2.382-2.382-1.144 0-2.126.813-2.34 1.937l-.821-.721c-.954-.835-2.378-.835-3.332 0l-6.5 5.717c-.307.276-.332.748-.057 1.055.262.292.704.331 1.014.091v5.326c.001 1.187.963 2.149 2.15 2.15h10.119c1.187-.001 2.148-.963 2.149-2.15v-5.326c.323.257.793.204 1.05-.119.248-.311.208-.763-.091-1.026zm-4.227-4.552c-.016-.488.366-.897.854-.913s.897.366.913.854c.001.02.001.04 0 .059v2.389l-1.767-1.554zm-2.625 11.671h-2.5v-1.748c.001-.613.497-1.109 1.11-1.11h.285c.613.001 1.109.497 1.11 1.11zm4.393-.648c0 .171-.068.336-.189.457h-.004c-.122.123-.287.191-.46.191h-2.24v-1.748c-.002-1.441-1.169-2.608-2.61-2.61h-.285c-1.441.002-2.608 1.169-2.61 2.61v1.746h-2.373c-.359-.001-.649-.291-.65-.65v-6.63l5.035-4.428c.387-.339.965-.339 1.352 0l5.034 4.426z&quot;
+                /&gt;
+                &lt;path
+                  d&#x3D;&quot;m21.106 22.318c0 1.226.993 2.219 2.219 2.219s2.219-.994 2.219-2.219v-.001c-.002-1.225-.994-2.217-2.219-2.218-1.226 0-2.219.993-2.219 2.219zm2.938-.001c-.002.396-.323.716-.719.717v.002c-.397 0-.719-.322-.719-.719s.322-.719.719-.719.719.322.719.719z&quot;
+                /&gt;
+                &lt;path
+                  d&#x3D;&quot;m23.001 10.145c0-.414-.336-.75-.75-.75h-15.462c-.414 0-.75.336-.75.75s.336.75.75.75h15.463c.414-.001.749-.336.749-.75z&quot;
+                /&gt;
+                &lt;path
+                  d&#x3D;&quot;m6.789 14.216c-.414 0-.75.336-.75.75s.336.75.75.75h10.572c.414 0 .75-.336.75-.75s-.336-.75-.75-.75z&quot;
+                /&gt;
+                &lt;path
+                  d&#x3D;&quot;m12.075 19.039h-5.286c-.414 0-.75.336-.75.75s.336.75.75.75h5.286c.414 0 .75-.336.75-.75s-.336-.75-.75-.75z&quot;
+                /&gt;
+                &lt;path
+                  d&#x3D;&quot;m11.556 30.247h-9.03c-.427-.001-.772-.346-.773-.773v-25.653c.001-.27.142-.52.372-.661l2.11-1.283c.268-.164.609-.148.862.039l1.404 1.037c.749.558 1.764.598 2.554.1l1.9-1.183c.26-.163.593-.156.846.018l1.629 1.111c.766.527 1.776.532 2.547.013l1.692-1.133c.255-.171.587-.175.846-.009l1.836 1.171c.783.504 1.796.476 2.55-.072l1.425-1.027c.265-.191.622-.195.891-.01l1.736 1.2c.21.144.335.382.335.637v8.089c0 .414.336.75.75.75s.75-.336.75-.75v-8.093c-.001-.748-.37-1.449-.987-1.872l-1.733-1.194c-.792-.544-1.839-.532-2.619.028l-1.425 1.025c-.256.186-.6.196-.867.025l-1.836-1.17c-.761-.485-1.736-.474-2.486.028l-1.692 1.133c-.262.177-.606.177-.868 0l-1.63-1.119c-.746-.509-1.722-.529-2.488-.05l-1.896 1.181c-.269.169-.614.155-.868-.034l-1.406-1.037c-.742-.55-1.744-.593-2.531-.11l-2.11 1.279c-.677.414-1.09 1.15-1.093 1.943v25.653c.001 1.255 1.018 2.272 2.273 2.273h9.03c.414 0 .75-.336.75-.75s-.336-.75-.75-.75z&quot;
+                /&gt;
+              &lt;/g&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;profile__address-content&quot;&gt;
+          &lt;h3 class&#x3D;&quot;profile__address-title&quot;&gt;
+            &lt;a href&#x3D;&quot;#&quot; onclick&#x3D;&quot;return false;&quot; (click)&#x3D;&quot;resetAddress()&quot;&gt;
+              + Nueva Dirección&lt;/a
+            &gt;
+          &lt;/h3&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    @for(address of addresses;track address.id){
+    &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+      &lt;div class&#x3D;&quot;profile__address-item d-sm-flex align-items-start&quot;&gt;
+        &lt;div class&#x3D;&quot;profile__address-icon&quot;&gt;
+          &lt;span&gt;
+            &lt;svg viewBox&#x3D;&quot;0 0 64 64&quot;&gt;
+              &lt;g id&#x3D;&quot;ad&quot;&gt;
+                &lt;g&gt;
+                  &lt;path
+                    d&#x3D;&quot;m50 49c-1.654 0-3 1.346-3 3s1.346 3 3 3 3-1.346 3-3-1.346-3-3-3zm0 4c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1-.449 1-1 1z&quot;
+                  /&gt;
+                  &lt;path
+                    d&#x3D;&quot;m13 55c1.654 0 3-1.346 3-3s-1.346-3-3-3-3 1.346-3 3 1.346 3 3 3zm0-4c.551 0 1 .448 1 1s-.449 1-1 1-1-.448-1-1 .449-1 1-1z&quot;
+                  /&gt;
+                  &lt;path
+                    d&#x3D;&quot;m62 47.278v-8.653c0-.612-.184-1.203-.533-1.708l-7.452-10.763c-.933-1.349-2.47-2.154-4.111-2.154h-7.61l1.742-3.049c1.285-1.731 1.963-3.788 1.963-5.951 0-5.514-4.486-10-10-10-1.791 0-3.547.479-5.081 1.385-.476.281-.633.895-.352 1.37s.893.632 1.37.353c1.225-.725 2.63-1.107 4.063-1.107 4.411 0 8 3.589 8 8 0 1.748-.554 3.408-1.601 4.802-.025.033-.048.068-.069.104l-6.331 11.078-6.33-11.077c-.021-.036-.044-.071-.069-.104-1.047-1.394-1.601-3.055-1.601-4.803 0-1.897.676-3.736 1.902-5.179.358-.42.307-1.052-.114-1.409-.421-.358-1.052-.308-1.41.114-1.534 1.803-2.379 4.103-2.379 6.474 0 1.781.467 3.486 1.346 5h-23.343c-1.654 0-3 1.346-3 3v27c0 1.654 1.346 3 3 3h2.08c.488 3.386 3.401 6 6.92 6s6.432-2.614 6.92-6h9.223c.552 0 1-.447 1-1s-.448-1-1-1h-9.223c-.488-3.386-3.401-6-6.92-6s-6.432 2.614-6.92 6h-2.08c-.551 0-1-.448-1-1v-9h26c.552 0 1-.447 1-1s-.448-1-1-1h-26v-16.001c0-.552.449-1 1-1h24.563l6.569 11.496c.178.312.509.504.868.504s.69-.192.868-.504l1.132-1.981v7.485h-5c-.552 0-1 .447-1 1s.448 1 1 1h5v10h-5.5c-.552 0-1 .447-1 1s.448 1 1 1h10.58c.488 3.386 3.401 6 6.92 6s6.432-2.614 6.92-6h4.08c1.103 0 2-.897 2-2v-2c0-.737-.405-1.375-1-1.722zm-49-.278c2.757 0 5 2.243 5 5s-2.243 5-5 5-5-2.243-5-5 2.243-5 5-5zm46.784-9h-15.784v-8h10.245zm-18.632-12h8.753c.984 0 1.906.483 2.466 1.293l.49.707h-8.86c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h16v7h-5.111c-1.263-1.235-2.988-2-4.889-2s-3.627.765-4.889 2h-5.111v-18.985l1.152-2.015zm-1.152 23h3.685c-.297.622-.503 1.294-.605 2h-3.08zm10 8c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5zm11-6h-4.08c-.102-.706-.308-1.378-.605-2h4.685z&quot;
+                  /&gt;
+                  &lt;path
+                    d&#x3D;&quot;m36 21c3.309 0 6-2.691 6-6s-2.691-6-6-6-6 2.691-6 6 2.691 6 6 6zm0-10c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z&quot;
+                  /&gt;
+                  &lt;path
+                    d&#x3D;&quot;m43 43h4c.552 0 1-.447 1-1s-.448-1-1-1h-4c-.552 0-1 .447-1 1s.448 1 1 1z&quot;
+                  /&gt;
+                &lt;/g&gt;
+              &lt;/g&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;
+        &lt;a href&#x3D;&quot;#&quot; onclick&#x3D;&quot;return false;&quot; (click)&#x3D;&quot;selectedAddress(address)&quot;&gt;
+          &lt;div class&#x3D;&quot;profile__address-content&quot;&gt;
+            &lt;h3 class&#x3D;&quot;profile__address-title&quot;&gt;
+              Shipping Address (clic para usar esta dirección)
+            &lt;/h3&gt;
+            &lt;p&gt;
+              &lt;span&gt;Full Name:&lt;/span&gt;{{ address.name }},
+              {{ address.surname }}
+            &lt;/p&gt;
+            &lt;p&gt;&lt;span&gt;Street:&lt;/span&gt;{{ address.street_address }}&lt;/p&gt;
+            &lt;p&gt;&lt;span&gt;City:&lt;/span&gt;{{ address.city }}&lt;/p&gt;
+            &lt;p&gt;&lt;span&gt;Phone number:&lt;/span&gt;{{ address.phone }}&lt;/p&gt;
+            &lt;p&gt;&lt;span&gt;Zip code:&lt;/span&gt;{{ address.postcode_zip }}&lt;/p&gt;
+            &lt;p&gt;&lt;span&gt;Company:&lt;/span&gt;{{ address.company }}&lt;/p&gt;
+            &lt;p&gt;&lt;span&gt;Country:&lt;/span&gt;{{ address.country_region }}&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    }
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;profile__address&quot;&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-12&quot;&gt;
+      &lt;div class&#x3D;&quot;tp-checkout-bill-area&quot;&gt;
+        &lt;h3 class&#x3D;&quot;tp-checkout-bill-title&quot;&gt;Billing Details&lt;/h3&gt;
+
+        &lt;div class&#x3D;&quot;tp-checkout-bill-form&quot;&gt;
+          &lt;form action&#x3D;&quot;#&quot;&gt;
+            &lt;div class&#x3D;&quot;tp-checkout-bill-inner&quot;&gt;
+              &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;First Name &lt;span&gt;*&lt;/span&gt;&lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;text&quot;
+                      name&#x3D;&quot;name&quot;
+                      [(ngModel)]&#x3D;&quot;name&quot;
+                      placeholder&#x3D;&quot;First Name&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;Last Name &lt;span&gt;*&lt;/span&gt;&lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;text&quot;
+                      name&#x3D;&quot;surname&quot;
+                      [(ngModel)]&#x3D;&quot;surname&quot;
+                      placeholder&#x3D;&quot;Last Name&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;Company name (optional)&lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;text&quot;
+                      name&#x3D;&quot;company&quot;
+                      [(ngModel)]&#x3D;&quot;company&quot;
+                      placeholder&#x3D;&quot;Example LTD.&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;Country / Region &lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;text&quot;
+                      name&#x3D;&quot;country_region&quot;
+                      [(ngModel)]&#x3D;&quot;country_region&quot;
+                      placeholder&#x3D;&quot;United States (US)&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;Street address&lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;text&quot;
+                      name&#x3D;&quot;street_address&quot;
+                      [(ngModel)]&#x3D;&quot;street_address&quot;
+                      placeholder&#x3D;&quot;House number and street name&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;Town / City&lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;text&quot;
+                      name&#x3D;&quot;city&quot;
+                      [(ngModel)]&#x3D;&quot;city&quot;
+                      placeholder&#x3D;&quot;&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;Postcode ZIP&lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;text&quot;
+                      name&#x3D;&quot;postcode_zip&quot;
+                      [(ngModel)]&#x3D;&quot;postcode_zip&quot;
+                      placeholder&#x3D;&quot;&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;Phone &lt;span&gt;*&lt;/span&gt;&lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;text&quot;
+                      name&#x3D;&quot;phone&quot;
+                      [(ngModel)]&#x3D;&quot;phone&quot;
+                      placeholder&#x3D;&quot;&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                  &lt;div class&#x3D;&quot;tp-checkout-input&quot;&gt;
+                    &lt;label&gt;Email address &lt;span&gt;*&lt;/span&gt;&lt;/label&gt;
+                    &lt;input
+                      type&#x3D;&quot;email&quot;
+                      name&#x3D;&quot;email&quot;
+                      [(ngModel)]&#x3D;&quot;email&quot;
+                      placeholder&#x3D;&quot;&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                  @if(!address_selected){
+                  &lt;button
+                    type&#x3D;&quot;button&quot;
+                    class&#x3D;&quot;btn btn-primary btn-lg&quot;
+                    (click)&#x3D;&quot;registerAddress()&quot;
+                  &gt;
+                    Registrar dirección
+                  &lt;/button&gt;
+                  }@else {
+                  &lt;button
+                    type&#x3D;&quot;button&quot;
+                    class&#x3D;&quot;btn btn-primary btn-lg&quot;
+                    (click)&#x3D;&quot;editAddress()&quot;
+                  &gt;
+                    Editar dirección
+                  &lt;/button&gt;
+                  }
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="profile__address">  <div class="row">    <div class="col-md-4">      <div class="profile__address-item d-sm-flex align-items-start">        <div class="profile__address-icon">          <span>            <svg enable-background="new 0 0 32 32" viewBox="0 0 32 32">              <g>                <path                  d="m31.494 23.128-.959-.844v-3.708c0-1.315-1.067-2.382-2.382-2.382-1.144 0-2.126.813-2.34 1.937l-.821-.721c-.954-.835-2.378-.835-3.332 0l-6.5 5.717c-.307.276-.332.748-.057 1.055.262.292.704.331 1.014.091v5.326c.001 1.187.963 2.149 2.15 2.15h10.119c1.187-.001 2.148-.963 2.149-2.15v-5.326c.323.257.793.204 1.05-.119.248-.311.208-.763-.091-1.026zm-4.227-4.552c-.016-.488.366-.897.854-.913s.897.366.913.854c.001.02.001.04 0 .059v2.389l-1.767-1.554zm-2.625 11.671h-2.5v-1.748c.001-.613.497-1.109 1.11-1.11h.285c.613.001 1.109.497 1.11 1.11zm4.393-.648c0 .171-.068.336-.189.457h-.004c-.122.123-.287.191-.46.191h-2.24v-1.748c-.002-1.441-1.169-2.608-2.61-2.61h-.285c-1.441.002-2.608 1.169-2.61 2.61v1.746h-2.373c-.359-.001-.649-.291-.65-.65v-6.63l5.035-4.428c.387-.339.965-.339 1.352 0l5.034 4.426z"                />                <path                  d="m21.106 22.318c0 1.226.993 2.219 2.219 2.219s2.219-.994 2.219-2.219v-.001c-.002-1.225-.994-2.217-2.219-2.218-1.226 0-2.219.993-2.219 2.219zm2.938-.001c-.002.396-.323.716-.719.717v.002c-.397 0-.719-.322-.719-.719s.322-.719.719-.719.719.322.719.719z"                />                <path                  d="m23.001 10.145c0-.414-.336-.75-.75-.75h-15.462c-.414 0-.75.336-.75.75s.336.75.75.75h15.463c.414-.001.749-.336.749-.75z"                />                <path                  d="m6.789 14.216c-.414 0-.75.336-.75.75s.336.75.75.75h10.572c.414 0 .75-.336.75-.75s-.336-.75-.75-.75z"                />                <path                  d="m12.075 19.039h-5.286c-.414 0-.75.336-.75.75s.336.75.75.75h5.286c.414 0 .75-.336.75-.75s-.336-.75-.75-.75z"                />                <path                  d="m11.556 30.247h-9.03c-.427-.001-.772-.346-.773-.773v-25.653c.001-.27.142-.52.372-.661l2.11-1.283c.268-.164.609-.148.862.039l1.404 1.037c.749.558 1.764.598 2.554.1l1.9-1.183c.26-.163.593-.156.846.018l1.629 1.111c.766.527 1.776.532 2.547.013l1.692-1.133c.255-.171.587-.175.846-.009l1.836 1.171c.783.504 1.796.476 2.55-.072l1.425-1.027c.265-.191.622-.195.891-.01l1.736 1.2c.21.144.335.382.335.637v8.089c0 .414.336.75.75.75s.75-.336.75-.75v-8.093c-.001-.748-.37-1.449-.987-1.872l-1.733-1.194c-.792-.544-1.839-.532-2.619.028l-1.425 1.025c-.256.186-.6.196-.867.025l-1.836-1.17c-.761-.485-1.736-.474-2.486.028l-1.692 1.133c-.262.177-.606.177-.868 0l-1.63-1.119c-.746-.509-1.722-.529-2.488-.05l-1.896 1.181c-.269.169-.614.155-.868-.034l-1.406-1.037c-.742-.55-1.744-.593-2.531-.11l-2.11 1.279c-.677.414-1.09 1.15-1.093 1.943v25.653c.001 1.255 1.018 2.272 2.273 2.273h9.03c.414 0 .75-.336.75-.75s-.336-.75-.75-.75z"                />              </g>            </svg>          </span>        </div>        <div class="profile__address-content">          <h3 class="profile__address-title">            <a href="#" onclick="return false;" (click)="resetAddress()">              + Nueva Dirección</a            >          </h3>        </div>      </div>    </div>    @for(address of addresses;track address.id){    <div class="col-md-4">      <div class="profile__address-item d-sm-flex align-items-start">        <div class="profile__address-icon">          <span>            <svg viewBox="0 0 64 64">              <g id="ad">                <g>                  <path                    d="m50 49c-1.654 0-3 1.346-3 3s1.346 3 3 3 3-1.346 3-3-1.346-3-3-3zm0 4c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1-.449 1-1 1z"                  />                  <path                    d="m13 55c1.654 0 3-1.346 3-3s-1.346-3-3-3-3 1.346-3 3 1.346 3 3 3zm0-4c.551 0 1 .448 1 1s-.449 1-1 1-1-.448-1-1 .449-1 1-1z"                  />                  <path                    d="m62 47.278v-8.653c0-.612-.184-1.203-.533-1.708l-7.452-10.763c-.933-1.349-2.47-2.154-4.111-2.154h-7.61l1.742-3.049c1.285-1.731 1.963-3.788 1.963-5.951 0-5.514-4.486-10-10-10-1.791 0-3.547.479-5.081 1.385-.476.281-.633.895-.352 1.37s.893.632 1.37.353c1.225-.725 2.63-1.107 4.063-1.107 4.411 0 8 3.589 8 8 0 1.748-.554 3.408-1.601 4.802-.025.033-.048.068-.069.104l-6.331 11.078-6.33-11.077c-.021-.036-.044-.071-.069-.104-1.047-1.394-1.601-3.055-1.601-4.803 0-1.897.676-3.736 1.902-5.179.358-.42.307-1.052-.114-1.409-.421-.358-1.052-.308-1.41.114-1.534 1.803-2.379 4.103-2.379 6.474 0 1.781.467 3.486 1.346 5h-23.343c-1.654 0-3 1.346-3 3v27c0 1.654 1.346 3 3 3h2.08c.488 3.386 3.401 6 6.92 6s6.432-2.614 6.92-6h9.223c.552 0 1-.447 1-1s-.448-1-1-1h-9.223c-.488-3.386-3.401-6-6.92-6s-6.432 2.614-6.92 6h-2.08c-.551 0-1-.448-1-1v-9h26c.552 0 1-.447 1-1s-.448-1-1-1h-26v-16.001c0-.552.449-1 1-1h24.563l6.569 11.496c.178.312.509.504.868.504s.69-.192.868-.504l1.132-1.981v7.485h-5c-.552 0-1 .447-1 1s.448 1 1 1h5v10h-5.5c-.552 0-1 .447-1 1s.448 1 1 1h10.58c.488 3.386 3.401 6 6.92 6s6.432-2.614 6.92-6h4.08c1.103 0 2-.897 2-2v-2c0-.737-.405-1.375-1-1.722zm-49-.278c2.757 0 5 2.243 5 5s-2.243 5-5 5-5-2.243-5-5 2.243-5 5-5zm46.784-9h-15.784v-8h10.245zm-18.632-12h8.753c.984 0 1.906.483 2.466 1.293l.49.707h-8.86c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h16v7h-5.111c-1.263-1.235-2.988-2-4.889-2s-3.627.765-4.889 2h-5.111v-18.985l1.152-2.015zm-1.152 23h3.685c-.297.622-.503 1.294-.605 2h-3.08zm10 8c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5zm11-6h-4.08c-.102-.706-.308-1.378-.605-2h4.685z"                  />                  <path                    d="m36 21c3.309 0 6-2.691 6-6s-2.691-6-6-6-6 2.691-6 6 2.691 6 6 6zm0-10c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z"                  />                  <path                    d="m43 43h4c.552 0 1-.447 1-1s-.448-1-1-1h-4c-.552 0-1 .447-1 1s.448 1 1 1z"                  />                </g>              </g>            </svg>          </span>        </div>        <a href="#" onclick="return false;" (click)="selectedAddress(address)">          <div class="profile__address-content">            <h3 class="profile__address-title">              Shipping Address (clic para usar esta dirección)            </h3>            <p>              <span>Full Name:</span>{{ address.name }},              {{ address.surname }}            </p>            <p><span>Street:</span>{{ address.street_address }}</p>            <p><span>City:</span>{{ address.city }}</p>            <p><span>Phone number:</span>{{ address.phone }}</p>            <p><span>Zip code:</span>{{ address.postcode_zip }}</p>            <p><span>Company:</span>{{ address.company }}</p>            <p><span>Country:</span>{{ address.country_region }}</p>          </div>        </a>      </div>    </div>    }  </div></div><div class="profile__address">  <div class="row">    <div class="col-12">      <div class="tp-checkout-bill-area">        <h3 class="tp-checkout-bill-title">Billing Details</h3>        <div class="tp-checkout-bill-form">          <form action="#">            <div class="tp-checkout-bill-inner">              <div class="row">                <div class="col-md-6">                  <div class="tp-checkout-input">                    <label>First Name <span>*</span></label>                    <input                      type="text"                      name="name"                      [(ngModel)]="name"                      placeholder="First Name"                    />                  </div>                </div>                <div class="col-md-6">                  <div class="tp-checkout-input">                    <label>Last Name <span>*</span></label>                    <input                      type="text"                      name="surname"                      [(ngModel)]="surname"                      placeholder="Last Name"                    />                  </div>                </div>                <div class="col-md-12">                  <div class="tp-checkout-input">                    <label>Company name (optional)</label>                    <input                      type="text"                      name="company"                      [(ngModel)]="company"                      placeholder="Example LTD."                    />                  </div>                </div>                <div class="col-md-12">                  <div class="tp-checkout-input">                    <label>Country / Region </label>                    <input                      type="text"                      name="country_region"                      [(ngModel)]="country_region"                      placeholder="United States (US)"                    />                  </div>                </div>                <div class="col-md-12">                  <div class="tp-checkout-input">                    <label>Street address</label>                    <input                      type="text"                      name="street_address"                      [(ngModel)]="street_address"                      placeholder="House number and street name"                    />                  </div>                </div>                <div class="col-md-12">                  <div class="tp-checkout-input">                    <label>Town / City</label>                    <input                      type="text"                      name="city"                      [(ngModel)]="city"                      placeholder=""                    />                  </div>                </div>                <div class="col-md-6">                  <div class="tp-checkout-input">                    <label>Postcode ZIP</label>                    <input                      type="text"                      name="postcode_zip"                      [(ngModel)]="postcode_zip"                      placeholder=""                    />                  </div>                </div>                <div class="col-md-12">                  <div class="tp-checkout-input">                    <label>Phone <span>*</span></label>                    <input                      type="text"                      name="phone"                      [(ngModel)]="phone"                      placeholder=""                    />                  </div>                </div>                <div class="col-md-12">                  <div class="tp-checkout-input">                    <label>Email address <span>*</span></label>                    <input                      type="email"                      name="email"                      [(ngModel)]="email"                      placeholder=""                    />                  </div>                </div>                <div class="col-md-12">                  @if(!address_selected){                  <button                    type="button"                    class="btn btn-primary btn-lg"                    (click)="registerAddress()"                  >                    Registrar dirección                  </button>                  }@else {                  <button                    type="button"                    class="btn btn-primary btn-lg"                    (click)="editAddress()"                  >                    Editar dirección                  </button>                  }                </div>              </div>            </div>          </form>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddressProfileClientComponent', 'selector': 'app-address-profile-client'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CheckoutComponent', 'selector': 'app-checkout'},{'name': 'CodeForgotPasswordComponent', 'selector': 'app-code-forgot-password'},{'name': 'EditProfileClientComponent', 'selector': 'app-edit-profile-client'},{'name': 'FilterAdvanceProductComponent', 'selector': 'app-filter-advance-product'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LandingProductComponent', 'selector': 'app-landing-product'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'ModalProductComponent', 'selector': 'app-modal-product'},{'name': 'NewPasswordComponent', 'selector': 'app-new-password'},{'name': 'OrdersProfileClientComponent', 'selector': 'app-orders-profile-client'},{'name': 'PasswordProfileClientComponent', 'selector': 'app-password-profile-client'},{'name': 'ProfileClientComponent', 'selector': 'app-profile-client'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ThankYouOrderComponent', 'selector': 'app-thank-you-order'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AddressProfileClientComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AddressProfileClientComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

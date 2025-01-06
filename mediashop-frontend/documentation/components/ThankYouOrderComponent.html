@@ -1,0 +1,749 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mediashop-frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">mediashop-frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ThankYouOrderComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/view-auth/thank-you-order/thank-you-order.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-thank-you-order</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./thank-you-order.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./thank-you-order.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#activatedRoute" >activatedRoute</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#cartService" >cartService</a>
+                            </li>
+                            <li>
+                                <a href="#orderSelected" >orderSelected</a>
+                            </li>
+                            <li>
+                                <a href="#orderSelectedId" >orderSelectedId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(cartService: <a href="../injectables/CartService.html" target="_self">CartService</a>, activatedRoute: ActivatedRoute)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/pages/view-auth/thank-you-order/thank-you-order.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>cartService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CartService.html" target="_self" >CartService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>activatedRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activatedRoute"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>activatedRoute</b></span>
+                        <a href="#activatedRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ActivatedRoute</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/view-auth/thank-you-order/thank-you-order.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cartService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>cartService</b></span>
+                        <a href="#cartService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/CartService.html" target="_self" >CartService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/view-auth/thank-you-order/thank-you-order.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="orderSelected"></a>
+                    <span class="name">
+                        <span ><b>orderSelected</b></span>
+                        <a href="#orderSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/pages/view-auth/thank-you-order/thank-you-order.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="orderSelectedId"></a>
+                    <span class="name">
+                        <span ><b>orderSelectedId</b></span>
+                        <a href="#orderSelectedId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/pages/view-auth/thank-you-order/thank-you-order.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { afterRender, Component } from &#x27;@angular/core&#x27;;
+import { CartService } from &#x27;../../home/service/cart.service&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+
+declare var $: any;
+declare function MODAL_PRODUCT_DETAIL([]): any;
+@Component({
+  selector: &#x27;app-thank-you-order&#x27;,
+  standalone: true,
+  imports: [],
+  templateUrl: &#x27;./thank-you-order.component.html&#x27;,
+  styleUrl: &#x27;./thank-you-order.component.css&#x27;,
+})
+export class ThankYouOrderComponent {
+  orderSelected: any;
+  orderSelectedId: any;
+
+  constructor(
+    public cartService: CartService,
+    public activatedRoute: ActivatedRoute
+  ) {
+    activatedRoute.params.subscribe((res: any) &#x3D;&gt; {
+      this.orderSelectedId &#x3D; res.orderId;
+    });
+
+    this.cartService.showOrder(this.orderSelectedId).subscribe((res: any) &#x3D;&gt; {
+      this.orderSelected &#x3D; res.sale;
+    });
+
+    // it&#x27;s neccesary to apply styles with jquery
+    afterRender(() &#x3D;&gt; {
+      MODAL_PRODUCT_DETAIL($);
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;main&gt;
+  &lt;!-- breadcrumb area start --&gt;
+  &lt;section class&#x3D;&quot;breadcrumb__area include-bg pt-95 pb-90&quot;&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+      &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-xxl-12&quot;&gt;
+          &lt;div class&#x3D;&quot;breadcrumb__content p-relative z-index-1&quot;&gt;
+            &lt;h3 class&#x3D;&quot;breadcrumb__title&quot;&gt;Thank you for your order&lt;/h3&gt;
+            &lt;div class&#x3D;&quot;breadcrumb__list&quot;&gt;
+              &lt;span&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/span&gt;
+              &lt;span&gt;Thank you for your order&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;!-- breadcrumb area end --&gt;
+
+  &lt;!-- order area start --&gt;
+  &lt;section class&#x3D;&quot;tp-order-area pb-160&quot;&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+      &lt;div class&#x3D;&quot;tp-order-inner&quot;&gt;
+        &lt;div class&#x3D;&quot;row gx-0&quot;&gt;
+          &lt;div class&#x3D;&quot;col-lg-6&quot;&gt;
+            &lt;div class&#x3D;&quot;tp-order-details&quot; data-bg-color&#x3D;&quot;#4F3D97&quot;&gt;
+              &lt;div class&#x3D;&quot;tp-order-details-top text-center mb-70&quot;&gt;
+                &lt;div class&#x3D;&quot;tp-order-details-icon&quot;&gt;
+                  &lt;span&gt;
+                    &lt;svg
+                      width&#x3D;&quot;52&quot;
+                      height&#x3D;&quot;52&quot;
+                      viewBox&#x3D;&quot;0 0 52 52&quot;
+                      fill&#x3D;&quot;none&quot;
+                      xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                    &gt;
+                      &lt;path
+                        d&#x3D;&quot;M46 26V51H6V26&quot;
+                        stroke&#x3D;&quot;currentColor&quot;
+                        stroke-width&#x3D;&quot;2&quot;
+                        stroke-linecap&#x3D;&quot;round&quot;
+                        stroke-linejoin&#x3D;&quot;round&quot;
+                      /&gt;
+                      &lt;path
+                        d&#x3D;&quot;M51 13.5H1V26H51V13.5Z&quot;
+                        stroke&#x3D;&quot;currentColor&quot;
+                        stroke-width&#x3D;&quot;2&quot;
+                        stroke-linecap&#x3D;&quot;round&quot;
+                        stroke-linejoin&#x3D;&quot;round&quot;
+                      /&gt;
+                      &lt;path
+                        d&#x3D;&quot;M26 51V13.5&quot;
+                        stroke&#x3D;&quot;currentColor&quot;
+                        stroke-width&#x3D;&quot;2&quot;
+                        stroke-linecap&#x3D;&quot;round&quot;
+                        stroke-linejoin&#x3D;&quot;round&quot;
+                      /&gt;
+                      &lt;path
+                        d&#x3D;&quot;M26 13.5H14.75C13.0924 13.5 11.5027 12.8415 10.3306 11.6694C9.15848 10.4973 8.5 8.9076 8.5 7.25C8.5 5.5924 9.15848 4.00269 10.3306 2.83058C11.5027 1.65848 13.0924 1 14.75 1C23.5 1 26 13.5 26 13.5Z&quot;
+                        stroke&#x3D;&quot;currentColor&quot;
+                        stroke-width&#x3D;&quot;2&quot;
+                        stroke-linecap&#x3D;&quot;round&quot;
+                        stroke-linejoin&#x3D;&quot;round&quot;
+                      /&gt;
+                      &lt;path
+                        d&#x3D;&quot;M26 13.5H37.25C38.9076 13.5 40.4973 12.8415 41.6694 11.6694C42.8415 10.4973 43.5 8.9076 43.5 7.25C43.5 5.5924 42.8415 4.00269 41.6694 2.83058C40.4973 1.65848 38.9076 1 37.25 1C28.5 1 26 13.5 26 13.5Z&quot;
+                        stroke&#x3D;&quot;currentColor&quot;
+                        stroke-width&#x3D;&quot;2&quot;
+                        stroke-linecap&#x3D;&quot;round&quot;
+                        stroke-linejoin&#x3D;&quot;round&quot;
+                      /&gt;
+                    &lt;/svg&gt;
+                  &lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;tp-order-details-content&quot;&gt;
+                  &lt;h3 class&#x3D;&quot;tp-order-details-title&quot;&gt;Your Order Confirmed&lt;/h3&gt;
+                  &lt;p&gt;
+                    We will send you a shipping confirmation email as soon
+                    &lt;br /&gt;
+                    as your order ships
+                  &lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;tp-order-details-item-wrapper&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                  &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
+                    &lt;div class&#x3D;&quot;tp-order-details-item&quot;&gt;
+                      &lt;h4&gt;Order Date:&lt;/h4&gt;
+                      &lt;p&gt;
+                        {{ orderSelected?.created_at }}
+                      &lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
+                    &lt;div class&#x3D;&quot;tp-order-details-item&quot;&gt;
+                      &lt;h4&gt;Expected Delivery:&lt;/h4&gt;
+                      &lt;p&gt;----&lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
+                    &lt;div class&#x3D;&quot;tp-order-details-item&quot;&gt;
+                      &lt;h4&gt;Order Number:&lt;/h4&gt;
+                      &lt;p&gt;#{{ orderSelected?.code_transaction }}&lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
+                    &lt;div class&#x3D;&quot;tp-order-details-item&quot;&gt;
+                      &lt;h4&gt;Payment Method:&lt;/h4&gt;
+                      &lt;p&gt;{{ orderSelected?.method_payment }}&lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-lg-6&quot;&gt;
+            &lt;div class&#x3D;&quot;tp-order-info-wrapper&quot;&gt;
+              &lt;h4 class&#x3D;&quot;tp-order-info-title&quot;&gt;Order Details&lt;/h4&gt;
+
+              &lt;div class&#x3D;&quot;tp-order-info-list&quot;&gt;
+                &lt;ul&gt;
+                  &lt;!-- header --&gt;
+                  &lt;li class&#x3D;&quot;tp-order-info-list-header&quot;&gt;
+                    &lt;h4&gt;Product&lt;/h4&gt;
+                    &lt;h4&gt;Total&lt;/h4&gt;
+                  &lt;/li&gt;
+
+                  @for (sale_detail of orderSelected?.sale_details; track
+                  sale_detail.id){
+                  &lt;!-- item list --&gt;
+                  &lt;li class&#x3D;&quot;tp-order-info-list-desc&quot;&gt;
+                    &lt;p&gt;
+                      &lt;small&gt;
+                        {{ sale_detail.product.title
+                        }}&lt;span&gt; x {{ sale_detail?.quantity }}&lt;/span&gt;
+                      &lt;/small&gt;
+                    &lt;/p&gt;
+                    &lt;span style&#x3D;&quot;display: flex; white-space: nowrap&quot;&gt;
+                      &lt;small
+                        &gt;{{ sale_detail?.total }}
+                        {{ sale_detail?.currency }}&lt;/small
+                      &gt;
+                    &lt;/span&gt;
+                  &lt;/li&gt;
+                  }
+
+                  &lt;!-- subtotal --&gt;
+                  &lt;li class&#x3D;&quot;tp-order-info-list-subtotal&quot;&gt;
+                    &lt;span&gt;Subtotal&lt;/span&gt;
+                    &lt;span
+                      &gt;{{ orderSelected?.total }}
+                      {{ orderSelected?.currency_payment }}&lt;/span
+                    &gt;
+                  &lt;/li&gt;
+
+                  &lt;!-- shipping --&gt;
+                  &lt;!-- shipping --&gt;
+                  &lt;li class&#x3D;&quot;tp-order-info-list-shipping&quot;&gt;
+                    &lt;span&gt;Shipping&lt;/span&gt;
+                    &lt;div
+                      class&#x3D;&quot;tp-order-info-list-shipping-item d-flex flex-column align-items-end&quot;
+                    &gt;
+                      &lt;span&gt;
+                        &lt;input id&#x3D;&quot;shipping_info&quot; type&#x3D;&quot;checkbox&quot; /&gt;
+                        &lt;label for&#x3D;&quot;shipping_info&quot;
+                          &gt;Flat rate: &lt;span&gt;0.00&lt;/span&gt;&lt;/label
+                        &gt;
+                      &lt;/span&gt;
+                    &lt;/div&gt;
+                  &lt;/li&gt;
+
+                  &lt;!-- total --&gt;
+                  &lt;li class&#x3D;&quot;tp-order-info-list-total&quot;&gt;
+                    &lt;span&gt;Total&lt;/span&gt;
+                    &lt;span
+                      &gt;{{ orderSelected?.total }}
+                      {{ orderSelected?.currency_payment }}&lt;/span
+                    &gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;!-- order area end --&gt;
+&lt;/main&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><main>  <!-- breadcrumb area start -->  <section class="breadcrumb__area include-bg pt-95 pb-90">    <div class="container">      <div class="row">        <div class="col-xxl-12">          <div class="breadcrumb__content p-relative z-index-1">            <h3 class="breadcrumb__title">Thank you for your order</h3>            <div class="breadcrumb__list">              <span><a href="#">Home</a></span>              <span>Thank you for your order</span>            </div>          </div>        </div>      </div>    </div>  </section>  <!-- breadcrumb area end -->  <!-- order area start -->  <section class="tp-order-area pb-160">    <div class="container">      <div class="tp-order-inner">        <div class="row gx-0">          <div class="col-lg-6">            <div class="tp-order-details" data-bg-color="#4F3D97">              <div class="tp-order-details-top text-center mb-70">                <div class="tp-order-details-icon">                  <span>                    <svg                      width="52"                      height="52"                      viewBox="0 0 52 52"                      fill="none"                      xmlns="http://www.w3.org/2000/svg"                    >                      <path                        d="M46 26V51H6V26"                        stroke="currentColor"                        stroke-width="2"                        stroke-linecap="round"                        stroke-linejoin="round"                      />                      <path                        d="M51 13.5H1V26H51V13.5Z"                        stroke="currentColor"                        stroke-width="2"                        stroke-linecap="round"                        stroke-linejoin="round"                      />                      <path                        d="M26 51V13.5"                        stroke="currentColor"                        stroke-width="2"                        stroke-linecap="round"                        stroke-linejoin="round"                      />                      <path                        d="M26 13.5H14.75C13.0924 13.5 11.5027 12.8415 10.3306 11.6694C9.15848 10.4973 8.5 8.9076 8.5 7.25C8.5 5.5924 9.15848 4.00269 10.3306 2.83058C11.5027 1.65848 13.0924 1 14.75 1C23.5 1 26 13.5 26 13.5Z"                        stroke="currentColor"                        stroke-width="2"                        stroke-linecap="round"                        stroke-linejoin="round"                      />                      <path                        d="M26 13.5H37.25C38.9076 13.5 40.4973 12.8415 41.6694 11.6694C42.8415 10.4973 43.5 8.9076 43.5 7.25C43.5 5.5924 42.8415 4.00269 41.6694 2.83058C40.4973 1.65848 38.9076 1 37.25 1C28.5 1 26 13.5 26 13.5Z"                        stroke="currentColor"                        stroke-width="2"                        stroke-linecap="round"                        stroke-linejoin="round"                      />                    </svg>                  </span>                </div>                <div class="tp-order-details-content">                  <h3 class="tp-order-details-title">Your Order Confirmed</h3>                  <p>                    We will send you a shipping confirmation email as soon                    <br />                    as your order ships                  </p>                </div>              </div>              <div class="tp-order-details-item-wrapper">                <div class="row">                  <div class="col-sm-6">                    <div class="tp-order-details-item">                      <h4>Order Date:</h4>                      <p>                        {{ orderSelected?.created_at }}                      </p>                    </div>                  </div>                  <div class="col-sm-6">                    <div class="tp-order-details-item">                      <h4>Expected Delivery:</h4>                      <p>----</p>                    </div>                  </div>                  <div class="col-sm-6">                    <div class="tp-order-details-item">                      <h4>Order Number:</h4>                      <p>#{{ orderSelected?.code_transaction }}</p>                    </div>                  </div>                  <div class="col-sm-6">                    <div class="tp-order-details-item">                      <h4>Payment Method:</h4>                      <p>{{ orderSelected?.method_payment }}</p>                    </div>                  </div>                </div>              </div>            </div>          </div>          <div class="col-lg-6">            <div class="tp-order-info-wrapper">              <h4 class="tp-order-info-title">Order Details</h4>              <div class="tp-order-info-list">                <ul>                  <!-- header -->                  <li class="tp-order-info-list-header">                    <h4>Product</h4>                    <h4>Total</h4>                  </li>                  @for (sale_detail of orderSelected?.sale_details; track                  sale_detail.id){                  <!-- item list -->                  <li class="tp-order-info-list-desc">                    <p>                      <small>                        {{ sale_detail.product.title                        }}<span> x {{ sale_detail?.quantity }}</span>                      </small>                    </p>                    <span style="display: flex; white-space: nowrap">                      <small                        >{{ sale_detail?.total }}                        {{ sale_detail?.currency }}</small                      >                    </span>                  </li>                  }                  <!-- subtotal -->                  <li class="tp-order-info-list-subtotal">                    <span>Subtotal</span>                    <span                      >{{ orderSelected?.total }}                      {{ orderSelected?.currency_payment }}</span                    >                  </li>                  <!-- shipping -->                  <!-- shipping -->                  <li class="tp-order-info-list-shipping">                    <span>Shipping</span>                    <div                      class="tp-order-info-list-shipping-item d-flex flex-column align-items-end"                    >                      <span>                        <input id="shipping_info" type="checkbox" />                        <label for="shipping_info"                          >Flat rate: <span>0.00</span></label                        >                      </span>                    </div>                  </li>                  <!-- total -->                  <li class="tp-order-info-list-total">                    <span>Total</span>                    <span                      >{{ orderSelected?.total }}                      {{ orderSelected?.currency_payment }}</span                    >                  </li>                </ul>              </div>            </div>          </div>        </div>      </div>    </div>  </section>  <!-- order area end --></main></div>'
+    var COMPONENTS = [{'name': 'AddressProfileClientComponent', 'selector': 'app-address-profile-client'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CheckoutComponent', 'selector': 'app-checkout'},{'name': 'CodeForgotPasswordComponent', 'selector': 'app-code-forgot-password'},{'name': 'EditProfileClientComponent', 'selector': 'app-edit-profile-client'},{'name': 'FilterAdvanceProductComponent', 'selector': 'app-filter-advance-product'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LandingProductComponent', 'selector': 'app-landing-product'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'ModalProductComponent', 'selector': 'app-modal-product'},{'name': 'NewPasswordComponent', 'selector': 'app-new-password'},{'name': 'OrdersProfileClientComponent', 'selector': 'app-orders-profile-client'},{'name': 'PasswordProfileClientComponent', 'selector': 'app-password-profile-client'},{'name': 'ProfileClientComponent', 'selector': 'app-profile-client'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ThankYouOrderComponent', 'selector': 'app-thank-you-order'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ThankYouOrderComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ThankYouOrderComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
