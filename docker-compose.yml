@@ -1,19 +1,19 @@
 services:
   # Servicio backend para Laravel
-  app:
-    image: andres87/docker-laravel:latest
+  api:
+    image: andres87/mediashop-api:latest
     container_name: backend
     ports:
       - "8000:8000"
     environment:
-      - APP_ENV=local  # Asegúrate de que esté configurado como 'local'
+      - APP_ENV=local
       - DB_HOST=db
       - DB_PORT=3306
-      - DB_DATABASE=laravel
+      - DB_DATABASE=mediashop
       - DB_USERNAME=root
       - DB_PASSWORD=root
     volumes:
-       - ./mediashop-backend:/var/www
+      - ./mediashop-backend:/var/www
     depends_on:
       - db
     networks:
@@ -22,27 +22,38 @@ services:
 
   # Servicio para base de datos MySQL
   db:
-    image: mysql:8.2
+    image: mysql:9.1.0
     container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel
+      MYSQL_DATABASE: mediashop
     volumes:
       - db_data:/var/lib/mysql
-      - ./scripts:/docker-entrypoint.d
+      - ./BD/mediashop.sql:/docker-entrypoint.d
     ports:
       - "3306:3306"
     networks:
       - app-network
 
-# Servicio frontend para Angular (Tienda)
-  frontend:
-    image: andres87/docker-angular
+  # Servicio frontend para Angular (Tienda)
+  tienda:
+    image: andres87/mediashop-tienda:latest
     container_name: tienda
     ports:
       - "80:80"
     depends_on:
-      - app
+      - api
+    networks:
+      - app-network
+
+  # Servicio frontend para Angular (Admin)
+  admin:
+    image: andres87/mediashop-admin:latest
+    container_name: admin
+    ports:
+      - "5000:80"
+    depends_on:
+      - api
     networks:
       - app-network
 

@@ -1,0 +1,31 @@
+Contenedor Admin:
+ng build --configuration "production"
+docker build -t andres87/mediashop-admin .
+docker run --name admin-container -d -p 80:80 -p 4000:4000 andres87/mediashop-admin
+
+Contenedor Tienda:
+ng build --configuration "production"
+docker build -t andres87/mediashop-tienda .
+docker run --name tienda-container -d -p 80:80 andres87/mediashop-tienda
+
+Contenedor Api:
+docker build -t andres87/mediashop-api .
+docker run --name api-container -d -p 8000:8000 andres87/mediashop-api
+
+Crear el enlace simbólico para que carguen todas las imágenes, ejecutar php artisan storage:link en el contenedor del api
+
+Gestión de contenedores:
+# agrego cambios
+docker-compose up --build
+
+# arranco todos los contenedores
+docker-compose up
+
+# Listar contenedores
+docker ps
+
+# Detener el contenedor
+docker stop nombre-contenedor
+
+# Eliminar el contenedor
+docker rm nombre-contenedor

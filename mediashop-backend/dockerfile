@@ -4,27 +4,28 @@ FROM php:8.2-cli
 # Establecer el directorio de trabajo
 WORKDIR /var/www
 
-# Instalar dependencias necesarias para Laravel
+# Instalar dependencias necesarias para Laravel y habilitar las extensiones de PHP
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     git \
     zip \
+    libzip-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql
+    && docker-php-ext-install gd pdo pdo_mysql zip
 
 # Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copiar los archivos del proyecto Laravel al contenedor
-COPY ./mediashop-backend/composer.json ./mediashop-backend/composer.lock ./
+# Copiar el archivo composer.json y composer.lock al contenedor
+COPY ./composer.json ./composer.lock ./
 
 # Instalar dependencias de Composer
 RUN composer install --no-dev --optimize-autoloader
 
 # Copiar todo el código fuente del backend
-COPY ./mediashop-backend /var/www/
+COPY . /var/www/
 
 # Cambiar los permisos
 RUN chown -R www-data:www-data /var/www
@@ -32,3 +33,5 @@ RUN chown -R www-data:www-data /var/www
 # Exponer el puerto 8000 para acceder a la aplicación
 EXPOSE 8000
 
+# Ejecutar el servidor de Laravel en el contenedor
+CMD ["php", "artisan", "serve", "--host=127.0.0.1"]

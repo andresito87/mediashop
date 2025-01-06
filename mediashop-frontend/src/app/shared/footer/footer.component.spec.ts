@@ -39,6 +39,6 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const emailLink = compiled.querySelector('.tp-footer-contact-content a');
-    expect(emailLink?.textContent).toContain('tiendaandrescoder.dev');
+    expect(emailLink?.textContent).toContain('tienda.andrescoder.dev');
   });
 });
