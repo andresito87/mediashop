@@ -212,18 +212,11 @@ class JWTAuthControllerTest extends TestCase
     #[Test]
     public function a_admin_can_login_successfully()
     {
-        $user = User::create([
-            'name' => 'John',
-            'surname' => 'Doe',
-            'phone' => '123456789',
-            'email' => 'john.doe7@example.com',
-            'password' => Hash::make('password123'),
-            'type_user' => 1, // admin type
-        ]);
+        $user = User::where('email', 'andrespodadera87@gmail.com')->first();
 
         $data = [
-            'email' => 'john.doe7@example.com',
-            'password' => 'password123',
+            'email' => $user->email,
+            'password' => '123456',
         ];
 
         $token = JWTAuth::fromUser($user);

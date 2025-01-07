@@ -3,11 +3,6 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\TestCase;
-use App\Models\Product\Categorie;
-use App\Models\Product\Product;
-use App\Models\Slider;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Attributes\Test;
 
 class HomeControllerTest extends TestCase
