@@ -10,6 +10,7 @@ import { CartComponent } from './pages/view-auth/cart/cart.component';
 import { CheckoutComponent } from './pages/view-auth/checkout/checkout.component';
 import { ThankYouOrderComponent } from './pages/view-auth/thank-you-order/thank-you-order.component';
 import { ProfileClientComponent } from './pages/view-auth/profile-client/profile-client.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -57,4 +58,6 @@ export const routes: Routes = [
     path: 'profile',
     component: ProfileClientComponent,
   },
+  // Ruta wildcard para 404 debe ser la última
+  { path: '**', component: NotFoundComponent },
 ];

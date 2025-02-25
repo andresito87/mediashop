@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { EditProfileClientComponent } from './edit-profile-client/edit-profile-client.component';
 import { AddressProfileClientComponent } from './address-profile-client/address-profile-client.component';
 import { OrdersProfileClientComponent } from './orders-profile-client/orders-profile-client.component';
@@ -22,19 +22,28 @@ import { ProfileClientService } from './service/profile-client.service';
     RouterModule,
   ],
   templateUrl: './profile-client.component.html',
-  styleUrl: './profile-client.component.css',
+  styleUrls: ['./profile-client.component.css'],
 })
-export class ProfileClientComponent {
+export class ProfileClientComponent implements OnInit {
   selectedTab: number = 0;
   avatar: string = '';
+  name: string = '';
 
   constructor(
     public authService: AuthService,
     public profileClient: ProfileClientService,
     private cdRef: ChangeDetectorRef
-  ) {
-    this.profileClient.showUsers().subscribe((res: any) => {
-      this.avatar = res.avatar;
+  ) {}
+
+  ngOnInit(): void {
+    // En vez de llamar a showUsers directamente, nos suscribimos al observable del AuthService
+    this.authService.currentUser$.subscribe((user: any) => {
+      if (user) {
+        this.avatar = user.avatar;
+        // Combina el nombre y apellido según lo que devuelva el backend
+        this.name = user.name + ' ' + user.surname;
+      }
+      this.cdRef.detectChanges();
     });
   }
 

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { afterNextRender, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { URL_SERVICIOS } from '../../../config/config';
 
 @Injectable({
@@ -10,6 +11,11 @@ import { URL_SERVICIOS } from '../../../config/config';
 export class AuthService {
   token: string = '';
   user: any;
+
+  // BehaviorSubject para almacenar y emitir la info del usuario
+  public currentUserSubject = new BehaviorSubject<any>(null);
+  currentUser$ = this.currentUserSubject.asObservable();
+
   constructor(public http: HttpClient, public router: Router) {
     afterNextRender(() => {
       this.initAuth();
@@ -18,10 +24,12 @@ export class AuthService {
 
   initAuth() {
     if (localStorage.getItem('token')) {
-      this.user = localStorage.getItem('user')
-        ? JSON.parse(localStorage.getItem('user') ?? '')
-        : null;
       this.token = localStorage.getItem('token') ?? '';
+      this.user = localStorage.getItem('user')
+        ? JSON.parse(localStorage.getItem('user') as string)
+        : null;
+      console.log('initAuth user:', this.user);
+      this.currentUserSubject.next(this.user);
     }
   }
 
@@ -41,6 +49,10 @@ export class AuthService {
     if (res && res.access_token) {
       localStorage.setItem('token', res.access_token);
       localStorage.setItem('user', JSON.stringify(res.user));
+      this.user = res.user;
+      this.token = res.access_token;
+      // Actualiza el BehaviorSubject con el usuario
+      this.currentUserSubject.next(this.user);
       return true;
     }
     return false;
@@ -109,9 +121,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-
     this.token = '';
     this.user = null;
+    this.currentUserSubject.next(null);
     this.router.navigateByUrl('/login');
     setTimeout(() => {
       window.location.reload();

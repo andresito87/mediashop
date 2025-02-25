@@ -58,9 +58,7 @@
           </h3>
         </div>
       </div>
-      <div class="offcanvas__btn">
-        <a href="contact.html" class="tp-btn-2 tp-btn-border-2">Contact Us</a>
-      </div>
+      <div class="offcanvas__btn"></div>
     </div>
     <div class="offcanvas__bottom">
       <div
@@ -109,26 +107,17 @@
     <div class="row row-cols-5">
       <div class="col">
         <div class="tp-mobile-item text-center">
-          <a href="shop.html" class="tp-mobile-item-btn">
+          <a routerLink="/" class="tp-mobile-item-btn">
             <i class="flaticon-store"></i>
-            <span>Store</span>
+            <span>Home</span>
           </a>
         </div>
       </div>
       <div class="col">
         <div class="tp-mobile-item text-center">
-          <button class="tp-mobile-item-btn tp-search-open-btn">
-            <i class="flaticon-search-1"></i>
-            <span>Search</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="tp-mobile-item text-center">
-          <a href="profile.html" class="tp-mobile-item-btn">
+          <a href="/profile" class="tp-mobile-item-btn">
             <i class="flaticon-user"></i>
-            <span>Account</span>
+            <span>My Profile</span>
           </a>
         </div>
       </div>
@@ -491,7 +480,10 @@
                   </div>
                   @if(user){
                   <div class="tp-header-login-content d-none d-xl-block">
-                    <span>Hello, {{ user.full_name }}</span>
+                    <span *ngIf="user"
+                      >Hello, {{ user.full_name ? user.full_name : user.name }}
+                      {{ user.surname }}</span
+                    >
                     <h5 class="tp-header-login-title">
                       <a routerLink="/profile" href="#" onclick="return false;"
                         >Go Your Profile</a

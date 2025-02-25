@@ -168,6 +168,31 @@ button.toast-close-button {
   color:#a9a9a9 !important
 }
 
+.not-found-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.not-found-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 500px;
+  padding: 2em;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.not-found-icon {
+  font-size: 3rem;
+  color: #ff4d4f;
+  margin-bottom: 1rem;
+}
+
+
 /* Responsive Design */
 @media all and (max-width: 240px) {
   .toast-container .ngx-toastr.div {

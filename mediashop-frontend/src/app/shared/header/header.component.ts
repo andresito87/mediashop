@@ -15,6 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Renderer2 } from '@angular/core';
 import { CartService } from '../../pages/home/service/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../pages/auth/service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -40,7 +41,8 @@ export class HeaderComponent {
     public cartService: CartService,
     private toastr: ToastrService,
     private cdRef: ChangeDetectorRef,
-    private profileClientService: ProfileClientService
+    private profileClientService: ProfileClientService,
+    private authService: AuthService
   ) {
     afterNextRender(() => {
       this.homeService.menus().subscribe((res: any) => {
@@ -71,6 +73,10 @@ export class HeaderComponent {
   }
 
   ngOnInit(): void {
+    this.authService.currentUser$.subscribe((userData) => {
+      this.user = userData;
+    });
+
     // change currency
     this.homeService.menus().subscribe((res: any) => {
       this.categories_menu = res.categories_menu;
