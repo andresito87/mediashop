@@ -100,7 +100,6 @@ export class LandingProductComponent {
     setTimeout(() => {
       if (typeof MODAL_QUANTITY_LANDING === 'function') {
         MODAL_QUANTITY_LANDING($);
-        console.log('Se ejecuta');
       }
     }, 500);
   }
