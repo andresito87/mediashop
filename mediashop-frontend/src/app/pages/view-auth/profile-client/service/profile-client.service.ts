@@ -37,7 +37,6 @@ export class ProfileClientService {
         switchMap(() => this.showUsers()),
         tap((userData: any) => {
           // Actualiza el localStorage y el AuthService con la info nueva.
-          console.log(userData);
           localStorage.setItem('user', JSON.stringify(userData));
           this.authService.user = userData;
           this.authService.currentUserSubject.next(userData);

@@ -41,7 +41,7 @@ export class ProfileClientComponent implements OnInit {
       if (user) {
         this.avatar = user.avatar;
         // Combina el nombre y apellido según lo que devuelva el backend
-        this.name = user.name + ' ' + user.surname;
+        this.name = user.full_name;
       }
       this.cdRef.detectChanges();
     });

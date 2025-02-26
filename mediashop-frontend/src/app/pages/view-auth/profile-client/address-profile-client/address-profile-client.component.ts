@@ -107,10 +107,8 @@ export class AddressProfileClientComponent {
       .updateAddress(this.address_selected.id, data)
       .subscribe((res: any) => {
         let index = this.addresses.findIndex((item: any) => {
-          console.log(res);
           return item.id == res.body.address.id;
         });
-        console.log('index', index);
         if (index != -1) {
           this.addresses[index] = res.body.address;
         }

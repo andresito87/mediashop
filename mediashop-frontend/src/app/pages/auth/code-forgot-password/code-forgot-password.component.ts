@@ -2,13 +2,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-code-forgot-password',
   standalone: true,
-  imports: [FormsModule, ForgotPasswordComponent, CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './code-forgot-password.component.html',
   styleUrl: './code-forgot-password.component.css',
 })
@@ -33,7 +32,6 @@ export class CodeForgotPasswordComponent {
       code: this.code,
     };
     this.authService.verifiedCode(data).subscribe((res: any) => {
-      console.log(res);
       if (res.error) {
         this.toastr.error('Error', 'Código no encontrado');
         this.isLoadingCode = null;

@@ -37,7 +37,6 @@ export class NewPasswordComponent {
       code: this.code,
     };
     this.authService.verifiedNewPassword(data).subscribe((res: any) => {
-      console.log(res);
       this.toastr.success(
         'Exito',
         'La contraseña se ha cambiado correctamente'

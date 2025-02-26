@@ -28,7 +28,6 @@ export class AuthService {
       this.user = localStorage.getItem('user')
         ? JSON.parse(localStorage.getItem('user') as string)
         : null;
-      console.log('initAuth user:', this.user);
       this.currentUserSubject.next(this.user);
     }
   }
